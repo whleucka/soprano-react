@@ -1,6 +1,12 @@
+import { useEffect } from "react";
 const App = () => {
-  const answer = () => {
-  };
+
+  useEffect(() => {
+      fetch('http://hleucka.ddns.net/api/v1/answer')
+          .then(res => res.json())
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+  }, []);
 
   return (
       <section>
