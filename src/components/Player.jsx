@@ -1,6 +1,6 @@
 const Player = () => {
     return (
-        <section>
+        <section id="player">
             <p>Player</p>
         </section>
     );

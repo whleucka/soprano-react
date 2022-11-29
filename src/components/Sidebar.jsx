@@ -5,16 +5,16 @@ const Sidebar = () => {
         <nav id="sidebar">
             <ul>
                 <Link to="/">
-                    <li>Home</li>
+                    <li className="truncate">Home</li>
                 </Link>
                 <Link to="/music">
-                    <li>Music</li>
+                    <li className="truncate">Music</li>
                 </Link>
                 <Link to="/playlists">
-                    <li>Playlists</li>
+                    <li className="truncate">Playlists</li>
                 </Link>
                 <Link to="/podcasts">
-                    <li>Podcasts</li>
+                    <li className="truncate">Podcasts</li>
                 </Link>
             </ul>
         </nav>
