@@ -2,6 +2,7 @@ import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Menu from './Menu';
+import Player from './Player';
 
 const Home = lazy(() => import('./Home'));
 const Music = lazy(() => import('./Music'));
@@ -12,7 +13,7 @@ const Soprano = () => {
     return (
         <Router>
             <Menu />
-            <section id="content">
+            <section id="content" className="d-flex">
                 <Sidebar />
                 <section id="main">
                     <Suspense fallback={<div>Loading...</div>}>
@@ -33,6 +34,7 @@ const Soprano = () => {
                     </Suspense>
                 </section>
             </section>
+            <Player />
         </Router>
     );
 };

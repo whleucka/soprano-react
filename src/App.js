@@ -1,4 +1,5 @@
 import { useState, lazy } from 'react';
+import "./stylesheets/main.css";
 
 const Soprano = lazy(() => import('./components/Soprano'));
 const SignIn = lazy(() => import('./components/SignIn'));
