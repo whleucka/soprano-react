@@ -5,10 +5,10 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // Strict mode renders twice in dev
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    // Strict mode renders twice in dev
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

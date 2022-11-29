@@ -1,18 +1,16 @@
-import { useEffect } from "react";
+import { useState, lazy } from 'react';
+
+const Soprano = lazy(() => import('./components/Soprano'));
+const SignIn = lazy(() => import('./components/SignIn'));
+
 const App = () => {
-
-  useEffect(() => {
-      fetch('http://hleucka.ddns.net/api/v1/answer')
-          .then(res => res.json())
-          .then(res => console.log(res))
-          .catch(err => console.log(err));
-  }, []);
-
-  return (
-      <section>
-        <p>Hello, world!</p>
-      </section>
-  );
-}
+    const [loggedIn, setLoggedIn] = useState(true);
+    return (
+        <section id="wrapper">
+            {loggedIn && <Soprano />}
+            {!loggedIn && <SignIn />}
+        </section>
+    );
+};
 
 export default App;
