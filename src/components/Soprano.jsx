@@ -18,7 +18,7 @@ const Soprano = () => {
                 <section id="main">
                     <Menu />
                     <section id="view">
-                        <Suspense fallback={ <BarLoader className="my-3" width="100%" color="#36d7b7" />}>
+                        <Suspense fallback={<BarLoader className="my-3" width="100%" color="#36d7b7" />}>
                             <Routes>
                                 <Route exact path="/" element={<Home />} />
                                 <Route exact path="/music" element={<Music />} />
