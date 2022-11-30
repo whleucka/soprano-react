@@ -1,18 +1,36 @@
 /**
  * Layout
  */
+body {
+    font-family: 'Inter', sans-serif;
+}
 html, body, #root, #wrapper {
     height: 100%;
     font-size: 100%;
 }
 #wrapper {
     color: #fff;
-    font-size: 1.2rem;
     background-color: #222;
 }
 #content {
-    height: calc(100% - 60px);
+    height: calc(100% - 80px);
     overflow: hidden;
+}
+
+/**
+ * Fonts, Headings
+ */
+a:link {
+    color: #fff;
+}
+h1,h2,h3,h4,h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+.header {
+    font-weight: 900;
+}
+.primary-color {
+    color: #36d7b7;
 }
 
 /**
@@ -21,36 +39,50 @@ html, body, #root, #wrapper {
 #navbar {
     background-color: #222;
     width: 100%;
-    height: 26px;
+    height: 32px;
     position: sticky;
     top: 0;
+}
+#sidebar .brand {
+    font-variant: small-caps;
+    font-weight: 900;
+    padding: 10px;
 }
 #navigation-buttons button {
     background: none;
     border-radius: 12px;
     border: 0;
     margin: 0 5px;
+    padding: 5px;
 }
 #navigation-buttons img {
-    height: 14px;
+    height: 18px;
 }
 
 /**
  * Sidebar
  */
 #sidebar {
-    background-color: #111;
+    padding-top: 5px;
+    background-color: #000;
     width: 120px !important;
 }
 #sidebar ul {
     padding: 0 0 0 10px;
 }
+#sidebar li {
+    margin-bottom: 6px;
+}
 #sidebar a {
+    font-weight: 600;
     color: #fff;
-    text-decoration: none;;
+    text-decoration: none;
+}
+#sidebar a {
+    opacity: 0.8;
 }
 #sidebar a:hover {
-    color: limegreen;
+    opacity: 1;
 }
 
 /**
@@ -66,7 +98,8 @@ html, body, #root, #wrapper {
 #player {
     background-color: #111;
     width: 100%;
-    height: 60px;
+    height: 80px;
+    border-top: 1px solid #333;
 }
 
 /**

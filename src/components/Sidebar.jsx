@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
     return (
         <nav id="sidebar">
+            <h3 className="brand">soprano</h3>
             <ul>
                 <Link to="/">
                     <li className="truncate">Home</li>

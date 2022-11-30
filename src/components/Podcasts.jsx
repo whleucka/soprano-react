@@ -1,5 +1,7 @@
 const Podcasts = () => {
-    return <p>Podcasts</p>;
+    return <>
+        <h2 className="header">Podcasts</h2>
+    </>;
 };
 
 export default Podcasts;

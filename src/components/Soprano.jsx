@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Menu from './Menu';
 import Player from './Player';
+import { BarLoader } from "react-spinners";
 
 const Home = lazy(() => import('./Home'));
 const Music = lazy(() => import('./Music'));
@@ -17,7 +18,7 @@ const Soprano = () => {
                 <section id="main">
                     <Menu />
                     <section id="view">
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={ <BarLoader className="my-3" width="100%" color="#36d7b7" />}>
                             <Routes>
                                 <Route exact path="/" element={<Home />} />
                                 <Route exact path="/music" element={<Music />} />

@@ -1,5 +1,7 @@
 const Music = () => {
-    return <p>Music</p>;
+    return <>
+        <h2 className="header">Music</h2>
+    </>;
 };
 
 export default Music;

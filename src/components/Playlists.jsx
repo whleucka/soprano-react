@@ -1,5 +1,7 @@
 const Playlists = () => {
-    return <p>Playlists</p>;
+    return <>
+        <h2 className="header">Playlists</h2>
+    </>;
 };
 
 export default Playlists;
