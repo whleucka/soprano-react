@@ -21,7 +21,7 @@ const getData = async (endpoint = '', data = {}) => {
 
 const API = {
     musicSearch: async (searchTerm) => {
-        const response = await getData('music/search', { term: searchTerm });
+        const response = await getData('/music/search', { term: searchTerm });
         if (response.success) return response.data;
         else return [];
     }

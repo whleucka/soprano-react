@@ -27,7 +27,7 @@ const Soprano = () => {
     }, [state, dispatch]);
 
     const track_url = state.track
-        ? process.env.REACT_APP_API_URL + `music/play/${state.track.md5}`
+        ? process.env.REACT_APP_API_URL + `/music/play/${state.track.md5}`
         : null;
 
     return (
