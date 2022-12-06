@@ -13,7 +13,7 @@ const MusicSearch = () => {
     };
 
     const handleKey = (e) => {
-        if (e.code === 'Enter' || e.code === 'Search') {
+        if (e.code === 'Enter') {
             handleSubmit();
         }
     };
@@ -46,7 +46,7 @@ const MusicSearch = () => {
                 className="form-control form-control-sm"
             />
             <button
-                type="button"
+                type="submit"
                 onClick={handleSubmit}
                 className="btn btn-primary"
             >
@@ -54,7 +54,7 @@ const MusicSearch = () => {
             </button>
             { searchTerm.length > 0 &&
             <button
-                type="button"
+                type="submit"
                 onClick={handleClear}
                 style={{borderLeft: 0}}
                 className="btn btn-primary"
