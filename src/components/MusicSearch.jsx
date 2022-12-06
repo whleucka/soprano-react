@@ -13,7 +13,7 @@ const MusicSearch = () => {
     };
 
     const handleKey = (e) => {
-        if (e.code === 'Enter') {
+        if (e.code === 'Enter' || e.code === 'Search') {
             handleSubmit();
         }
     };
