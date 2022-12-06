@@ -39,7 +39,7 @@ const MusicSearch = () => {
     };
 
     return (
-        <div id="music-search">
+        <div className="input-group input-group-sm w-100">
             <input
                 placeholder="I want to listen to..."
                 type="search"
@@ -51,19 +51,19 @@ const MusicSearch = () => {
             <button
                 type="submit"
                 onClick={handleSubmit}
-                className="btn btn-primary"
+                className="btn btn-sm btn-dark"
             >
                 <SearchIcon height="14" />
             </button>
-            { searchTerm.length > 0 &&
-            <button
-                type="submit"
-                onClick={handleClear}
-                style={{borderLeft: 0}}
-                className="btn btn-primary"
-            >
-                <TrashIcon height="14" />
-            </button>
+            {searchTerm.length > 0 &&
+                <button
+                    type="submit"
+                    onClick={handleClear}
+                    style={{ borderLeft: 0 }}
+                    className="btn btn-sm btn-dark"
+                >
+                    <TrashIcon height="14" />
+                </button>
             }
         </div>
     );

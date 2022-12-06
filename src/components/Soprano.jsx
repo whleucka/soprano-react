@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
 import Menu from './Menu';
+import Navbar from './Navbar';
 import Player from './Player';
 import { BarLoader } from 'react-spinners';
 
@@ -33,6 +34,7 @@ const Soprano = () => {
     return (
         <SopranoContext.Provider value={ContextValue}>
             <Router>
+                <Navbar />
                 <section id="content" className="d-flex">
                     <Sidebar />
                     <section id="main">

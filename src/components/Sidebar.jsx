@@ -1,9 +1,9 @@
-import SidebarLinks from './SidebarLinks';
+import NavLinks from "./NavLinks";
 
 const Sidebar = () => {
     return (
         <nav id="sidebar">
-            <SidebarLinks />
+            <NavLinks />
         </nav>
     );
 };

@@ -6,7 +6,8 @@ const Menu = () => {
     const location = useLocation();
 
     return (
-        <nav id="navbar">
+        <nav id="menu">
+            {/*
             <div id="navigation-buttons">
                 <button onClick={() => navigate(-1)}>
                     <img src="/img/chevron_left.svg" alt="Go back" />
@@ -14,8 +15,9 @@ const Menu = () => {
                 <button onClick={() => navigate(1)}>
                     <img src="/img/chevron_right.svg" alt="Go back" />
                 </button>
-                {location.pathname === '/music' && <MusicSearch />}
             </div>
+            */}
+            {location.pathname === '/music' && <MusicSearch />}
         </nav>
     );
 };
