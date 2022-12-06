@@ -13,7 +13,10 @@ const MusicSearch = () => {
     };
 
     const handleKey = (e) => {
-        if (e.code === 'Enter') {
+        if (e.defaultPrevented) {
+            return;
+        }
+        if (e.keyCode === 13) {
             handleSubmit();
         }
     };
