@@ -1,5 +1,6 @@
-import { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useReducer, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
 import Menu from './Menu';
 import Player from './Player';
@@ -10,35 +11,51 @@ const Music = lazy(() => import('./Music'));
 const Playlists = lazy(() => import('./Playlists'));
 const Podcasts = lazy(() => import('./Podcasts'));
 
+export const SopranoContext = React.createContext();
+
+const initialState = {
+    user: null,
+    track: null,
+};
+
 const Soprano = () => {
+    const [state, dispatch] = useReducer(SopranoReducer, initialState);
+
+    const ContextValue = useMemo(() => {
+        return { state, dispatch };
+    }, [state, dispatch]);
+
+
     return (
-        <Router>
-            <section id="content" className="d-flex">
-                <Sidebar />
-                <section id="main">
-                    <Menu />
-                    <section id="view">
-                        <Suspense fallback={<BarLoader className="my-3" width="100%" color="#36d7b7" />}>
-                            <Routes>
-                                <Route exact path="/" element={<Home />} />
-                                <Route exact path="/music" element={<Music />} />
-                                <Route
-                                    exact
-                                    path="/playlists"
-                                    element={<Playlists />}
-                                />
-                                <Route
-                                    exact
-                                    path="/podcasts"
-                                    element={<Podcasts />}
-                                />
-                            </Routes>
-                        </Suspense>
+        <SopranoContext.Provider value={ContextValue}>
+            <Router>
+                <section id="content" className="d-flex">
+                    <Sidebar />
+                    <section id="main">
+                        <Menu />
+                        <section id="view">
+                            <Suspense fallback={<BarLoader className="my-3" width="100%" color="#36d7b7" />}>
+                                <Routes>
+                                    <Route exact path="/" element={<Home />} />
+                                    <Route exact path="/music" element={<Music />} />
+                                    <Route
+                                        exact
+                                        path="/playlists"
+                                        element={<Playlists />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/podcasts"
+                                        element={<Podcasts />}
+                                    />
+                                </Routes>
+                            </Suspense>
+                        </section>
                     </section>
                 </section>
-            </section>
-            <Player />
-        </Router>
+                <Player />
+            </Router>
+        </SopranoContext.Provider>
     );
 };
 
