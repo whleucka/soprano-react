@@ -1,6 +1,6 @@
-import PlayerCover from "./PlayerCover";
-import PlayerControls from "./PlayerControls";
-import PlayerVolume from "./PlayerVolume";
+import PlayerCover from './PlayerCover';
+import PlayerControls from './PlayerControls';
+import PlayerVolume from './PlayerVolume';
 
 const Player = () => {
     return (
@@ -18,6 +18,6 @@ const Player = () => {
             </div>
         </section>
     );
-}
+};
 
 export default Player;

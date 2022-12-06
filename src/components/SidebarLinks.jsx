@@ -9,11 +9,8 @@ const SidebarLinks = () => {
             <Link to="/music">
                 <li className="truncate">Music</li>
             </Link>
-            <Link to="/podcasts">
-                <li className="truncate">Podcasts</li>
-            </Link>
         </ul>
-    )
-}
+    );
+};
 
 export default SidebarLinks;

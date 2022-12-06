@@ -1,4 +1,4 @@
-import SidebarLinks from "./SidebarLinks";
+import SidebarLinks from './SidebarLinks';
 
 const Sidebar = () => {
     return (

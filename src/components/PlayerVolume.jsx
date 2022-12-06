@@ -1,6 +1,3 @@
-const PlayerVolume = () => {
-}
+const PlayerVolume = () => {};
 
 export default PlayerVolume;
-
-

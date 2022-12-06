@@ -1,6 +1,5 @@
-import Soprano from "./components/Soprano";
-import "./stylesheets/main.css";
-
+import Soprano from './components/Soprano';
+import './stylesheets/main.css';
 
 const App = () => {
     return (

@@ -1,4 +1,3 @@
-const PlayerControls = () => {
-}
+const PlayerControls = () => {};
 
 export default PlayerControls;
