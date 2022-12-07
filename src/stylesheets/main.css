@@ -248,7 +248,7 @@ label:focus,
         opacity: 1;
     }
     50% {
-        color: inherit;
+        color: limegreen;
         opacity: 0.4;
     }
     100% {
