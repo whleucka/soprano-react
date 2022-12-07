@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Volume } from "react-feather";
+import { useState, useEffect } from 'react';
+import { Volume } from 'react-feather';
 
 const PlayerVolume = () => {
     const [volume, setVolume] = useState(100);
@@ -11,20 +11,30 @@ const PlayerVolume = () => {
         const x = e.pageX - self.offsetLeft;
         const pct = width > 0 ? (x / width) * 100 : 0;
         setVolume(Math.round(pct));
-    }
+    };
 
     useEffect(() => {
-        const audio = document.getElementById("audio");
+        const audio = document.getElementById('audio');
         const level = volume / 100;
         audio.volume = level.toFixed(1);
     }, [volume]);
 
     return (
-        <div id="player-volume" className="d-flex align-items-center justify-content-end h-100 w-100 ps-5">
+        <div
+            id="player-volume"
+            className="d-flex align-items-center justify-content-end h-100 w-100 ps-5"
+        >
             <Volume />
-            <div id="volume-progress" onClick={handleClick} className="progress w-100">
-                <div className="progress-bar bg-success" role="progressbar" style={{ width: volume + '%' }}>
-                </div>
+            <div
+                id="volume-progress"
+                onClick={handleClick}
+                className="progress w-100"
+            >
+                <div
+                    className="progress-bar bg-success"
+                    role="progressbar"
+                    style={{ width: volume + '%' }}
+                ></div>
             </div>
         </div>
     );

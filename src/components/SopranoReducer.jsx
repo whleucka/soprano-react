@@ -8,6 +8,10 @@ export function SopranoReducer(state, action) {
             return { ...state, track: action.payload };
         case 'setStatus':
             return { ...state, status: action.payload };
+        case 'setPlaylist':
+            return { ...state, playlist: action.payload };
+        case 'setPlaylistIndex':
+            return { ...state, playlistIndex: action.payload };
         default:
             return state;
     }

@@ -56,6 +56,7 @@ h5 {
 }
 .header {
     font-weight: 900;
+    margin-bottom: 20px;
 }
 .primary-color {
     color: #36d7b7;
@@ -115,7 +116,7 @@ h5 {
     min-width: 120px;
 }
 #sidebar .brand {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 900;
     padding: 10px;
 }
@@ -167,10 +168,9 @@ button:active,
 button:hover,
 label:focus,
 .btn:active,
-.btn.active
-{
-    outline:0px !important;
-    -webkit-appearance:none;
+.btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
     box-shadow: none !important;
 }
 .truncate {
@@ -222,9 +222,31 @@ label:focus,
 }
 .track-row .play-button {
     font-size: 0.9rem;
-    opacity: 0.5;
+    opacity: 0.4;
     background: none;
     border: 0;
+}
+.track-row .play-button.active {
+    font-weight: bold;
+    color: limegreen;
+    animation-name: activerow;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes activerow {
+    0% {
+        color: limegreen;
+        opacity: 1;
+    }
+    50% {
+        color: inherit;
+        opacity: 0.4;
+    }
+    100% {
+        color: limegreen;
+        opacity: 1;
+    }
 }
 
 /**

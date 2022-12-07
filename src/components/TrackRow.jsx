@@ -4,22 +4,25 @@ import AlbumCover from './AlbumCover';
 import { SopranoContext } from './Soprano';
 import TrackTitle from './TrackTitle';
 
-const TrackRow = ({ track }) => {
+const TrackRow = ({ track, playlistIndex = null }) => {
     const { state, dispatch } = useContext(SopranoContext);
     const { cover, artist, album, title, playtime_string, md5 } = track;
     const handleClick = (e) => {
         dispatch({ type: 'setTrack', payload: track });
+        if (playlistIndex)
+            dispatch({ type: 'setPlaylistIndex', payload: playlistIndex });
     };
-    const buttonClass = state.status === "playing" && state.track.md5 === track.md5
-        ? "lime-green full-opacity font-bolder"
-        : "text-secondary";
+    const buttonClass =
+        state.status === 'playing' && state.track.md5 === track.md5
+            ? 'active'
+            : 'text-secondary';
 
     return (
         <div className="track-row d-flex align-items-center">
             <div>
                 <button
                     onClick={handleClick}
-                    className={buttonClass + " play-button btn btn-dark"}
+                    className={buttonClass + ' play-button btn btn-dark'}
                 >
                     <PlayIcon height="18" strokeWidth="2" />
                 </button>

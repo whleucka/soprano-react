@@ -9,6 +9,7 @@ import { BarLoader } from 'react-spinners';
 
 const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
+const Playlist = lazy(() => import('./Playlist'));
 const Playlists = lazy(() => import('./Playlists'));
 const Podcasts = lazy(() => import('./Podcasts'));
 
@@ -17,10 +18,11 @@ export const SopranoContext = React.createContext();
 const initialState = {
     user: null,
     track: null,
-    status: "idle",
+    status: 'idle',
     searchResults: [],
+    playlistIndex: 0,
     playlist: [],
-    playlists: [],
+    playlists: []
 };
 
 const Soprano = () => {
@@ -61,13 +63,8 @@ const Soprano = () => {
                                     />
                                     <Route
                                         exact
-                                        path="/playlists"
-                                        element={<Playlists />}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/podcasts"
-                                        element={<Podcasts />}
+                                        path="/playlist"
+                                        element={<Playlist />}
                                     />
                                 </Routes>
                             </Suspense>

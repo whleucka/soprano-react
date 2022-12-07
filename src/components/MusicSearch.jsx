@@ -33,7 +33,7 @@ const MusicSearch = () => {
 
     const handleClear = () => {
         dispatch({ type: 'setSearchResults', payload: [] });
-        setSearchTerm("");
+        setSearchTerm('');
     };
 
     return (
@@ -53,7 +53,7 @@ const MusicSearch = () => {
             >
                 <SearchIcon height="14" />
             </button>
-            {state.searchResults.length > 0 &&
+            {state.searchResults.length > 0 && (
                 <button
                     type="submit"
                     onClick={handleClear}
@@ -62,7 +62,7 @@ const MusicSearch = () => {
                 >
                     <TrashIcon height="14" />
                 </button>
-            }
+            )}
         </div>
     );
 };
