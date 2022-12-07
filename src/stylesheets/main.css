@@ -277,10 +277,12 @@ label:focus,
     margin-left: 10px;
     border-radius: 5px;
     height: 60px;
+    width: 60px;
 }
 #player .track-title {
-    max-width: 97px;
-    width: 97px;
+    width: 99%;
+    width: 150px;
+    max-width: 150px;
 }
 #player #title {
     font-weight: bold;
@@ -291,12 +293,17 @@ label:focus,
     color: #ccc;
     opacity: 0.7;
 }
-#player div#left.col {
+#player #left-cover {
 }
-#player div#center.col {
+#player #left-track-title {
+    max-width: 300px;
 }
-#player div#right.col {
+#player #center-controls {
+}
+#player #right-volume {
     display: none;
+    width: 200px;
+    padding-right: 10px;
 }
 #player-controls button {
     margin: 0;
@@ -341,7 +348,7 @@ label:focus,
     #menu {
         padding: 0;
     }
-    #player #right {
+    #player #right-volume {
         display: block;
     }
     #player .track-title {
