@@ -76,6 +76,7 @@ h5 {
 }
 #navbar a {
     opacity: 0.6;
+    margin-bottom: 10px;
 }
 #navbar a:hover {
     opacity: 1;
