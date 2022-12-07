@@ -5,7 +5,7 @@ import API from './API';
 
 const MusicSearch = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const { dispatch } = useContext(SopranoContext);
+    const { state, dispatch } = useContext(SopranoContext);
 
     const handleChange = (e) => {
         const term = e.currentTarget.value;
@@ -32,11 +32,8 @@ const MusicSearch = () => {
     };
 
     const handleClear = () => {
-        // Make some request to api
-        if (searchTerm) {
-            dispatch({ type: 'setSearchResults', payload: [] });
-            setSearchTerm("");
-        }
+        dispatch({ type: 'setSearchResults', payload: [] });
+        setSearchTerm("");
     };
 
     return (
@@ -56,7 +53,7 @@ const MusicSearch = () => {
             >
                 <SearchIcon height="14" />
             </button>
-            {searchTerm.length > 0 &&
+            {state.searchResults.length > 0 &&
                 <button
                     type="submit"
                     onClick={handleClear}
