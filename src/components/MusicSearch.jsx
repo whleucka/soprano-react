@@ -44,7 +44,7 @@ const MusicSearch = () => {
                 onChange={handleChange}
                 onKeyUp={handleKey}
                 value={searchTerm}
-                className="form-control form-control-sm"
+                className="form-control form-control-sm bg-dark"
             />
             <button
                 type="submit"

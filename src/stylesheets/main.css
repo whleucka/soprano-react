@@ -84,6 +84,9 @@ h5 {
 .navbar-toggler {
     border: 0;
 }
+.brand {
+    color: #eee;
+}
 
 /**
  * Menu
@@ -96,6 +99,10 @@ h5 {
     top: 0;
     background-color: #111;
     padding: 0 8px;
+}
+#menu input {
+    color: #bbb;
+    border: 0;
 }
 #navigation-buttons button {
     background: none;
@@ -126,10 +133,10 @@ h5 {
 }
 #sidebar ul {
     font-size: 0.9rem;
-    padding: 0 0 0 10px;
 }
 #sidebar li {
-    margin-bottom: 6px;
+    padding: 0 0 0 12px;
+    margin-bottom: 8px;
 }
 #sidebar a {
     transition: opacity 0.5s;
