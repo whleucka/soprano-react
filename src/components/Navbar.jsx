@@ -7,7 +7,7 @@ const Navbar = () => {
             className="navbar navbar-expand-lg navbar-dark bg-dark"
         >
             <div className="container-fluid">
-                <span className="navbar-brand brand">Soprano</span>
+                <h5 className="navbar-brand brand">Soprano</h5>
                 <button
                     className="navbar-toggler"
                     type="button"
