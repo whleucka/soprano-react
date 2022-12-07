@@ -235,9 +235,7 @@ label:focus,
 }
 
 .track-row .play-button.active svg {
-    font-weight: bold;
     color: limegreen;
-    fill: #444;
     animation-name: activerow;
     animation-duration: 4s;
     animation-iteration-count: infinite;
