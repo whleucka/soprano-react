@@ -222,13 +222,19 @@ label:focus,
 }
 .track-row .play-button {
     font-size: 0.9rem;
-    opacity: 0.4;
     background: none;
     border: 0;
 }
-.track-row .play-button.active {
+
+.track-row .play-button svg {
+    opacity: 0.4;
+    stroke-width: 3px;
+}
+
+.track-row .play-button.active svg {
     font-weight: bold;
     color: limegreen;
+    fill: #444;
     animation-name: activerow;
     animation-duration: 4s;
     animation-iteration-count: infinite;

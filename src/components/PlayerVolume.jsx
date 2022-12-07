@@ -22,7 +22,7 @@ const PlayerVolume = () => {
     return (
         <div
             id="player-volume"
-            className="d-flex align-items-center justify-content-end h-100 w-100 ps-5"
+            className="d-flex align-items-center justify-content-end h-100 w-100 ps-5 text-secondary"
         >
             <Volume />
             <div
