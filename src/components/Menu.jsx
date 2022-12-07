@@ -1,23 +1,18 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import HomeActions from './HomeActions';
+import LibraryActions from './LibraryActions';
 import MusicSearch from './MusicSearch';
+import PlaylistActions from './PlaylistActions';
 
 const Menu = () => {
-    const navigate = useNavigate();
     const location = useLocation();
 
     return (
         <nav id="menu">
-            {/*
-            <div id="navigation-buttons">
-                <button onClick={() => navigate(-1)}>
-                    <img src="/img/chevron_left.svg" alt="Go back" />
-                </button>
-                <button onClick={() => navigate(1)}>
-                    <img src="/img/chevron_right.svg" alt="Go back" />
-                </button>
-            </div>
-            */}
+            {location.pathname === '/' && <HomeActions />}
             {location.pathname === '/search' && <MusicSearch />}
+            {location.pathname === '/playlist' && <PlaylistActions />}
+            {location.pathname === '/library' && <LibraryActions />}
         </nav>
     );
 };

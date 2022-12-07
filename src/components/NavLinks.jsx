@@ -1,7 +1,8 @@
 import {
     Home as HomeIcon,
     Search as SearchIcon,
-    List as ListIcon
+    List as ListIcon,
+    Disc as DiscIcon
 } from 'react-feather';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +22,11 @@ const NavLinks = () => {
             <Link to="/playlist">
                 <li className="nav-item truncate">
                     <ListIcon size="18" /> Playlist
+                </li>
+            </Link>
+            <Link to="/library">
+                <li className="nav-item truncate">
+                    <DiscIcon size="18" /> Library
                 </li>
             </Link>
         </ul>
