@@ -17,7 +17,7 @@ const Menu = () => {
                 </button>
             </div>
             */}
-            {location.pathname === '/music' && <MusicSearch />}
+            {location.pathname === '/search' && <MusicSearch />}
         </nav>
     );
 };

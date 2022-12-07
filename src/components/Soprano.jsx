@@ -8,7 +8,7 @@ import Player from './Player';
 import { BarLoader } from 'react-spinners';
 
 const Home = lazy(() => import('./Home'));
-const Music = lazy(() => import('./Music'));
+const Search = lazy(() => import('./Search'));
 const Playlists = lazy(() => import('./Playlists'));
 const Podcasts = lazy(() => import('./Podcasts'));
 
@@ -17,7 +17,10 @@ export const SopranoContext = React.createContext();
 const initialState = {
     user: null,
     track: null,
-    searchResults: []
+    status: "idle",
+    searchResults: [],
+    playlist: [],
+    playlists: [],
 };
 
 const Soprano = () => {
@@ -53,8 +56,8 @@ const Soprano = () => {
                                     <Route exact path="/" element={<Home />} />
                                     <Route
                                         exact
-                                        path="/music"
-                                        element={<Music />}
+                                        path="/search"
+                                        element={<Search />}
                                     />
                                     <Route
                                         exact
@@ -72,7 +75,7 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player />
-                <audio src={track_url} autoPlay preload />
+                <audio id="audio" src={track_url} autoPlay />
             </Router>
         </SopranoContext.Provider>
     );

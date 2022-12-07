@@ -8,7 +8,7 @@ const MusicSearch = () => {
     const { dispatch } = useContext(SopranoContext);
 
     const handleChange = (e) => {
-        const term = e.currentTarget.value.trim();
+        const term = e.currentTarget.value;
         setSearchTerm(term);
     };
 
@@ -23,7 +23,8 @@ const MusicSearch = () => {
 
     const handleSubmit = () => {
         // Make some request to api
-        if (searchTerm) {
+        if (searchTerm.trim()) {
+            dispatch({ type: 'setSearchResults', payload: [] });
             API.musicSearch(searchTerm).then((tracks) => {
                 dispatch({ type: 'setSearchResults', payload: tracks });
             });

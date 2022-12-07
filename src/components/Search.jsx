@@ -1,12 +1,12 @@
 import SearchResults from './SearchResults';
 
-const Music = () => {
+const Search = () => {
     return (
         <>
-            <h2 className="header">Music</h2>
+            <h2 className="header">Search</h2>
             <SearchResults />
         </>
     );
 };
 
-export default Music;
+export default Search;

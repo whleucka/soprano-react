@@ -5,20 +5,23 @@ import { SopranoContext } from './Soprano';
 import TrackTitle from './TrackTitle';
 
 const TrackRow = ({ track }) => {
-    const { dispatch } = useContext(SopranoContext);
+    const { state, dispatch } = useContext(SopranoContext);
     const { cover, artist, album, title, playtime_string, md5 } = track;
     const handleClick = (e) => {
         dispatch({ type: 'setTrack', payload: track });
     };
+    const buttonClass = state.status === "playing" && state.track.md5 === track.md5
+        ? "lime-green full-opacity font-bolder"
+        : "text-secondary";
 
     return (
         <div className="track-row d-flex align-items-center">
             <div>
                 <button
                     onClick={handleClick}
-                    className="play-button btn btn-dark"
+                    className={buttonClass + " play-button btn btn-dark"}
                 >
-                    <PlayIcon height="18" />
+                    <PlayIcon height="18" strokeWidth="2" />
                 </button>
             </div>
             <div>

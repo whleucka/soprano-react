@@ -6,6 +6,8 @@ export function SopranoReducer(state, action) {
             return { ...state, searchResults: action.payload };
         case 'setTrack':
             return { ...state, track: action.payload };
+        case 'setStatus':
+            return { ...state, status: action.payload };
         default:
             return state;
     }

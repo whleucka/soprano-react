@@ -22,6 +22,26 @@ body,
 }
 
 /**
+ * Scrollbar
+ */
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+::-webkit-scrollbar-thumb {
+    background: #696969;
+    border-radius: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b3afb3;
+}
+::-webkit-scrollbar-track {
+    background: #222222;
+    border-radius: 0px;
+    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+}
+
+/**
  * Fonts, Headings
  */
 a:link {
@@ -70,6 +90,7 @@ h5 {
     position: sticky;
     top: 0;
     background-color: #111;
+    padding: 0 8px;
 }
 #navigation-buttons button {
     background: none;
@@ -88,12 +109,13 @@ h5 {
 #sidebar {
     display: none;
     position: relative;
-    padding-top: 5px;
+    padding-top: 15px;
     background-color: #000;
-    width: 120px !important;
+    width: 120px;
+    min-width: 120px;
 }
 #sidebar .brand {
-    font-variant: small-caps;
+    font-size: 1.5rem;
     font-weight: 900;
     padding: 10px;
 }
@@ -111,7 +133,7 @@ h5 {
     text-decoration: none;
 }
 #sidebar a {
-    opacity: 0.6;
+    opacity: 0.5;
 }
 #sidebar a:hover {
     opacity: 1;
@@ -126,12 +148,14 @@ h5 {
 }
 #view {
     padding: 10px 10px;
-    padding-top: 20px;
 }
 
 /**
  * Utilities
  */
+.full-opacity {
+    opacity: 1 !important;
+}
 textarea:hover,
 input:hover,
 textarea:active,
@@ -190,7 +214,7 @@ label:focus,
 .track-row #artist {
     font-size: 0.7rem;
     color: #ccc;
-    opacity: 0.9;
+    opacity: 0.7;
     max-width: 90%;
 }
 .track-row #playtime {
@@ -198,7 +222,7 @@ label:focus,
 }
 .track-row .play-button {
     font-size: 0.9rem;
-    color: azure;
+    opacity: 0.5;
     background: none;
     border: 0;
 }
@@ -217,6 +241,9 @@ label:focus,
     border-radius: 5px;
     height: 60px;
 }
+#player .track-title {
+    max-width: 148px;
+}
 #player #title {
     font-weight: bold;
     font-size: 0.8rem;
@@ -224,6 +251,7 @@ label:focus,
 #player #artist {
     font-size: 0.7rem;
     color: #ccc;
+    opacity: 0.7;
 }
 #player #left {
 }
@@ -231,6 +259,35 @@ label:focus,
 }
 #player #right {
     display: none;
+}
+#player-controls button {
+    margin: 0 auto;
+    background: none;
+    border: none;
+    opacity: 0.4;
+    transition: opacity 0.5s;
+}
+#player-controls button:hover {
+    opacity: 1;
+}
+#player-volume .progress-bar {
+    background-color: limegreen !important;
+}
+#volume-progress {
+    cursor: pointer;
+    height: 10px;
+}
+
+.lime-green {
+    color: limegreen !important;
+}
+
+/**
+ * Progress bars
+ */
+.progress {
+    max-width: 200px;
+    background-color: #222;
 }
 
 @media (min-width: 576px) {
@@ -242,6 +299,9 @@ label:focus,
     }
     #sidebar {
         display: block;
+    }
+    #menu {
+        padding: 0;
     }
     #player #right {
         display: block;
