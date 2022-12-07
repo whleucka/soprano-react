@@ -122,7 +122,7 @@ h5 {
 #sidebar .brand {
     font-size: 1.3rem;
     font-weight: 900;
-    padding: 10px;
+    padding: 16px;
 }
 #sidebar ul {
     font-size: 0.9rem;
@@ -289,7 +289,7 @@ label:focus,
     font-size: 0.8rem;
 }
 #player #artist {
-    font-size: 0.7rem;
+    font-size: 0.7rem;mainmain
     color: #ccc;
     opacity: 0.7;
 }
