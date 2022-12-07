@@ -242,7 +242,8 @@ label:focus,
     height: 60px;
 }
 #player .track-title {
-    max-width: 98px;
+    max-width: 90px;
+    width: 90px;
 }
 #player #title {
     font-weight: bold;
@@ -307,6 +308,7 @@ label:focus,
         display: block;
     }
     #player .track-title {
-        max-width: 148px;
+        max-width: 150px;
+        width: 150px;
     }
 }
