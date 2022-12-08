@@ -61,16 +61,20 @@ const Soprano = () => {
                                         path="/search"
                                         element={<Search />}
                                     />
-                                    <Route
-                                        exact
-                                        path="/playlist"
-                                        element={<Playlist />}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/library"
-                                        element={<Library />}
-                                    />
+                                    {state.user &&
+                                        <>
+                                            <Route
+                                                exact
+                                                path="/playlist"
+                                                element={<Playlist />}
+                                            />
+                                            <Route
+                                                exact
+                                                path="/library"
+                                                element={<Library />}
+                                            />
+                                        </>
+                                    }
                                 </Routes>
                             </Suspense>
                         </section>
