@@ -22,13 +22,13 @@ const NavLinks = () => {
                     <SearchIcon size="18" /> Search
                 </li>
             </Link>
+            <Link to="/playlist">
+                <li className="nav-item truncate">
+                    <MusicIcon size="18" /> Playlist
+                </li>
+            </Link>
             {state.user &&
                 <>
-                    <Link to="/playlist">
-                        <li className="nav-item truncate">
-                            <MusicIcon size="18" /> Playlist
-                        </li>
-                    </Link>
                     <Link to="/library">
                         <li className="nav-item truncate">
                             <DiscIcon size="18" /> Library
