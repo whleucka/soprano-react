@@ -17,7 +17,7 @@ body,
     color: #fff;
 }
 #content {
-    height: calc(100% - 134px);
+    height: calc(100% - 128px);
     overflow: hidden;
 }
 
@@ -93,6 +93,11 @@ h5 {
 #navbar .brand {
     padding-top: 10px;
     padding-left: 10px;
+}
+#navbar .brand-icon {
+    margin-left: 3px;
+    padding: 3px;
+    width: 32px;
 }
 .navbar-toggler {
     border: 0;

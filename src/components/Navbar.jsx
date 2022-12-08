@@ -7,7 +7,7 @@ const Navbar = () => {
             className="navbar navbar-expand-lg navbar-dark"
         >
             <div className="container-fluid d-flex align-items-center p-0">
-                <h5 className="navbar-brand brand">Soprano</h5>
+                <img className="brand-icon" src="/favicon-32x32.png" alt="brand icon" />
                 <button
                     id="nav-toggle"
                     className="navbar-toggler"
