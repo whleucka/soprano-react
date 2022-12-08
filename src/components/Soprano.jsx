@@ -32,9 +32,13 @@ const Soprano = () => {
         return { state, dispatch };
     }, [state, dispatch]);
 
-    const track_url = state.track
+    const trackUrl = state.track
         ? process.env.REACT_APP_API_URL + `/music/play/${state.track.md5}`
         : null;
+
+    const backdropImage = state.track
+        ? process.env.REACT_APP_SERVER_URL + state.track.cover
+        : '/img/no-album.png';
 
     return (
         <SopranoContext.Provider value={ContextValue}>
@@ -42,6 +46,9 @@ const Soprano = () => {
                 <Navbar />
                 <section id="content" className="d-flex">
                     <Sidebar />
+                    <section style={{ backgroundImage: `url(${backdropImage})` }} id="backdrop">
+                        &nbsp;
+                    </section>
                     <section id="main">
                         <Menu />
                         <section id="view">
@@ -81,7 +88,7 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player />
-                <audio id="audio" src={track_url} autoPlay />
+                <audio id="audio" src={trackUrl} autoPlay />
             </Router>
         </SopranoContext.Provider>
     );

@@ -9,6 +9,7 @@ const SearchActions = () => {
     const handleClick = (e) => {
         dispatch({ type: 'setPlaylist', payload: state.searchResults });
         dispatch({ type: 'setPlaylistIndex', payload: 0 });
+        dispatch({ type: 'setSearchResults', payload: [] });
         navigate('/playlist');
     };
 

@@ -116,19 +116,23 @@ const PlayerControls = () => {
         }
     }, [state.track]);
 
+    const disabledButton = state.playlist.length === 0
+    ? " disabled"
+    : "";
+
     return (
         <div
             id="player-controls"
             className="d-flex align-items-center justify-content-center h-100 w-100"
         >
-            <button className="btn btn-dark" onClick={previous}>
+            <button className={"btn btn-dark" + disabledButton} onClick={previous}>
                 <SkipBack />
             </button>
             <button className="btn btn-dark" onClick={handlePlayPause}>
                 {state.status !== 'playing' && <Play />}
                 {state.status === 'playing' && <Pause />}
             </button>
-            <button className="btn btn-dark" onClick={next}>
+            <button className={"btn btn-dark" + disabledButton} onClick={next}>
                 <SkipForward />
             </button>
         </div>
