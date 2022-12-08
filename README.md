@@ -1,3 +1,5 @@
 # Soprano
+- Currently under heavy development 👷
+- View a demo <a href="https://soprano.williamhleucka.com" title="Soprano">here</a>.
 
-Currently under heavy development 👷
+More information coming soon.
