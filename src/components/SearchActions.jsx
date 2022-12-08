@@ -14,7 +14,7 @@ const SearchActions = () => {
     };
 
     return (
-        <div className="my-3">
+        <div className="actions" id="search-actions">
             <button onClick={handleClick} className="btn btn-sm btn-dark">
                 <MusicIcon className="me-1" size="14" /> Playlist
             </button>

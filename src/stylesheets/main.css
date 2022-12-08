@@ -275,12 +275,8 @@ label:focus,
     }
 }
 
-/**
- * Library
- */
-.actions button {
-    margin: 3px;
-    border-bottom: 1px solid #fff;
+.actions {
+    margin: 10px 0;
 }
 
 /**
