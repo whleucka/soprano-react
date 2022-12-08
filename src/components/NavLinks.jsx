@@ -10,20 +10,26 @@ import { SopranoContext } from './Soprano';
 
 const NavLinks = () => {
     const { state } = useContext(SopranoContext);
+    const handleClick = (e) => {
+        if (document.getElementById('nav-toggle').ariaExpanded) {
+            document.getElementById('nav-toggle').click();
+        }
+    };
+
     return (
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link to="/">
-                <li className="nav-item truncate">
+                <li onClick={handleClick} className="nav-item truncate">
                     <HomeIcon size="18" /> Home
                 </li>
             </Link>
             <Link to="/search">
-                <li className="nav-item truncate">
+                <li onClick={handleClick} className="nav-item truncate">
                     <SearchIcon size="18" /> Search
                 </li>
             </Link>
             <Link to="/playlist">
-                <li className="nav-item truncate">
+                <li onClick={handleClick} className="nav-item truncate">
                     <MusicIcon size="18" /> Playlist
                 </li>
             </Link>

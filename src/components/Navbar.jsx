@@ -4,7 +4,7 @@ const Navbar = () => {
     return (
         <nav
             id="navbar"
-            className="navbar navbar-expand-lg navbar-dark bg-dark"
+            className="navbar navbar-expand-lg navbar-dark"
         >
             <div className="container-fluid d-flex align-items-center p-0">
                 <h5 className="navbar-brand brand">Soprano</h5>
