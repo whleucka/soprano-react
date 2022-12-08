@@ -67,7 +67,7 @@ h5 {
  */
 #navbar {
     z-index: 3;
-    background-color: #111 !important;
+    background-color: rgba(0,0,0,0.6) !important;
 }
 #navbar a {
     transition: opacity 0.5s;
@@ -98,7 +98,7 @@ h5 {
     height: 31px;
     position: sticky;
     top: -1px;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.6);
     padding: 0;
 }
 #menu input {
@@ -276,8 +276,8 @@ label:focus,
  * Player
  */
 #player {
-    z-index: 3;
     background-color: #111;
+    z-index: 3;
     width: 100%;
     height: 90px;
     border-top: 1px solid #333;
