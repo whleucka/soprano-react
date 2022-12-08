@@ -37,7 +37,7 @@ const MusicSearch = () => {
     };
 
     return (
-        <div className="input-group input-group-sm w-100">
+        <div id="music-search"  className="input-group input-group-sm w-100">
             <input
                 placeholder="I want to listen to..."
                 type="search"

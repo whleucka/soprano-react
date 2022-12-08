@@ -38,7 +38,7 @@ const PlayerControls = () => {
             prevIndex = state.playlist.length;
         }
         dispatch({ type: 'setPlaylistIndex', payload: prevIndex });
-        console.log(prevIndex);
+        console.log("Now playing playlistIndex", prevIndex);
     };
 
     const next = () => {
@@ -49,7 +49,7 @@ const PlayerControls = () => {
         if (nextIndex > state.playlist.length) {
             nextIndex = 0;
         }
-        console.log(nextIndex);
+        console.log("Now playing playlistIndex", nextIndex);
         dispatch({ type: 'setPlaylistIndex', payload: nextIndex });
     };
 
@@ -115,6 +115,15 @@ const PlayerControls = () => {
             updateMeta();
         }
     }, [state.track]);
+
+    useEffect(() => {
+        if (state.playlist.length > 0) {
+            const track = state.playlist[state.playlistIndex];
+            if (track) {
+                dispatch({ type: "setTrack", payload: track });
+            }
+        }
+    }, [state.playlistIndex]);
 
     const disabledButton = state.playlist.length === 0
     ? " disabled"

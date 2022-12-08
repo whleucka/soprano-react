@@ -1,17 +1,10 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Info } from 'react-feather';
+import PlaylistTracks from './PlaylistTracks';
 import { SopranoContext } from './Soprano';
-import TrackRow from './TrackRow';
 
 const Playlist = () => {
-    const { dispatch, state } = useContext(SopranoContext);
-
-    useEffect(() => {
-        const track = state.playlist[state.playlistIndex];
-        if (track) {
-            dispatch({ type: 'setTrack', payload: track });
-        }
-    }, [state.playlistIndex]);
+    const { state } = useContext(SopranoContext);
 
     return (
         <>
@@ -21,10 +14,7 @@ const Playlist = () => {
                     <Info size="14" /> Playlist is empty...
                 </div>
             )}
-            {state.playlist.length > 0 &&
-                state.playlist.map((track, i) => (
-                    <TrackRow key={i} playlistIndex={i} track={track} />
-                ))}
+            <PlaylistTracks />
         </>
     );
 };

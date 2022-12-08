@@ -6,9 +6,10 @@ const Navbar = () => {
             id="navbar"
             className="navbar navbar-expand-lg navbar-dark bg-dark"
         >
-            <div className="container-fluid">
+            <div className="container-fluid d-flex align-items-center p-0">
                 <h5 className="navbar-brand brand">Soprano</h5>
                 <button
+                    id="nav-toggle"
                     className="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"

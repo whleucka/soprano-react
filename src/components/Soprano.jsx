@@ -2,7 +2,6 @@ import React, { Suspense, lazy, useReducer, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
-import Menu from './Menu';
 import Navbar from './Navbar';
 import Player from './Player';
 import { BarLoader } from 'react-spinners';
@@ -50,7 +49,6 @@ const Soprano = () => {
                         &nbsp;
                     </section>
                     <section id="main">
-                        <Menu />
                         <section id="view">
                             <Suspense
                                 fallback={
