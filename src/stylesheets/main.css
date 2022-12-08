@@ -17,7 +17,7 @@ body,
     color: #fff;
 }
 #content {
-    height: calc(100% - 128px);
+    height: calc(100% - 134px);
     overflow: hidden;
 }
 
