@@ -343,13 +343,6 @@ label:focus,
 #player-controls button:hover {
     opacity: 1;
 }
-#player-volume .progress-bar {
-    background-color: limegreen !important;
-}
-#volume-progress {
-    cursor: pointer;
-    height: 10px;
-}
 
 .lime-green {
     color: limegreen !important;
@@ -392,6 +385,10 @@ label:focus,
     max-width: 200px;
     background-color: #222;
 }
+#volume-progress {
+    cursor: pointer;
+    height: 10px;
+}
 
 #player-progress {
     /* cursor: pointer; */
@@ -401,8 +398,8 @@ label:focus,
     width: 100% !important;
 }
 
-#player-progressbar {
-    background-color: limegreen;
+#volume-progress .progress-bar, #player-progressbar {
+    background-color: slateblue;
 }
 
 #progress-cont {

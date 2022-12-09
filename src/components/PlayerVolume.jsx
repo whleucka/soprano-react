@@ -31,7 +31,7 @@ const PlayerVolume = () => {
                 className="progress w-100"
             >
                 <div
-                    className="progress-bar bg-success"
+                    className="progress-bar"
                     role="progressbar"
                     style={{ width: volume + '%' }}
                 ></div>
