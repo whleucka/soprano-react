@@ -33,6 +33,17 @@ const PlayerProgress = () => {
         }
     };
 
+    const updatePositionState = () => {
+        const audio = document.getElementById('audio');
+        if ('setPositionState' in navigator.mediaSession) {
+            navigator.mediaSession.setPositionState({
+                duration: audio.duration,
+                playbackRate: audio.playbackRate,
+                position: audio.currentTime
+            });
+        }
+    };
+
     const startPlayback = (seconds) => {
         const audio = document.getElementById('audio');
         const delay = 250;
@@ -60,6 +71,7 @@ const PlayerProgress = () => {
                 const elapsed = audio.currentTime;
                 const elapsed_string = Util.convertSeconds(elapsed);
                 setPlaytime(elapsed_string);
+                updatePositionState();
             }
         }, delay);
     };
