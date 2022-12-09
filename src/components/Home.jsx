@@ -8,7 +8,7 @@ const Home = () => {
             <div className="alert alert-warning my-3" role="alert">
                 <span style={{color: "#ff0000"}}><InfoIcon size="14" /> Early development build</span><br />
                 <br />
-                Some features are missing or are unstable. Things could get a bit weird! Check back later for a stable build.<br />
+                Some features are missing or unstable. Things could get a bit weird! Check back later for a stable build.<br />
                 <br />
                 <Link style={{color: "#333"}} to="/search">
                 <LinkIcon size="14" /> Got it, take me to the music
