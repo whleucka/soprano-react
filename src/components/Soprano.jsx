@@ -16,7 +16,7 @@ export const SopranoContext = React.createContext();
 
 const initialState = {
     user: null,
-    track: null,
+    track: {},
     status: 'idle',
     searchResults: [],
     playlistIndex: null,

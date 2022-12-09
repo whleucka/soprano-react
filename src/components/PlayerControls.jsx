@@ -166,7 +166,7 @@ const PlayerControls = () => {
         ? " disabled"
         : "";
 
-    const disabledPlay = state.track === null
+    const disabledPlay = Object.keys(state.track).length === 0
         ? " disabled"
         : "";
 

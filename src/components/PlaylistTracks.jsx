@@ -15,7 +15,7 @@ const PlaylistTracks = () => {
                     <br />
                     <br />
                     <Link style={{color: "#333"}} to="/search">
-                        <LinkIcon size="14" /> No worries! Click here to search for music
+                        <LinkIcon size="14" /> Click here to search for music
                     </Link>
                 </div>
             )}

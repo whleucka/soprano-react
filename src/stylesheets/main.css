@@ -17,7 +17,7 @@ body,
     color: #fff;
 }
 #content {
-    height: calc(100% - 137px);
+    height: calc(100% - 145px);
     overflow: hidden;
 }
 
@@ -364,6 +364,10 @@ label:focus,
     left: 0;
 }
 
+
+/**
+ * Backdrop
+ */
  #backdrop {
     height: calc(100% - 137px);
     width: 100%;
@@ -380,17 +384,45 @@ label:focus,
     -webkit-filter: blur(25px);
  }
 
+
 /**
  * Progress bars
  */
-.progress {
+#volume-progress {
     max-width: 200px;
     background-color: #222;
 }
 
+#player-progress {
+    /* cursor: pointer; */
+    height: 8px;
+    background-color: #222;
+    border-radius: 0;
+    width: 100% !important;
+}
+
+#player-progressbar {
+    background-color: limegreen;
+}
+
+#progress-cont {
+    position: relative;
+    bottom: -5px;
+    width: 100% !important;
+}
+
+#player #progress-cont small {
+    color: #999;
+    font-size: 0.7em;
+}
+
+#loaded-progressbar {
+    background-color: #333;
+}
+
 @media (min-width: 576px) {
     #content, #backdrop {
-        height: calc(100% - 90px);
+        height: calc(100% - 98px);
     }
     #backdrop {
         top: 0;
