@@ -118,14 +118,12 @@ const PlayerControls = () => {
 
     const updatePositionState = () => {
         const audio = document.getElementById('audio');
-        if (parseFloat(audio.duration)) {
-            if ('setPositionState' in navigator.mediaSession) {
-                navigator.mediaSession.setPositionState({
-                    duration: audio.duration,
-                    playbackRate: audio.playbackRate,
-                    position: audio.currentTime
-                });
-            }
+        if ('setPositionState' in navigator.mediaSession) {
+            navigator.mediaSession.setPositionState({
+                duration: audio.duration,
+                playbackRate: audio.playbackRate,
+                position: audio.currentTime
+            });
         }
     };
 
@@ -134,6 +132,7 @@ const PlayerControls = () => {
             const audio = document.getElementById('audio');
             if (audio) {
                 audio.onended = () => {
+                    navigator.mediaSession.setPositionState(null);
                     next();
                 };
                 audio.onplaying = () => {
@@ -149,7 +148,6 @@ const PlayerControls = () => {
                 audio.onloadedmetadata = () => {
                     updateMeta()
                 };
-                navigator.mediaSession.setPositionState(null);
                 play();
             }
         }
