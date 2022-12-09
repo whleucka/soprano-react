@@ -1,6 +1,7 @@
 import { useContext } from 'react';
-import { Info as InfoIcon } from 'react-feather';
+import { Info as InfoIcon, Link as LinkIcon } from 'react-feather';
 import PlaylistActions from './PlaylistActions';
+import { Link } from 'react-router-dom';
 import { SopranoContext } from './Soprano';
 import TrackRow from './TrackRow';
 
@@ -9,8 +10,13 @@ const PlaylistTracks = () => {
     return (
         <div>
             {state.playlist.length === 0 && (
-                <div className="alert alert-secondary my-3" role="alert">
+                <div className="alert alert-info my-3" role="alert">
                     <InfoIcon size="14" /> Playlist is empty...
+                    <br />
+                    <br />
+                    <Link style={{color: "#333"}} to="/search">
+                        <LinkIcon size="14" /> No worries! Click here to search for music
+                    </Link>
                 </div>
             )}
             {state.playlist.length > 0 && (

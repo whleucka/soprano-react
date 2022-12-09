@@ -54,7 +54,6 @@ const PlayerControls = () => {
     };
 
     const updateMeta = () => {
-        const audio = document.getElementById('audio');
         const track = state.track;
         const cover = process.env.REACT_APP_SERVER_URL + track.cover;
         document.title = `Soprano • ${track.artist} — ${track.title}`;
@@ -125,7 +124,11 @@ const PlayerControls = () => {
         }
     }, [state.playlistIndex]);
 
-    const disabledButton = state.playlist.length === 0
+    const disabledNextPrev = state.playlist.length === 0
+    ? " disabled"
+    : "";
+
+    const disabledPlay = state.track === null
     ? " disabled"
     : "";
 
@@ -134,14 +137,14 @@ const PlayerControls = () => {
             id="player-controls"
             className="d-flex align-items-center justify-content-center h-100 w-100"
         >
-            <button className={"btn btn-dark" + disabledButton} onClick={previous}>
+            <button className={"btn btn-dark" + disabledNextPrev} onClick={previous}>
                 <SkipBack />
             </button>
-            <button className="btn btn-dark" onClick={handlePlayPause}>
+            <button className={"btn btn-dark" + disabledPlay} onClick={handlePlayPause}>
                 {state.status !== 'playing' && <Play />}
                 {state.status === 'playing' && <Pause />}
             </button>
-            <button className={"btn btn-dark" + disabledButton} onClick={next}>
+            <button className={"btn btn-dark" + disabledNextPrev} onClick={next}>
                 <SkipForward />
             </button>
         </div>
