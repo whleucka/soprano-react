@@ -76,8 +76,10 @@ const PlayerProgress = () => {
     // };
 
     useEffect(() => {
-        clearTimer();
-        setTimer(state.track.playtime_seconds);
+        if (state.track) {
+            clearTimer();
+            setTimer(state.track.playtime_seconds);
+        }
     }, [state.track]);
 
     useEffect(() => {

@@ -10,7 +10,6 @@ const PlayerControls = () => {
         audio
             .play()
             .then((_) => {
-                updateMeta()
             })
             .catch((err) => console.log(err));
     };
@@ -60,19 +59,18 @@ const PlayerControls = () => {
             return;
         }
         audio.currentTime = e.seekTime;
-        updatePositionState();
     }
 
     const seekBackward = (e) => {
-        const defaultSkipTime = 10;
         const audio = document.getElementById('audio');
+        const defaultSkipTime = 10;
         const skipTime = e.seekOffset || defaultSkipTime;
         audio.currentTime = Math.max(audio.currentTime - skipTime, 0);
         updatePositionState();
     };
     const seekForward = (e) => {
-        const defaultSkipTime = 10;
         const audio = document.getElementById('audio');
+        const defaultSkipTime = 10;
         const skipTime = e.seekOffset || defaultSkipTime;
         audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration);
         updatePositionState();
@@ -83,6 +81,12 @@ const PlayerControls = () => {
         const cover = process.env.REACT_APP_SERVER_URL + track.cover;
         document.title = `Soprano • ${track.artist} — ${track.title}`;
         console.log('Updating metadata...');
+        navigator.mediaSession.setActionHandler('seekbackward', seekBackward);
+        navigator.mediaSession.setActionHandler('seekforward', seekForward);
+        navigator.mediaSession.setActionHandler('previoustrack', previous);
+        navigator.mediaSession.setActionHandler('nexttrack', next);
+        navigator.mediaSession.setActionHandler('play', play);
+        navigator.mediaSession.setActionHandler('pause', pause);
         navigator.mediaSession.metadata = new MediaMetadata({
             title: track.title,
             artist: track.artist,
@@ -96,12 +100,6 @@ const PlayerControls = () => {
                 { src: cover, sizes: '512x512', type: 'image/png' }
             ]
         });
-        navigator.mediaSession.setActionHandler('seekbackward', seekBackward);
-        navigator.mediaSession.setActionHandler('seekforward', seekForward);
-        navigator.mediaSession.setActionHandler('previoustrack', previous);
-        navigator.mediaSession.setActionHandler('nexttrack', next);
-        navigator.mediaSession.setActionHandler('play', play);
-        navigator.mediaSession.setActionHandler('pause', pause);
         try {
             navigator.mediaSession.setActionHandler('stop', stop);
         } catch (err) {
@@ -112,7 +110,6 @@ const PlayerControls = () => {
         } catch (err) {
             console.log("Seek to not supported");
         }
-        updatePositionState();
     };
 
     const updatePositionState = () => {
@@ -131,7 +128,6 @@ const PlayerControls = () => {
             const audio = document.getElementById('audio');
             if (audio) {
                 audio.onended = () => {
-                    navigator.mediaSession.setPositionState(null);
                     next();
                 };
                 audio.onplaying = () => {
@@ -141,11 +137,14 @@ const PlayerControls = () => {
                 audio.onpause = () => {
                     navigator.mediaSession.playbackState = 'paused';
                     dispatch({ type: 'setStatus', payload: 'paused' });
-                    updatePositionState();
                 };
                 audio.onerror = () => {
                     dispatch({ type: 'setStatus', payload: 'idle' });
                 };
+                audio.onloadedmetadata = () => {
+                    updateMeta()
+                }
+                navigator.mediaSession.setPositionState(null);
                 play();
             }
         }
@@ -159,6 +158,9 @@ const PlayerControls = () => {
             }
         }
     }, [state.playlistIndex]);
+
+    useEffect(() => {
+    }, [])
 
     const disabledNextPrev = state.playlist.length === 0
         ? " disabled"
