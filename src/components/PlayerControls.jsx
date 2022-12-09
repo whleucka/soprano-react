@@ -21,8 +21,7 @@ const PlayerControls = () => {
     };
 
     const stop = () => {
-        const audio = document.getElementById('audio');
-        audio.stop();
+        console.log("STOP!");
     };
 
     const handlePlayPause = () => {
