@@ -10,6 +10,7 @@ const PlayerControls = () => {
         audio
             .play()
             .then((_) => {
+                updateMeta()
             })
             .catch((err) => console.log(err));
     };
@@ -142,7 +143,6 @@ const PlayerControls = () => {
                     dispatch({ type: 'setStatus', payload: 'idle' });
                 };
                 audio.onloadedmetadata = () => {
-                    updateMeta()
                 }
                 navigator.mediaSession.setPositionState(null);
                 play();
