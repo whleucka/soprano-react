@@ -132,8 +132,6 @@ const PlayerControls = () => {
             const audio = document.getElementById('audio');
             if (audio) {
                 audio.onended = () => {
-                    console.log('Track ended');
-                    navigator.mediaSession.setPositionState(null);
                     next();
                 };
                 audio.onplaying = () => {
@@ -149,6 +147,7 @@ const PlayerControls = () => {
                 audio.onloadedmetadata = () => {
                     updateMeta()
                 };
+                navigator.mediaSession.setPositionState(null);
                 play();
             }
         }
