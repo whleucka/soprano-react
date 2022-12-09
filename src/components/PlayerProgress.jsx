@@ -33,19 +33,6 @@ const PlayerProgress = () => {
         }
     };
 
-    const updatePositionState = () => {
-        if ('setPositionState' in navigator.mediaSession) {
-            const audio = document.getElementById('audio');
-            if (parseFloat(audio.duration) > 0) {
-                navigator.mediaSession.setPositionState({
-                    duration: audio.duration,
-                    playbackRate: audio.playbackRate,
-                    position: audio.currentTime
-                });
-            }
-        }
-    };
-
     const startPlayback = (seconds) => {
         const audio = document.getElementById('audio');
         const delay = 250;
@@ -77,23 +64,6 @@ const PlayerProgress = () => {
         }, delay);
     };
 
-    const handleSeek = () => {
-        // const audio = document.getElementById('audio');
-        // if (!state.track || !audio.src) return;
-        // setBuffer(0);
-        // const self = e.currentTarget;
-        // const width = document
-        //     .querySelector('#player-progress')
-        //     .getBoundingClientRect().width;
-        // const x = e.pageX - self.offsetLeft;
-        // const pct = width > 0 ? x / width : 0;
-        // const seconds = state.track.playtime_seconds;
-        // const new_seconds = pct.toFixed(2) * seconds;
-        // audio.currentTime = new_seconds;
-        // setPlayback((pct * 100).toFixed(2));
-        // updatePositionState();
-    };
-
     useEffect(() => {
         clearTimer();
         setTimer(state.track.playtime_seconds);
@@ -108,7 +78,6 @@ const PlayerProgress = () => {
     return (
         <div id="progress-cont">
             <div
-                onClick={handleSeek}
                 id="player-progress"
                 className="progress"
             >
