@@ -73,7 +73,6 @@ const PlayerProgress = () => {
                 const elapsed = audio.currentTime;
                 const elapsed_string = Util.convertSeconds(elapsed);
                 setPlaytime(elapsed_string);
-                updatePositionState();
             }
         }, delay);
     };

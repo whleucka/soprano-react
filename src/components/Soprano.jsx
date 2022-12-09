@@ -86,7 +86,7 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player />
-                <audio id="audio" src={trackUrl} autoPlay />
+                <audio id="audio" src={trackUrl} />
             </Router>
         </SopranoContext.Provider>
     );

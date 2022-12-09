@@ -9,7 +9,10 @@ const PlayerControls = () => {
         const audio = document.getElementById('audio');
         audio
             .play()
-            .then((_) => updateMeta())
+            .then((_) => {
+                updateMeta()
+                updatePositionState();
+            })
             .catch((err) => console.log(err));
         navigator.mediaSession.playbackState = 'playing';
     };
@@ -137,7 +140,6 @@ const PlayerControls = () => {
                 };
                 audio.onplaying = () => {
                     dispatch({ type: 'setStatus', payload: 'playing' });
-                    updatePositionState();
                 };
                 audio.onpause = () => {
                     dispatch({ type: 'setStatus', payload: 'paused' });
@@ -149,6 +151,7 @@ const PlayerControls = () => {
                 audio.onloadedmetadata = () => {
                     updateMeta();
                 };
+                play();
             }
         }
     }, [state.track]);

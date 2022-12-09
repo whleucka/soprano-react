@@ -10,7 +10,7 @@ const PlaylistTracks = () => {
     return (
         <div>
             {state.playlist.length === 0 && (
-                <div className="alert alert-info my-3" role="alert">
+                <div className="alert alert-secondary my-3" role="alert">
                     <InfoIcon size="14" /> <strong>Playlist is empty...</strong>
                     <br />
                     <br />
