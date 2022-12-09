@@ -407,7 +407,7 @@ label:focus,
 
 #progress-cont {
     position: relative;
-    bottom: -5px;
+    bottom: 0;
     width: 100% !important;
 }
 
