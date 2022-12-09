@@ -11,7 +11,7 @@ const PlaylistTracks = () => {
         <div>
             {state.playlist.length === 0 && (
                 <div className="alert alert-info my-3" role="alert">
-                    <InfoIcon size="14" /> Playlist is empty...
+                    <InfoIcon size="14" /> <strong>Playlist is empty...</strong>
                     <br />
                     <br />
                     <Link style={{color: "#333"}} to="/search">

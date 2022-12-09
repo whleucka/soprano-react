@@ -6,7 +6,7 @@ const Home = () => {
         <>
             <h2 className="header">Hello</h2>
             <div className="alert alert-warning my-3" role="alert">
-                <span style={{color: "#ff0000"}}><InfoIcon size="14" /> Early development build</span><br />
+                <span style={{color: "#ff0000"}}><InfoIcon size="14" /> <strong>Early development build</strong></span><br />
                 <br />
                 Some features are missing or unstable. Things could get a bit weird! Check back later for a stable build.<br />
                 <br />

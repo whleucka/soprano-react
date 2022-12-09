@@ -11,14 +11,21 @@ const PlayerControls = () => {
             .play()
             .then((_) => updateMeta())
             .catch((err) => console.log(err));
+        navigator.mediaSession.playbackState = 'playing';
     };
 
     const pause = () => {
         const audio = document.getElementById('audio');
         audio.pause();
+        navigator.mediaSession.playbackState = 'paused';
     };
 
-    const handlePlayPause = (e) => {
+    const stop = () => {
+        const audio = document.getElementById('audio');
+        audio.stop();
+    };
+
+    const handlePlayPause = () => {
         const audio = document.getElementById('audio');
         if (audio) {
             if (audio.paused) {
@@ -33,10 +40,7 @@ const PlayerControls = () => {
         if (state.playlist.length < 2) {
             return;
         }
-        let prevIndex = state.playlistIndex - 1;
-        if (prevIndex < 0) {
-            prevIndex = state.playlist.length;
-        }
+        let prevIndex = (state.playlistIndex - 1 + state.playlist.length) % state.playlist.length;
         dispatch({ type: 'setPlaylistIndex', payload: prevIndex });
         console.log("Now playing playlistIndex", prevIndex);
     };
@@ -45,12 +49,34 @@ const PlayerControls = () => {
         if (state.playlist.length < 2) {
             return;
         }
-        let nextIndex = state.playlistIndex + 1;
-        if (nextIndex > state.playlist.length) {
-            nextIndex = 0;
-        }
+        let nextIndex = (state.playlistIndex + 1) % state.playlist.length;
         console.log("Now playing playlistIndex", nextIndex);
         dispatch({ type: 'setPlaylistIndex', payload: nextIndex });
+    };
+
+    const seekTo = (e) => {
+        const audio = document.getElementById('audio');
+        if (e.fastSeek && ('fastSeek' in audio)) {
+            audio.fastSeek(e.seekTime);
+            return;
+        }
+        audio.currentTime = e.seekTime;
+        updatePositionState();
+    }
+
+    const seekBackward = (e) => {
+        const defaultSkipTime = 10;
+        const audio = document.getElementById('audio');
+        const skipTime = e.seekOffset || defaultSkipTime;
+        audio.currentTime = Math.max(audio.currentTime - skipTime, 0);
+        updatePositionState();
+    };
+    const seekForward = (e) => {
+        const defaultSkipTime = 10;
+        const audio = document.getElementById('audio');
+        const skipTime = e.seekOffset || defaultSkipTime;
+        audio.currentTime = Math.min(audio.currentTime + skipTime, audio.duration);
+        updatePositionState();
     };
 
     const updateMeta = () => {
@@ -71,10 +97,22 @@ const PlayerControls = () => {
                 { src: cover, sizes: '512x512', type: 'image/png' }
             ]
         });
+        navigator.mediaSession.setActionHandler('seekbackward', seekBackward);
+        navigator.mediaSession.setActionHandler('seekforward', seekForward);
         navigator.mediaSession.setActionHandler('previoustrack', previous);
         navigator.mediaSession.setActionHandler('nexttrack', next);
         navigator.mediaSession.setActionHandler('play', play);
         navigator.mediaSession.setActionHandler('pause', pause);
+        try {
+            navigator.mediaSession.setActionHandler('stop', stop);
+        } catch (err) {
+            console.log("Stop not supported");
+        }
+        try {
+            navigator.mediaSession.setActionHandler('seekto', seekTo);
+        } catch (err) {
+            console.log("Seek to not supported");
+        }
     };
 
     const updatePositionState = () => {
@@ -125,12 +163,12 @@ const PlayerControls = () => {
     }, [state.playlistIndex]);
 
     const disabledNextPrev = state.playlist.length === 0
-    ? " disabled"
-    : "";
+        ? " disabled"
+        : "";
 
     const disabledPlay = state.track === null
-    ? " disabled"
-    : "";
+        ? " disabled"
+        : "";
 
     return (
         <div

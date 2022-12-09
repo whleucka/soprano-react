@@ -19,7 +19,7 @@ const initialState = {
     track: null,
     status: 'idle',
     searchResults: [],
-    playlistIndex: 0,
+    playlistIndex: null,
     playlist: [],
     playlists: []
 };
