@@ -99,6 +99,12 @@ h5 {
     padding: 3px;
     width: 32px;
 }
+#navbar ul.navbar-nav {
+    padding-top: 15px;
+}
+#navbar li.nav-item {
+    font-size: 0.9rem;
+}
 .navbar-toggler {
     border: 0;
 }
