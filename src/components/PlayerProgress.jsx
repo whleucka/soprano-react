@@ -1,25 +1,25 @@
 import { useState, useEffect, useContext } from 'react';
 import { SopranoContext } from './Soprano';
-import { Util } from './Util';
+//import { Util } from './Util';
 
 var playbackTimer = null;
 var playtimeTimer = null;
 
 const PlayerProgress = () => {
     const { state } = useContext(SopranoContext);
-    const [playtime, setPlaytime] = useState('00:00');
+    //const [playtime, setPlaytime] = useState('00:00');
     const [playback, setPlayback] = useState(0);
     const [buffer, setBuffer] = useState(0);
 
-    const playtimeSeconds =
-            'playtime_seconds' in state.track
-            ? Util.convertSeconds(state.track.playtime_seconds)
-            : '00:00';
+    // const playtimeSeconds =
+    //         'playtime_seconds' in state.track
+    //         ? Util.convertSeconds(state.track.playtime_seconds)
+    //         : '00:00';
 
     const setTimer = (seconds) => {
         if (seconds > 0) {
             startPlayback(seconds);
-            startPlaytime(seconds);
+            //startPlaytime(seconds);
         }
     };
 
@@ -29,7 +29,7 @@ const PlayerProgress = () => {
         if (reset_progress) {
             setPlayback(0);
             setBuffer(0);
-            setPlaytime('00:00');
+            //setPlaytime('00:00');
         }
     };
 
@@ -63,18 +63,17 @@ const PlayerProgress = () => {
         }, delay);
     };
 
-    const startPlaytime = () => {
-        const audio = document.getElementById('audio');
-        const delay = 1000;
-        playtimeTimer = setInterval(() => {
-            if (!audio.paused) {
-                const elapsed = audio.currentTime;
-                const elapsed_string = Util.convertSeconds(elapsed);
-                setPlaytime(elapsed_string);
-                updatePositionState();
-            }
-        }, delay);
-    };
+    // const startPlaytime = () => {
+    //     const audio = document.getElementById('audio');
+    //     const delay = 1000;
+    //     playtimeTimer = setInterval(() => {
+    //         if (!audio.paused) {
+    //             const elapsed = audio.currentTime;
+    //             const elapsed_string = Util.convertSeconds(elapsed);
+    //             setPlaytime(elapsed_string);
+    //         }
+    //     }, delay);
+    // };
 
     useEffect(() => {
         clearTimer();

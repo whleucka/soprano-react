@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext } from 'react';
 import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
 import { SopranoContext } from './Soprano';
 
@@ -10,9 +10,9 @@ const PlayerControls = () => {
         audio
             .play()
             .then((_) => {
+                navigator.mediaSession.playbackState = 'playing';
             })
             .catch((err) => console.log(err));
-        navigator.mediaSession.playbackState = 'playing';
     };
 
     const pause = () => {
@@ -113,17 +113,19 @@ const PlayerControls = () => {
         } catch (err) {
             console.log("Seek to not supported");
         }
+        updatePositionState();
     };
 
     const updatePositionState = () => {
         const audio = document.getElementById('audio');
-        if ('setPositionState' in navigator.mediaSession) {
-            console.log('Updating position...');
-            navigator.mediaSession.setPositionState({
-                duration: audio.duration,
-                playbackRate: audio.playbackRate,
-                position: audio.currentTime
-            });
+        if (parseFloat(audio.duration)) {
+            if ('setPositionState' in navigator.mediaSession) {
+                navigator.mediaSession.setPositionState({
+                    duration: audio.duration,
+                    playbackRate: audio.playbackRate,
+                    position: audio.currentTime
+                });
+            }
         }
     };
 

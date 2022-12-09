@@ -10,7 +10,6 @@ const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
 const Library = lazy(() => import('./Library'));
-const Podcasts = lazy(() => import('./Podcasts'));
 
 export const SopranoContext = React.createContext();
 

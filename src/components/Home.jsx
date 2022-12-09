@@ -1,4 +1,4 @@
-import { Info as InfoIcon, Search as SearchIcon, Link as LinkIcon } from "react-feather";
+import { Info as InfoIcon, Link as LinkIcon } from "react-feather";
 import { Link } from 'react-router-dom';
 
 const Home = () => {
