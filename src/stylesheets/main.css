@@ -17,7 +17,7 @@ body,
     color: #fff;
 }
 #content {
-    height: calc(100% - 134px);
+    height: calc(100% - 137px);
     overflow: hidden;
 }
 
@@ -68,7 +68,7 @@ h5 {
 #navbar {
     top: 0;
     width: 100%;
-    padding: 0;
+    padding: 4px 0;
     z-index: 5;
     background-color: #111;
     border-bottom: 1px solid #222;
@@ -359,7 +359,7 @@ label:focus,
 }
 
  #backdrop {
-    height: calc(100% - 148px);
+    height: calc(100% - 137px);
     width: 100%;
     top: 50px;
     left: 0;
