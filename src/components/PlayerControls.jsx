@@ -133,23 +133,24 @@ const PlayerControls = () => {
             if (audio) {
                 audio.onended = () => {
                     console.log('Track ended');
+                    navigator.mediaSession.setPositionState(null);
                     next();
                 };
                 audio.onplaying = () => {
                     dispatch({ type: 'setStatus', payload: 'playing' });
+                    updatePositionState();
                 };
                 audio.onpause = () => {
                     dispatch({ type: 'setStatus', payload: 'paused' });
+                    updatePositionState();
                 };
                 audio.onerror = () => {
                     dispatch({ type: 'setStatus', payload: 'idle' });
                 };
                 audio.onloadedmetadata = () => {
-                    console.log('loaded metadata');
-                    updatePositionState();
+                    updateMeta();
                 };
             }
-            updateMeta();
         }
     }, [state.track]);
 
