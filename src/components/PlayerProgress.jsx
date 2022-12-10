@@ -106,6 +106,10 @@ const PlayerProgress = () => {
         };
     }, []);
 
+    const progressClass = document.getElementById('audio').paused
+        ? 'bg-secondary'
+        : '';
+
     return (
         <div id="progress-cont">
             <div
@@ -115,7 +119,7 @@ const PlayerProgress = () => {
             >
                 <div
                     id="player-progressbar"
-                    className="progress-bar"
+                    className={'progress-bar ' + progressClass}
                     role="progressbar"
                     style={{ width: playback + '%' }}
                 ></div>

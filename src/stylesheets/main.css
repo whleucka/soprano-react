@@ -379,6 +379,9 @@ label:focus,
 /**
  * Progress bars
  */
+.progress {
+    cursor: pointer;
+}
 #volume-progress {
     max-width: 200px;
     background-color: #222;

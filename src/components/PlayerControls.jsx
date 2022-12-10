@@ -9,8 +9,7 @@ const PlayerControls = () => {
         const audio = document.getElementById('audio');
         audio
             .play()
-            .then((_) => {
-            })
+            .then((_) => {})
             .catch((err) => console.log(err));
     };
 
@@ -151,8 +150,8 @@ const PlayerControls = () => {
                     dispatch({ type: 'setStatus', payload: 'idle' });
                 };
                 audio.onloadedmetadata = () => {
-                    updateMeta()
-                }
+                    updateMeta();
+                };
                 navigator.mediaSession.setPositionState(null);
                 play();
             }
