@@ -44,7 +44,10 @@ const Soprano = () => {
                 <Navbar />
                 <section id="content" className="d-flex">
                     <Sidebar />
-                    <section style={{ backgroundImage: `url(${backdropImage})` }} id="backdrop">
+                    <section
+                        style={{ backgroundImage: `url(${backdropImage})` }}
+                        id="backdrop"
+                    >
                         &nbsp;
                     </section>
                     <section id="main">
@@ -70,7 +73,7 @@ const Soprano = () => {
                                         path="/playlist"
                                         element={<Playlist />}
                                     />
-                                    {state.user &&
+                                    {state.user && (
                                         <>
                                             <Route
                                                 exact
@@ -78,7 +81,7 @@ const Soprano = () => {
                                                 element={<Library />}
                                             />
                                         </>
-                                    }
+                                    )}
                                 </Routes>
                             </Suspense>
                         </section>

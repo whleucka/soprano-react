@@ -14,7 +14,7 @@ const PlaylistTracks = () => {
                     <InfoIcon size="14" /> <strong>Playlist is empty...</strong>
                     <br />
                     <br />
-                    <Link style={{color: "#333"}} to="/search">
+                    <Link style={{ color: '#333' }} to="/search">
                         <LinkIcon size="14" /> Click here to search for music
                     </Link>
                 </div>

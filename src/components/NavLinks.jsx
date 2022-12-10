@@ -33,7 +33,7 @@ const NavLinks = () => {
                     <MusicIcon size="18" /> Playlist
                 </li>
             </Link>
-            {state.user &&
+            {state.user && (
                 <>
                     <Link to="/library">
                         <li className="nav-item truncate">
@@ -41,7 +41,7 @@ const NavLinks = () => {
                         </li>
                     </Link>
                 </>
-            }
+            )}
         </ul>
     );
 };

@@ -1,6 +1,6 @@
 const HomeActions = () => {
     const handleClick = () => {
-        alert("Feature missing. Check back later");
+        alert('Feature missing. Check back later');
     };
 
     return (
