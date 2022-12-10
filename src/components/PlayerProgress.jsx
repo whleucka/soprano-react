@@ -3,7 +3,7 @@ import { SopranoContext } from './Soprano';
 //import { Util } from './Util';
 
 var playbackTimer = null;
-var playtimeTimer = null;
+//var playtimeTimer = null;
 
 const PlayerProgress = () => {
     const { state } = useContext(SopranoContext);
@@ -25,7 +25,7 @@ const PlayerProgress = () => {
 
     const clearTimer = (reset_progress = true) => {
         clearInterval(playbackTimer);
-        clearInterval(playtimeTimer);
+        //clearInterval(playtimeTimer);
         if (reset_progress) {
             setPlayback(0);
             setBuffer(0);
@@ -74,6 +74,24 @@ const PlayerProgress = () => {
     //         }
     //     }, delay);
     // };
+    //
+
+    const handleClick = (e) => {
+        const audio = document.getElementById('audio');
+        if (!state.track || !audio.src) return;
+        setBuffer(0);
+        const self = e.currentTarget;
+        const width = document
+            .querySelector('#player-progress')
+            .getBoundingClientRect().width;
+        const x = e.pageX - self.offsetLeft;
+        const pct = width > 0 ? x / width : 0;
+        const seconds = state.track.playtime_seconds;
+        const new_seconds = pct.toFixed(2) * seconds;
+        audio.currentTime = new_seconds;
+        setPlayback((pct * 100).toFixed(2));
+        updatePositionState();
+    };
 
     useEffect(() => {
         if (state.track) {
@@ -93,6 +111,7 @@ const PlayerProgress = () => {
             <div
                 id="player-progress"
                 className="progress"
+                onClick={handleClick}
             >
                 <div
                     id="player-progressbar"

@@ -16,7 +16,7 @@ const SearchActions = () => {
     return (
         <div className="actions" id="search-actions">
             <button onClick={handleClick} className="btn btn-sm btn-dark">
-                <MusicIcon className="me-1" size="14" /> Playlist
+                <MusicIcon className="me-1" size="14" /> Add to playlist
             </button>
         </div>
     );

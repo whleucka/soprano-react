@@ -110,7 +110,6 @@ h5 {
 }
 .brand {
     color: #eee;
-
 }
 
 /**
@@ -171,7 +170,8 @@ h5 {
     background-color: transparent !important;
     border-bottom: 1px solid #555;
 }
-#view button, #music-search .btn {
+#view button,
+#music-search .btn {
     background-color: transparent !important;
     border: 0;
 }
@@ -357,11 +357,10 @@ label:focus,
     left: 0;
 }
 
-
 /**
  * Backdrop
  */
- #backdrop {
+#backdrop {
     height: calc(100% - 137px);
     width: 100%;
     top: 50px;
@@ -375,8 +374,7 @@ label:focus,
     z-index: 0;
     filter: blur(25x);
     -webkit-filter: blur(25px);
- }
-
+}
 
 /**
  * Progress bars
@@ -398,7 +396,8 @@ label:focus,
     width: 100% !important;
 }
 
-#volume-progress .progress-bar, #player-progressbar {
+#volume-progress .progress-bar,
+#player-progressbar {
     background-color: slateblue;
 }
 
@@ -418,7 +417,8 @@ label:focus,
 }
 
 @media (min-width: 576px) {
-    #content, #backdrop {
+    #content,
+    #backdrop {
         height: calc(100% - 98px);
     }
     #backdrop {
@@ -438,11 +438,14 @@ label:focus,
         height: 70px;
         width: 70px;
     }
-    #player #right-volume {
-        display: block;
-    }
     #player .track-title {
         max-width: 150px;
         width: 150px;
     }
+    #player #right-volume {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
 }

@@ -1,5 +1,3 @@
-
-
 export const Util = {
     convertSeconds: (seconds) => {
         var sec_num = parseInt(seconds, 10);

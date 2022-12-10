@@ -16,9 +16,14 @@ const TrackRow = ({ track, playlistIndex = null }) => {
         state.status === 'playing' && state.track.md5 === track.md5
             ? 'active'
             : 'text-secondary';
+    const trackId = playlistIndex ? 'playlist-row-' + playlistIndex : '';
 
     return (
-        <div className="track-row d-flex align-items-center">
+        <div
+            tabIndex="-1"
+            id={trackId}
+            className="track-row d-flex align-items-center"
+        >
             <div>
                 <button
                     onClick={handleClick}
