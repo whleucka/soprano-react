@@ -88,7 +88,7 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player />
-                <audio id="audio" src={trackUrl} />
+                <audio id="audio" src={trackUrl} preload="true" />
             </Router>
         </SopranoContext.Provider>
     );
