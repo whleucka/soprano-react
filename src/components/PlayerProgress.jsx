@@ -106,7 +106,8 @@ const PlayerProgress = () => {
         };
     }, []);
 
-    const progressClass = document.getElementById('audio').paused
+    const audio = document.getElementById('audio');
+    const progressClass = audio && audio.paused
         ? 'bg-secondary'
         : '';
 
