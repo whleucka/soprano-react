@@ -25,7 +25,7 @@ const MusicSearch = () => {
         // Make some request to api
         if (searchTerm.trim()) {
             dispatch({ type: 'setSearchResults', payload: [] });
-            API.musicSearch(searchTerm).then((tracks) => {
+            API.musicSearch(searchTerm.trim()).then((tracks) => {
                 dispatch({ type: 'setSearchResults', payload: tracks });
             });
         }
