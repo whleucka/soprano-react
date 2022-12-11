@@ -9,7 +9,8 @@ const PlayerControls = () => {
         const audio = document.getElementById('audio');
         audio
             .play()
-            .then((_) => {})
+            .then((_) => {
+            })
             .catch((err) => console.log(err));
     };
 
@@ -136,6 +137,7 @@ const PlayerControls = () => {
             const audio = document.getElementById('audio');
             if (audio) {
                 audio.onended = () => {
+                    navigator.mediaSession.setPositionState(null);
                     next();
                 };
                 audio.onplaying = () => {
@@ -152,7 +154,6 @@ const PlayerControls = () => {
                 audio.onloadedmetadata = () => {
                     updateMeta();
                 };
-                navigator.mediaSession.setPositionState(null);
                 play();
             }
         }
