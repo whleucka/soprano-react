@@ -1,7 +1,7 @@
 const AlbumCover = ({ cover }) => {
-    const coverUrl = cover
+    let coverUrl = cover && cover.substring(0, 4) !== 'http'
         ? process.env.REACT_APP_SERVER_URL + cover
-        : '/img/no-album.png';
+        : cover;
     return <img className="cover" src={coverUrl} alt="cover art" loading="lazy" />;
 };
 

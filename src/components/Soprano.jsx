@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useReducer, useMemo } from 'react';
+import React, { Suspense, lazy, useReducer, useMemo, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
@@ -9,6 +9,7 @@ import { BarLoader } from 'react-spinners';
 const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
+const Radio = lazy(() => import('./Radio'));
 const Library = lazy(() => import('./Library'));
 
 export const SopranoContext = React.createContext();
@@ -20,7 +21,7 @@ const initialState = {
     searchResults: [],
     playlistIndex: null,
     playlist: [],
-    playlists: []
+    playlists: [],
 };
 
 const Soprano = () => {
@@ -30,9 +31,9 @@ const Soprano = () => {
         return { state, dispatch };
     }, [state, dispatch]);
 
-    const trackUrl = state.track.md5
-        ? process.env.REACT_APP_API_URL + `/music/play/${state.track.md5}`
-        : null;
+    const trackUrl = Object.keys(state.track).length > 0 && state.track.src
+        ? state.track.src
+        : process.env.REACT_APP_API_URL + `/music/play/${state.track.md5}`;
 
     const backdropImage = state.track
         ? process.env.REACT_APP_SERVER_URL + state.track.cover
@@ -72,6 +73,11 @@ const Soprano = () => {
                                         exact
                                         path="/playlist"
                                         element={<Playlist />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/radio"
+                                        element={<Radio />}
                                     />
                                     {state.user && (
                                         <>

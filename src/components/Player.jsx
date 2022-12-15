@@ -8,9 +8,9 @@ import PlayerProgress from './PlayerProgress';
 
 const Player = () => {
     const { state } = useContext(SopranoContext);
-    const cover = state.track ? state.track.cover : null;
-    const title = state.track ? state.track.title : null;
-    const artist = state.track ? state.track.artist : null;
+    const cover = Object.keys(state.track).length > 0 ? state.track.cover : '/img/no-album.png';
+    const title = Object.keys(state.track).length > 0 ? state.track.title : null;
+    const artist = Object.keys(state.track).length > 0 ? state.track.artist : null;
     return (
         <>
             <PlayerProgress />
