@@ -203,6 +203,14 @@ label:focus,
     overflow: hidden;
     text-overflow: ellipsis;
 }
+@keyframes colorChange {
+  from {
+    filter: hue-rotate(0deg);
+  }
+	to {
+    filter: hue-rotate(360deg);
+  }
+}
 
 /**
   * Music search
@@ -399,9 +407,17 @@ label:focus,
     width: 100% !important;
 }
 
-#volume-progress .progress-bar,
 #player-progressbar {
-    background-color: slateblue;
+    background-color: #555;
+}
+
+#player-progressbar.active {
+    background-color: royalblue;
+    animation: colorChange 30s alternate infinite;
+}
+
+#volume-progress .progress-bar {
+    background-color: limegreen;
 }
 
 #progress-cont {

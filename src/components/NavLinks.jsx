@@ -11,7 +11,7 @@ import { SopranoContext } from './Soprano';
 const NavLinks = () => {
     const { state } = useContext(SopranoContext);
     const handleClick = (e) => {
-        if (document.getElementById('nav-toggle').ariaExpanded) {
+        if (document.getElementById('nav-toggle').ariaExpanded == 'true') {
             document.getElementById('nav-toggle').click();
         }
     };

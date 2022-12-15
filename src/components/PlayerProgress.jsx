@@ -53,10 +53,12 @@ const PlayerProgress = () => {
                 const end = parseFloat(seconds);
                 const pct = ((currTime / end) * 100).toFixed(2);
                 const buffered = audio.buffered;
-                const loaded = (
+                const loaded = audio.duration > 0
+                ? (
                     (buffered.end(audio.buffered.length - 1) / audio.duration) *
                     100
-                ).toFixed(2);
+                ).toFixed(2)
+                : 0;
                 setPlayback(pct);
                 setBuffer(loaded - pct);
             }
@@ -94,7 +96,7 @@ const PlayerProgress = () => {
     };
 
     useEffect(() => {
-        if (state.track) {
+        if (Object.keys(state.track).length  > 0) {
             clearTimer();
             setTimer(state.track.playtime_seconds);
         }
@@ -108,8 +110,8 @@ const PlayerProgress = () => {
 
     const audio = document.getElementById('audio');
     const progressClass = audio && audio.paused
-        ? 'bg-secondary'
-        : '';
+        ? ''
+        : 'active';
 
     return (
         <div id="progress-cont">

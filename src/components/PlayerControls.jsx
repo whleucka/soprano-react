@@ -7,11 +7,13 @@ const PlayerControls = () => {
 
     const play = () => {
         const audio = document.getElementById('audio');
-        audio
-            .play()
-            .then((_) => {
-            })
-            .catch((err) => console.log(err));
+        if (audio) {
+            audio.play()
+                .then((_) => {
+                    updateMeta();
+                })
+                .catch((err) => console.log(err));
+        }
     };
 
     const pause = () => {
@@ -116,14 +118,12 @@ const PlayerControls = () => {
         } catch (err) {
             console.log('Seek to not supported');
         }
+        updatePositionState();
     };
 
     const updatePositionState = () => {
         const audio = document.getElementById('audio');
-        if (
-            parseFloat(audio.duration) > 0 &&
-            'setPositionState' in navigator.mediaSession
-        ) {
+        if ('setPositionState' in navigator.mediaSession) {
             navigator.mediaSession.setPositionState({
                 duration: audio.duration,
                 playbackRate: audio.playbackRate,
@@ -133,11 +133,11 @@ const PlayerControls = () => {
     };
 
     useEffect(() => {
-        if (state.track) {
+        if (Object.keys(state.track).length > 0) {
+            navigator.mediaSession.setPositionState(null);
             const audio = document.getElementById('audio');
             if (audio) {
                 audio.onended = () => {
-                    navigator.mediaSession.setPositionState(null);
                     next();
                 };
                 audio.onplaying = () => {
@@ -152,7 +152,6 @@ const PlayerControls = () => {
                     dispatch({ type: 'setStatus', payload: 'idle' });
                 };
                 audio.onloadedmetadata = () => {
-                    updateMeta();
                 };
                 play();
             }

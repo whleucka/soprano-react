@@ -23,7 +23,7 @@ const MusicSearch = () => {
 
     const handleSubmit = () => {
         // Make some request to api
-        if (searchTerm.trim()) {
+        if (searchTerm.trim().length > 0) {
             dispatch({ type: 'setSearchResults', payload: [] });
             API.musicSearch(searchTerm.trim()).then((tracks) => {
                 dispatch({ type: 'setSearchResults', payload: tracks });

@@ -30,7 +30,7 @@ const Soprano = () => {
         return { state, dispatch };
     }, [state, dispatch]);
 
-    const trackUrl = state.track
+    const trackUrl = state.track.md5
         ? process.env.REACT_APP_API_URL + `/music/play/${state.track.md5}`
         : null;
 
@@ -88,7 +88,7 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player />
-                <audio id="audio" src={trackUrl} preload="true" />
+                <audio id="audio" src={trackUrl} />
             </Router>
         </SopranoContext.Provider>
     );
