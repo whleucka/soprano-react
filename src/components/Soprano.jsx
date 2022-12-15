@@ -35,9 +35,9 @@ const Soprano = () => {
         ? state.track.src
         : process.env.REACT_APP_API_URL + `/music/play/${state.track.md5}`;
 
-    const backdropImage = state.track
-        ? process.env.REACT_APP_SERVER_URL + state.track.cover
-        : '/img/no-album.png';
+    const backdropImage = Object.keys(state.track).length > 0 && state.track.backdrop
+        ? state.track.backdrop
+        : process.env.REACT_APP_SERVER_URL + state.track.cover
 
     return (
         <SopranoContext.Provider value={ContextValue}>
