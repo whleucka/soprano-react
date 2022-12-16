@@ -125,7 +125,7 @@ const PlayerControls = () => {
         const audio = document.getElementById('audio');
         if ('setPositionState' in navigator.mediaSession) {
             navigator.mediaSession.setPositionState({
-                duration: audio.duration,
+                duration: parseFloat(audio.duration),
                 playbackRate: audio.playbackRate,
                 position: audio.currentTime
             });
