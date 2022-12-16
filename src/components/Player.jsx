@@ -9,9 +9,14 @@ import Audio from './Audio';
 
 const Player = () => {
     const { state } = useContext(SopranoContext);
-    const cover = Object.keys(state.track).length > 0 ? state.track.cover : '/img/no-album.png';
-    const title = Object.keys(state.track).length > 0 ? state.track.title : null;
-    const artist = Object.keys(state.track).length > 0 ? state.track.artist : null;
+    const cover =
+        Object.keys(state.track).length > 0
+            ? state.track.cover
+            : '/img/no-album.png';
+    const title =
+        Object.keys(state.track).length > 0 ? state.track.title : null;
+    const artist =
+        Object.keys(state.track).length > 0 ? state.track.artist : null;
     return (
         <>
             <PlayerProgress />

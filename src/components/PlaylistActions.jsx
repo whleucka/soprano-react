@@ -4,7 +4,7 @@ import { SopranoContext } from './Soprano';
 
 const PlaylistActions = () => {
     const { state, dispatch } = useContext(SopranoContext);
-    const handleClear = (e) => {
+    const handleClear = () => {
         dispatch({ type: 'setPlaylist', payload: [] });
         dispatch({ type: 'setPlaylistIndex', payload: 0 });
     };

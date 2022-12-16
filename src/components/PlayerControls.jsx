@@ -8,12 +8,12 @@ const PlayerControls = () => {
     const play = () => {
         const audio = document.getElementById('audio');
         if (audio) {
-            audio.play()
+            audio
+                .play()
                 .then((_) => {
                     updateMeta();
                 })
-                .catch((err) => {
-                });
+                .catch((_) => {});
         }
     };
 
@@ -152,10 +152,10 @@ const PlayerControls = () => {
                     console.log(err);
                 };
                 audio.onloadeddata = () => {
-                    console.log("Data loaded");
+                    console.log('Data loaded');
                 };
                 audio.onloadedmetadata = () => {
-                    console.log("Metadata loaded");
+                    console.log('Metadata loaded');
                 };
                 play();
             }

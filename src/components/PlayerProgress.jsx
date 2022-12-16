@@ -53,12 +53,14 @@ const PlayerProgress = () => {
                 const end = parseFloat(seconds);
                 const pct = ((currTime / end) * 100).toFixed(2);
                 const buffered = audio.buffered;
-                const loaded = audio.duration > 0
-                    ? (
-                        (buffered.end(audio.buffered.length - 1) / audio.duration) *
-                        100
-                    ).toFixed(2)
-                    : 0;
+                const loaded =
+                    audio.duration > 0
+                        ? (
+                              (buffered.end(audio.buffered.length - 1) /
+                                  audio.duration) *
+                              100
+                          ).toFixed(2)
+                        : 0;
                 setPlayback(pct);
                 setBuffer(loaded - pct);
             }
@@ -113,9 +115,7 @@ const PlayerProgress = () => {
     }, []);
 
     const audio = document.getElementById('audio');
-    const progressClass = audio && audio.paused
-        ? 'bg-secondary'
-        : '';
+    const progressClass = audio && audio.paused ? 'bg-secondary' : '';
 
     return (
         <div id="progress-cont">

@@ -204,12 +204,12 @@ label:focus,
     text-overflow: ellipsis;
 }
 @keyframes colorChange {
-  from {
-    filter: hue-rotate(0deg);
-  }
-	to {
-    filter: hue-rotate(360deg);
-  }
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
 }
 
 /**
@@ -271,7 +271,6 @@ label:focus,
     color: limegreen;
     animation: colorChange 30s alternate infinite;
     opacity: 1;
-
 }
 
 .actions {

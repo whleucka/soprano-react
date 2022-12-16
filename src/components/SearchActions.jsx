@@ -6,7 +6,7 @@ import { SopranoContext } from './Soprano';
 const SearchActions = () => {
     const { state, dispatch } = useContext(SopranoContext);
     const navigate = useNavigate();
-    const handleClick = (e) => {
+    const handleClick = () => {
         dispatch({ type: 'setPlaylist', payload: state.searchResults });
         dispatch({ type: 'setMode', payload: 'playlist' });
         dispatch({ type: 'setPlaylistIndex', payload: 0 });

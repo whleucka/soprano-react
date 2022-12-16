@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
-import { SopranoContext } from "./Soprano";
-import TrackRow from "./TrackRow";
+import { useContext, useEffect } from 'react';
+import { SopranoContext } from './Soprano';
+import TrackRow from './TrackRow';
 
 const Radio = () => {
     const { state } = useContext(SopranoContext);
@@ -25,8 +25,7 @@ const Radio = () => {
             cover: 'https://media.socastsrm.com/uploads/station/634/site_header_logo-58794a7ee0257.png',
             playtime_seconds: 0,
             playtime_string: null,
-            src:
-                'https://stream.jpbgdigital.com/CJBZ/HEAAC/48k/playlist.m3u8'
+            src: 'https://stream.jpbgdigital.com/CJBZ/HEAAC/48k/playlist.m3u8'
         },
         {
             md5: 2,
@@ -36,8 +35,7 @@ const Radio = () => {
             cover: 'https://upload.wikimedia.org/wikipedia/en/f/fb/CJRX_106.7ROCK_logo.png',
             playtime_seconds: 0,
             playtime_string: null,
-            src:
-                'https://rogers-hls.leanstream.co/rogers/let1067.stream/playlist.m3u8?environment=web&args=web_01'
+            src: 'https://rogers-hls.leanstream.co/rogers/let1067.stream/playlist.m3u8?environment=web&args=web_01'
         },
         {
             md5: 3,
@@ -47,8 +45,7 @@ const Radio = () => {
             cover: 'https://static.mytuner.mobi/media/tvos_radios/xnh7ecldupxu.png',
             playtime_seconds: 0,
             playtime_string: null,
-            src:
-                'https://rogers.leanstream.co/rogers/let1077.stream/playlist.m3u8'
+            src: 'https://rogers.leanstream.co/rogers/let1077.stream/playlist.m3u8'
         },
         {
             md5: 4,
@@ -58,8 +55,7 @@ const Radio = () => {
             cover: 'https://ca.radio.net/images/broadcasts/8f/25/34613/1/c300.png',
             playtime_seconds: 0,
             playtime_string: null,
-            src:
-                'https://cbcradiolive.akamaized.net/hls/live/2041039/ES_R1MCG/master.m3u8'
+            src: 'https://cbcradiolive.akamaized.net/hls/live/2041039/ES_R1MCG/master.m3u8'
         },
         {
             md5: 5,
@@ -69,8 +65,7 @@ const Radio = () => {
             cover: 'https://www.radio.net/images/broadcasts/80/11/4615/1/c300.png',
             playtime_seconds: 0,
             playtime_string: null,
-            src:
-                'https://cbcradiolive.akamaized.net/hls/live/2041058/ES_R2MED/master.m3u8'
+            src: 'https://cbcradiolive.akamaized.net/hls/live/2041058/ES_R2MED/master.m3u8'
         },
         {
             md5: 6,
@@ -80,17 +75,18 @@ const Radio = () => {
             cover: 'https://cdn-profiles.tunein.com/s11996/images/logog.png',
             playtime_seconds: 0,
             playtime_string: null,
-            src:
-                'https://rogers-hls.leanstream.co/rogers/vic1031.stream/playlist.m3u8?environment=web&args=web_01'
+            src: 'https://rogers-hls.leanstream.co/rogers/vic1031.stream/playlist.m3u8?environment=web&args=web_01'
         }
     ];
 
-    return <>
-        <h2 className="header">Radio</h2>
-        {stations.map((station, index) => {
-            return (<TrackRow mode="radio" key={index} track={station} />);
-        })}
-    </>
-}
+    return (
+        <>
+            <h2 className="header">Radio</h2>
+            {stations.map((station, index) => {
+                return <TrackRow mode="radio" key={index} track={station} />;
+            })}
+        </>
+    );
+};
 
 export default Radio;

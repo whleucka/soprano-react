@@ -3,14 +3,15 @@ import {
     Home as HomeIcon,
     Search as SearchIcon,
     Disc as DiscIcon,
-    Music as MusicIcon
+    Music as MusicIcon,
+    Radio as RadioIcon
 } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { SopranoContext } from './Soprano';
 
 const NavLinks = () => {
     const { state } = useContext(SopranoContext);
-    const handleClick = (e) => {
+    const handleClick = () => {
         if (document.getElementById('nav-toggle').ariaExpanded == 'true') {
             document.getElementById('nav-toggle').click();
         }
@@ -35,7 +36,7 @@ const NavLinks = () => {
             </Link>
             <Link to="/radio">
                 <li onClick={handleClick} className="nav-item truncate">
-                    <MusicIcon size="18" /> Radio
+                    <RadioIcon size="18" /> Radio
                 </li>
             </Link>
             {state.user && (

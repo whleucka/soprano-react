@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useReducer, useMemo, useEffect } from 'react';
+import React, { Suspense, lazy, useReducer, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
@@ -19,11 +19,11 @@ const initialState = {
     user: null,
     mode: null,
     track: {},
-    status: "idle",
+    status: 'idle',
     searchResults: [],
     playlistIndex: null,
     playlist: [],
-    playlists: [],
+    playlists: []
 };
 
 const Soprano = () => {
