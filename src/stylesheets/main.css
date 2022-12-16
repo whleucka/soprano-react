@@ -269,24 +269,9 @@ label:focus,
 
 .track-row .play-button.active svg {
     color: limegreen;
-    animation-name: activerow;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-}
+    animation: colorChange 30s alternate infinite;
+    opacity: 1;
 
-@keyframes activerow {
-    0% {
-        color: limegreen;
-        opacity: 1;
-    }
-    50% {
-        color: limegreen;
-        opacity: 0.4;
-    }
-    100% {
-        color: limegreen;
-        opacity: 1;
-    }
 }
 
 .actions {
@@ -412,8 +397,7 @@ label:focus,
 }
 
 #player-progressbar.active {
-    background-color: royalblue;
-    animation: colorChange 30s alternate infinite;
+    /*animation: colorChange 30s alternate infinite;*/
 }
 
 #volume-progress .progress-bar {

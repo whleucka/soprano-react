@@ -12,7 +12,8 @@ const PlayerControls = () => {
                 .then((_) => {
                     updateMeta();
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => {
+                });
         }
     };
 

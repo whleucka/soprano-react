@@ -99,6 +99,7 @@ const PlayerProgress = () => {
         if (Object.keys(state.track).length > 0) {
             clearTimer();
             setTimer(state.track.playtime_seconds);
+
             if (state.mode === 'radio') {
                 setPlayback(100);
             }
