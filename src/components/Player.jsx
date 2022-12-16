@@ -5,6 +5,7 @@ import PlayerVolume from './PlayerVolume';
 import TrackTitle from './TrackTitle';
 import AlbumCover from './AlbumCover';
 import PlayerProgress from './PlayerProgress';
+import Audio from './Audio';
 
 const Player = () => {
     const { state } = useContext(SopranoContext);
@@ -29,6 +30,7 @@ const Player = () => {
                         <PlayerVolume />
                     </div>
                 </div>
+                <Audio />
             </section>
         </>
     );

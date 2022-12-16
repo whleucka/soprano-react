@@ -4,6 +4,7 @@ import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import Player from './Player';
+import Backdrop from './Backdrop';
 import { BarLoader } from 'react-spinners';
 
 const Home = lazy(() => import('./Home'));
@@ -32,26 +33,13 @@ const Soprano = () => {
         return { state, dispatch };
     }, [state, dispatch]);
 
-    const trackUrl = Object.keys(state.track).length > 0 && state.track.src
-        ? state.track.src
-        : process.env.REACT_APP_API_URL + `/music/play/${state.track.md5}`;
-
-    const backdropImage = Object.keys(state.track).length > 0 && state.track.backdrop
-        ? state.track.backdrop
-        : process.env.REACT_APP_SERVER_URL + state.track.cover
-
     return (
         <SopranoContext.Provider value={ContextValue}>
             <Router>
                 <Navbar />
                 <section id="content" className="d-flex">
                     <Sidebar />
-                    <section
-                        style={{ backgroundImage: `url(${backdropImage})` }}
-                        id="backdrop"
-                    >
-                        &nbsp;
-                    </section>
+                    <Backdrop />
                     <section id="main">
                         <section id="view">
                             <Suspense
@@ -95,7 +83,6 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player />
-                <audio id="audio" src={trackUrl} />
             </Router>
         </SopranoContext.Provider>
     );
