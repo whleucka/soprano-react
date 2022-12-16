@@ -4,11 +4,12 @@ import AlbumCover from './AlbumCover';
 import { SopranoContext } from './Soprano';
 import TrackTitle from './TrackTitle';
 
-const TrackRow = ({ track, playlistIndex = null }) => {
+const TrackRow = ({ track, mode, playlistIndex = null }) => {
     const { state, dispatch } = useContext(SopranoContext);
-    const { cover, artist, album, title, playtime_string, md5 } = track;
-    const handleClick = (e) => {
+    const { cover, artist, title, playtime_string } = track;
+    const handleClick = () => {
         dispatch({ type: 'setTrack', payload: track });
+        dispatch({ type: 'setMode', payload: mode });
         if (playlistIndex)
             dispatch({ type: 'setPlaylistIndex', payload: playlistIndex });
     };

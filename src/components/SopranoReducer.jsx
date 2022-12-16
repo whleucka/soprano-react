@@ -2,6 +2,8 @@ export function SopranoReducer(state, action) {
     switch (action.type) {
         case 'setUser':
             return { ...state, user: action.payload };
+        case 'setMode':
+            return { ...state, mode: action.payload };
         case 'setSearchResults':
             return { ...state, searchResults: action.payload };
         case 'setTrack':

@@ -80,7 +80,7 @@ const PlayerProgress = () => {
 
     const handleClick = (e) => {
         const audio = document.getElementById('audio');
-        if (!state.track || !audio.src) return;
+        if (!state.track || state.mode === 'radio' || !audio.src) return;
         setBuffer(0);
         const self = e.currentTarget;
         const width = document
@@ -99,6 +99,9 @@ const PlayerProgress = () => {
         if (Object.keys(state.track).length  > 0) {
             clearTimer();
             setTimer(state.track.playtime_seconds);
+            if (state.mode === 'radio') {
+                setPlayback(100);
+            }
         }
     }, [state.track]);
 

@@ -11,7 +11,7 @@ const SearchResults = () => {
                 <div>
                     <SearchActions />
                     {state.searchResults.map((result, i) => (
-                        <TrackRow key={i} track={result} />
+                        <TrackRow key={i} mode="search" track={result} />
                     ))}
                 </div>
             )}

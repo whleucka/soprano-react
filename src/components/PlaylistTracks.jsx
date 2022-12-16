@@ -23,7 +23,7 @@ const PlaylistTracks = () => {
                 <div>
                     <PlaylistActions />
                     {state.playlist.map((track, i) => (
-                        <TrackRow key={i} track={track} playlistIndex={i} />
+                        <TrackRow key={i} mode="playlist" track={track} playlistIndex={i} />
                     ))}
                 </div>
             )}

@@ -93,7 +93,7 @@ const Radio = () => {
 
     return <>
             <h2 className="header">Radio</h2>
-            {stations.map((station, index) => { return (<TrackRow key={index} track={station} />);
+            {stations.map((station, index) => { return (<TrackRow mode="radio" key={index} track={station} />);
             })}
         </>
 }
