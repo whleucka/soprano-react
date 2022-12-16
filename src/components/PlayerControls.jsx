@@ -24,6 +24,7 @@ const PlayerControls = () => {
 
     const stop = () => {
         console.log('STOP!');
+        pause();
     };
 
     const handlePlayPause = () => {
@@ -138,13 +139,16 @@ const PlayerControls = () => {
             const audio = document.getElementById('audio');
             if (audio) {
                 audio.onended = () => {
+                    console.log('Audio ended, next...');
                     next();
                 };
                 audio.onplaying = () => {
+                    console.log('Audio playing...');
                     navigator.mediaSession.playbackState = 'playing';
                     dispatch({ type: 'setStatus', payload: 'playing' });
                 };
                 audio.onpause = () => {
+                    console.log('Audio paused...');
                     navigator.mediaSession.playbackState = 'paused';
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
@@ -152,12 +156,12 @@ const PlayerControls = () => {
                     console.log(err);
                 };
                 audio.onloadeddata = () => {
-                    console.log('Data loaded');
+                    console.log('Data loaded, playing...');
+                    play();
                 };
                 audio.onloadedmetadata = () => {
-                    console.log('Metadata loaded');
+                    console.log('Metadata loaded...');
                 };
-                play();
             }
         }
     }, [state.track]);
