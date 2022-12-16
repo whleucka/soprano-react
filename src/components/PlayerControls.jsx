@@ -11,6 +11,7 @@ const PlayerControls = () => {
             audio
                 .play()
                 .then((_) => {
+                    navigator.mediaSession.playbackState = 'playing';
                     updateMeta();
                 })
                 .catch((_) => {});
@@ -20,6 +21,7 @@ const PlayerControls = () => {
     const pause = () => {
         const audio = document.getElementById('audio');
         audio.pause();
+        navigator.mediaSession.playbackState = 'paused';
     };
 
     const stop = () => {
@@ -144,12 +146,10 @@ const PlayerControls = () => {
                 };
                 audio.onplaying = () => {
                     console.log('Audio playing...');
-                    navigator.mediaSession.playbackState = 'playing';
                     dispatch({ type: 'setStatus', payload: 'playing' });
                 };
                 audio.onpause = () => {
                     console.log('Audio paused...');
-                    navigator.mediaSession.playbackState = 'paused';
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
                 audio.onerror = (err) => {
