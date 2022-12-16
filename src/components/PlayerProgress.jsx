@@ -114,8 +114,8 @@ const PlayerProgress = () => {
 
     const audio = document.getElementById('audio');
     const progressClass = audio && audio.paused
-        ? ''
-        : 'active';
+        ? 'bg-secondary'
+        : '';
 
     return (
         <div id="progress-cont">
