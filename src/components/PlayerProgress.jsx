@@ -54,11 +54,11 @@ const PlayerProgress = () => {
                 const pct = ((currTime / end) * 100).toFixed(2);
                 const buffered = audio.buffered;
                 const loaded = audio.duration > 0
-                ? (
-                    (buffered.end(audio.buffered.length - 1) / audio.duration) *
-                    100
-                ).toFixed(2)
-                : 0;
+                    ? (
+                        (buffered.end(audio.buffered.length - 1) / audio.duration) *
+                        100
+                    ).toFixed(2)
+                    : 0;
                 setPlayback(pct);
                 setBuffer(loaded - pct);
             }
@@ -96,7 +96,7 @@ const PlayerProgress = () => {
     };
 
     useEffect(() => {
-        if (Object.keys(state.track).length  > 0) {
+        if (Object.keys(state.track).length > 0) {
             clearTimer();
             setTimer(state.track.playtime_seconds);
             if (state.mode === 'radio') {

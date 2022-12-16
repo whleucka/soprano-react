@@ -2,16 +2,18 @@ import { useContext } from 'react';
 import { SopranoContext } from './Soprano';
 
 const Backdrop = () => {
-    const {state} = useContext(SopranoContext);
-    const backdropImage = state.track
-        ? Object.keys(state.track).length > 0 && state.track.backdrop
-            ? state.track.backdrop
-            : process.env.REACT_APP_SERVER_URL + state.track.cover
-        : "/img/no-album.png";
+    const { state } = useContext(SopranoContext);
+    const backdropImage = Object.keys(state.track).length > 0 && state.track.cover
+        ? state.track.cover
+        : null;
+
+    const imageUrl = state.status === 'idle'
+        ? "/img/no-album.png"
+        : backdropImage;
 
     return (
         <section
-            style={{ backgroundImage: `url(${backdropImage})` }}
+            style={{ backgroundImage: `url(${imageUrl})` }}
             id="backdrop"
         >
             &nbsp;

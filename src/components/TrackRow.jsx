@@ -8,8 +8,8 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
     const { state, dispatch } = useContext(SopranoContext);
     const { cover, artist, title, playtime_string } = track;
     const handleClick = () => {
-        dispatch({ type: 'setTrack', payload: track });
         dispatch({ type: 'setMode', payload: mode });
+        dispatch({ type: 'setTrack', payload: track });
         if (playlistIndex)
             dispatch({ type: 'setPlaylistIndex', payload: playlistIndex });
     };

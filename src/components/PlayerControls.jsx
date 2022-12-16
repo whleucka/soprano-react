@@ -86,9 +86,6 @@ const PlayerControls = () => {
 
     const updateMeta = () => {
         const track = state.track;
-        const coverUrl = track.cover && track.cover.substring(0, 4) !== 'http'
-            ? process.env.REACT_APP_SERVER_URL + track.cover
-            : track.cover;
         document.title = `Soprano • ${track.artist} — ${track.title}`;
         console.log('Updating metadata...');
         navigator.mediaSession.setActionHandler('seekbackward', seekBackward);
@@ -102,12 +99,12 @@ const PlayerControls = () => {
             artist: track.artist,
             album: track.album,
             artwork: [
-                { src: coverUrl, sizes: '96x96', type: 'image/png' },
-                { src: coverUrl, sizes: '128x128', type: 'image/png' },
-                { src: coverUrl, sizes: '192x192', type: 'image/png' },
-                { src: coverUrl, sizes: '256x256', type: 'image/png' },
-                { src: coverUrl, sizes: '384x384', type: 'image/png' },
-                { src: coverUrl, sizes: '512x512', type: 'image/png' }
+                { src: track.cover, sizes: '96x96', type: 'image/png' },
+                { src: track.cover, sizes: '128x128', type: 'image/png' },
+                { src: track.cover, sizes: '192x192', type: 'image/png' },
+                { src: track.cover, sizes: '256x256', type: 'image/png' },
+                { src: track.cover, sizes: '384x384', type: 'image/png' },
+                { src: track.cover, sizes: '512x512', type: 'image/png' }
             ]
         });
         try {
@@ -150,10 +147,14 @@ const PlayerControls = () => {
                     navigator.mediaSession.playbackState = 'paused';
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
-                audio.onerror = () => {
-                    dispatch({ type: 'setStatus', payload: 'idle' });
+                audio.onerror = (err) => {
+                    console.log(err);
+                };
+                audio.onloadeddata = () => {
+                    console.log("Data loaded");
                 };
                 audio.onloadedmetadata = () => {
+                    console.log("Metadata loaded");
                 };
                 play();
             }

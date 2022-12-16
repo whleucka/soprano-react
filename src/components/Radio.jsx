@@ -3,7 +3,7 @@ import { SopranoContext } from "./Soprano";
 import TrackRow from "./TrackRow";
 
 const Radio = () => {
-    const {state} = useContext(SopranoContext);
+    const { state } = useContext(SopranoContext);
     useEffect(() => {
         if (Object.keys(state.track).length > 0 && state.track.src) {
             var audio = document.getElementById('audio');
@@ -23,7 +23,6 @@ const Radio = () => {
             album: 'Radio',
             title: 'B-93.3',
             cover: 'https://media.socastsrm.com/uploads/station/634/site_header_logo-58794a7ee0257.png',
-            backdrop: 'https://media.socastsrm.com/uploads/station/634/site_header_logo-58794a7ee0257.png',
             playtime_seconds: 0,
             playtime_string: null,
             src:
@@ -35,7 +34,6 @@ const Radio = () => {
             album: 'Radio',
             title: '106.7 ROCK',
             cover: 'https://upload.wikimedia.org/wikipedia/en/f/fb/CJRX_106.7ROCK_logo.png',
-            backdrop: 'https://upload.wikimedia.org/wikipedia/en/f/fb/CJRX_106.7ROCK_logo.png',
             playtime_seconds: 0,
             playtime_string: null,
             src:
@@ -47,7 +45,6 @@ const Radio = () => {
             album: 'Radio',
             title: 'KiSS 107.7',
             cover: 'https://static.mytuner.mobi/media/tvos_radios/xnh7ecldupxu.png',
-            backdrop: 'https://static.mytuner.mobi/media/tvos_radios/xnh7ecldupxu.png',
             playtime_seconds: 0,
             playtime_string: null,
             src:
@@ -59,7 +56,6 @@ const Radio = () => {
             album: 'Radio',
             title: 'CBC Radio One',
             cover: 'https://ca.radio.net/images/broadcasts/8f/25/34613/1/c300.png',
-            backdrop: 'https://ca.radio.net/images/broadcasts/8f/25/34613/1/c300.png',
             playtime_seconds: 0,
             playtime_string: null,
             src:
@@ -71,7 +67,6 @@ const Radio = () => {
             album: 'Radio',
             title: 'CBC Radio Two',
             cover: 'https://www.radio.net/images/broadcasts/80/11/4615/1/c300.png',
-            backdrop: 'https://www.radio.net/images/broadcasts/80/11/4615/1/c300.png',
             playtime_seconds: 0,
             playtime_string: null,
             src:
@@ -83,7 +78,6 @@ const Radio = () => {
             album: 'Radio',
             title: 'JACK 103.1',
             cover: 'https://cdn-profiles.tunein.com/s11996/images/logog.png',
-            backdrop: 'https://cdn-profiles.tunein.com/s11996/images/logog.png',
             playtime_seconds: 0,
             playtime_string: null,
             src:
@@ -92,10 +86,11 @@ const Radio = () => {
     ];
 
     return <>
-            <h2 className="header">Radio</h2>
-            {stations.map((station, index) => { return (<TrackRow mode="radio" key={index} track={station} />);
-            })}
-        </>
+        <h2 className="header">Radio</h2>
+        {stations.map((station, index) => {
+            return (<TrackRow mode="radio" key={index} track={station} />);
+        })}
+    </>
 }
 
 export default Radio;
