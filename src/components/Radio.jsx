@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { SopranoContext } from './Soprano';
 import TrackRow from './TrackRow';
 
-const Radio = () => {
+const Radio = ({ audioRef }) => {
     const { state } = useContext(SopranoContext);
 
     useEffect(() => {
@@ -11,12 +11,11 @@ const Radio = () => {
             state.track.src &&
             state.mode === 'radio'
         ) {
-            var audio = document.getElementById('audio');
             const Hls = require('hls.js');
             if (Hls.isSupported()) {
                 var hls = new Hls();
                 hls.loadSource(state.track.src);
-                hls.attachMedia(audio);
+                hls.attachMedia(audioRef.current);
             }
         }
     }, [state.track.src]);

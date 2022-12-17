@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Volume } from 'react-feather';
 
-const PlayerVolume = () => {
+const PlayerVolume = ({ audioRef }) => {
     const [volume, setVolume] = useState(100);
 
     const handleClick = (e) => {
@@ -14,9 +14,8 @@ const PlayerVolume = () => {
     };
 
     useEffect(() => {
-        const audio = document.getElementById('audio');
         const level = volume / 100;
-        audio.volume = level.toFixed(1);
+        audioRef.current.volume = level.toFixed(1);
     }, [volume]);
 
     return (

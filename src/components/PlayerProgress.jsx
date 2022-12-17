@@ -5,7 +5,7 @@ import { SopranoContext } from './Soprano';
 var playbackTimer = null;
 //var playtimeTimer = null;
 
-const PlayerProgress = () => {
+const PlayerProgress = ({ audioRef }) => {
     const { state } = useContext(SopranoContext);
     //const [playtime, setPlaytime] = useState('00:00');
     const [playback, setPlayback] = useState(0);
@@ -34,30 +34,28 @@ const PlayerProgress = () => {
     };
 
     const updatePositionState = () => {
-        const audio = document.getElementById('audio');
         if ('setPositionState' in navigator.mediaSession) {
             navigator.mediaSession.setPositionState({
-                duration: parseFloat(audio.duration),
-                playbackRate: audio.playbackRate,
-                position: audio.currentTime
+                duration: parseFloat(audioRef.current.duration),
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
             });
         }
     };
 
     const startPlayback = (seconds) => {
-        const audio = document.getElementById('audio');
         const delay = 250;
         playbackTimer = setInterval(() => {
-            if (!audio.paused) {
-                const currTime = parseFloat(audio.currentTime);
+            if (!audioRef.current.paused) {
+                const currTime = parseFloat(audioRef.current.currentTime);
                 const end = parseFloat(seconds);
                 const pct = ((currTime / end) * 100).toFixed(2);
-                const buffered = audio.buffered;
+                const buffered = audioRef.current.buffered;
                 const loaded =
-                    audio.duration > 0
+                    audioRef.current.duration > 0
                         ? (
-                              (buffered.end(audio.buffered.length - 1) /
-                                  audio.duration) *
+                              (buffered.end(audioRef.current.buffered.length - 1) /
+                                  audioRef.current.duration) *
                               100
                           ).toFixed(2)
                         : 0;
@@ -68,11 +66,10 @@ const PlayerProgress = () => {
     };
 
     // const startPlaytime = () => {
-    //     const audio = document.getElementById('audio');
     //     const delay = 1000;
     //     playtimeTimer = setInterval(() => {
-    //         if (!audio.paused) {
-    //             const elapsed = audio.currentTime;
+    //         if (!audioRef.current.paused) {
+    //             const elapsed = audioRef.current.currentTime;
     //             const elapsed_string = Util.convertSeconds(elapsed);
     //             setPlaytime(elapsed_string);
     //         }
@@ -81,8 +78,7 @@ const PlayerProgress = () => {
     //
 
     const handleClick = (e) => {
-        const audio = document.getElementById('audio');
-        if (!state.track || state.mode === 'radio' || !audio.src) return;
+        if (!state.track || state.mode === 'radio' || !audioRef.current.src) return;
         setBuffer(0);
         const self = e.currentTarget;
         const width = document
@@ -92,7 +88,7 @@ const PlayerProgress = () => {
         const pct = width > 0 ? x / width : 0;
         const seconds = state.track.playtime_seconds;
         const new_seconds = pct.toFixed(2) * seconds;
-        audio.currentTime = new_seconds;
+        audioRef.current.currentTime = new_seconds;
         setPlayback((pct * 100).toFixed(2));
         updatePositionState();
     };
@@ -114,8 +110,7 @@ const PlayerProgress = () => {
         };
     }, []);
 
-    const audio = document.getElementById('audio');
-    const progressClass = audio && audio.paused ? 'bg-secondary' : '';
+    const progressClass = audioRef.current && audioRef.current.paused ? 'bg-secondary' : '';
 
     return (
         <div id="progress-cont">

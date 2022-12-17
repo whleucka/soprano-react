@@ -2,14 +2,12 @@ import { useEffect, useContext } from 'react';
 import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
 import { SopranoContext } from './Soprano';
 
-const PlayerControls = () => {
+const PlayerControls = ({audioRef}) => {
     const { dispatch, state } = useContext(SopranoContext);
 
     const play = () => {
-        const audio = document.getElementById('audio');
-        if (audio) {
-            audio
-                .play()
+        if (audioRef.current) {
+            audioRef.current.play()
                 .then((_) => {
                     updateMeta();
                 })
@@ -18,8 +16,7 @@ const PlayerControls = () => {
     };
 
     const pause = () => {
-        const audio = document.getElementById('audio');
-        audio.pause();
+        audioRef.current.pause();
     };
 
     const stop = () => {
@@ -28,9 +25,8 @@ const PlayerControls = () => {
     };
 
     const handlePlayPause = () => {
-        const audio = document.getElementById('audio');
-        if (audio) {
-            if (audio.paused) {
+        if (audioRef.current) {
+            if (audioRef.current.paused) {
                 play();
             } else {
                 pause();
@@ -59,29 +55,26 @@ const PlayerControls = () => {
     };
 
     const seekTo = (e) => {
-        const audio = document.getElementById('audio');
-        if (e.fastSeek && 'fastSeek' in audio) {
-            audio.fastSeek(e.seekTime);
+        if (e.fastSeek && 'fastSeek' in audioRef.current) {
+            audioRef.current.fastSeek(e.seekTime);
             return;
         }
-        audio.currentTime = e.seekTime;
+        audioRef.current.currentTime = e.seekTime;
         updatePositionState();
     };
 
     const seekBackward = (e) => {
-        const audio = document.getElementById('audio');
         const defaultSkipTime = 10;
         const skipTime = e.seekOffset || defaultSkipTime;
-        audio.currentTime = Math.max(audio.currentTime - skipTime, 0);
+        audioRef.current.currentTime = Math.max(audioRef.current.currentTime - skipTime, 0);
         updatePositionState();
     };
     const seekForward = (e) => {
-        const audio = document.getElementById('audio');
         const defaultSkipTime = 10;
         const skipTime = e.seekOffset || defaultSkipTime;
-        audio.currentTime = Math.min(
-            audio.currentTime + skipTime,
-            audio.duration
+        audioRef.current.currentTime = Math.min(
+            audioRef.current.currentTime + skipTime,
+            audioRef.current.duration
         );
         updatePositionState();
     };
@@ -123,12 +116,11 @@ const PlayerControls = () => {
     };
 
     const updatePositionState = () => {
-        const audio = document.getElementById('audio');
         if ('setPositionState' in navigator.mediaSession) {
             navigator.mediaSession.setPositionState({
-                duration: parseFloat(audio.duration),
-                playbackRate: audio.playbackRate,
-                position: audio.currentTime
+                duration: parseFloat(audioRef.current.duration),
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
             });
         }
     };
@@ -136,30 +128,29 @@ const PlayerControls = () => {
     useEffect(() => {
         if (Object.keys(state.track).length > 0) {
             navigator.mediaSession.setPositionState(null);
-            const audio = document.getElementById('audio');
-            if (audio) {
-                audio.onended = () => {
+            if (audioRef.current) {
+                audioRef.current.onended = () => {
                     console.log('Audio ended, next...');
                     next();
                 };
-                audio.onplaying = () => {
+                audioRef.current.onplaying = () => {
                     console.log('Audio playing...');
                     navigator.mediaSession.playbackState = 'playing';
                     dispatch({ type: 'setStatus', payload: 'playing' });
                 };
-                audio.onpause = () => {
+                audioRef.current.onpause = () => {
                     console.log('Audio paused...');
                     navigator.mediaSession.playbackState = 'paused';
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
-                audio.onerror = (err) => {
+                audioRef.current.onerror = (err) => {
                     console.log(err);
                 };
-                audio.onloadeddata = () => {
+                audioRef.current.onloadeddata = () => {
                     console.log('Data loaded, playing...');
                     play();
                 };
-                audio.onloadedmetadata = () => {
+                audioRef.current.onloadedmetadata = () => {
                     console.log('Metadata loaded...');
                 };
             }

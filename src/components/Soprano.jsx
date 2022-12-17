@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useReducer, useMemo } from 'react';
+import React, { Suspense, lazy, useReducer, useMemo, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
@@ -23,15 +23,18 @@ const initialState = {
     searchResults: [],
     playlistIndex: null,
     playlist: [],
-    playlists: []
+    playlists: [],
 };
 
 const Soprano = () => {
     const [state, dispatch] = useReducer(SopranoReducer, initialState);
+    const audioRef = useRef(null);
 
     const ContextValue = useMemo(() => {
         return { state, dispatch };
     }, [state, dispatch]);
+
+    const trackUrl = state.status === 'idle' ? '' : state.track.src;
 
     return (
         <SopranoContext.Provider value={ContextValue}>
@@ -66,7 +69,7 @@ const Soprano = () => {
                                     <Route
                                         exact
                                         path="/radio"
-                                        element={<Radio />}
+                                        element={<Radio audioRef={audioRef} />}
                                     />
                                     {state.user && (
                                         <>
@@ -82,7 +85,8 @@ const Soprano = () => {
                         </section>
                     </section>
                 </section>
-                <Player />
+                <Player audioRef={audioRef} />
+                <audio ref={audioRef} id="audio" src={trackUrl} />
             </Router>
         </SopranoContext.Provider>
     );

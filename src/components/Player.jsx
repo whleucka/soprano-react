@@ -5,9 +5,8 @@ import PlayerVolume from './PlayerVolume';
 import TrackTitle from './TrackTitle';
 import AlbumCover from './AlbumCover';
 import PlayerProgress from './PlayerProgress';
-import Audio from './Audio';
 
-const Player = () => {
+const Player = ({audioRef}) => {
     const { state } = useContext(SopranoContext);
     const cover =
         Object.keys(state.track).length > 0
@@ -19,7 +18,7 @@ const Player = () => {
         Object.keys(state.track).length > 0 ? state.track.artist : null;
     return (
         <>
-            <PlayerProgress />
+            <PlayerProgress audioRef={audioRef} />
             <section id="player">
                 <div className="d-flex align-items-center justify-content-center h-100 w-100 ">
                     <div id="left-cover">
@@ -29,13 +28,12 @@ const Player = () => {
                         <TrackTitle artist={artist} title={title} />
                     </div>
                     <div id="center-controls" className="flex-grow-1">
-                        <PlayerControls />
+                        <PlayerControls audioRef={audioRef} />
                     </div>
                     <div id="right-volume">
-                        <PlayerVolume />
+                        <PlayerVolume audioRef={audioRef} />
                     </div>
                 </div>
-                <Audio />
             </section>
         </>
     );
