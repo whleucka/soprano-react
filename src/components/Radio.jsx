@@ -5,7 +5,7 @@ import TrackRow from './TrackRow';
 const Radio = () => {
     const { state } = useContext(SopranoContext);
     useEffect(() => {
-        if (Object.keys(state.track).length > 0 && state.track.src) {
+        if (Object.keys(state.track).length > 0 && state.track.src && state.mode === 'radio') {
             var audio = document.getElementById('audio');
             const Hls = require('hls.js');
             if (Hls.isSupported()) {
