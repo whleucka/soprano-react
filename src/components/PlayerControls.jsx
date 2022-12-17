@@ -186,6 +186,8 @@ const PlayerControls = () => {
     const disabledPlay =
         Object.keys(state.track).length === 0 ? ' disabled' : '';
 
+    const activePlay = state.status === 'playing' ? ' active' : '';
+
     return (
         <div
             id="player-controls"
@@ -198,7 +200,8 @@ const PlayerControls = () => {
                 <SkipBack />
             </button>
             <button
-                className={'btn btn-dark' + disabledPlay}
+                id="play-pause-btn"
+                className={'btn btn-dark' + disabledPlay + activePlay}
                 onClick={handlePlayPause}
             >
                 {state.status !== 'playing' && <Play />}

@@ -4,8 +4,13 @@ import TrackRow from './TrackRow';
 
 const Radio = () => {
     const { state } = useContext(SopranoContext);
+
     useEffect(() => {
-        if (Object.keys(state.track).length > 0 && state.track.src && state.mode === 'radio') {
+        if (
+            Object.keys(state.track).length > 0 &&
+            state.track.src &&
+            state.mode === 'radio'
+        ) {
             var audio = document.getElementById('audio');
             const Hls = require('hls.js');
             if (Hls.isSupported()) {
@@ -52,7 +57,7 @@ const Radio = () => {
             artist: 'Calgary, Canada',
             album: 'Radio',
             title: 'CBC Radio One',
-            cover: 'https://ca.radio.net/images/broadcasts/8f/25/34613/1/c300.png',
+            cover: 'https://cdn-profiles.tunein.com/s20305/images/logog.png?t=1',
             playtime_seconds: 0,
             playtime_string: null,
             src: 'https://cbcradiolive.akamaized.net/hls/live/2041039/ES_R1MCG/master.m3u8'
@@ -62,7 +67,7 @@ const Radio = () => {
             artist: 'Edmonton, Canada',
             album: 'Radio',
             title: 'CBC Radio Two',
-            cover: 'https://www.radio.net/images/broadcasts/80/11/4615/1/c300.png',
+            cover: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQaYebQznztE4ezbTBn0_wIdwe5BJkCkjyUB5N4uk1dblU5JPI0__E0ipFEIE2w40NOUM&usqp=CAU',
             playtime_seconds: 0,
             playtime_string: null,
             src: 'https://cbcradiolive.akamaized.net/hls/live/2041058/ES_R2MED/master.m3u8'
