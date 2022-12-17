@@ -11,6 +11,7 @@ const PlayerControls = () => {
             audio
                 .play()
                 .then((_) => {
+                    updateMeta();
                 })
                 .catch((_) => {});
         }
@@ -142,7 +143,6 @@ const PlayerControls = () => {
                     next();
                 };
                 audio.onplaying = () => {
-                    updateMeta();
                     console.log('Audio playing...');
                     navigator.mediaSession.playbackState = 'playing';
                     dispatch({ type: 'setStatus', payload: 'playing' });
