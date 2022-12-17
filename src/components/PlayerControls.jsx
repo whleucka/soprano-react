@@ -12,7 +12,6 @@ const PlayerControls = () => {
                 .play()
                 .then((_) => {
                     navigator.mediaSession.playbackState = 'playing';
-                    updateMeta();
                 })
                 .catch((_) => {});
         }
@@ -161,6 +160,7 @@ const PlayerControls = () => {
                 };
                 audio.onloadedmetadata = () => {
                     console.log('Metadata loaded...');
+                    updateMeta();
                 };
             }
         }
