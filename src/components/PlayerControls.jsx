@@ -29,10 +29,11 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
+                    updatePositionState();
                 })
                 .catch((_) => {});
         }
-    }, [audioRef]);
+    }, [audioRef, updatePositionState]);
 
     const pause = useCallback(() => {
         audioRef.current.pause();
@@ -134,7 +135,6 @@ const PlayerControls = ({ audioRef }) => {
                 audioRef.current.onplaying = () => {
                     console.log('Audio playing...');
                     dispatch({ type: 'setStatus', payload: 'playing' });
-                    updatePositionState();
                 };
                 audioRef.current.onpause = () => {
                     console.log('Audio paused...');
