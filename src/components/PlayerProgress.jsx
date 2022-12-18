@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import { SopranoContext } from './Soprano';
 //import { Util } from './Util';
 
@@ -16,34 +16,7 @@ const PlayerProgress = ({ audioRef }) => {
     //         ? Util.convertSeconds(state.track.playtime_seconds)
     //         : '00:00';
 
-    const setTimer = (seconds) => {
-        if (seconds > 0) {
-            startPlayback(seconds);
-            //startPlaytime(seconds);
-        }
-    };
-
-    const clearTimer = (reset_progress = true) => {
-        clearInterval(playbackTimer);
-        //clearInterval(playtimeTimer);
-        if (reset_progress) {
-            setPlayback(0);
-            setBuffer(0);
-            //setPlaytime('00:00');
-        }
-    };
-
-    const updatePositionState = () => {
-        if ('setPositionState' in navigator.mediaSession) {
-            navigator.mediaSession.setPositionState({
-                duration: parseFloat(audioRef.current.duration),
-                playbackRate: audioRef.current.playbackRate,
-                position: audioRef.current.currentTime
-            });
-        }
-    };
-
-    const startPlayback = (seconds) => {
+    const startPlayback = useCallback((seconds) => {
         const delay = 250;
         playbackTimer = setInterval(() => {
             if (!audioRef.current.paused) {
@@ -65,6 +38,33 @@ const PlayerProgress = ({ audioRef }) => {
                 setBuffer(loaded - pct);
             }
         }, delay);
+    }, [audioRef]);
+
+    const setTimer = useCallback((seconds) => {
+        if (seconds > 0) {
+            startPlayback(seconds);
+            //startPlaytime(seconds);
+        }
+    }, [startPlayback]);
+
+    const clearTimer = (reset_progress = true) => {
+        clearInterval(playbackTimer);
+        //clearInterval(playtimeTimer);
+        if (reset_progress) {
+            setPlayback(0);
+            setBuffer(0);
+            //setPlaytime('00:00');
+        }
+    };
+
+    const updatePositionState = () => {
+        if ('setPositionState' in navigator.mediaSession) {
+            navigator.mediaSession.setPositionState({
+                duration: parseFloat(audioRef.current.duration),
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
+            });
+        }
     };
 
     // const startPlaytime = () => {
@@ -105,7 +105,7 @@ const PlayerProgress = ({ audioRef }) => {
                 setPlayback(100);
             }
         }
-    }, [state.track]);
+    }, [state.track, setTimer, state.mode]);
 
     useEffect(() => {
         return () => {

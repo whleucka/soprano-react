@@ -7,11 +7,29 @@ const PlayerControls = ({ audioRef }) => {
     const { dispatch, state } = useContext(SopranoContext);
     const track = state.track;
 
+    const updatePositionState = useCallback(() => {
+        if ('setPositionState' in navigator.mediaSession) {
+            navigator.mediaSession.setPositionState({
+                duration: parseFloat(audioRef.current.duration),
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
+            });
+        }
+    }, [audioRef]);
+
+    const updateMeta = useCallback(() => {
+        const track = state.track;
+        document.title = `Soprano • ${track.artist} — ${track.title}`;
+        console.log('Updating metadata...');
+        updatePositionState();
+    }, [state.track, updatePositionState]);
+
     const play = useCallback(() => {
         if (audioRef.current) {
             audioRef.current
                 .play()
-                .then((_) => {})
+                .then((_) => {
+                })
                 .catch((_) => {});
         }
     }, [audioRef]);
@@ -83,23 +101,6 @@ const PlayerControls = ({ audioRef }) => {
         updatePositionState();
     };
 
-    const updatePositionState = useCallback(() => {
-        if ('setPositionState' in navigator.mediaSession) {
-            navigator.mediaSession.setPositionState({
-                duration: parseFloat(audioRef.current.duration),
-                playbackRate: audioRef.current.playbackRate,
-                position: audioRef.current.currentTime
-            });
-        }
-    }, [audioRef]);
-
-    const updateMeta = useCallback(() => {
-        const track = state.track;
-        document.title = `Soprano • ${track.artist} — ${track.title}`;
-        console.log('Updating metadata...');
-        updatePositionState();
-    }, [state.track, updatePositionState]);
-
     useMediaSession({
         title: track.title,
         artist: track.artist,
@@ -121,6 +122,7 @@ const PlayerControls = ({ audioRef }) => {
         onSeekTo: seekTo,
         onStop: stop
     });
+
     useEffect(() => {
         if (Object.keys(state.track).length > 0) {
             navigator.mediaSession.setPositionState(null);
