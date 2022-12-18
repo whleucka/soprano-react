@@ -3,7 +3,7 @@ import { Search as SearchIcon, Trash as TrashIcon } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import API from './API';
 
-const MusicSearch = () => {
+const MusicSearch = ({ searchRef }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const { state, dispatch } = useContext(SopranoContext);
 
@@ -27,7 +27,11 @@ const MusicSearch = () => {
             dispatch({ type: 'setStatus', payload: 'search' });
             dispatch({ type: 'setSearchResults', payload: [] });
             API.musicSearch(searchTerm.trim()).then((tracks) => {
-                dispatch({ type: 'setSearchResults', payload: tracks });
+                if (tracks.length > 0) {
+                    dispatch({ type: 'setSearchResults', payload: tracks });
+                    setSearchTerm('');
+                } else {
+                }
             });
         }
     };
@@ -40,6 +44,7 @@ const MusicSearch = () => {
     return (
         <div id="music-search" className="input-group input-group-sm w-100">
             <input
+                ref={searchRef}
                 placeholder="I want to listen to..."
                 type="search"
                 onChange={handleChange}

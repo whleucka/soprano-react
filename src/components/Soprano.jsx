@@ -29,6 +29,7 @@ const initialState = {
 const Soprano = () => {
     const [state, dispatch] = useReducer(SopranoReducer, initialState);
     const audioRef = useRef(null);
+    const backdropRef = useRef(null);
 
     const ContextValue = useMemo(() => {
         return { state, dispatch };
@@ -42,7 +43,7 @@ const Soprano = () => {
                 <Navbar />
                 <section id="content" className="d-flex">
                     <Sidebar />
-                    <Backdrop />
+                    <Backdrop backdropRef={backdropRef} />
                     <section id="main">
                         <section id="view">
                             <Suspense

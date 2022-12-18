@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Volume } from 'react-feather';
 
 const PlayerVolume = ({ audioRef }) => {
     const [volume, setVolume] = useState(100);
+    const volumeProgressRef = useRef(null);
 
     const handleClick = (e) => {
         const self = e.currentTarget;
-        const el = document.querySelector('#volume-progress');
-        const width = el.offsetWidth;
+        const width = volumeProgressRef.current.offsetWidth;
         const x = e.pageX - self.offsetLeft;
         const pct = width > 0 ? (x / width) * 100 : 0;
         setVolume(Math.round(pct));
@@ -16,7 +16,7 @@ const PlayerVolume = ({ audioRef }) => {
     useEffect(() => {
         const level = volume / 100;
         audioRef.current.volume = level.toFixed(1);
-    }, [volume]);
+    }, [volume, audioRef]);
 
     return (
         <div
@@ -26,6 +26,7 @@ const PlayerVolume = ({ audioRef }) => {
             <Volume />
             <div
                 id="volume-progress"
+                ref={volumeProgressRef}
                 onClick={handleClick}
                 className="progress w-100"
             >
