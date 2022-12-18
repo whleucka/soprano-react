@@ -23,7 +23,7 @@ const initialState = {
     searchResults: [],
     playlistIndex: null,
     playlist: [],
-    playlists: [],
+    playlists: []
 };
 
 const Soprano = () => {

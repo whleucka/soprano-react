@@ -3,15 +3,15 @@ import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import useMediaSession from './MediaSession';
 
-const PlayerControls = ({audioRef}) => {
+const PlayerControls = ({ audioRef }) => {
     const { dispatch, state } = useContext(SopranoContext);
     const track = state.track;
 
     const play = useCallback(() => {
         if (audioRef.current) {
-            audioRef.current.play()
-                .then((_) => {
-                })
+            audioRef.current
+                .play()
+                .then((_) => {})
                 .catch((_) => {});
         }
     }, [audioRef]);
@@ -67,7 +67,10 @@ const PlayerControls = ({audioRef}) => {
     const seekBackward = (e) => {
         const defaultSkipTime = 10;
         const skipTime = e.seekOffset || defaultSkipTime;
-        audioRef.current.currentTime = Math.max(audioRef.current.currentTime - skipTime, 0);
+        audioRef.current.currentTime = Math.max(
+            audioRef.current.currentTime - skipTime,
+            0
+        );
         updatePositionState();
     };
     const seekForward = (e) => {
@@ -116,7 +119,7 @@ const PlayerControls = ({audioRef}) => {
         onPreviousTrack: previous,
         onNextTrack: next,
         onSeekTo: seekTo,
-        onStop: stop,
+        onStop: stop
     });
     useEffect(() => {
         if (Object.keys(state.track).length > 0) {
@@ -166,8 +169,7 @@ const PlayerControls = ({audioRef}) => {
 
     const disabledNextPrev = state.playlist.length === 0 ? ' disabled' : '';
 
-    const disabledPlay =
-        Object.keys(track).length === 0 ? ' disabled' : '';
+    const disabledPlay = Object.keys(track).length === 0 ? ' disabled' : '';
 
     const activePlay = state.status === 'playing' ? ' active' : '';
 

@@ -54,7 +54,9 @@ const PlayerProgress = ({ audioRef }) => {
                 const loaded =
                     audioRef.current.duration > 0
                         ? (
-                              (buffered.end(audioRef.current.buffered.length - 1) /
+                              (buffered.end(
+                                  audioRef.current.buffered.length - 1
+                              ) /
                                   audioRef.current.duration) *
                               100
                           ).toFixed(2)
@@ -78,7 +80,8 @@ const PlayerProgress = ({ audioRef }) => {
     //
 
     const handleClick = (e) => {
-        if (!state.track || state.mode === 'radio' || !audioRef.current.src) return;
+        if (!state.track || state.mode === 'radio' || !audioRef.current.src)
+            return;
         setBuffer(0);
         const self = e.currentTarget;
         const width = document
@@ -110,7 +113,8 @@ const PlayerProgress = ({ audioRef }) => {
         };
     }, []);
 
-    const progressClass = audioRef.current && audioRef.current.paused ? 'bg-secondary' : '';
+    const progressClass =
+        audioRef.current && audioRef.current.paused ? 'bg-secondary' : '';
 
     return (
         <div id="progress-cont">

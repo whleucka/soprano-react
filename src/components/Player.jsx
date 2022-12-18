@@ -6,7 +6,7 @@ import TrackTitle from './TrackTitle';
 import AlbumCover from './AlbumCover';
 import PlayerProgress from './PlayerProgress';
 
-const Player = ({audioRef}) => {
+const Player = ({ audioRef }) => {
     const { state } = useContext(SopranoContext);
     const cover =
         Object.keys(state.track).length > 0
