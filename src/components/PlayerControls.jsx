@@ -1,28 +1,29 @@
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
 import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
 import { SopranoContext } from './Soprano';
+import useMediaSession from './MediaSession';
 
 const PlayerControls = ({audioRef}) => {
     const { dispatch, state } = useContext(SopranoContext);
+    const track = state.track;
 
-    const play = () => {
+    const play = useCallback(() => {
         if (audioRef.current) {
             audioRef.current.play()
                 .then((_) => {
-                    updateMeta();
                 })
                 .catch((_) => {});
         }
-    };
+    }, [audioRef]);
 
-    const pause = () => {
+    const pause = useCallback(() => {
         audioRef.current.pause();
-    };
+    }, [audioRef]);
 
-    const stop = () => {
+    const stop = useCallback(() => {
         console.log('STOP!');
         pause();
-    };
+    }, [pause]);
 
     const handlePlayPause = () => {
         if (audioRef.current) {
@@ -45,14 +46,14 @@ const PlayerControls = ({audioRef}) => {
         console.log('Now playing playlistIndex', prevIndex);
     };
 
-    const next = () => {
+    const next = useCallback(() => {
         if (state.playlist.length < 2) {
             return;
         }
         let nextIndex = (state.playlistIndex + 1) % state.playlist.length;
         console.log('Now playing playlistIndex', nextIndex);
         dispatch({ type: 'setPlaylistIndex', payload: nextIndex });
-    };
+    }, [state.playlist.length, state.playlistIndex, dispatch]);
 
     const seekTo = (e) => {
         if (e.fastSeek && 'fastSeek' in audioRef.current) {
@@ -79,43 +80,7 @@ const PlayerControls = ({audioRef}) => {
         updatePositionState();
     };
 
-    const updateMeta = () => {
-        const track = state.track;
-        document.title = `Soprano • ${track.artist} — ${track.title}`;
-        console.log('Updating metadata...');
-        navigator.mediaSession.setActionHandler('seekbackward', seekBackward);
-        navigator.mediaSession.setActionHandler('seekforward', seekForward);
-        navigator.mediaSession.setActionHandler('previoustrack', previous);
-        navigator.mediaSession.setActionHandler('nexttrack', next);
-        navigator.mediaSession.setActionHandler('play', play);
-        navigator.mediaSession.setActionHandler('pause', pause);
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: track.title,
-            artist: track.artist,
-            album: track.album,
-            artwork: [
-                { src: track.cover, sizes: '96x96', type: 'image/png' },
-                { src: track.cover, sizes: '128x128', type: 'image/png' },
-                { src: track.cover, sizes: '192x192', type: 'image/png' },
-                { src: track.cover, sizes: '256x256', type: 'image/png' },
-                { src: track.cover, sizes: '384x384', type: 'image/png' },
-                { src: track.cover, sizes: '512x512', type: 'image/png' }
-            ]
-        });
-        try {
-            navigator.mediaSession.setActionHandler('stop', stop);
-        } catch (err) {
-            console.log('Stop not supported');
-        }
-        try {
-            navigator.mediaSession.setActionHandler('seekto', seekTo);
-        } catch (err) {
-            console.log('Seek to not supported');
-        }
-        updatePositionState();
-    };
-
-    const updatePositionState = () => {
+    const updatePositionState = useCallback(() => {
         if ('setPositionState' in navigator.mediaSession) {
             navigator.mediaSession.setPositionState({
                 duration: parseFloat(audioRef.current.duration),
@@ -123,8 +88,36 @@ const PlayerControls = ({audioRef}) => {
                 position: audioRef.current.currentTime
             });
         }
-    };
+    }, [audioRef]);
 
+    const updateMeta = useCallback(() => {
+        const track = state.track;
+        document.title = `Soprano • ${track.artist} — ${track.title}`;
+        console.log('Updating metadata...');
+        updatePositionState();
+    }, [state.track, updatePositionState]);
+
+    useMediaSession({
+        title: track.title,
+        artist: track.artist,
+        album: track.album,
+        artwork: [
+            { src: track.cover, sizes: '96x96', type: 'image/png' },
+            { src: track.cover, sizes: '128x128', type: 'image/png' },
+            { src: track.cover, sizes: '192x192', type: 'image/png' },
+            { src: track.cover, sizes: '256x256', type: 'image/png' },
+            { src: track.cover, sizes: '384x384', type: 'image/png' },
+            { src: track.cover, sizes: '512x512', type: 'image/png' }
+        ],
+        onSeekBackward: seekBackward,
+        onSeekForward: seekForward,
+        onPlay: play,
+        onPause: pause,
+        onPreviousTrack: previous,
+        onNextTrack: next,
+        onSeekTo: seekTo,
+        onStop: stop,
+    });
     useEffect(() => {
         if (Object.keys(state.track).length > 0) {
             navigator.mediaSession.setPositionState(null);
@@ -135,12 +128,10 @@ const PlayerControls = ({audioRef}) => {
                 };
                 audioRef.current.onplaying = () => {
                     console.log('Audio playing...');
-                    navigator.mediaSession.playbackState = 'playing';
                     dispatch({ type: 'setStatus', payload: 'playing' });
                 };
                 audioRef.current.onpause = () => {
                     console.log('Audio paused...');
-                    navigator.mediaSession.playbackState = 'paused';
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
                 audioRef.current.onerror = (err) => {
@@ -149,13 +140,14 @@ const PlayerControls = ({audioRef}) => {
                 audioRef.current.onloadeddata = () => {
                     console.log('Data loaded, playing...');
                     play();
+                    updateMeta();
                 };
                 audioRef.current.onloadedmetadata = () => {
                     console.log('Metadata loaded...');
                 };
             }
         }
-    }, [state.track]);
+    }, [state.track, audioRef, dispatch, next, play, updateMeta]);
 
     useEffect(() => {
         if (state.playlist.length > 0) {
@@ -170,12 +162,12 @@ const PlayerControls = ({audioRef}) => {
                 }
             }
         }
-    }, [state.playlistIndex]);
+    }, [state.playlistIndex, dispatch, state.playlist]);
 
     const disabledNextPrev = state.playlist.length === 0 ? ' disabled' : '';
 
     const disabledPlay =
-        Object.keys(state.track).length === 0 ? ' disabled' : '';
+        Object.keys(track).length === 0 ? ' disabled' : '';
 
     const activePlay = state.status === 'playing' ? ' active' : '';
 
