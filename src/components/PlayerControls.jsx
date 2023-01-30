@@ -54,11 +54,11 @@ const PlayerControls = ({ audioRef }) => {
         }
     };
 
-    const shuffleIndex = () => {
+    const shuffleIndex = useCallback(() => {
         return Math.floor(Math.random() * state.playlist.length);
-    };
+    }, [state.playlist]);
 
-    const previous = () => {
+    const previous = useCallback(() => {
         if (state.playlist.length < 2) {
             return;
         }
@@ -70,7 +70,7 @@ const PlayerControls = ({ audioRef }) => {
         }
         dispatch({ type: 'setPlaylistIndex', payload: prevIndex });
         console.log('Now playing playlistIndex', prevIndex);
-    };
+    }, [state.playlist.length, state.playlistIndex, dispatch, shuffleIndex, state.shuffle]);
 
     const next = useCallback(() => {
         if (state.playlist.length < 2) {
@@ -82,7 +82,7 @@ const PlayerControls = ({ audioRef }) => {
         }
         dispatch({ type: 'setPlaylistIndex', payload: nextIndex });
         console.log('Now playing playlistIndex', nextIndex);
-    }, [state.playlist.length, state.playlistIndex, dispatch]);
+    }, [state.playlist.length, state.playlistIndex, dispatch, shuffleIndex, state.shuffle]);
 
     const seekTo = (e) => {
         if (e.fastSeek && 'fastSeek' in audioRef.current) {

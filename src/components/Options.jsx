@@ -6,7 +6,7 @@ const Options = () => {
 
     const handleShuffle = (e) => {
         // We could toggle w/ !state.shuffle, but let's be explicit for now
-        if (e.currentTarget.value == 'on') {
+        if (e.currentTarget.value === 'on') {
             dispatch({ type: 'setShuffle', payload: true });
         } else {
             dispatch({ type: 'setShuffle', payload: false });
@@ -31,7 +31,7 @@ const Options = () => {
                             value="on"
                             name="shuffle"
                             id="shuffle-on"
-                            defaultChecked={state.shuffle == true}
+                            defaultChecked={state.shuffle === true}
                         />
                         <label className="form-check-label">On</label>
                     </div>
@@ -43,7 +43,7 @@ const Options = () => {
                             value="off"
                             name="shuffle"
                             id="shuffle-off"
-                            defaultChecked={state.shuffle == false}
+                            defaultChecked={state.shuffle === false}
                         />
                         <label className="form-check-label">Off</label>
                     </div>
