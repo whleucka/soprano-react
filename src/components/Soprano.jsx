@@ -12,6 +12,7 @@ const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
 const Radio = lazy(() => import('./Radio'));
 const Library = lazy(() => import('./Library'));
+const Options = lazy(() => import('./Options'));
 
 export const SopranoContext = React.createContext();
 
@@ -19,6 +20,7 @@ const initialState = {
     user: null,
     mode: null,
     track: {},
+    shuffle: false,
     status: 'idle',
     searchResults: [],
     playlistIndex: null,
@@ -81,6 +83,11 @@ const Soprano = () => {
                                             />
                                         </>
                                     )}
+                                    <Route
+                                        exact
+                                        path="/options"
+                                        element={<Options />}
+                                    />
                                 </Routes>
                             </Suspense>
                         </section>
