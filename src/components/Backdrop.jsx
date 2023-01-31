@@ -7,14 +7,16 @@ const Backdrop = ({ backdropRef }) => {
     const backdropImage =
         Object.keys(state.track).length > 0 && state.track.cover
             ? state.track.cover
-            : null;
+            : '/img/no-album.png';
 
     useEffect(() => {
         if (state.track) {
             const fac = new FastAverageColor();
-            fac.getColorAsync(state.track.cover).then((color) => {
-                backdropRef.current.style.backgroundColor = color.hex;
-            });
+            fac.getColorAsync(state.track.cover)
+                .then((color) => {
+                    backdropRef.current.style.backgroundColor = color.hex;
+                })
+                .catch(err => { })
         }
     }, [state.track, backdropRef]);
 

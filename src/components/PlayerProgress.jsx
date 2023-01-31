@@ -31,12 +31,12 @@ const PlayerProgress = ({ audioRef }) => {
                     const loaded =
                         audioRef.current.duration > 0
                             ? (
-                                  (buffered.end(
-                                      audioRef.current.buffered.length - 1
-                                  ) /
-                                      audioRef.current.duration) *
-                                  100
-                              ).toFixed(2)
+                                (buffered.end(
+                                    audioRef.current.buffered.length - 1
+                                ) /
+                                    audioRef.current.duration) *
+                                100
+                            ).toFixed(2)
                             : 0;
                     setPlayback(pct);
                     setBuffer(loaded - pct);
@@ -114,9 +114,11 @@ const PlayerProgress = ({ audioRef }) => {
 
             if (state.track) {
                 const fac = new FastAverageColor();
-                fac.getColorAsync(state.track.cover).then((color) => {
-                    playerProgressbarRef.current.style.background = color.hex;
-                });
+                fac.getColorAsync(state.track.cover)
+                    .then((color) => {
+                        playerProgressbarRef.current.style.background = color.hex;
+                    })
+                    .catch(err => { })
             }
         }
     }, [state.track, setTimer, state.mode]);
