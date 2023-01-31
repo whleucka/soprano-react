@@ -166,11 +166,11 @@ const PlayerControls = ({ audioRef }) => {
                 };
                 audioRef.current.onloadeddata = () => {
                     console.log('Data loaded, playing...');
-                    updateMeta();
                     play();
                 };
                 audioRef.current.onloadedmetadata = () => {
                     console.log('Metadata loaded...');
+                    updateMeta();
                 };
             }
         }
