@@ -21,7 +21,7 @@ const initialState = {
     user: null,
     mode: null,
     track: {},
-    shuffle: false,
+    shuffle: true,
     status: 'idle',
     searchResults: [],
     podcastResults: [],
