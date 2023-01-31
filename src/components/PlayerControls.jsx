@@ -21,7 +21,10 @@ const PlayerControls = ({ audioRef }) => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
-            updatePositionState();
+            console.log("Audio Duration", audioRef.current.duration);
+            navigator.mediaSession.setPositionState({
+              duration: parseFloat(audioRef.current.duration)
+            });
         }
     }, [state.track, updatePositionState]);
 
@@ -30,6 +33,7 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
+                    updatePositionState();
                 })
                 .catch((_) => {});
         }
@@ -156,7 +160,6 @@ const PlayerControls = ({ audioRef }) => {
                 audioRef.current.onplaying = () => {
                     console.log('Audio playing...');
                     dispatch({ type: 'setStatus', payload: 'playing' });
-                    updatePositionState();
                 };
                 audioRef.current.onpause = () => {
                     console.log('Audio paused...');
