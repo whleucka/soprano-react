@@ -10,7 +10,7 @@ const PlayerControls = ({ audioRef }) => {
     const updatePositionState = useCallback(() => {
         if ('setPositionState' in navigator.mediaSession) {
             navigator.mediaSession.setPositionState({
-                duration: parseFloat(audioRef.current.duration),
+                duration: Math.floor(audioRef.current.duration),
                 playbackRate: audioRef.current.playbackRate,
                 position: audioRef.current.currentTime
             });
@@ -23,7 +23,7 @@ const PlayerControls = ({ audioRef }) => {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
             console.log("Audio Duration", audioRef.current.duration);
             navigator.mediaSession.setPositionState({
-              duration: parseFloat(audioRef.current.duration)
+              duration: Math.floor(audioRef.current.duration)
             });
         }
     }, [state.track, updatePositionState]);
