@@ -23,8 +23,9 @@ const Options = () => {
                     Shuffle
                 </div>
                 <div className="p-2 flex-shrink-1">
-                    <div onClick={handleShuffle} className="form-check">
+                    <div className="form-check">
                         <input
+                            onClick={handleShuffle}
                             className="form-check-input option-radio"
                             type="radio"
                             value="on"
@@ -34,8 +35,9 @@ const Options = () => {
                         />
                         <label className="form-check-label">On</label>
                     </div>
-                    <div onClick={handleShuffle} className="form-check">
+                    <div className="form-check">
                         <input
+                            onClick={handleShuffle}
                             className="form-check-input option-radio"
                             type="radio"
                             value="off"
