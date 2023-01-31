@@ -32,7 +32,7 @@ const PlayerControls = ({ audioRef }) => {
                 })
                 .catch((_) => {});
         }
-    }, [audioRef]);
+    }, [audioRef, updatePositionState]);
 
     const pause = useCallback(() => {
         audioRef.current.pause();
@@ -147,7 +147,6 @@ const PlayerControls = ({ audioRef }) => {
 
     useEffect(() => {
         if (Object.keys(state.track).length > 0) {
-            navigator.mediaSession.setPositionState(null);
             if (audioRef.current) {
                 audioRef.current.onended = () => {
                     console.log('Audio ended, next...');
@@ -167,14 +166,13 @@ const PlayerControls = ({ audioRef }) => {
                 audioRef.current.onloadeddata = () => {
                     console.log('Data loaded, playing...');
                     play();
-                    updateMeta();
                 };
                 audioRef.current.onloadedmetadata = () => {
                     console.log('Metadata loaded...');
                 };
             }
         }
-    }, [state.track, audioRef, dispatch, next, play, updateMeta]);
+    }, [state.track, audioRef, dispatch, next, play]);
 
     useEffect(() => {
         if (state.playlist.length > 0) {
