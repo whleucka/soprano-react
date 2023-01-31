@@ -156,6 +156,7 @@ const PlayerControls = ({ audioRef }) => {
                 audioRef.current.onplaying = () => {
                     console.log('Audio playing...');
                     dispatch({ type: 'setStatus', payload: 'playing' });
+                    updatePositionState();
                 };
                 audioRef.current.onpause = () => {
                     console.log('Audio paused...');
