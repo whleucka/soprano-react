@@ -20,18 +20,19 @@ const PlayerControls = ({ audioRef }) => {
     const updateMeta = useCallback(() => {
         const track = state.track;
         document.title = `Soprano • ${track.artist} — ${track.title}`;
-    }, [state.track]);
+        updatePositionState();
+    }, [state.track, updatePositionState]);
 
     const play = useCallback(() => {
         if (audioRef.current) {
             audioRef.current
                 .play()
                 .then((_) => {
-                    updatePositionState();
+                    updateMeta();
                 })
                 .catch((_) => {});
         }
-    }, [audioRef, updatePositionState]);
+    }, [audioRef]);
 
     const pause = useCallback(() => {
         audioRef.current.pause();
