@@ -30,7 +30,6 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
-                    updateMeta();
                 })
                 .catch((_) => {});
         }
@@ -167,6 +166,7 @@ const PlayerControls = ({ audioRef }) => {
                 };
                 audioRef.current.onloadeddata = () => {
                     console.log('Data loaded, playing...');
+                    updateMeta();
                     play();
                 };
                 audioRef.current.onloadedmetadata = () => {
