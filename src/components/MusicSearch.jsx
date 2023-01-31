@@ -18,6 +18,8 @@ const MusicSearch = ({ searchRef }) => {
         }
         if (e.keyCode === 13) {
             handleSubmit();
+        } else if (e.keyCode === 27) {
+            handleClear();
         }
     };
 

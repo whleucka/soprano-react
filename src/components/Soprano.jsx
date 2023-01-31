@@ -11,6 +11,7 @@ const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
 const Radio = lazy(() => import('./Radio'));
+const Podcasts = lazy(() => import('./Podcasts'));
 const Library = lazy(() => import('./Library'));
 const Options = lazy(() => import('./Options'));
 
@@ -23,6 +24,7 @@ const initialState = {
     shuffle: false,
     status: 'idle',
     searchResults: [],
+    podcastResults: [],
     playlistIndex: null,
     playlist: [],
     playlists: []
@@ -73,6 +75,11 @@ const Soprano = () => {
                                         exact
                                         path="/radio"
                                         element={<Radio audioRef={audioRef} />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/podcasts"
+                                        element={<Podcasts />}
                                     />
                                     {state.user && (
                                         <>

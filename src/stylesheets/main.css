@@ -63,6 +63,19 @@ h5 {
 }
 
 /**
+ * Radio button
+ */
+input[type='radio'] {
+    -ms-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+.form-check label {
+    padding-left: 4px;
+    font-size: 1.1rem;
+}
+
+/**
  * Menu
  */
 #navbar {

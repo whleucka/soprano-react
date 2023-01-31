@@ -5,7 +5,8 @@ import {
     Disc as DiscIcon,
     Music as MusicIcon,
     Radio as RadioIcon,
-    Tool as ToolIcon
+    Tool as ToolIcon,
+    Mic as MicIcon
 } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { SopranoContext } from './Soprano';
@@ -47,6 +48,11 @@ const NavLinks = () => {
             <Link to="/radio">
                 <li onClick={handleClick} className="nav-item truncate">
                     <RadioIcon size="18" /> Radio
+                </li>
+            </Link>
+            <Link to="/podcasts">
+                <li onClick={handleClick} className="nav-item truncate">
+                    <MicIcon size="18" /> Podcasts
                 </li>
             </Link>
             <Link to="/options">
