@@ -20,9 +20,7 @@ const PlayerControls = ({ audioRef }) => {
     const updateMeta = useCallback(() => {
         const track = state.track;
         document.title = `Soprano • ${track.artist} — ${track.title}`;
-        console.log('Updating metadata...');
-        updatePositionState();
-    }, [state.track, updatePositionState]);
+    }, [state.track]);
 
     const play = useCallback(() => {
         if (audioRef.current) {

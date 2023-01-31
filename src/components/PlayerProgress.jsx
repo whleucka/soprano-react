@@ -114,11 +114,14 @@ const PlayerProgress = ({ audioRef }) => {
 
             if (state.track) {
                 const fac = new FastAverageColor();
+
                 fac.getColorAsync(state.track.cover)
                     .then((color) => {
                         playerProgressbarRef.current.style.background = color.hex;
                     })
-                    .catch(err => { })
+                    .catch(err => {
+                        playerProgressbarRef.current.style.background = '#429ef5';
+                    })
             }
         }
     }, [state.track, setTimer, state.mode]);
