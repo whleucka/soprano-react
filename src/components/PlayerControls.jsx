@@ -23,10 +23,10 @@ const PlayerControls = ({ audioRef }) => {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
             console.log("Audio Duration", audioRef.current.duration);
             navigator.mediaSession.setPositionState({
-              duration: Math.floor(audioRef.current.duration)
+                duration: Math.floor(audioRef.current.duration)
             });
         }
-    }, [state.track, updatePositionState]);
+    }, [state.track, audioRef]);
 
     const play = useCallback(() => {
         if (audioRef.current) {
@@ -35,7 +35,7 @@ const PlayerControls = ({ audioRef }) => {
                 .then((_) => {
                     updatePositionState();
                 })
-                .catch((_) => {});
+                .catch((_) => { });
         }
     }, [audioRef, updatePositionState]);
 
@@ -59,8 +59,14 @@ const PlayerControls = ({ audioRef }) => {
     };
 
     const shuffleIndex = useCallback(() => {
-        return Math.floor(Math.random() * state.playlist.length);
-    }, [state.playlist]);
+        let exit = false;
+        while (!exit) {
+            let index = Math.floor(Math.random() * state.playlist.length);
+            console.log([index,state.playlistIndex]);
+            if (index !== state.playlistIndex)
+                return index;
+        }
+    }, [state.playlist, state.playlistIndex]);
 
     const previous = useCallback(() => {
         if (state.playlist.length < 2) {
@@ -178,7 +184,7 @@ const PlayerControls = ({ audioRef }) => {
                 };
             }
         }
-    }, [state.track, audioRef, dispatch, next, play]);
+    }, [state.track, audioRef, dispatch, next, play, updateMeta]);
 
     useEffect(() => {
         if (state.playlist.length > 0) {
