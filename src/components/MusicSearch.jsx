@@ -13,6 +13,7 @@ const MusicSearch = ({ searchRef }) => {
 
     const handleChange = (e) => {
         const term = e.currentTarget.value;
+        setNoResults(false);
         setSearchTerm(term);
     };
 
