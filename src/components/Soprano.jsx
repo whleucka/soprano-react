@@ -14,6 +14,7 @@ const Radio = lazy(() => import('./Radio'));
 const Podcasts = lazy(() => import('./Podcasts'));
 const Library = lazy(() => import('./Library'));
 const Options = lazy(() => import('./Options'));
+const NowPlaying = lazy(() => import('./NowPlaying'));
 
 export const SopranoContext = React.createContext();
 
@@ -80,6 +81,11 @@ const Soprano = () => {
                                         exact
                                         path="/podcasts"
                                         element={<Podcasts />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/now-playing"
+                                        element={<NowPlaying />}
                                     />
                                     {state.user && (
                                         <>

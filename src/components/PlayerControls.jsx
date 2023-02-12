@@ -213,6 +213,7 @@ const PlayerControls = ({ audioRef }) => {
             className="d-flex align-items-center justify-content-center h-100 w-100"
         >
             <button
+                id="skip-backwards"
                 className={'btn btn-dark' + disabledNextPrev}
                 onClick={previous}
             >
@@ -227,6 +228,7 @@ const PlayerControls = ({ audioRef }) => {
                 {state.status === 'playing' && <Pause />}
             </button>
             <button
+                id="skip-forward"
                 className={'btn btn-dark' + disabledNextPrev}
                 onClick={next}
             >

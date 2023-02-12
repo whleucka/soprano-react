@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect, useCallback } from 'react';
 import { Search as SearchIcon, Trash as TrashIcon } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import { BarLoader } from 'react-spinners';
@@ -33,7 +33,7 @@ const PodcastSearch = ({ searchRef }) => {
         }
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = useCallback(() => {
         setNoResults(false);
         setSearching(true);
         if (searchTerm.trim().length > 0) {
@@ -45,7 +45,7 @@ const PodcastSearch = ({ searchRef }) => {
                     setTotal(res.total);
                     setNextOffset(res.next_offset);
                     let all = [];
-                    if (searchTerm != lastTerm) {
+                    if (searchTerm !== lastTerm) {
                         setLastTerm(searchTerm);
                         all = podcasts;
                     } else {
@@ -63,7 +63,7 @@ const PodcastSearch = ({ searchRef }) => {
                     setSearching(false);
                 });
         }
-    };
+    }, [dispatch, lastTerm, offset, searchTerm, sortByDate, state.podcastResults]);
 
     const loadMore = () => {
         setOffset(nextOffset);
@@ -83,7 +83,7 @@ const PodcastSearch = ({ searchRef }) => {
         if (offset > 0 && offset < total) {
             handleSubmit();
         }
-    }, [offset]);
+    }, [offset, total, handleSubmit]);
 
     return (
         <section id="podcast-search-module">

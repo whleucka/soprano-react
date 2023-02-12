@@ -77,7 +77,7 @@ const MusicSearch = ({ searchRef }) => {
                 >
                     <SearchIcon height="14" />
                 </button>
-                {state.searchResults.length > 0 || searchTerm.length > 0 && (
+                {(state.searchResults.length > 0 || searchTerm.length > 0) && (
                     <button
                         type="submit"
                         onClick={handleClear}

@@ -175,6 +175,7 @@ input[type='radio'] {
  * Main view
  */
 #view {
+    height: 100%;
     padding: 20px 6px;
 }
 #view input {
@@ -235,6 +236,19 @@ label:focus,
     border: 1px solid #fff;
     padding: 0 8px;
     margin: 0;
+}
+
+/**
+ * Now Playing
+ */
+#now-playing img {
+    height: 386px;
+    width: 386px;
+    margin-bottom: 40px;
+}
+
+#now-playing #player-controls .btn {
+    width: 100px;
 }
 
 /**
