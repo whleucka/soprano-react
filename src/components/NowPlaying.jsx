@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
 import { SopranoContext } from "./Soprano";
+import { Link } from 'react-router-dom';
 
 const NowPlaying = () => {
     const { state } = useContext(SopranoContext);
@@ -17,7 +18,7 @@ const NowPlaying = () => {
     return (
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
-                <img title={state.track.album} src={state.track.cover} loading="lazy" className="rounded" />
+                <Link to="/playlist"><img title={state.track.album} src={state.track.cover} loading="lazy" className="rounded" /></Link>
                 <div className="text-center" style={{width: "80%"}}>
                     <h3 className="truncate">{state.track.title}</h3>
                     <h5 className="truncate text-secondary">{state.track.artist}</h5>
