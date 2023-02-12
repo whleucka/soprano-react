@@ -17,7 +17,7 @@ body,
     color: #fff;
 }
 #content {
-    height: calc(100% - 145px);
+    height: calc(100% - 168px);
     overflow: hidden;
 }
 
@@ -110,7 +110,9 @@ input[type='radio'] {
 #navbar .brand-icon {
     margin-left: 3px;
     padding: 3px;
-    width: 32px;
+    margin-top: 8px;
+    margin-bottom: -3px;
+    width: 44px;
 }
 #navbar ul.navbar-nav {
     padding-top: 15px;
