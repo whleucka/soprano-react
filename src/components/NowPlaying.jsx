@@ -5,6 +5,11 @@ import { Link } from 'react-router-dom';
 
 const NowPlaying = () => {
     const { state } = useContext(SopranoContext);
+    const track = state.track;
+
+    const activePlay = state.status === 'playing' ? ' active' : '';
+    const disabledPlay = Object.keys(track).length === 0 ? ' disabled' : '';
+
 
     useEffect(() => {
         document.getElementById("player").style.display = "none";
@@ -39,7 +44,8 @@ const NowPlaying = () => {
                         onClick={(e) => {
                             document.querySelector("#play-pause-btn").click();
                         }}
-                        className='btn btn-dark'
+                        id="now-playing-play"
+                        className={'btn btn-dark' + disabledPlay + activePlay}
                     >
                         {state.status !== 'playing' && <Play size="3.5rem" />}
                         {state.status === 'playing' && <Pause size="3.5rem" />}

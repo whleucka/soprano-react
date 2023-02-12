@@ -297,7 +297,7 @@ label:focus,
 }
 
 .track-row .play-button.active svg,
-#play-pause-btn.active {
+#play-pause-btn.active, #now-playing-play.active {
     color: limegreen;
     animation: colorChange 30s alternate infinite;
     opacity: 1;
