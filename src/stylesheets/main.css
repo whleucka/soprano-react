@@ -242,8 +242,8 @@ label:focus,
  * Now Playing
  */
 #now-playing img {
-    height: 386px;
-    width: 386px;
+    height: 320px;
+    width: 320px;
     margin-bottom: 40px;
 }
 
