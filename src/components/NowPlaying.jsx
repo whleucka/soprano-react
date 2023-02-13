@@ -27,8 +27,8 @@ const NowPlaying = () => {
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                 <Link to="/playlist"><img title={state.track.album} src={state.track.cover} loading="lazy" className="rounded" /></Link>
                 <div id="track-info" className="text-center" style={{width: "80%"}}>
-                    <span id="title" className="truncate">{state.track.title}</span><br />
-                    <span id="artist" className="truncate text-secondary">{state.track.artist}</span>
+                    <div id="title" className="truncate">{state.track.title}</div>
+                    <div id="artist" className="truncate text-secondary">{state.track.artist}</div>
                 </div>
                 <div
                     id="player-controls"
