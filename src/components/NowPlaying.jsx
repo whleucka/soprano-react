@@ -25,12 +25,12 @@ const NowPlaying = () => {
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                 <Link to="/playlist"><img title={state.track.album} src={state.track.cover} loading="lazy" className="rounded" /></Link>
                 <div className="text-center" style={{width: "80%"}}>
-                    <h3 className="truncate">{state.track.title}</h3>
+                    <h4 className="truncate">{state.track.title}</h4>
                     <h5 className="truncate text-secondary">{state.track.artist}</h5>
                 </div>
                 <div
                     id="player-controls"
-                    className="mt-2 d-flex align-items-center justify-content-center"
+                    className="mt-3 d-flex align-items-center justify-content-center"
                 >
                     <button
                         onClick={(e) => {

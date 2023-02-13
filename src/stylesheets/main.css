@@ -17,7 +17,7 @@ body,
     color: #fff;
 }
 #content {
-    height: calc(100% - 168px);
+    height: calc(100% - 155px);
     overflow: hidden;
 }
 
@@ -83,8 +83,9 @@ input[type='radio'] {
     width: 100%;
     padding: 4px 0;
     z-index: 5;
-    background-color: #111;
-    border-bottom: 1px solid #222;
+}
+#nav-toggle {
+    font-size: 0.9rem;
 }
 #navbar .navbar-nav {
     padding-left: 10px;
@@ -112,7 +113,7 @@ input[type='radio'] {
     padding: 3px;
     margin-top: 8px;
     margin-bottom: -3px;
-    width: 44px;
+    width: 32px;
 }
 #navbar ul.navbar-nav {
     padding-top: 15px;
@@ -246,6 +247,7 @@ label:focus,
 #now-playing img {
     height: 320px;
     width: 320px;
+    border: 1px solid rgba(255,255,255,0.3);
     margin-bottom: 40px;
 }
 
