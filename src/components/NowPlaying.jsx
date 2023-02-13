@@ -14,9 +14,11 @@ const NowPlaying = () => {
     useEffect(() => {
         document.getElementById("player").style.display = "none";
         document.querySelector("div#progress-cont").style.position = "fixed";
+        document.querySelector(".progress").style.height = "14px";
         return () => {
             document.getElementById("player").style.display = "block";
             document.querySelector("div#progress-cont").style.position = "relative";
+            document.querySelector(".progress").style.height = "8px";
         };
     }, []);
 
