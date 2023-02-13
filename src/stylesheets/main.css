@@ -247,7 +247,7 @@ label:focus,
 #now-playing img {
     height: 320px;
     width: 320px;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.25);
     margin-bottom: 40px;
 }
 
