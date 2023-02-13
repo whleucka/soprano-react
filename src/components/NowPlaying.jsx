@@ -26,21 +26,22 @@ const NowPlaying = () => {
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                 <Link to="/playlist"><img title={state.track.album} src={state.track.cover} loading="lazy" className="rounded" /></Link>
-                <div className="text-center" style={{width: "80%"}}>
-                    <h4 className="truncate">{state.track.title}</h4>
-                    <h5 className="truncate text-secondary">{state.track.artist}</h5>
+                <div id="track-info" className="text-center" style={{width: "80%"}}>
+                    <span id="title" className="truncate">{state.track.title}</span><br />
+                    <span id="artist" className="truncate text-secondary">{state.track.artist}</span>
                 </div>
                 <div
                     id="player-controls"
-                    className="mt-3 d-flex align-items-center justify-content-center"
+                    className="mt-5 d-flex align-items-center justify-content-center"
                 >
                     <button
+                        id="now-playing-prev"
                         onClick={(e) => {
                             document.querySelector("#skip-backward").click();
                         }}
                         className='btn btn-dark'
                     >
-                        <SkipBack size="3rem" />
+                        <SkipBack />
                     </button>
                     <button
                         onClick={(e) => {
@@ -49,16 +50,17 @@ const NowPlaying = () => {
                         id="now-playing-play"
                         className={'btn btn-dark' + disabledPlay + activePlay}
                     >
-                        {state.status !== 'playing' && <Play size="3.5rem" />}
-                        {state.status === 'playing' && <Pause size="3.5rem" />}
+                        {state.status !== 'playing' && <Play />}
+                        {state.status === 'playing' && <Pause />}
                     </button>
                     <button
                         onClick={(e) => {
                             document.querySelector("#skip-forward").click();
                         }}
+                        id="now-playing-next"
                         className='btn btn-dark'
                     >
-                        <SkipForward size="3rem" />
+                        <SkipForward />
                     </button>
                 </div>
             </div>
