@@ -13,14 +13,18 @@ const NowPlaying = () => {
 
     useEffect(() => {
         document.getElementById("player").style.display = "none";
-        document.getElementById("sidebar").style.display = "none";
         document.querySelector("div#progress-cont").style.position = "fixed";
         document.querySelector(".progress").style.height = "14px";
+        if (window.innerWidth > 575) {
+            document.getElementById("sidebar").style.display = "none";
+        }
         return () => {
-            document.getElementById("sidebar").style.display = "block";
             document.getElementById("player").style.display = "block";
             document.querySelector("div#progress-cont").style.position = "relative";
             document.querySelector(".progress").style.height = "8px";
+            if (window.innerWidth > 575) {
+                document.getElementById("sidebar").style.display = "block";
+            }
         };
     }, []);
 
@@ -28,7 +32,7 @@ const NowPlaying = () => {
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                 <Link to="/playlist"><img title={state.track.album} src={state.track.cover} loading="lazy" className="rounded" /></Link>
-                <div id="track-info" className="text-center" style={{width: "80%"}}>
+                <div id="track-info" className="text-center" style={{ width: "80%" }}>
                     <div id="title" className="truncate">{state.track.title}</div>
                     <div id="artist" className="truncate text-secondary">{state.track.artist}</div>
                 </div>
