@@ -18,6 +18,8 @@ export function SopranoReducer(state, action) {
             return { ...state, playlistIndex: action.payload };
         case 'setShuffle':
             return { ...state, shuffle: action.payload };
+        case 'setRadioStations':
+            return { ...state, radio_stations: action.payload };
         default:
             return state;
     }

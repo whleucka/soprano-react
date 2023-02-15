@@ -25,6 +25,11 @@ const API = {
         if (response.success) return response.data;
         else return [];
     },
+    radioStations: async () => {
+        const response = await getData("/radio/stations");
+        if (response.success) return response.data;
+        else return [];
+    },
     podcastSearch: async (searchTerm, sortByDate, offset) => {
         const url = new URL('https://listen-api.listennotes.com/api/v2/search');
         const data = {
