@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { SopranoContext } from './Soprano';
 import TrackRow from './TrackRow';
+import { Info as InfoIcon } from 'react-feather';
 
 const Radio = ({ audioRef }) => {
     const { state } = useContext(SopranoContext);
@@ -24,9 +25,19 @@ const Radio = ({ audioRef }) => {
     return (
         <>
             <h2 className="header">Radio</h2>
-            {state.radio_stations.map((station, index) => {
-                return <TrackRow mode="radio" key={index} track={station} />;
-            })}
+            { state.radio_stations.length > 0 &&
+                <div>
+                {state.radio_stations.map((station, index) => {
+                    return <TrackRow mode="radio" key={index} track={station} />;
+                })}
+                </div>
+            }
+            { state.radio_stations.length === 0 &&
+                <div className="alert alert-secondary mt-2" role="alert">
+                    <InfoIcon size="14" />{' '}
+                    No radio stations available
+                </div>
+            }
         </>
     );
 };
