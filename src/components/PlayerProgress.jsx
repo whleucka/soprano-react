@@ -122,7 +122,7 @@ const PlayerProgress = ({ audioRef }) => {
                     })
                     .catch((err) => {
                         playerProgressbarRef.current.style.background =
-                            'dimgray';
+                            '#696969';
                     });
             }
         }
