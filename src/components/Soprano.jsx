@@ -52,12 +52,18 @@ const Soprano = () => {
                 if (res.length > 0) {
                     const radio_stations = [];
                     res.forEach((station) => {
+                        const cover = station.cover_url
+                            ? station.cover_url
+                            : '/img/no-album.png';
+                        const location = station.location
+                            ? station.location
+                            : 'Internet';
                         let s = {
                             md5: station.id + '_radio',
-                            artist: station.location,
+                            artist: location,
                             album: 'Radio',
                             title: station.station_name,
-                            cover: station.cover_url,
+                            cover,
                             playtime_seconds: 0,
                             playtime_string: null,
                             src: station.src_url
