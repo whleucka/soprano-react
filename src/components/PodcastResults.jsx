@@ -10,7 +10,7 @@ const PodcastResults = () => {
             {state.podcastResults.length > 0 &&
                 state.podcastResults.map((result, i) => {
                     const podcast = {
-                        md5: i+'_podcast',
+                        md5: i + '_podcast',
                         artist: result.podcast.title_original,
                         album: 'Podcast',
                         title: result.title_original,

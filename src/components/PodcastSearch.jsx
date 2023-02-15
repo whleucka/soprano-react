@@ -63,7 +63,14 @@ const PodcastSearch = ({ searchRef }) => {
                     setSearching(false);
                 });
         }
-    }, [dispatch, lastTerm, offset, searchTerm, sortByDate, state.podcastResults]);
+    }, [
+        dispatch,
+        lastTerm,
+        offset,
+        searchTerm,
+        sortByDate,
+        state.podcastResults
+    ]);
 
     const loadMore = () => {
         setOffset(nextOffset);

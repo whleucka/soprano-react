@@ -247,7 +247,7 @@ label:focus,
 #now-playing img {
     height: 320px;
     width: 320px;
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     margin-bottom: 40px;
 }
 
@@ -261,7 +261,8 @@ label:focus,
 #now-playing #track-info #artist {
     font-size: 1.2rem;
 }
-#now-playing #now-playing-next > svg, #now-playing #now-playing-prev> svg {
+#now-playing #now-playing-next > svg,
+#now-playing #now-playing-prev > svg {
     transform: scale(1.3);
 }
 #now-playing #now-playing-play > svg {
@@ -312,7 +313,8 @@ label:focus,
 }
 
 .track-row .play-button.active svg,
-#play-pause-btn.active, #now-playing-play.active {
+#play-pause-btn.active,
+#now-playing-play.active {
     color: limegreen;
     animation: colorChange 30s alternate infinite;
     opacity: 1;

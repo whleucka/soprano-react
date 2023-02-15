@@ -21,7 +21,7 @@ const PlayerControls = ({ audioRef }) => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
-            console.log("Audio Duration", audioRef.current.duration);
+            console.log('Audio Duration', audioRef.current.duration);
             navigator.mediaSession.setPositionState({
                 duration: Math.floor(audioRef.current.duration)
             });
@@ -35,7 +35,7 @@ const PlayerControls = ({ audioRef }) => {
                 .then((_) => {
                     updatePositionState();
                 })
-                .catch((_) => { });
+                .catch((_) => {});
         }
     }, [audioRef, updatePositionState]);
 
@@ -62,9 +62,8 @@ const PlayerControls = ({ audioRef }) => {
         let exit = false;
         while (!exit) {
             let index = Math.floor(Math.random() * state.playlist.length);
-            console.log([index,state.playlistIndex]);
-            if (index !== state.playlistIndex)
-                return index;
+            console.log([index, state.playlistIndex]);
+            if (index !== state.playlistIndex) return index;
         }
     }, [state.playlist, state.playlistIndex]);
 

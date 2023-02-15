@@ -19,25 +19,29 @@ const Radio = ({ audioRef }) => {
                 hls.attachMedia(audioRef.current);
             }
         }
-    }, [state.track.src]);
-
+    }, [state.track.src, audioRef, state.mode, state.track]);
 
     return (
         <>
             <h2 className="header">Radio</h2>
-            { state.radio_stations.length > 0 &&
+            {state.radio_stations.length > 0 && (
                 <div>
-                {state.radio_stations.map((station, index) => {
-                    return <TrackRow mode="radio" key={index} track={station} />;
-                })}
+                    {state.radio_stations.map((station, index) => {
+                        return (
+                            <TrackRow
+                                mode="radio"
+                                key={index}
+                                track={station}
+                            />
+                        );
+                    })}
                 </div>
-            }
-            { state.radio_stations.length === 0 &&
+            )}
+            {state.radio_stations.length === 0 && (
                 <div className="alert alert-secondary mt-2" role="alert">
-                    <InfoIcon size="14" />{' '}
-                    No radio stations available
+                    <InfoIcon size="14" /> No radio stations available
                 </div>
-            }
+            )}
         </>
     );
 };

@@ -26,7 +26,7 @@ const API = {
         else return [];
     },
     radioStations: async () => {
-        const response = await getData("/radio/stations");
+        const response = await getData('/radio/stations');
         if (response.success) return response.data;
         else return [];
     },

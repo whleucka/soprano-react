@@ -44,7 +44,7 @@ const MusicSearch = ({ searchRef }) => {
                     }
                     setSearching(false);
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                     setSearching(false);
                 });
@@ -91,8 +91,7 @@ const MusicSearch = ({ searchRef }) => {
 
             {noResults && (
                 <div className="alert alert-secondary mt-2" role="alert">
-                    <InfoIcon size="14" />{' '}
-                    No results found for "
+                    <InfoIcon size="14" /> No results found for "
                     <strong>{searchTerm}</strong>"
                 </div>
             )}

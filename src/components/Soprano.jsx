@@ -1,4 +1,11 @@
-import React, { Suspense, lazy, useEffect, useReducer, useMemo, useRef } from 'react';
+import React, {
+    Suspense,
+    lazy,
+    useEffect,
+    useReducer,
+    useMemo,
+    useRef
+} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { SopranoReducer } from './SopranoReducer';
 import Sidebar from './Sidebar';
@@ -30,7 +37,7 @@ const initialState = {
     playlistIndex: null,
     playlist: [],
     playlists: [],
-    radio_stations: [],
+    radio_stations: []
 };
 
 const Soprano = () => {
@@ -41,26 +48,29 @@ const Soprano = () => {
     useEffect(() => {
         // Load radio stations
         API.radioStations()
-        .then(res => {
-            if (res.length > 0) {
-                const radio_stations = [];
-                res.forEach(station => {
-                    let s = {
-                        md5: station.id+"_radio",
-                        artist: station.location,
-                        album: "Radio",
-                        title: station.station_name,
-                        cover: station.cover_url,
-                        playtime_seconds: 0,
-                        playtime_string: null,
-                        src: station.src_url
-                    };
-                    radio_stations.push(s);
-                });
-                dispatch({ type: 'setRadioStations', payload: radio_stations });
-            }
-        })
-        .catch(err => console.log(err));
+            .then((res) => {
+                if (res.length > 0) {
+                    const radio_stations = [];
+                    res.forEach((station) => {
+                        let s = {
+                            md5: station.id + '_radio',
+                            artist: station.location,
+                            album: 'Radio',
+                            title: station.station_name,
+                            cover: station.cover_url,
+                            playtime_seconds: 0,
+                            playtime_string: null,
+                            src: station.src_url
+                        };
+                        radio_stations.push(s);
+                    });
+                    dispatch({
+                        type: 'setRadioStations',
+                        payload: radio_stations
+                    });
+                }
+            })
+            .catch((err) => console.log(err));
     }, []);
 
     const ContextValue = useMemo(() => {
