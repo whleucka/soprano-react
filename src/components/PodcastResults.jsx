@@ -12,7 +12,7 @@ const PodcastResults = () => {
                     const podcast = {
                         md5: i + '_podcast',
                         artist: result.podcast.title_original,
-                        album: 'Podcast',
+                        album: 'Soprano Podcast',
                         title: result.title_original,
                         cover: result.image,
                         playtime_seconds: result.audio_length_sec,

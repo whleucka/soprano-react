@@ -36,10 +36,10 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                 </button>
             </div>
             <div>
-                { mode === 'radio' &&
+                { (mode === 'radio' || mode === 'podcast') &&
                     <AlbumCover cover={track.cover} />
                 }
-                { mode !== 'radio' &&
+                { mode === 'search'  &&
                     <CoverSize md5={track.md5} size={[40,40]} />
                 }
             </div>

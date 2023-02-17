@@ -50,6 +50,10 @@ const Radio = ({ audioRef }) => {
         };
     }, [state.track.src]);
 
+    useEffect(() => {
+        dispatch({ type: 'setMode', payload: 'radio' });
+    }, []);
+
     return (
         <>
             <h2 className="header">Radio</h2>

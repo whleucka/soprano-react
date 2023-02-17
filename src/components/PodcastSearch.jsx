@@ -37,7 +37,7 @@ const PodcastSearch = ({ searchRef }) => {
         setNoResults(false);
         setSearching(true);
         if (searchTerm.trim().length > 0) {
-            dispatch({ type: 'setStatus', payload: 'search' });
+            dispatch({ type: 'setStatus', payload: 'podcast' });
             dispatch({ type: 'setPodcastResults', payload: [] });
             API.podcastSearch(searchTerm.trim(), sortByDate, offset)
                 .then((res) => {
