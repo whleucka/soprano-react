@@ -69,7 +69,6 @@ const PodcastSearch = ({ searchRef }) => {
         offset,
         searchTerm,
         sortByDate,
-        state.podcastResults
     ]);
 
     const loadMore = () => {
