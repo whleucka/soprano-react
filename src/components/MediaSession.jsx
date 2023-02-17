@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { SopranoContext } from './Soprano';
 
 const useMediaSession = (props) => {
     const {
@@ -18,9 +19,10 @@ const useMediaSession = (props) => {
     } = props;
 
     const { mediaSession } = navigator;
+    const { state } = useContext(SopranoContext);
 
     useEffect(() => {
-        if (title.trim().length > 0) {
+        if (title.trim().length > 0 && artist.trim().length > 0) {
             mediaSession.metadata = new MediaMetadata({
                 title,
                 artist,

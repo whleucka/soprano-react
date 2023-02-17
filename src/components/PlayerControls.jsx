@@ -21,10 +21,6 @@ const PlayerControls = ({ audioRef }) => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
-            console.log('Audio Duration', audioRef.current.duration);
-            navigator.mediaSession.setPositionState({
-                duration: Math.floor(audioRef.current.duration)
-            });
         }
     }, [state.track, audioRef]);
 
@@ -33,6 +29,7 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
+                    navigator.mediaSession.playbackState = 'playing';
                     updatePositionState();
                 })
                 .catch((_) => {});
@@ -41,6 +38,7 @@ const PlayerControls = ({ audioRef }) => {
 
     const pause = useCallback(() => {
         audioRef.current.pause();
+        navigator.mediaSession.playbackState = 'pause';
     }, [audioRef]);
 
     const stop = useCallback(() => {
@@ -62,7 +60,6 @@ const PlayerControls = ({ audioRef }) => {
         let exit = false;
         while (!exit) {
             let index = Math.floor(Math.random() * state.playlist.length);
-            console.log([index, state.playlistIndex]);
             if (index !== state.playlistIndex) return index;
         }
     }, [state.playlist, state.playlistIndex]);
@@ -78,7 +75,6 @@ const PlayerControls = ({ audioRef }) => {
             prevIndex = shuffleIndex();
         }
         dispatch({ type: 'setPlaylistIndex', payload: prevIndex });
-        console.log('Now playing playlistIndex', prevIndex);
     }, [
         state.playlist.length,
         state.playlistIndex,
@@ -96,7 +92,6 @@ const PlayerControls = ({ audioRef }) => {
             nextIndex = shuffleIndex();
         }
         dispatch({ type: 'setPlaylistIndex', payload: nextIndex });
-        console.log('Now playing playlistIndex', nextIndex);
     }, [
         state.playlist.length,
         state.playlistIndex,
@@ -159,23 +154,18 @@ const PlayerControls = ({ audioRef }) => {
         if (Object.keys(state.track).length > 0 && state.mode != 'radio') {
             if (audioRef.current) {
                 audioRef.current.onended = () => {
-                    console.log('Audio ended, next...');
                     next();
                 };
                 audioRef.current.onplaying = () => {
-                    console.log('Audio playing...');
                     dispatch({ type: 'setStatus', payload: 'playing' });
                 };
                 audioRef.current.onpause = () => {
-                    console.log('Audio paused...');
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
                 audioRef.current.onloadeddata = () => {
-                    console.log('Data loaded, playing...');
                     play();
                 };
                 audioRef.current.onloadedmetadata = () => {
-                    console.log('Metadata loaded...');
                     updateMeta();
                 };
             }

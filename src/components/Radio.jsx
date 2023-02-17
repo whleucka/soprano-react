@@ -17,7 +17,7 @@ const Radio = ({ audioRef }) => {
                 if (res.title && res.artist) {
                     res.title = res.title.replace('///', '').trim();
                     res.artist = res.artist.replace('///', '').trim();
-                    if (res.title != res.artist) {
+                    if (res.title !== res.artist) {
                         document.title = `Soprano • ${res.artist} — ${res.title}`;
                         dispatch({ type: 'setTrackTitleArtist', payload: res });
                     }
@@ -34,26 +34,16 @@ const Radio = ({ audioRef }) => {
             state.mode === 'radio'
         ) {
             if (Hls.isSupported()) {
+                hls.stopLoad();
                 hls.attachMedia(audioRef.current);
-                hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) =>
+                hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
+                    updateMeta();
                     hls.loadSource(state.track.src)
-                );
-                hls.once(Hls.Events.AUDIO_TRACK_LOADED, (event, data) => {
-                    console.log('track loaded', data);
+                    interval = setInterval(updateMeta, 10000);
                 });
-                updateMeta();
-                interval = setInterval(updateMeta, 10000);
             }
         }
-        return () => {
-            hls.stopLoad();
-            clearInterval(interval);
-        };
     }, [state.track.src]);
-
-    useEffect(() => {
-        return () => {};
-    }, []);
 
     return (
         <>
