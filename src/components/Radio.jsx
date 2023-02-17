@@ -15,13 +15,18 @@ const Radio = ({ audioRef }) => {
         API.parseRadio(state.track.src)
             .then(res => {
                 if (res.title && res.artist) {
-                    dispatch({ type: 'setTrackTitleArtist', payload: res });
+                    res.title = res.title.replace('///', '').trim();
+                    res.artist = res.artist.replace('///', '').trim();
+                    if (res.title != res.artist) {
+                        dispatch({ type: 'setTrackTitleArtist', payload: res });
+                    }
                 }
             })
             .catch(err => console.log(err));
     }
 
     useEffect(() => {
+        clearInterval(interval);
         if (
             Object.keys(state.track).length > 0 &&
             state.track.src &&
@@ -36,15 +41,19 @@ const Radio = ({ audioRef }) => {
                     console.log("track loaded", data);
                 });
                 updateMeta();
-                interval = setInterval(updateMeta, 15000);
+                interval = setInterval(updateMeta, 10000);
             }
         }
         return () => {
-            hls.detachMedia(audioRef.current)
             hls.stopLoad();
             clearInterval(interval);
         };
     }, [state.track.src]);
+
+    useEffect(() => {
+        return () => {
+        }
+    }, []);
 
     return (
         <>
