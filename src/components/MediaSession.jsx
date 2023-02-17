@@ -1,5 +1,4 @@
-import { useEffect, useContext } from 'react';
-import { SopranoContext } from './Soprano';
+import { useEffect } from 'react';
 
 const useMediaSession = (props) => {
     const {
@@ -19,7 +18,6 @@ const useMediaSession = (props) => {
     } = props;
 
     const { mediaSession } = navigator;
-    const { state } = useContext(SopranoContext);
 
     useEffect(() => {
         if (title.trim().length > 0 && artist.trim().length > 0) {

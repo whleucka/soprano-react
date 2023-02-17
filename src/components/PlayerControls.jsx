@@ -21,7 +21,6 @@ const PlayerControls = ({ audioRef }) => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
-            updatePositionState();
         }
     }, [state.track, audioRef]);
 
@@ -156,6 +155,7 @@ const PlayerControls = ({ audioRef }) => {
                 };
                 audioRef.current.onplaying = () => {
                     dispatch({ type: 'setStatus', payload: 'playing' });
+                    updatePositionState();
                 };
                 audioRef.current.onpause = () => {
                     dispatch({ type: 'setStatus', payload: 'paused' });
