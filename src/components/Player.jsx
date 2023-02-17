@@ -24,14 +24,15 @@ const Player = ({ audioRef }) => {
             <section id="player">
                 <div className="d-flex align-items-center justify-content-center h-100 w-100 ">
                     <div id="left-cover">
-                        { state.mode !== 'radio' &&
-                            <Link to='/now-playing'>
-                                <CoverSize md5={state.track.md5} size={[70,70]} />
+                        {state.mode !== 'radio' && (
+                            <Link to="/now-playing">
+                                <CoverSize
+                                    md5={state.track.md5}
+                                    size={[70, 70]}
+                                />
                             </Link>
-                        }
-                        { state.mode === 'radio' &&
-                            <AlbumCover cover={cover} />
-                        }
+                        )}
+                        {state.mode === 'radio' && <AlbumCover cover={cover} />}
                     </div>
                     <div id="left-track-title">
                         <TrackTitle artist={artist} title={title} />

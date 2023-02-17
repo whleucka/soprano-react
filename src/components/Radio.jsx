@@ -38,7 +38,7 @@ const Radio = ({ audioRef }) => {
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
                     updateMeta();
-                    hls.loadSource(state.track.src)
+                    hls.loadSource(state.track.src);
                     interval = setInterval(updateMeta, 20000);
                 });
             }

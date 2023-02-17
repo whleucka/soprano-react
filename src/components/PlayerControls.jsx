@@ -28,8 +28,7 @@ const PlayerControls = ({ audioRef }) => {
         if (audioRef.current) {
             audioRef.current
                 .play()
-                .then((_) => {
-                })
+                .then((_) => {})
                 .catch((_) => {});
         }
     }, [audioRef, updatePositionState]);
@@ -130,12 +129,47 @@ const PlayerControls = ({ audioRef }) => {
         artist: track.artist,
         album: track.album,
         artwork: [
-            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/96/96`, sizes: '96x96', type: 'image/png' },
-            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/128/j28`, sizes: '128x128', type: 'image/png' },
-            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/192/192`, sizes: '192x192', type: 'image/png' },
-            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/256/256`, sizes: '256x256', type: 'image/png' },
-            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/384/384`, sizes: '384x384', type: 'image/png' },
-            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/512/512`, sizes: '512x512', type: 'image/png' }
+            {
+                src:
+                    process.env.REACT_APP_API_URL + `/cover/${track.md5}/96/96`,
+                sizes: '96x96',
+                type: 'image/png'
+            },
+            {
+                src:
+                    process.env.REACT_APP_API_URL +
+                    `/cover/${track.md5}/128/j28`,
+                sizes: '128x128',
+                type: 'image/png'
+            },
+            {
+                src:
+                    process.env.REACT_APP_API_URL +
+                    `/cover/${track.md5}/192/192`,
+                sizes: '192x192',
+                type: 'image/png'
+            },
+            {
+                src:
+                    process.env.REACT_APP_API_URL +
+                    `/cover/${track.md5}/256/256`,
+                sizes: '256x256',
+                type: 'image/png'
+            },
+            {
+                src:
+                    process.env.REACT_APP_API_URL +
+                    `/cover/${track.md5}/384/384`,
+                sizes: '384x384',
+                type: 'image/png'
+            },
+            {
+                src:
+                    process.env.REACT_APP_API_URL +
+                    `/cover/${track.md5}/512/512`,
+                sizes: '512x512',
+                type: 'image/png'
+            }
         ],
         onSeekBackward: seekBackward,
         onSeekForward: seekForward,

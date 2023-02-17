@@ -29,9 +29,7 @@ const NowPlaying = () => {
         };
     }, []);
 
-    const link = state.playlist.length > 0
-        ? "/playlist"
-        : "/search";
+    const link = state.playlist.length > 0 ? '/playlist' : '/search';
 
     return (
         <section id="now-playing" className="h-100 w-100">
