@@ -22,7 +22,7 @@ const Player = ({ audioRef }) => {
             <section id="player">
                 <div className="d-flex align-items-center justify-content-center h-100 w-100 ">
                     <div id="left-cover">
-                        <AlbumCover cover={cover} playerCover={true} />
+                        <AlbumCover cover={cover} playerCover={true} link={state.mode !== 'radio'} />
                     </div>
                     <div id="left-track-title">
                         <TrackTitle artist={artist} title={title} />

@@ -34,15 +34,20 @@ const Radio = ({ audioRef }) => {
             state.mode === 'radio'
         ) {
             if (Hls.isSupported()) {
-                hls.stopLoad();
+                hls = new Hls();
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
                     updateMeta();
                     hls.loadSource(state.track.src)
-                    interval = setInterval(updateMeta, 10000);
+                    interval = setInterval(updateMeta, 20000);
                 });
             }
         }
+        return () => {
+            hls.stopLoad();
+            hls.destroy();
+            clearInterval(interval);
+        };
     }, [state.track.src]);
 
     return (

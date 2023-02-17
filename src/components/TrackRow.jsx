@@ -12,6 +12,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
         dispatch({ type: 'setTrack', payload: track });
         if (playlistIndex)
             dispatch({ type: 'setPlaylistIndex', payload: playlistIndex });
+        dispatch({ type: 'setStatus', payload: 'playing' });
     };
     const buttonClass =
         state.status === 'playing' && state.track.md5 === track.md5
@@ -34,7 +35,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                 </button>
             </div>
             <div>
-                <AlbumCover cover={cover} />
+                <AlbumCover cover={cover} link={false} />
             </div>
             <div className="flex-grow-1" style={{ width: '50%' }}>
                 <TrackTitle title={title} artist={artist} />

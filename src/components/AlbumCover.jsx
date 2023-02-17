@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
 
-const AlbumCover = ({ cover }) => {
+const AlbumCover = ({ cover, link = false }) => {
     return (
-        <Link to="/now-playing">
+        <>
+        { link &&
+            <Link to="/now-playing">
+                <img className="cover" src={cover} alt="cover art" loading="lazy" />
+            </Link>
+        }
+        { !link &&
             <img className="cover" src={cover} alt="cover art" loading="lazy" />
-        </Link>
+        }
+        </>
     );
 };
 
