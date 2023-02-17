@@ -132,7 +132,7 @@ const PlayerControls = ({ audioRef }) => {
         album: track.album,
         artwork: [
             { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/96/96`, sizes: '96x96', type: 'image/png' },
-            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/128/128`, sizes: '128x128', type: 'image/png' },
+            { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/128/j28`, sizes: '128x128', type: 'image/png' },
             { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/192/192`, sizes: '192x192', type: 'image/png' },
             { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/256/256`, sizes: '256x256', type: 'image/png' },
             { src: process.env.REACT_APP_API_URL + `/cover/${track.md5}/384/384`, sizes: '384x384', type: 'image/png' },
@@ -156,13 +156,18 @@ const PlayerControls = ({ audioRef }) => {
                 };
                 audioRef.current.onplaying = () => {
                     dispatch({ type: 'setStatus', payload: 'playing' });
-                    updateMeta();
                 };
                 audioRef.current.onpause = () => {
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
+                audioRef.current.onerror = (err) => {
+                    console.log(err);
+                };
                 audioRef.current.onloadeddata = () => {
                     play();
+                };
+                audioRef.current.onloadedmetadata = () => {
+                    updateMeta();
                 };
             }
         }
