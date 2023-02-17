@@ -20,6 +20,9 @@ export function SopranoReducer(state, action) {
             return { ...state, shuffle: action.payload };
         case 'setRadioStations':
             return { ...state, radio_stations: action.payload };
+        case 'setTrackTitleArtist':
+            const track = {...state.track, ...action.payload};
+            return { ...state, track };
         default:
             return state;
     }

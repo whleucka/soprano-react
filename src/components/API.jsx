@@ -14,7 +14,7 @@ const getData = async (endpoint = '', data = {}) => {
     const url = new URL(process.env.REACT_APP_API_URL + endpoint);
     url.search = new URLSearchParams(data);
     const response = await fetch(url, {
-        method: 'GET'
+        method: 'GET',
     });
     return response.json();
 };
@@ -29,6 +29,13 @@ const API = {
         const response = await getData('/radio/stations');
         if (response.success) return response.data;
         else return [];
+    },
+    parseRadio: async (url) => {
+        if (url.length > 0) {
+            const response = await getData('/radio/parse', { url });
+            if (response.success) return response.data;
+        }
+        return [];
     },
     podcastSearch: async (searchTerm, sortByDate, offset) => {
         const url = new URL('https://listen-api.listennotes.com/api/v2/search');

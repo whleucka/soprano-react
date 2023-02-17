@@ -170,9 +170,6 @@ const PlayerControls = ({ audioRef }) => {
                     console.log('Audio paused...');
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
-                audioRef.current.onerror = (err) => {
-                    console.log(err);
-                };
                 audioRef.current.onloadeddata = () => {
                     console.log('Data loaded, playing...');
                     play();
