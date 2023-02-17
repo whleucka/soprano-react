@@ -61,7 +61,7 @@ const Soprano = () => {
                         let s = {
                             md5: station.id + '_radio',
                             artist: location,
-                            album: 'Radio',
+                            album: 'Soprano Radio',
                             title: station.station_name,
                             cover,
                             playtime_seconds: 0,

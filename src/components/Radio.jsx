@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { SopranoContext } from './Soprano';
 import TrackRow from './TrackRow';
 import { Info as InfoIcon } from 'react-feather';
-import Hls from "hls.js";
+import Hls from 'hls.js';
 import API from './API';
 
 let hls = new Hls();
@@ -13,7 +13,7 @@ const Radio = ({ audioRef }) => {
 
     const updateMeta = () => {
         API.parseRadio(state.track.src)
-            .then(res => {
+            .then((res) => {
                 if (res.title && res.artist) {
                     res.title = res.title.replace('///', '').trim();
                     res.artist = res.artist.replace('///', '').trim();
@@ -23,8 +23,8 @@ const Radio = ({ audioRef }) => {
                     }
                 }
             })
-            .catch(err => console.log(err));
-    }
+            .catch((err) => console.log(err));
+    };
 
     useEffect(() => {
         clearInterval(interval);
@@ -37,9 +37,9 @@ const Radio = ({ audioRef }) => {
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) =>
                     hls.loadSource(state.track.src)
-                )
+                );
                 hls.once(Hls.Events.AUDIO_TRACK_LOADED, (event, data) => {
-                    console.log("track loaded", data);
+                    console.log('track loaded', data);
                 });
                 updateMeta();
                 interval = setInterval(updateMeta, 10000);
@@ -52,8 +52,7 @@ const Radio = ({ audioRef }) => {
     }, [state.track.src]);
 
     useEffect(() => {
-        return () => {
-        }
+        return () => {};
     }, []);
 
     return (
