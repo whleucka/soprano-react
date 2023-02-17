@@ -18,6 +18,7 @@ const Radio = ({ audioRef }) => {
                     res.title = res.title.replace('///', '').trim();
                     res.artist = res.artist.replace('///', '').trim();
                     if (res.title != res.artist) {
+                        document.title = `Soprano • ${res.artist} — ${res.title}`;
                         dispatch({ type: 'setTrackTitleArtist', payload: res });
                     }
                 }
