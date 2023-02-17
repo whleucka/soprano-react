@@ -28,6 +28,9 @@ const NowPlaying = () => {
         };
     }, []);
 
+    const cover = Object.keys(state.track).length > 0
+        ? state.track.cover
+        : "/img/no-album.png";
     return (
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
@@ -35,7 +38,7 @@ const NowPlaying = () => {
                     <img
                         alt="cover"
                         title={state.track.album}
-                        src={state.track.cover}
+                        src={cover}
                         loading="lazy"
                         className="rounded"
                     />
