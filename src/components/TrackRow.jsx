@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { Play as PlayIcon } from 'react-feather';
-import AlbumCover from './AlbumCover';
 import { SopranoContext } from './Soprano';
+import CoverSize from './CoverSize';
+import AlbumCover from './AlbumCover';
 import TrackTitle from './TrackTitle';
 
 const TrackRow = ({ track, mode, playlistIndex = null }) => {
     const { state, dispatch } = useContext(SopranoContext);
-    const { cover, artist, title, playtime_string } = track;
+    const { artist, title, playtime_string } = track;
     const handleClick = () => {
         dispatch({ type: 'setMode', payload: mode });
         dispatch({ type: 'setTrack', payload: track });
@@ -35,7 +36,12 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                 </button>
             </div>
             <div>
-                <AlbumCover cover={cover} link={false} md5={track.md5} size={[40,40]} mode={mode} />
+                { mode === 'radio' &&
+                    <AlbumCover cover={track.cover} />
+                }
+                { mode !== 'radio' &&
+                    <CoverSize md5={track.md5} size={[40,40]} />
+                }
             </div>
             <div className="flex-grow-1" style={{ width: '50%' }}>
                 <TrackTitle title={title} artist={artist} />
