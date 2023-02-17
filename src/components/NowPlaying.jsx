@@ -3,6 +3,7 @@ import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import { Link } from 'react-router-dom';
 import CoverSize from './CoverSize';
+import AlbumCover from './AlbumCover';
 
 const NowPlaying = () => {
     const { state } = useContext(SopranoContext);
@@ -35,7 +36,12 @@ const NowPlaying = () => {
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                 <Link to={link}>
-                    <CoverSize md5={track.md5} size={[320, 320]} />
+                    { state.mode === 'podcast' &&
+                        <AlbumCover cover={track.cover} />
+                    }
+                    { state.mode !== 'podcast' &&
+                        <CoverSize md5={track.md5} size={[320, 320]} />
+                    }
                 </Link>
                 <div
                     id="track-info"

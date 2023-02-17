@@ -10,14 +10,16 @@ import { Link } from 'react-router-dom';
 
 const Player = ({ audioRef }) => {
     const { state } = useContext(SopranoContext);
+    const track = state.track;
+
     const cover =
-        Object.keys(state.track).length > 0
-            ? state.track.cover
+        Object.keys(track).length > 0
+            ? track.cover
             : '/img/no-album.png';
     const title =
-        Object.keys(state.track).length > 0 ? state.track.title : null;
+        Object.keys(track).length > 0 ? track.title : null;
     const artist =
-        Object.keys(state.track).length > 0 ? state.track.artist : null;
+        Object.keys(track).length > 0 ? track.artist : null;
     return (
         <>
             <PlayerProgress audioRef={audioRef} />
@@ -26,10 +28,12 @@ const Player = ({ audioRef }) => {
                     <div id="left-cover">
                         {state.mode !== 'radio' && (
                             <Link to="/now-playing">
-                                <CoverSize
-                                    md5={state.track.md5}
-                                    size={[70, 70]}
-                                />
+                                { state.mode === 'podcast' &&
+                                    <AlbumCover cover={track.cover} />
+                                }
+                                { state.mode !== 'podcast' &&
+                                    <CoverSize md5={track.md5} size={[70, 70]} />
+                                }
                             </Link>
                         )}
                         {state.mode === 'radio' && <AlbumCover cover={cover} />}
