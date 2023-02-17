@@ -156,15 +156,13 @@ const PlayerControls = ({ audioRef }) => {
                 };
                 audioRef.current.onplaying = () => {
                     dispatch({ type: 'setStatus', payload: 'playing' });
+                    updateMeta();
                 };
                 audioRef.current.onpause = () => {
                     dispatch({ type: 'setStatus', payload: 'paused' });
                 };
                 audioRef.current.onloadeddata = () => {
                     play();
-                };
-                audioRef.current.onloadedmetadata = () => {
-                    updateMeta();
                 };
             }
         }
