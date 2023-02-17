@@ -29,7 +29,6 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
-                    dispatch({ type: 'setStatus', payload: 'playing' });
                     updatePositionState();
                 })
                 .catch((_) => {});
@@ -38,7 +37,6 @@ const PlayerControls = ({ audioRef }) => {
 
     const pause = useCallback(() => {
         audioRef.current.pause();
-        dispatch({ type: 'setStatus', payload: 'paused' });
     }, [audioRef]);
 
     const stop = useCallback(() => {
@@ -156,19 +154,11 @@ const PlayerControls = ({ audioRef }) => {
                 audioRef.current.onended = () => {
                     next();
                 };
-                audioRef.current.onplay = () => {
-                    navigator.mediaSession.playbackState = 'playing';
-                }
                 audioRef.current.onplaying = () => {
                     dispatch({ type: 'setStatus', payload: 'playing' });
                 };
                 audioRef.current.onpause = () => {
                     dispatch({ type: 'setStatus', payload: 'paused' });
-                    navigator.mediaSession.playbackState = 'paused';
-                };
-                audioRef.current.onerror = () => {
-                    dispatch({ type: 'setStatus', payload: 'idle' });
-                    stop();
                 };
                 audioRef.current.onloadeddata = () => {
                     play();
