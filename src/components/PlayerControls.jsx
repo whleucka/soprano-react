@@ -21,6 +21,7 @@ const PlayerControls = ({ audioRef }) => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
+            updatePositionState();
         }
     }, [state.track, audioRef]);
 
@@ -29,7 +30,6 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
-                    updatePositionState();
                 })
                 .catch((_) => {});
         }
