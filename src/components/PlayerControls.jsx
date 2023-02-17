@@ -156,7 +156,7 @@ const PlayerControls = ({ audioRef }) => {
     });
 
     useEffect(() => {
-        if (Object.keys(state.track).length > 0) {
+        if (Object.keys(state.track).length > 0 && state.mode != 'radio') {
             if (audioRef.current) {
                 audioRef.current.onended = () => {
                     console.log('Audio ended, next...');
