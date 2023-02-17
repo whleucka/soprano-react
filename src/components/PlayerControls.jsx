@@ -38,7 +38,7 @@ const PlayerControls = ({ audioRef }) => {
 
     const pause = useCallback(() => {
         audioRef.current.pause();
-        navigator.mediaSession.playbackState = 'pause';
+        navigator.mediaSession.playbackState = 'paused';
     }, [audioRef]);
 
     const stop = useCallback(() => {
