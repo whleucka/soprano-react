@@ -35,7 +35,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                 </button>
             </div>
             <div>
-                <AlbumCover cover={cover} link={false} />
+                <AlbumCover cover={cover} link={false} md5={track.md5} size={[40,40]} mode={mode} />
             </div>
             <div className="flex-grow-1" style={{ width: '50%' }}>
                 <TrackTitle title={title} artist={artist} />
