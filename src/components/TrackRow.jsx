@@ -39,7 +39,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                 {(mode === 'radio' || mode === 'podcast') && (
                     <AlbumCover cover={track.cover} />
                 )}
-                {mode === 'search' && (
+                {(mode === 'search' || mode === 'playlist') && (
                     <CoverSize md5={track.md5} size={[40, 40]} />
                 )}
             </div>
