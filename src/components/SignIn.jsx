@@ -32,10 +32,7 @@ const SignIn = () => {
             </p>
             {showAlert && (
                 <div className="alert alert-warning my-3" role="alert">
-                    <strong style={{ color: '#ff0000' }}>
-                        <InfoIcon size="14" />
-                    </strong>{' '}
-                    This feature is currently disabled.
+                    Sorry, this feature is currently disabled.
                 </div>
             )}
             <input
