@@ -36,10 +36,11 @@ const PodcastSearch = ({ searchRef }) => {
     const handleSubmit = useCallback(() => {
         setNoResults(false);
         setSearching(true);
-        if (searchTerm.trim().length > 0) {
+        const term = searchTerm.trim()
+        if (term.length > 0) {
             dispatch({ type: 'setStatus', payload: 'podcast' });
             dispatch({ type: 'setPodcastResults', payload: [] });
-            API.podcastSearch(searchTerm.trim(), sortByDate, offset)
+            API.podcastSearch(term, sortByDate, offset)
                 .then((res) => {
                     const podcasts = res.results;
                     setTotal(res.total);
@@ -62,6 +63,8 @@ const PodcastSearch = ({ searchRef }) => {
                     console.log(err);
                     setSearching(false);
                 });
+        } else {
+            setSearching(false);
         }
     }, [dispatch, lastTerm, offset, searchTerm, sortByDate]);
 
