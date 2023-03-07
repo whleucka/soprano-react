@@ -10,12 +10,7 @@ const Home = () => {
                     <InfoIcon size="14" />{' '}
                     <strong>Early development build</strong>
                 </span>
-                <br />
-                <br />
-                Some features are missing or unstable. Things could get a bit
-                weird! Check back later for a stable build.
-                <br />
-                <br />
+                <p className="mt-3">New features are coming soon!</p>
                 <Link style={{ color: '#333' }} to="/search">
                     <LinkIcon size="14" /> Got it, take me to the music
                 </Link>

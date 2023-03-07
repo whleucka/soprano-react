@@ -6,7 +6,10 @@ const Backdrop = ({ backdropRef }) => {
     const { state } = useContext(SopranoContext);
     const backdropImage =
         Object.keys(state.track).length > 0 && state.track.cover
-            ? state.track.cover
+            ? process.env.REACT_APP_SERVER_URL +
+              '/api/v1/cover/' +
+              state.track.md5 +
+              '/500/500'
             : '/img/no-album.png';
 
     useEffect(() => {

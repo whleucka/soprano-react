@@ -245,21 +245,27 @@ label:focus,
  * Now Playing
  */
 #now-playing img {
-    height: 320px;
-    width: 320px;
+    height: 280px;
+    width: 280px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     margin-bottom: 40px;
 }
 
+#now-playing #player-controls {
+    position: absolute;
+    bottom: 50px;
+}
 #now-playing #player-controls .btn {
     width: 100px;
 }
 
 #now-playing #track-info #title {
     font-size: 1.5rem;
+    opacity: 0.9;
 }
 #now-playing #track-info #artist {
     font-size: 1.2rem;
+    opacity: 0.6;
 }
 #now-playing #now-playing-next > svg,
 #now-playing #now-playing-prev > svg {
@@ -408,11 +414,10 @@ label:focus,
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.25);
-    opacity: 0.25;
+    opacity: 0.3;
     z-index: 0;
-    filter: blur(50px);
-    -webkit-filter: blur(50px);
+    filter: blur(40px);
+    -webkit-filter: blur(40px);
 }
 
 /**

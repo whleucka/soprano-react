@@ -13,13 +13,9 @@ const Player = ({ audioRef }) => {
     const track = state.track;
 
     const cover =
-        Object.keys(track).length > 0
-            ? track.cover
-            : '/img/no-album.png';
-    const title =
-        Object.keys(track).length > 0 ? track.title : null;
-    const artist =
-        Object.keys(track).length > 0 ? track.artist : null;
+        Object.keys(track).length > 0 ? track.cover : '/img/no-album.png';
+    const title = Object.keys(track).length > 0 ? track.title : null;
+    const artist = Object.keys(track).length > 0 ? track.artist : null;
     return (
         <>
             <PlayerProgress audioRef={audioRef} />
@@ -28,12 +24,15 @@ const Player = ({ audioRef }) => {
                     <div id="left-cover">
                         {state.mode !== 'radio' && (
                             <Link to="/now-playing">
-                                { state.mode === 'podcast' &&
+                                {state.mode === 'podcast' && (
                                     <AlbumCover cover={track.cover} />
-                                }
-                                { state.mode !== 'podcast' &&
-                                    <CoverSize md5={track.md5} size={[70, 70]} />
-                                }
+                                )}
+                                {state.mode !== 'podcast' && (
+                                    <CoverSize
+                                        md5={track.md5}
+                                        size={[70, 70]}
+                                    />
+                                )}
                             </Link>
                         )}
                         {state.mode === 'radio' && <AlbumCover cover={cover} />}

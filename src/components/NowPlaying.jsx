@@ -30,18 +30,23 @@ const NowPlaying = () => {
         };
     }, []);
 
-    const link = state.playlist.length > 0 ? '/playlist' : '/search';
+    let link = '/search';
+    if (state.mode === 'playlist') {
+        link = '/playlist';
+    } else if (state.mode == 'podcast') {
+        link = '/podcasts';
+    }
 
     return (
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                 <Link to={link}>
-                    { state.mode === 'podcast' &&
+                    {state.mode === 'podcast' && (
                         <AlbumCover cover={track.cover} />
-                    }
-                    { state.mode !== 'podcast' &&
-                        <CoverSize md5={track.md5} size={[320, 320]} />
-                    }
+                    )}
+                    {state.mode !== 'podcast' && (
+                        <CoverSize md5={track.md5} size={[280, 280]} />
+                    )}
                 </Link>
                 <div
                     id="track-info"
@@ -51,7 +56,7 @@ const NowPlaying = () => {
                     <div id="title" className="truncate">
                         {state.track.title}
                     </div>
-                    <div id="artist" className="truncate text-secondary">
+                    <div id="artist" className="truncate">
                         {state.track.artist}
                     </div>
                 </div>

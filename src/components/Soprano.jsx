@@ -23,6 +23,8 @@ const Podcasts = lazy(() => import('./Podcasts'));
 const Library = lazy(() => import('./Library'));
 const Options = lazy(() => import('./Options'));
 const NowPlaying = lazy(() => import('./NowPlaying'));
+const SignIn = lazy(() => import('./SignIn'));
+const SignOut = lazy(() => import('./SignOut'));
 
 export const SopranoContext = React.createContext();
 
@@ -104,6 +106,16 @@ const Soprano = () => {
                                 }
                             >
                                 <Routes>
+                                    <Route
+                                        exact
+                                        path="/sign-in"
+                                        element={<SignIn />}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/sign-out"
+                                        element={<SignOut />}
+                                    />
                                     <Route exact path="/" element={<Home />} />
                                     <Route
                                         exact

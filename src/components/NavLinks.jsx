@@ -6,7 +6,9 @@ import {
     Music as MusicIcon,
     Radio as RadioIcon,
     Tool as ToolIcon,
-    Mic as MicIcon
+    Mic as MicIcon,
+    LogIn as LogInIcon,
+    LogOut as LogOutIcon
 } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { SopranoContext } from './Soprano';
@@ -60,6 +62,20 @@ const NavLinks = () => {
                     <ToolIcon size="18" /> Options
                 </li>
             </Link>
+            {state.user && (
+                <Link to="/sign-in">
+                    <li onClick={handleClick} className="nav-item truncate">
+                        <LogOutIcon size="18" /> Sign Out
+                    </li>
+                </Link>
+            )}
+            {!state.user && (
+                <Link to="/sign-in">
+                    <li onClick={handleClick} className="nav-item truncate">
+                        <LogInIcon size="18" /> Sign In
+                    </li>
+                </Link>
+            )}
         </ul>
     );
 };

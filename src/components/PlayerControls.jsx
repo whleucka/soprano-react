@@ -64,6 +64,7 @@ const PlayerControls = ({ audioRef }) => {
         if (state.playlist.length < 2) {
             return;
         }
+        dispatch({ type: 'setMode', payload: 'playlist' });
         let prevIndex =
             (state.playlistIndex - 1 + state.playlist.length) %
             state.playlist.length;
@@ -83,6 +84,7 @@ const PlayerControls = ({ audioRef }) => {
         if (state.playlist.length < 2) {
             return;
         }
+        dispatch({ type: 'setMode', payload: 'playlist' });
         let nextIndex = (state.playlistIndex + 1) % state.playlist.length;
         if (state.shuffle) {
             nextIndex = shuffleIndex();
