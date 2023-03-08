@@ -1,8 +1,12 @@
 const postData = async (endpoint = '', data = {}) => {
     const url = new URL(process.env.REACT_APP_API_URL + endpoint);
+    var formdata = new FormData();
+formdata.append("email", data.email);
+formdata.append("password", data.password);
     const response = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(data)
+        body: formdata,
+        redirect: 'follow'
     });
     return response.json();
 };
@@ -18,7 +22,7 @@ const getData = async (endpoint = '', data = {}) => {
 
 const API = {
     signIn: async (email, password) => {
-        const response = await getData('/sign-in', { email, password });
+        const response = await postData('/sign-in', { email, password });
         if (response.success) return response.data;
         else return [];
     },
