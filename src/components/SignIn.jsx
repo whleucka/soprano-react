@@ -10,9 +10,11 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
 
     const handleAuthenticate = () => {
         setShowAlert(false);
+        setShowSuccess(false);
         if (!email.trim()) {
             setEmailError(true);
             return;
@@ -23,11 +25,19 @@ const SignIn = () => {
         }
         API.signIn(email, password)
             .then(user => {
-                if (user) {
+                if (user.uuid) {
+                    setShowSuccess(true);
+                    setPassword("");
+                    setEmail("");
                     dispatch({ type: 'setUser', payload: user.uuid })
+                } else {
+                    setShowAlert(true);
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setShowAlert(true);
+                console.log(err)
+            });
     };
 
     return (
@@ -41,7 +51,12 @@ const SignIn = () => {
             </p>
             {showAlert && (
                 <div className="alert alert-warning my-3" role="alert">
-                    Sorry, this feature is currently disabled.
+                    Bad email and/or password
+                </div>
+            )}
+            {showSuccess && (
+                <div className="alert alert-success my-3" role="alert">
+                    Success! You are now logged in!
                 </div>
             )}
             <input
