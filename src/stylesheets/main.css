@@ -4,6 +4,7 @@
 body {
     font-family: 'Inter', sans-serif;
     min-width: 350px;
+    zoom: 110%;
 }
 html,
 body,
@@ -516,16 +517,16 @@ label:focus,
         max-width: 150px;
         width: 150px;
     }
-    #player #right-volume {
-        display: block;
-    }
     #player-controls .btn {
         width: 60px;
-    }
-    #player #left-track-title {
-        display: block;
     }
 }
 
 @media (min-width: 768px) {
+    #player #right-volume {
+        display: block;
+    }
+    #player #left-track-title {
+        display: block;
+    }
 }

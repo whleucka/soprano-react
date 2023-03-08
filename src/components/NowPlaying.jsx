@@ -23,14 +23,17 @@ const NowPlaying = () => {
         document.getElementById('player').style.display = 'none';
         document.querySelector('div#progress-cont').style.position = 'fixed';
         document.querySelector('.progress').style.height = '14px';
+        document.getElementById('backdrop').style.height = '100%';
         if (window.innerWidth > 575) {
             document.getElementById('sidebar').style.display = 'none';
         }
         return () => {
+            document.getElementById('backdrop').style.height = '100%';
             document.getElementById('player').style.display = 'block';
             document.querySelector('div#progress-cont').style.position =
                 'relative';
             document.querySelector('.progress').style.height = '8px';
+            document.getElementById('backdrop').style.height = 'calc(100% - 98px)';
             if (window.innerWidth > 575) {
                 document.getElementById('sidebar').style.display = 'block';
             }
