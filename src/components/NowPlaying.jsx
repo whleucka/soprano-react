@@ -52,6 +52,7 @@ const NowPlaying = () => {
         dispatch({ type: 'toggleRepeat', payload: !state.repeat });
     };
 
+    const disabledNextPrev = state.playlist.length === 0 ? ' disabled' : '';
     const shuffleStyle = state.shuffle ? 'active' : 'inactive';
     const repeatStyle = state.repeat ? 'active' : 'inactive';
 
@@ -94,7 +95,7 @@ const NowPlaying = () => {
                         onClick={(e) => {
                             document.querySelector('#skip-backward').click();
                         }}
-                        className="btn btn-dark"
+                        className={'btn btn-dark' + disabledNextPrev}
                     >
                         <SkipBack />
                     </button>
@@ -113,7 +114,7 @@ const NowPlaying = () => {
                             document.querySelector('#skip-forward').click();
                         }}
                         id="now-playing-next"
-                        className="btn btn-dark"
+                        className={'btn btn-dark' + disabledNextPrev}
                     >
                         <SkipForward />
                     </button>
