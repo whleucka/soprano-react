@@ -20,6 +20,11 @@ const getData = async (endpoint = '', data = {}) => {
 };
 
 const API = {
+    signIn: async (email, password) => {
+        const response = await postData('/sign-in', { email, password });
+        if (response.success) return response.data;
+        else return [];
+    },
     musicSearch: async (searchTerm) => {
         const response = await getData('/music/search', { term: searchTerm });
         if (response.success) return response.data;

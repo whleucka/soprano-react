@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Info as InfoIcon } from 'react-feather';
+import API from './API';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -18,7 +19,11 @@ const SignIn = () => {
             setPasswordError(true);
             return;
         }
-        setShowAlert(true);
+        API.signIn(email, password)
+            .then(res => {
+                console.log(res);
+            })
+            .catch(err => console.log(err));
     };
 
     return (
@@ -44,7 +49,7 @@ const SignIn = () => {
                     setEmail(e.currentTarget.value);
                 }}
                 className="email-input"
-                placeholder="E-Mail Address"
+                placeholder="E-mail Address"
             />
             <br />
             {emailError && (
