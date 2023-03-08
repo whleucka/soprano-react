@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Info as InfoIcon } from 'react-feather';
 import API from './API';
+import { SopranoContext } from './Soprano';
 
 const SignIn = () => {
+    const { dispatch } = useContext(SopranoContext);
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState(false);
     const [password, setPassword] = useState('');
@@ -20,8 +22,10 @@ const SignIn = () => {
             return;
         }
         API.signIn(email, password)
-            .then(res => {
-                console.log(res);
+            .then(user => {
+                if (user) {
+                    dispatch({ type: 'setUser', payload: user.uuid })
+                }
             })
             .catch(err => console.log(err));
     };

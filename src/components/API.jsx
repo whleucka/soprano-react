@@ -2,9 +2,6 @@ const postData = async (endpoint = '', data = {}) => {
     const url = new URL(process.env.REACT_APP_API_URL + endpoint);
     const response = await fetch(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
         body: JSON.stringify(data)
     });
     return response.json();
@@ -21,7 +18,7 @@ const getData = async (endpoint = '', data = {}) => {
 
 const API = {
     signIn: async (email, password) => {
-        const response = await postData('/sign-in', { email, password });
+        const response = await getData('/sign-in', { email, password });
         if (response.success) return response.data;
         else return [];
     },

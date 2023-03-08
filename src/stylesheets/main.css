@@ -256,7 +256,7 @@ label:focus,
     bottom: 50px;
 }
 #now-playing #player-controls .btn {
-    width: 80px;
+    width: 70px;
 }
 
 #now-playing #track-info #title {
@@ -371,6 +371,7 @@ label:focus,
     max-width: 300px;
 }
 #player #center-controls {
+    margin-right: 20px;
 }
 #player #right-volume {
     display: none;
@@ -386,7 +387,7 @@ label:focus,
     color: #fbfbfb;
 }
 #player-controls .btn {
-    width: 40px;
+    width: 30px;
 }
 
 #player-controls #shuffle.active,

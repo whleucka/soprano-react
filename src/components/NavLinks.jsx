@@ -63,7 +63,7 @@ const NavLinks = () => {
                 </li>
             </Link>
             {state.user && (
-                <Link to="/sign-in">
+                <Link to="/sign-out">
                     <li onClick={handleClick} className="nav-item truncate">
                         <LogOutIcon size="18" /> Sign Out
                     </li>

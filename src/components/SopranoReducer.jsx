@@ -21,6 +21,8 @@ export function SopranoReducer(state, action) {
         case 'setTrackTitleArtist':
             const track = { ...state.track, ...action.payload };
             return { ...state, track };
+        case 'setUser':
+            return { ...state, user: action.payload };
         case 'toggleShuffle':
             return { ...state, shuffle: action.payload };
         case 'toggleRepeat':
