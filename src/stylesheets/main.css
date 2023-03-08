@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 /**
  * Layout
  */
@@ -39,7 +46,8 @@ body,
 ::-webkit-scrollbar-track {
     background: #222222;
     border-radius: 0px;
-    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+    -webkit-box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+            box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
 
 /**
@@ -93,6 +101,8 @@ input[type='radio'] {
 }
 
 #navbar a {
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
     font-weight: 600;
     color: #fff;
@@ -154,6 +164,8 @@ input[type='radio'] {
     margin-bottom: 8px;
 }
 #sidebar a {
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
     font-weight: 600;
     color: #fff;
@@ -214,19 +226,33 @@ label:focus,
 .btn.active {
     outline: 0px !important;
     -webkit-appearance: none;
-    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
 }
 .truncate {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+}
+@-webkit-keyframes colorChange {
+    from {
+        -webkit-filter: hue-rotate(0deg);
+                filter: hue-rotate(0deg);
+    }
+    to {
+        -webkit-filter: hue-rotate(360deg);
+                filter: hue-rotate(360deg);
+    }
 }
 @keyframes colorChange {
     from {
-        filter: hue-rotate(0deg);
+        -webkit-filter: hue-rotate(0deg);
+                filter: hue-rotate(0deg);
     }
     to {
-        filter: hue-rotate(360deg);
+        -webkit-filter: hue-rotate(360deg);
+                filter: hue-rotate(360deg);
     }
 }
 
@@ -234,6 +260,8 @@ label:focus,
   * Music search
   */
 #music-search {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
 }
 #music-search button {
@@ -272,10 +300,14 @@ label:focus,
 }
 #now-playing #now-playing-next > svg,
 #now-playing #now-playing-prev > svg {
-    transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+            transform: scale(1.3);
 }
 #now-playing #now-playing-play > svg {
-    transform: scale(1.8);
+    -webkit-transform: scale(1.8);
+        -ms-transform: scale(1.8);
+            transform: scale(1.8);
 }
 
 /**
@@ -283,6 +315,8 @@ label:focus,
  */
 .track-row {
     margin-bottom: 6px;
+    -webkit-transition: background-color 0.2s;
+    -o-transition: background-color 0.2s;
     transition: background-color 0.2s;
     width: 100%;
 }
@@ -325,7 +359,8 @@ label:focus,
 #play-pause-btn.active,
 #now-playing-play.active {
     color: limegreen;
-    animation: colorChange 30s alternate infinite;
+    -webkit-animation: colorChange 30s alternate infinite;
+            animation: colorChange 30s alternate infinite;
     opacity: 1;
 }
 
@@ -384,6 +419,8 @@ label:focus,
     background: none;
     border: none;
     opacity: 0.4;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
     color: #fbfbfb;
 }
@@ -397,7 +434,9 @@ label:focus,
     opacity: 1;
 }
 #play-pause-btn {
-    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+            transform: scale(1.2);
 }
 #player-controls #shuffle.inactive,
 #player-controls #repeat.inactive {
