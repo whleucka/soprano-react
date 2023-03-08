@@ -347,8 +347,8 @@ label:focus,
 }
 #player .cover {
     margin-left: 10px;
-    height: 45px;
-    width: 45px;
+    height: 70px;
+    width: 70px;
 }
 #player .track-title {
     width: 99%;
@@ -369,9 +369,9 @@ label:focus,
 }
 #player #left-track-title {
     max-width: 300px;
+    display: none;
 }
 #player #center-controls {
-    margin-right: 20px;
 }
 #player #right-volume {
     display: none;
@@ -387,7 +387,7 @@ label:focus,
     color: #fbfbfb;
 }
 #player-controls .btn {
-    width: 30px;
+    width: 50px;
 }
 
 #player-controls #shuffle.active,
@@ -517,6 +517,12 @@ label:focus,
         width: 150px;
     }
     #player #right-volume {
+        display: block;
+    }
+    #player-controls .btn {
+        width: 60px;
+    }
+    #player #left-track-title {
         display: block;
     }
 }
