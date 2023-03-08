@@ -36,7 +36,7 @@ const PodcastSearch = ({ searchRef }) => {
     const handleSubmit = useCallback(() => {
         setNoResults(false);
         setSearching(true);
-        const term = searchTerm.trim()
+        const term = searchTerm.trim();
         if (term.length > 0) {
             dispatch({ type: 'setStatus', payload: 'podcast' });
             dispatch({ type: 'setPodcastResults', payload: [] });

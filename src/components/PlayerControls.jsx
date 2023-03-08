@@ -1,5 +1,12 @@
 import { useEffect, useContext, useCallback } from 'react';
-import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
+import {
+    Play,
+    Pause,
+    SkipForward,
+    SkipBack,
+    Shuffle,
+    Repeat
+} from 'react-feather';
 import { SopranoContext } from './Soprano';
 import useMediaSession from './MediaSession';
 
@@ -116,6 +123,7 @@ const PlayerControls = ({ audioRef }) => {
         );
         updatePositionState();
     };
+
     const seekForward = (e) => {
         const defaultSkipTime = 10;
         const skipTime = e.seekOffset || defaultSkipTime;
@@ -124,6 +132,14 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current.duration
         );
         updatePositionState();
+    };
+
+    const toggleShuffle = () => {
+        dispatch({ type: 'toggleShuffle', payload: !state.shuffle });
+    };
+
+    const toggleRepeat = () => {
+        dispatch({ type: 'toggleRepeat', payload: !state.repeat });
     };
 
     useMediaSession({
@@ -230,11 +246,21 @@ const PlayerControls = ({ audioRef }) => {
 
     const activePlay = state.status === 'playing' ? ' active' : '';
 
+    const shuffleStyle = state.shuffle ? 'active' : 'inactive';
+    const repeatStyle = state.repeat ? 'active' : 'inactive';
+
     return (
         <div
             id="player-controls"
             className="d-flex align-items-center justify-content-center h-100 w-100"
         >
+            <button
+                id="shuffle"
+                className={'btn btn-dark ' + shuffleStyle}
+                onClick={toggleShuffle}
+            >
+                <Shuffle />
+            </button>
             <button
                 id="skip-backwards"
                 className={'btn btn-dark' + disabledNextPrev}
@@ -256,6 +282,13 @@ const PlayerControls = ({ audioRef }) => {
                 onClick={next}
             >
                 <SkipForward />
+            </button>
+            <button
+                id="repeat"
+                className={'btn btn-dark ' + repeatStyle}
+                onClick={toggleRepeat}
+            >
+                <Repeat />
             </button>
         </div>
     );

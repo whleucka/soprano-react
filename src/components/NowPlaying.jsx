@@ -1,12 +1,19 @@
 import { useContext, useEffect } from 'react';
-import { Play, Pause, SkipForward, SkipBack } from 'react-feather';
+import {
+    Play,
+    Pause,
+    SkipForward,
+    SkipBack,
+    Shuffle,
+    Repeat
+} from 'react-feather';
 import { SopranoContext } from './Soprano';
 import { Link } from 'react-router-dom';
 import CoverSize from './CoverSize';
 import AlbumCover from './AlbumCover';
 
 const NowPlaying = () => {
-    const { state } = useContext(SopranoContext);
+    const { dispatch, state } = useContext(SopranoContext);
     const track = state.track;
 
     const activePlay = state.status === 'playing' ? ' active' : '';
@@ -37,6 +44,17 @@ const NowPlaying = () => {
         link = '/podcasts';
     }
 
+    const toggleShuffle = () => {
+        dispatch({ type: 'toggleShuffle', payload: !state.shuffle });
+    };
+
+    const toggleRepeat = () => {
+        dispatch({ type: 'toggleRepeat', payload: !state.repeat });
+    };
+
+    const shuffleStyle = state.shuffle ? 'active' : 'inactive';
+    const repeatStyle = state.repeat ? 'active' : 'inactive';
+
     return (
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
@@ -65,6 +83,13 @@ const NowPlaying = () => {
                     className="mt-5 d-flex align-items-center justify-content-center"
                 >
                     <button
+                        id="shuffle"
+                        className={'btn btn-dark ' + shuffleStyle}
+                        onClick={toggleShuffle}
+                    >
+                        <Shuffle />
+                    </button>
+                    <button
                         id="now-playing-prev"
                         onClick={(e) => {
                             document.querySelector('#skip-backward').click();
@@ -91,6 +116,13 @@ const NowPlaying = () => {
                         className="btn btn-dark"
                     >
                         <SkipForward />
+                    </button>
+                    <button
+                        id="repeat"
+                        className={'btn btn-dark ' + repeatStyle}
+                        onClick={toggleRepeat}
+                    >
+                        <Repeat />
                     </button>
                 </div>
             </div>

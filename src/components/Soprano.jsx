@@ -33,13 +33,14 @@ const initialState = {
     mode: null,
     track: {},
     shuffle: true,
+    repeat: false,
     status: 'idle',
     searchResults: [],
     podcastResults: [],
     playlistIndex: null,
     playlist: [],
     playlists: [],
-    radio_stations: []
+    radioStations: []
 };
 
 const Soprano = () => {
@@ -52,7 +53,7 @@ const Soprano = () => {
         API.radioStations()
             .then((res) => {
                 if (res.length > 0) {
-                    const radio_stations = [];
+                    const stations = [];
                     res.forEach((station) => {
                         const cover = station.cover_url
                             ? station.cover_url
@@ -70,11 +71,11 @@ const Soprano = () => {
                             playtime_string: null,
                             src: station.src_url
                         };
-                        radio_stations.push(s);
+                        stations.push(s);
                     });
                     dispatch({
                         type: 'setRadioStations',
-                        payload: radio_stations
+                        payload: stations
                     });
                 }
             })

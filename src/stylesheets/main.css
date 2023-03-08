@@ -256,7 +256,7 @@ label:focus,
     bottom: 50px;
 }
 #now-playing #player-controls .btn {
-    width: 100px;
+    width: 80px;
 }
 
 #now-playing #track-info #title {
@@ -383,6 +383,23 @@ label:focus,
     border: none;
     opacity: 0.4;
     transition: opacity 0.5s;
+    color: #fbfbfb;
+}
+#player-controls .btn {
+    width: 40px;
+}
+
+#player-controls #shuffle.active,
+#player-controls #repeat.active {
+    color: limegreen;
+    opacity: 1;
+}
+#play-pause-btn {
+    transform: scale(1.2);
+}
+#player-controls #shuffle.inactive,
+#player-controls #repeat.inactive {
+    opacity: 0.2;
 }
 #player-controls button.disabled {
     opacity: 0.2;

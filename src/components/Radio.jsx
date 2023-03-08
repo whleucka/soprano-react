@@ -53,9 +53,9 @@ const Radio = ({ audioRef }) => {
     return (
         <>
             <h2 className="header">Radio</h2>
-            {state.radio_stations.length > 0 && (
+            {state.radioStations.length > 0 && (
                 <div>
-                    {state.radio_stations.map((station, index) => {
+                    {state.radioStations.map((station, index) => {
                         return (
                             <TrackRow
                                 mode="radio"
@@ -66,7 +66,7 @@ const Radio = ({ audioRef }) => {
                     })}
                 </div>
             )}
-            {state.radio_stations.length === 0 && (
+            {state.radioStations.length === 0 && (
                 <div className="alert alert-secondary mt-2" role="alert">
                     <InfoIcon size="14" /> No radio stations available
                 </div>

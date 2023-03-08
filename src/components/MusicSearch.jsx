@@ -31,7 +31,7 @@ const MusicSearch = ({ searchRef }) => {
     const handleSubmit = () => {
         // Make some request to api
         setSearching(true);
-        const term = searchTerm.trim()
+        const term = searchTerm.trim();
         if (term.length > 0) {
             dispatch({ type: 'setStatus', payload: 'search' });
             dispatch({ type: 'setSearchResults', payload: [] });
@@ -50,7 +50,7 @@ const MusicSearch = ({ searchRef }) => {
                     setSearching(false);
                 });
         } else {
-            setSearching(false)
+            setSearching(false);
         }
     };
 
