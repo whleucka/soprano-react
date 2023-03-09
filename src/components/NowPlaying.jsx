@@ -59,6 +59,16 @@ const NowPlaying = () => {
     const shuffleStyle = state.shuffle ? 'active' : 'inactive';
     const repeatStyle = state.repeat ? 'active' : 'inactive';
 
+    const buttonAnimate = (e) => {
+        return new Promise((resolve) => {
+            console.log(e.currentTarget.classList);
+            e.currentTarget.classList.add('active');
+            setTimeout(() => {
+                resolve()
+            }, 250);
+        })
+    }
+
     return (
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
@@ -96,7 +106,12 @@ const NowPlaying = () => {
                     <button
                         id="now-playing-prev"
                         onClick={(e) => {
-                            document.querySelector('#skip-backward').click();
+                            var target = e.currentTarget;
+                            return buttonAnimate(e)
+                                .then(_ => {
+                                    target.classList.remove('active');
+                                    document.querySelector('#skip-backward').click();
+                                });
                         }}
                         className={'btn btn-dark' + disabledNextPrev}
                     >
@@ -114,7 +129,12 @@ const NowPlaying = () => {
                     </button>
                     <button
                         onClick={(e) => {
-                            document.querySelector('#skip-forward').click();
+                            var target = e.currentTarget;
+                            return buttonAnimate(e)
+                                .then(_ => {
+                                    target.classList.remove('active');
+                                    document.querySelector('#skip-forward').click();
+                                });
                         }}
                         id="now-playing-next"
                         className={'btn btn-dark' + disabledNextPrev}

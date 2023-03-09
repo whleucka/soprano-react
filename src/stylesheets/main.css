@@ -225,6 +225,7 @@ label:focus,
 .btn:active,
 .btn.active {
     outline: 0px !important;
+    appearance: none;
     -webkit-appearance: none;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
@@ -401,13 +402,9 @@ label:focus,
     color: #ccc;
     opacity: 0.7;
 }
-#player #left-cover {
-}
 #player #left-track-title {
     max-width: 300px;
     display: none;
-}
-#player #center-controls {
 }
 #player #right-volume {
     display: none;
@@ -427,7 +424,6 @@ label:focus,
 #player-controls .btn {
     width: 50px;
 }
-
 #player-controls #shuffle.active,
 #player-controls #repeat.active {
     color: limegreen;
@@ -445,7 +441,12 @@ label:focus,
 #player-controls button.disabled {
     opacity: 0.2;
 }
-#player-controls button:hover {
+
+#player-controls #skip-forward.active,
+#player-controls #skip-backwards.active,
+#now-playing #player-controls #now-playing-next.active,
+#now-playing #player-controls #now-playing-prev.active {
+    color: limegreen;
     opacity: 1;
 }
 
@@ -505,10 +506,6 @@ label:focus,
 
 #player-progressbar {
     background-color: limegreen;
-}
-
-#player-progressbar.active {
-    /*animation: colorChange 30s alternate infinite;*/
 }
 
 #volume-progress .progress-bar {

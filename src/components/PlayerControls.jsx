@@ -88,6 +88,7 @@ const PlayerControls = ({ audioRef }) => {
     ]);
 
     const next = useCallback(() => {
+
         if (state.playlist.length < 2) {
             return;
         }
@@ -249,6 +250,16 @@ const PlayerControls = ({ audioRef }) => {
     const shuffleStyle = state.shuffle ? 'active' : 'inactive';
     const repeatStyle = state.repeat ? 'active' : 'inactive';
 
+    const buttonAnimate = (e) => {
+        return new Promise((resolve) => {
+            console.log(e.currentTarget.classList);
+            e.currentTarget.classList.add('active');
+            setTimeout(() => {
+                resolve()
+            }, 250);
+        })
+    }
+
     return (
         <div
             id="player-controls"
@@ -264,7 +275,15 @@ const PlayerControls = ({ audioRef }) => {
             <button
                 id="skip-backwards"
                 className={'btn btn-dark' + disabledNextPrev}
-                onClick={previous}
+                onClick={(e) => {
+                    e.currentTarget.blur();
+                    var target = e.currentTarget;
+                    return buttonAnimate(e)
+                        .then(_ => {
+                            target.classList.remove('active');
+                            previous()
+                        });
+                }}
             >
                 <SkipBack />
             </button>
@@ -279,7 +298,15 @@ const PlayerControls = ({ audioRef }) => {
             <button
                 id="skip-forward"
                 className={'btn btn-dark' + disabledNextPrev}
-                onClick={next}
+                onClick={(e) => {
+                    e.currentTarget.blur();
+                    var target = e.currentTarget;
+                    return buttonAnimate(e)
+                        .then(_ => {
+                            target.classList.remove('active');
+                            next()
+                        });
+                }}
             >
                 <SkipForward />
             </button>
