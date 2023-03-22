@@ -88,7 +88,6 @@ const PlayerControls = ({ audioRef }) => {
     ]);
 
     const next = useCallback(() => {
-
         if (state.playlist.length < 2) {
             return;
         }
@@ -255,10 +254,10 @@ const PlayerControls = ({ audioRef }) => {
             console.log(e.currentTarget.classList);
             e.currentTarget.classList.add('active');
             setTimeout(() => {
-                resolve()
+                resolve();
             }, 250);
-        })
-    }
+        });
+    };
 
     return (
         <div
@@ -278,11 +277,10 @@ const PlayerControls = ({ audioRef }) => {
                 onClick={(e) => {
                     e.currentTarget.blur();
                     var target = e.currentTarget;
-                    return buttonAnimate(e)
-                        .then(_ => {
-                            target.classList.remove('active');
-                            previous()
-                        });
+                    return buttonAnimate(e).then((_) => {
+                        target.classList.remove('active');
+                        previous();
+                    });
                 }}
             >
                 <SkipBack />
@@ -301,11 +299,10 @@ const PlayerControls = ({ audioRef }) => {
                 onClick={(e) => {
                     e.currentTarget.blur();
                     var target = e.currentTarget;
-                    return buttonAnimate(e)
-                        .then(_ => {
-                            target.classList.remove('active');
-                            next()
-                        });
+                    return buttonAnimate(e).then((_) => {
+                        target.classList.remove('active');
+                        next();
+                    });
                 }}
             >
                 <SkipForward />

@@ -47,7 +47,7 @@ body,
     background: #222222;
     border-radius: 0px;
     -webkit-box-shadow: inset 0px 0px 0px 0px #f0f0f0;
-            box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
 
 /**
@@ -228,32 +228,32 @@ label:focus,
     appearance: none;
     -webkit-appearance: none;
     -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
 }
 .truncate {
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 @-webkit-keyframes colorChange {
     from {
         -webkit-filter: hue-rotate(0deg);
-                filter: hue-rotate(0deg);
+        filter: hue-rotate(0deg);
     }
     to {
         -webkit-filter: hue-rotate(360deg);
-                filter: hue-rotate(360deg);
+        filter: hue-rotate(360deg);
     }
 }
 @keyframes colorChange {
     from {
         -webkit-filter: hue-rotate(0deg);
-                filter: hue-rotate(0deg);
+        filter: hue-rotate(0deg);
     }
     to {
         -webkit-filter: hue-rotate(360deg);
-                filter: hue-rotate(360deg);
+        filter: hue-rotate(360deg);
     }
 }
 
@@ -302,13 +302,13 @@ label:focus,
 #now-playing #now-playing-next > svg,
 #now-playing #now-playing-prev > svg {
     -webkit-transform: scale(1.3);
-        -ms-transform: scale(1.3);
-            transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
 }
 #now-playing #now-playing-play > svg {
     -webkit-transform: scale(1.8);
-        -ms-transform: scale(1.8);
-            transform: scale(1.8);
+    -ms-transform: scale(1.8);
+    transform: scale(1.8);
 }
 
 /**
@@ -361,7 +361,7 @@ label:focus,
 #now-playing-play.active {
     color: limegreen;
     -webkit-animation: colorChange 30s alternate infinite;
-            animation: colorChange 30s alternate infinite;
+    animation: colorChange 30s alternate infinite;
     opacity: 1;
 }
 
@@ -431,8 +431,8 @@ label:focus,
 }
 #play-pause-btn {
     -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-            transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
 }
 #player-controls #shuffle.inactive,
 #player-controls #repeat.inactive {

@@ -12,7 +12,7 @@ const SignIn = () => {
     const [passwordError, setPasswordError] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
-    const [, setUser] = useLocalStorage("uuid", "");
+    const [, setUser] = useLocalStorage('uuid', '');
 
     const handleAuthenticate = () => {
         setShowAlert(false);
@@ -26,20 +26,20 @@ const SignIn = () => {
             return;
         }
         API.signIn(email, password)
-            .then(user => {
+            .then((user) => {
                 if (user.uuid) {
                     setShowSuccess(true);
-                    setPassword("");
-                    setEmail("");
+                    setPassword('');
+                    setEmail('');
                     dispatch({ type: 'setUser', payload: user.uuid });
                     setUser(user.uuid);
                 } else {
                     setShowAlert(true);
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 setShowAlert(true);
-                console.log(err)
+                console.log(err);
             });
     };
 

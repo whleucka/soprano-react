@@ -33,7 +33,8 @@ const NowPlaying = () => {
             document.querySelector('div#progress-cont').style.position =
                 'relative';
             document.querySelector('.progress').style.height = '8px';
-            document.getElementById('backdrop').style.height = 'calc(100% - 98px)';
+            document.getElementById('backdrop').style.height =
+                'calc(100% - 98px)';
             if (window.innerWidth > 575) {
                 document.getElementById('sidebar').style.display = 'block';
             }
@@ -64,10 +65,10 @@ const NowPlaying = () => {
             console.log(e.currentTarget.classList);
             e.currentTarget.classList.add('active');
             setTimeout(() => {
-                resolve()
+                resolve();
             }, 250);
-        })
-    }
+        });
+    };
 
     return (
         <section id="now-playing" className="h-100 w-100">
@@ -107,11 +108,12 @@ const NowPlaying = () => {
                         id="now-playing-prev"
                         onClick={(e) => {
                             var target = e.currentTarget;
-                            return buttonAnimate(e)
-                                .then(_ => {
-                                    target.classList.remove('active');
-                                    document.querySelector('#skip-backward').click();
-                                });
+                            return buttonAnimate(e).then((_) => {
+                                target.classList.remove('active');
+                                document
+                                    .querySelector('#skip-backward')
+                                    .click();
+                            });
                         }}
                         className={'btn btn-dark' + disabledNextPrev}
                     >
@@ -130,11 +132,10 @@ const NowPlaying = () => {
                     <button
                         onClick={(e) => {
                             var target = e.currentTarget;
-                            return buttonAnimate(e)
-                                .then(_ => {
-                                    target.classList.remove('active');
-                                    document.querySelector('#skip-forward').click();
-                                });
+                            return buttonAnimate(e).then((_) => {
+                                target.classList.remove('active');
+                                document.querySelector('#skip-forward').click();
+                            });
                         }}
                         id="now-playing-next"
                         className={'btn btn-dark' + disabledNextPrev}

@@ -48,16 +48,16 @@ const Soprano = () => {
     const [state, dispatch] = useReducer(SopranoReducer, initialState);
     const audioRef = useRef(null);
     const backdropRef = useRef(null);
-    const [user] = useLocalStorage("uuid", "");
+    const [user] = useLocalStorage('uuid', '');
 
     useEffect(() => {
         // Load user, if possible
         if (user) {
             API.loadUser(user)
-                .then(res => {
+                .then((res) => {
                     dispatch({ type: 'setUser', payload: res.uuid });
                 })
-                .catch(err => console.log(err))
+                .catch((err) => console.log(err));
         }
 
         // Load radio stations

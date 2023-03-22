@@ -5,7 +5,7 @@ import { SopranoContext } from './Soprano';
 
 const Home = () => {
     const { state } = useContext(SopranoContext);
-    const greeting = "Hello";
+    const greeting = 'Hello';
     return (
         <>
             <h2 className="header">{greeting}</h2>
