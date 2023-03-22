@@ -14,6 +14,7 @@ import Player from './Player';
 import Backdrop from './Backdrop';
 import { BarLoader } from 'react-spinners';
 import API from './API';
+import { useLocalStorage } from './useLocalStorage';
 
 const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
@@ -47,8 +48,18 @@ const Soprano = () => {
     const [state, dispatch] = useReducer(SopranoReducer, initialState);
     const audioRef = useRef(null);
     const backdropRef = useRef(null);
+    const [user] = useLocalStorage("uuid", "");
 
     useEffect(() => {
+        // Load user, if possible
+        if (user) {
+            API.loadUser(user)
+                .then(res => {
+                    dispatch({ type: 'setUser', payload: res.uuid });
+                })
+                .catch(err => console.log(err))
+        }
+
         // Load radio stations
         API.radioStations()
             .then((res) => {
@@ -80,7 +91,7 @@ const Soprano = () => {
                 }
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [user]);
 
     const ContextValue = useMemo(() => {
         return { state, dispatch };

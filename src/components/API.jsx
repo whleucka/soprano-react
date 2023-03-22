@@ -1,8 +1,11 @@
 const postData = async (endpoint = '', data = {}) => {
     const url = new URL(process.env.REACT_APP_API_URL + endpoint);
     var formdata = new FormData();
-formdata.append("email", data.email);
-formdata.append("password", data.password);
+    if (data) {
+        for (const property in data) {
+            formdata.append(property, data[property]);
+        }
+    }
     const response = await fetch(url, {
         method: 'POST',
         body: formdata,
@@ -24,22 +27,42 @@ const API = {
     signIn: async (email, password) => {
         const response = await postData('/sign-in', { email, password });
         if (response.success) return response.data;
-        else return [];
+        else {
+            console.log(response);
+        }
+        return [];
+    },
+    loadUser: async (uuid) => {
+        const response = await postData('/customer/load', { uuid });
+        if (response.success) return response.data;
+        else {
+            console.log(response);
+        }
+        return [];
     },
     musicSearch: async (searchTerm) => {
         const response = await getData('/music/search', { term: searchTerm });
         if (response.success) return response.data;
-        else return [];
+        else {
+            console.log(response);
+        }
+        return [];
     },
     radioStations: async () => {
         const response = await getData('/radio/stations');
         if (response.success) return response.data;
-        else return [];
+        else {
+            console.log(response);
+        }
+        return [];
     },
     parseRadio: async (url) => {
         if (url.length > 0) {
             const response = await getData('/radio/parse', { url });
             if (response.success) return response.data;
+            else {
+                console.log(response);
+            }
         }
         return [];
     },

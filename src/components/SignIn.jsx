@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Info as InfoIcon } from 'react-feather';
 import API from './API';
 import { SopranoContext } from './Soprano';
+import { useLocalStorage } from './useLocalStorage';
 
 const SignIn = () => {
     const { dispatch } = useContext(SopranoContext);
@@ -11,6 +12,7 @@ const SignIn = () => {
     const [passwordError, setPasswordError] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [, setUser] = useLocalStorage("uuid", "");
 
     const handleAuthenticate = () => {
         setShowAlert(false);
@@ -29,7 +31,8 @@ const SignIn = () => {
                     setShowSuccess(true);
                     setPassword("");
                     setEmail("");
-                    dispatch({ type: 'setUser', payload: user.uuid })
+                    dispatch({ type: 'setUser', payload: user.uuid });
+                    setUser(user.uuid);
                 } else {
                     setShowAlert(true);
                 }
