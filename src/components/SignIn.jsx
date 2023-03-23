@@ -59,7 +59,7 @@ const SignIn = () => {
             )}
             {showSuccess && (
                 <div className="alert alert-success my-3" role="alert">
-                    Success! You are now logged in!
+                    Success! You are now signed in!
                 </div>
             )}
             <input

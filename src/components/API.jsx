@@ -40,8 +40,8 @@ const API = {
         }
         return [];
     },
-    musicSearch: async (searchTerm) => {
-        const response = await getData('/music/search', { term: searchTerm });
+    musicSearch: async (term, uuid = null) => {
+        const response = await postData('/music/search', { term, uuid });
         if (response.success) return response.data;
         else {
             console.log(response);
@@ -85,7 +85,15 @@ const API = {
             }
         });
         return response.json();
-    }
+    },
+    likeTrack: async (md5, uuid) => {
+        const response = await postData(`/like/${md5}`, { uuid });
+        if (response.success) return response.data;
+        else {
+            console.log(response);
+        }
+        return [];
+    },
 };
 
 export default API;

@@ -35,7 +35,7 @@ const MusicSearch = ({ searchRef }) => {
         if (term.length > 0) {
             dispatch({ type: 'setStatus', payload: 'search' });
             dispatch({ type: 'setSearchResults', payload: [] });
-            API.musicSearch(term)
+            API.musicSearch(term, state.user)
                 .then((tracks) => {
                     if (tracks.length > 0) {
                         dispatch({ type: 'setSearchResults', payload: tracks });

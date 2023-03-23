@@ -348,7 +348,6 @@ label:focus,
     font-size: 0.9rem;
     background: none;
     border: 0;
-    margin-right: 5px;
 }
 
 .track-row .play-button svg {
@@ -422,7 +421,7 @@ label:focus,
     color: #fbfbfb;
 }
 #player-controls .btn {
-    width: 50px;
+    width: 45px;
 }
 #player-controls #shuffle.active,
 #player-controls #repeat.active {

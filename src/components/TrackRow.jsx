@@ -1,14 +1,15 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Play as PlayIcon } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import CoverSize from './CoverSize';
 import AlbumCover from './AlbumCover';
 import TrackTitle from './TrackTitle';
+import LikeButton from './LikeButton';
 
 const TrackRow = ({ track, mode, playlistIndex = null }) => {
     const { state, dispatch } = useContext(SopranoContext);
     const { artist, title, playtime_string } = track;
-    const handleClick = () => {
+    const handleSetTrack = () => {
         dispatch({ type: 'setMode', payload: mode });
         dispatch({ type: 'setTrack', payload: track });
         if (playlistIndex)
@@ -28,12 +29,9 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
             className="track-row d-flex align-items-center"
         >
             <div>
-                <button
-                    onClick={handleClick}
-                    className={buttonClass + ' play-button btn btn-dark'}
-                >
-                    <PlayIcon height="18" strokeWidth="2" />
-                </button>
+                { state.user && (mode === "search" || mode === "playlist") &&
+                    <LikeButton track={track} />
+                }
             </div>
             <div>
                 {(mode === 'radio' || mode === 'podcast') && (
@@ -43,7 +41,9 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                     <CoverSize md5={track.md5} size={[40, 40]} />
                 )}
             </div>
-            <div className="flex-grow-1" style={{ width: '50%' }}>
+            <div
+                onClick={handleSetTrack}
+                className="flex-grow-1" style={{ width: '50%' }}>
                 <TrackTitle title={title} artist={artist} />
             </div>
             <div id="playtime">{playtime_string}</div>
