@@ -9,7 +9,6 @@ import {
 } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import useMediaSession from './MediaSession';
-import LikeButton from './LikeButton';
 
 const PlayerControls = ({ audioRef }) => {
     const { dispatch, state } = useContext(SopranoContext);
@@ -265,9 +264,6 @@ const PlayerControls = ({ audioRef }) => {
             id="player-controls"
             className="d-flex align-items-center justify-content-center h-100 w-100"
         >
-            { state.user &&
-                <LikeButton />
-            }
             <button
                 id="shuffle"
                 className={'btn btn-dark ' + shuffleStyle}

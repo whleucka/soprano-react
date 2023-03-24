@@ -8,7 +8,6 @@ const SearchActions = () => {
     const navigate = useNavigate();
     const handleClick = () => {
         dispatch({ type: 'setPlaylist', payload: state.searchResults });
-        dispatch({ type: 'setMode', payload: 'playlist' });
         dispatch({ type: 'setPlaylistIndex', payload: 0 });
         dispatch({ type: 'setSearchResults', payload: [] });
         navigate('/playlist');

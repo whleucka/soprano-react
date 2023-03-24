@@ -1,5 +1,4 @@
 import { useContext, useState } from 'react';
-import { Play as PlayIcon } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import CoverSize from './CoverSize';
 import AlbumCover from './AlbumCover';
@@ -29,11 +28,11 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
             className="track-row d-flex align-items-center"
         >
             <div>
-                { state.user && (mode === "search" || mode === "playlist") &&
+                {state.user && (mode === 'search' || mode === 'playlist') && (
                     <LikeButton track={track} />
-                }
+                )}
             </div>
-            <div>
+            <div onClick={handleSetTrack}>
                 {(mode === 'radio' || mode === 'podcast') && (
                     <AlbumCover cover={track.cover} />
                 )}
@@ -41,9 +40,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                     <CoverSize md5={track.md5} size={[40, 40]} />
                 )}
             </div>
-            <div
-                onClick={handleSetTrack}
-                className="flex-grow-1" style={{ width: '50%' }}>
+            <div className="flex-grow-1" style={{ width: '50%' }}>
                 <TrackTitle title={title} artist={artist} />
             </div>
             <div id="playtime">{playtime_string}</div>

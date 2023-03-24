@@ -1,9 +1,15 @@
 import SearchResults from './SearchResults';
 import MusicSearch from './MusicSearch';
-import { useRef } from 'react';
+import { SopranoContext } from './Soprano';
+import { useRef, useEffect, useContext } from 'react';
 
 const Search = () => {
+    const { dispatch } = useContext(SopranoContext);
     const searchRef = useRef(null);
+
+    useEffect(() => {
+        dispatch({ type: 'setMode', payload: 'search' });
+    }, []);
 
     return (
         <>

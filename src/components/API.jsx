@@ -93,7 +93,7 @@ const API = {
             console.log(response);
         }
         return [];
-    },
+    }
 };
 
 export default API;

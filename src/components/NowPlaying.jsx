@@ -11,6 +11,7 @@ import { SopranoContext } from './Soprano';
 import { Link } from 'react-router-dom';
 import CoverSize from './CoverSize';
 import AlbumCover from './AlbumCover';
+import LikeButton from './LikeButton';
 
 const NowPlaying = () => {
     const { dispatch, state } = useContext(SopranoContext);

@@ -286,7 +286,7 @@ label:focus,
     bottom: 50px;
 }
 #now-playing #player-controls .btn {
-    width: 70px;
+    width: 60px;
 }
 
 #now-playing #track-info #title {
@@ -299,16 +299,10 @@ label:focus,
     font-size: 0.9rem;
     opacity: 0.6;
 }
-#now-playing #now-playing-next > svg,
-#now-playing #now-playing-prev > svg {
+#now-playing svg {
     -webkit-transform: scale(1.3);
     -ms-transform: scale(1.3);
     transform: scale(1.3);
-}
-#now-playing #now-playing-play > svg {
-    -webkit-transform: scale(1.8);
-    -ms-transform: scale(1.8);
-    transform: scale(1.8);
 }
 
 /**
@@ -429,9 +423,6 @@ label:focus,
     opacity: 1;
 }
 #play-pause-btn {
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
 }
 #player-controls #shuffle.inactive,
 #player-controls #repeat.inactive {
