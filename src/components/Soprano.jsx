@@ -97,7 +97,7 @@ const Soprano = () => {
         return { state, dispatch };
     }, [state, dispatch]);
 
-    const trackUrl = state.status === 'idle' ? '' : state.track.src;
+    const trackUrl = !state.mode ? '' : state.track.src;
 
     return (
         <SopranoContext.Provider value={ContextValue}>
