@@ -8,7 +8,7 @@ const PlayerVolume = ({ audioRef }) => {
     const handleClick = (e) => {
         const self = e.currentTarget;
         const width = volumeProgressRef.current.offsetWidth;
-        const x = e.pageX - self.offsetLeft;
+        const x = e.pageX - self.offsetLeft - 88;
         const pct = width > 0 ? (x / width) * 100 : 0;
         setVolume(Math.round(pct));
     };
@@ -31,7 +31,7 @@ const PlayerVolume = ({ audioRef }) => {
                 className="progress w-100"
             >
                 <div
-                    className="progress-bar"
+                    className="progress-bar gradient-rasta"
                     role="progressbar"
                     style={{ width: volume + '%' }}
                 ></div>

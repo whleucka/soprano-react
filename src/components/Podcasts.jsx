@@ -1,14 +1,8 @@
 import PodcastSearch from './PodcastSearch';
-import { useRef, useEffect, useContext } from 'react';
-import { SopranoContext } from './Soprano';
+import { useRef } from 'react';
 
 const Podcasts = () => {
-    const { dispatch } = useContext(SopranoContext);
     const searchRef = useRef(null);
-
-    useEffect(() => {
-        dispatch({ type: 'setMode', payload: 'podcast' });
-    }, []);
 
     return (
         <>

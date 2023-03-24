@@ -30,12 +30,15 @@ export function SopranoReducer(state, action) {
         case 'updateTrackLike':
             const target =
                 action.mode === 'search' ? state.searchResults : state.playlist;
-            const updatedLike = target.map((track) => {
+            let updatedLike = target.map((track) => {
                 if (track === action.payload) {
                     track.liked = action.liked ? 1 : 0;
                 }
                 return track;
             });
+            //if (action.mode === "playlist") {
+            //    updatedLike = state.playlist.filter((track) => track.liked === "1")
+            //}
             return { ...state, target: updatedLike };
         default:
             return state;

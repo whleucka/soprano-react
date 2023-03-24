@@ -25,7 +25,7 @@ const Player = ({ audioRef }) => {
                         {state.mode !== 'radio' && (
                             <Link to="/now-playing">
                                 {state.mode === 'podcast' && (
-                                    <AlbumCover cover={track.cover} />
+                                    <AlbumCover cover={state.track.cover} />
                                 )}
                                 {state.mode !== 'podcast' && (
                                     <CoverSize

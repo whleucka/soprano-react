@@ -23,7 +23,7 @@ const Radio = ({ audioRef }) => {
                     }
                 }
             })
-            .catch((err) => console.log(err));
+            .catch(console.log);
     };
 
     useEffect(() => {

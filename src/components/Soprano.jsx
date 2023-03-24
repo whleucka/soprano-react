@@ -4,6 +4,7 @@ import React, {
     useEffect,
     useReducer,
     useMemo,
+    useState,
     useRef
 } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -46,6 +47,7 @@ const initialState = {
 
 const Soprano = () => {
     const [state, dispatch] = useReducer(SopranoReducer, initialState);
+    const [ trackUrl, setTrackUrl ] = useState('');
     const audioRef = useRef(null);
     const backdropRef = useRef(null);
     const [user] = useLocalStorage('uuid', '');
@@ -90,14 +92,18 @@ const Soprano = () => {
                     });
                 }
             })
-            .catch((err) => console.log(err));
+            .catch(console.log);
     }, [user]);
+
+    useEffect(() => {
+        if (typeof state.track.src !== 'undefined') {
+            setTrackUrl(state.track.src);
+        }
+    }, [state.track])
 
     const ContextValue = useMemo(() => {
         return { state, dispatch };
     }, [state, dispatch]);
-
-    const trackUrl = !state.mode ? '' : state.track.src;
 
     return (
         <SopranoContext.Provider value={ContextValue}>

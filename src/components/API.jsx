@@ -93,7 +93,23 @@ const API = {
             console.log(response);
         }
         return [];
-    }
+    },
+    getLikeCount: async (uuid) => {
+        const response = await postData(`/liked/count`, { uuid });
+        if (response.success) return response.data;
+        else {
+            console.log(response);
+        }
+        return [];
+    },
+    getLikedPlaylist: async (uuid) => {
+        const response = await postData(`/liked/playlist`, { uuid });
+        if (response.success) return response.data;
+        else {
+            console.log(response);
+        }
+        return [];
+    },
 };
 
 export default API;
