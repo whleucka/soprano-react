@@ -14,7 +14,8 @@ const PlayerVolume = ({ audioRef }) => {
     };
 
     useEffect(() => {
-        const level = volume / 100;
+        var level = Math.max(0, volume / 100);
+        level = Math.min(1, level);
         audioRef.current.volume = level.toFixed(1);
     }, [volume, audioRef]);
 
