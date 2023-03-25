@@ -181,7 +181,7 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player audioRef={audioRef} />
-                <audio ref={audioRef} id="audio" src={trackUrl} autoPlay />
+                <audio ref={audioRef} id="audio" src={trackUrl} />
             </Router>
         </SopranoContext.Provider>
     );

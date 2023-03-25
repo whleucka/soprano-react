@@ -12,6 +12,7 @@ const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
 
     const updateMeta = () => {
+        console.log(state.track.src);
         API.parseRadio(state.track.src)
             .then((res) => {
                 if (res.title && res.artist) {
@@ -36,6 +37,7 @@ const Radio = ({ audioRef }) => {
             if (Hls.isSupported()) {
                 hls = new Hls();
                 hls.attachMedia(audioRef.current);
+                hls.url =
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
                     updateMeta();
                     hls.loadSource(state.track.src);

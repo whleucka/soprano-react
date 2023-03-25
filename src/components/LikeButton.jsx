@@ -24,8 +24,6 @@ const LikeButton = ({ track }) => {
                         dispatch({ type: 'appendToPlaylist', payload: track });
                     }
                     if (
-                        (state.mode === 'playlist' ||
-                            state.mode === 'search') &&
                         !res.like
                     ) {
                         dispatch({
