@@ -230,6 +230,7 @@ const PlayerControls = ({ audioRef }) => {
             const track = state.playlist[state.playlistIndex];
             if (track) {
                 dispatch({ type: 'setTrack', payload: track });
+                dispatch({ type: 'setMode', payload: 'playlist' });
                 const playlistRow = document.getElementById(
                     'playlist-row-' + state.playlistIndex
                 );

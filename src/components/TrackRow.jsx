@@ -32,7 +32,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                     <LikeButton track={track} />
                 )}
             </div>
-            <div role="button" onClick={handleSetTrack}>
+            <div title={track.album}>
                 {(mode === 'radio' || mode === 'podcast') && (
                     <AlbumCover cover={track.cover} />
                 )}
@@ -40,7 +40,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                     <CoverSize md5={track.md5} size={[40, 40]} />
                 )}
             </div>
-            <div className="flex-grow-1" style={{ width: '50%' }}>
+            <div role="button" onClick={handleSetTrack} className="flex-grow-1" style={{ width: '50%' }}>
                 <TrackTitle title={title} artist={artist} />
             </div>
             <div id="playtime">{playtime_string}</div>
