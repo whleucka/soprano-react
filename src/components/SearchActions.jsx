@@ -8,9 +8,7 @@ const SearchActions = () => {
     const navigate = useNavigate();
     const setPlaylist = () => {
         dispatch({ type: 'setPlaylist', payload: state.searchResults });
-        if (state.playlistIndex === null) {
-            dispatch({ type: 'setPlaylistIndex', payload: 0 });
-        }
+        dispatch({ type: 'setPlaylistIndex', payload: 0 });
         dispatch({ type: 'setPlaylistId', payload: null });
         navigate('/playlist');
     };
