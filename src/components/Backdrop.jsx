@@ -4,13 +4,17 @@ import { FastAverageColor } from 'fast-average-color';
 
 const Backdrop = ({ backdropRef }) => {
     const { state } = useContext(SopranoContext);
-    const backdropImage =
-        Object.keys(state.track).length > 0 && state.track.cover
-            ? process.env.REACT_APP_SERVER_URL +
+    let backdropImage = '/img/no-album';
+    if (state.mode === 'search' || state.mode === 'playlist') {
+        if (Object.keys(state.track).length > 0 && state.track.cover) {
+            backdropImage = process.env.REACT_APP_SERVER_URL +
               '/api/v1/cover/' +
               state.track.md5 +
-              '/500/500'
-            : '/img/no-album.png';
+              '/500/500';
+        }
+    } else if (state.mode === 'radio' || state.mode === 'podcast') {
+        backdropImage = state.track.cover;
+    }
 
     useEffect(() => {
         if (state.track) {

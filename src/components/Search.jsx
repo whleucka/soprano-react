@@ -7,10 +7,6 @@ const Search = () => {
     const { dispatch } = useContext(SopranoContext);
     const searchRef = useRef(null);
 
-    useEffect(() => {
-        dispatch({ type: 'setMode', payload: 'search' });
-    }, []);
-
     return (
         <>
             <h2 className="header">Search</h2>

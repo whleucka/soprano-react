@@ -5,7 +5,6 @@ import { SopranoContext } from './Soprano';
 const Playlist = () => {
     const { state, dispatch } = useContext(SopranoContext);
     useEffect(() => {
-        dispatch({ type: 'setMode', payload: 'playlist' });
         if (state.playlist.length > 0) {
             const track = state.playlist[state.playlistIndex];
             if (track) {
