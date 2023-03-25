@@ -89,7 +89,7 @@ const PlayerProgress = ({ audioRef }) => {
     //
 
     const handleClick = (e) => {
-        if (!state.track || state.mode === 'radio' || !audioRef.current.src)
+        if (Object.keys(state.track).length == 0 || state.mode === 'radio' || !audioRef.current.src)
             return;
         setBuffer(0);
         const self = e.currentTarget;

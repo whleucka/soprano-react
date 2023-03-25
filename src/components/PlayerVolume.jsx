@@ -9,7 +9,7 @@ const PlayerVolume = ({ audioRef }) => {
     const handleClick = (e) => {
         const self = e.currentTarget;
         const width = volumeProgressRef.current.offsetWidth;
-        let x = e.pageX - self.offsetLeft;
+        let x = e.pageX - self.offsetLeft - 75;
         let pct = width > 0 ? (x / width) * 100 : 0;
         pct = Math.min(100, pct);
         pct = Math.max(0, pct);
