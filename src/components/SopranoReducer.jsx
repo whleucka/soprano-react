@@ -12,8 +12,16 @@ export function SopranoReducer(state, action) {
             return { ...state, track: action.payload };
         case 'setStatus':
             return { ...state, status: action.payload };
+        case 'setPlaylists':
+            return { ...state, playlists: action.payload };
         case 'setPlaylist':
             return { ...state, playlist: action.payload };
+        case 'mergePlaylist':
+            const mergedPlaylist = [...state.playlist, ...action.payload];
+            return { ...state, playlist: mergedPlaylist };
+        case 'appendPlaylist':
+            const appendedPlaylist = [...state.playlist, action.payload];
+            return { ...state, playlist: appendedPlaylist };
         case 'setPlaylistIndex':
             return { ...state, playlistIndex: action.payload };
         case 'setRadioStations':
@@ -36,10 +44,10 @@ export function SopranoReducer(state, action) {
                 }
                 return track;
             });
-            //if (action.mode === "playlist") {
-            //    updatedLike = state.playlist.filter((track) => track.liked === "1")
-            //}
             return { ...state, target: updatedLike };
+        case 'removeFromPlaylist':
+            const tracks = state.playlist.filter(track => track.id != action.payload)
+            return { ...state, playlist: tracks }
         default:
             return state;
     }

@@ -4,13 +4,16 @@ import { Volume } from 'react-feather';
 const PlayerVolume = ({ audioRef }) => {
     const [volume, setVolume] = useState(100);
     const volumeProgressRef = useRef(null);
+    const progressBar = useRef(null);
 
     const handleClick = (e) => {
         const self = e.currentTarget;
         const width = volumeProgressRef.current.offsetWidth;
-        const x = e.pageX - self.offsetLeft - 88;
-        const pct = width > 0 ? (x / width) * 100 : 0;
-        setVolume(Math.round(pct));
+        let x = e.pageX - self.offsetLeft;
+        let pct = width > 0 ? (x / width) * 100 : 0;
+        pct = Math.min(100, pct);
+        pct = Math.max(0, pct);
+        setVolume(pct);
     };
 
     useEffect(() => {
@@ -26,14 +29,15 @@ const PlayerVolume = ({ audioRef }) => {
         >
             <Volume />
             <div
+                onClick={handleClick}
                 id="volume-progress"
                 ref={volumeProgressRef}
-                onClick={handleClick}
                 className="progress w-100"
             >
                 <div
                     className="progress-bar gradient-rasta"
                     role="progressbar"
+                    ref={progressBar}
                     style={{ width: volume + '%' }}
                 ></div>
             </div>

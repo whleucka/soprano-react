@@ -95,7 +95,9 @@ const PlayerProgress = ({ audioRef }) => {
         const self = e.currentTarget;
         const width = playerProgressRef.current.getBoundingClientRect().width;
         const x = e.pageX - self.offsetLeft;
-        const pct = width > 0 ? x / width : 0;
+        let pct = width > 0 ? x / width : 0;
+        pct = Math.min(100, pct);
+        pct = Math.max(0, pct);
         const seconds = state.track.playtime_seconds;
         const new_seconds = pct.toFixed(2) * seconds;
         audioRef.current.currentTime = new_seconds;
@@ -126,7 +128,7 @@ const PlayerProgress = ({ audioRef }) => {
                     });
             }
         }
-    }, [state.track, setTimer, state.mode]);
+    }, [state.track, setTimer]);
 
     useEffect(() => {
         return () => {

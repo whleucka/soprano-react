@@ -15,15 +15,19 @@ const LikeButton = ({ track }) => {
                     payload: track,
                     liked: res.like
                 });
+                if (state.mode === 'playlist' && !res.like) {
+                    dispatch({ type: 'removeFromPlaylist', payload: track.id })
+                }
+
             })
-            .catch((err) => console.log(err));
+            .catch(console.log);
     };
 
     useEffect(() => {
         if (track) {
             setLike(track.liked);
         }
-    }, []);
+    }, [track]);
 
     const LikeIcon = like ? (
         <HeartIcon stroke={'#ff0000'} fill={'#ff0000'} />
