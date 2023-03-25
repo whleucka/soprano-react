@@ -15,8 +15,13 @@ const LikeButton = ({ track }) => {
                     payload: track,
                     liked: res.like
                 });
-                if (state.mode === 'playlist' && !res.like) {
-                    dispatch({ type: 'removeFromPlaylist', payload: track.id })
+                if (state.playlistId == 'like') {
+                    if ((state.mode === 'playlist' || state.mode === 'search') && res.like) {
+                        dispatch({ type: 'appendToPlaylist', payload: track })
+                    }
+                    if ((state.mode === 'playlist' || state.mode === 'search') && !res.like) {
+                        dispatch({ type: 'removeFromPlaylist', payload: track.id })
+                    }
                 }
 
             })
@@ -30,7 +35,7 @@ const LikeButton = ({ track }) => {
     }, [track]);
 
     const LikeIcon = like ? (
-        <HeartIcon stroke={'#ff0000'} fill={'#ff0000'} />
+        <HeartIcon stroke={'#ff69b4'} fill={'#ff69b4'} />
     ) : (
         <HeartIcon stroke={'#444'} />
     );

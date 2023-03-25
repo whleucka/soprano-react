@@ -4,6 +4,7 @@ import Playlists from "./Playlists";
 
 const Library = () => {
     const [content, setContent] = useState('playlists');
+
     const handleOnClickActions = (e) => {
         const target = e.currentTarget.id
         setContent(target);

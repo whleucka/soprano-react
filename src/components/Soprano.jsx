@@ -40,6 +40,7 @@ const initialState = {
     searchResults: [],
     podcastResults: [],
     playlistIndex: null,
+    playlistId: null,
     playlist: [],
     playlists: [],
     radioStations: []

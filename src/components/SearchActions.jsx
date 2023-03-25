@@ -6,19 +6,26 @@ import { SopranoContext } from './Soprano';
 const SearchActions = () => {
     const { state, dispatch } = useContext(SopranoContext);
     const navigate = useNavigate();
-    const handleClick = () => {
-        dispatch({ type: 'setPlaylist', payload: state.searchResults });
-        dispatch({ type: 'setMode', payload: 'playlist' });
+    const mergeResults = () => {
+        dispatch({ type: 'mergePlaylist', payload: state.searchResults });
         dispatch({ type: 'setPlaylistIndex', payload: 0 });
-        dispatch({ type: 'setSearchResults', payload: [] });
-        navigate('/playlist');
+        dispatch({ type: 'setPlaylistId', payload: null });
     };
+
+    const viewPlaylist = () => {
+        navigate('/playlist');
+    }
 
     return (
         <div className="actions" id="search-actions">
-            <button onClick={handleClick} className="btn btn-sm btn-dark">
-                <MusicIcon className="me-1" size="14" /> Add to playlist
+            <button onClick={mergeResults} className="btn btn-sm btn-dark">
+                <MusicIcon className="me-1" size="14" /> Play all
             </button>
+            { state.playlist.length > 0 &&
+                <button onClick={viewPlaylist} className="btn btn-sm btn-dark">
+                    <MusicIcon className="me-1" size="14" /> Playlist
+                </button>
+            }
         </div>
     );
 };

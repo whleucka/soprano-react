@@ -32,7 +32,7 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
                     <LikeButton track={track} />
                 )}
             </div>
-            <div onClick={handleSetTrack}>
+            <div role="button" onClick={handleSetTrack}>
                 {(mode === 'radio' || mode === 'podcast') && (
                     <AlbumCover cover={track.cover} />
                 )}

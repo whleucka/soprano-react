@@ -14,9 +14,9 @@ const Playlists = () => {
     const handleLikedPlaylist = () => {
         API.getLikedPlaylist(state.user)
             .then(res => {
-                dispatch({ type: 'setMode', payload: 'playlist' });
                 dispatch({ type: 'setPlaylist', payload: res });
                 dispatch({ type: 'setPlaylistIndex', payload: 0 });
+                dispatch({ type: 'setPlaylistId', payload: 'like' });
                 navigate('/playlist');
             })
             .catch(console.log)

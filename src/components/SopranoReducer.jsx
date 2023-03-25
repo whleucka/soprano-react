@@ -19,11 +19,13 @@ export function SopranoReducer(state, action) {
         case 'mergePlaylist':
             const mergedPlaylist = [...state.playlist, ...action.payload];
             return { ...state, playlist: mergedPlaylist };
-        case 'appendPlaylist':
+        case 'appendToPlaylist':
             const appendedPlaylist = [...state.playlist, action.payload];
             return { ...state, playlist: appendedPlaylist };
         case 'setPlaylistIndex':
             return { ...state, playlistIndex: action.payload };
+        case 'setPlaylistId':
+            return { ...state, playlistId: action.payload };
         case 'setRadioStations':
             return { ...state, radioStations: action.payload };
         case 'setTrackTitleArtist':
