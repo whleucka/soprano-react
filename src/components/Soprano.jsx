@@ -100,7 +100,7 @@ const Soprano = () => {
         if (typeof state.track.src !== 'undefined') {
             setTrackUrl(state.track.src);
         }
-    }, [state.track]);
+    }, [state.track.src]);
 
     const ContextValue = useMemo(() => {
         return { state, dispatch };
@@ -129,11 +129,6 @@ const Soprano = () => {
                                         exact
                                         path="/sign-in"
                                         element={<SignIn />}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/sign-out"
-                                        element={<SignOut />}
                                     />
                                     <Route exact path="/" element={<Home />} />
                                     <Route
@@ -167,6 +162,11 @@ const Soprano = () => {
                                                 exact
                                                 path="/library"
                                                 element={<Library />}
+                                            />
+                                            <Route
+                                                exact
+                                                path="/sign-out"
+                                                element={<SignOut />}
                                             />
                                         </>
                                     )}

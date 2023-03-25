@@ -13,12 +13,11 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
         dispatch({ type: 'setTrack', payload: track });
         if (playlistIndex !== null)
             dispatch({ type: 'setPlaylistIndex', payload: playlistIndex });
-        dispatch({ type: 'setStatus', payload: 'playing' });
     };
-    const buttonClass =
-        state.status === 'playing' && state.track.md5 === track.md5
-            ? 'active'
-            : 'text-secondary';
+    // const buttonClass =
+    //     state.status === 'playing' && state.track.md5 === track.md5
+    //         ? 'active'
+    //         : 'text-secondary';
     const trackId =
         playlistIndex !== null ? 'playlist-row-' + playlistIndex : '';
 
