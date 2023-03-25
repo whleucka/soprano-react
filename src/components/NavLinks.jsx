@@ -40,7 +40,7 @@ const NavLinks = () => {
             </Link>
             {state.user && (
                 <>
-                    <Link to="/library">
+                    <Link onClick={handleClick} to="/library">
                         <li className="nav-item truncate">
                             <DiscIcon size="18" /> Library
                         </li>
