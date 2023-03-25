@@ -16,14 +16,24 @@ const LikeButton = ({ track }) => {
                     liked: res.like
                 });
                 if (state.playlistId == 'like') {
-                    if ((state.mode === 'playlist' || state.mode === 'search') && res.like) {
-                        dispatch({ type: 'appendToPlaylist', payload: track })
+                    if (
+                        (state.mode === 'playlist' ||
+                            state.mode === 'search') &&
+                        res.like
+                    ) {
+                        dispatch({ type: 'appendToPlaylist', payload: track });
                     }
-                    if ((state.mode === 'playlist' || state.mode === 'search') && !res.like) {
-                        dispatch({ type: 'removeFromPlaylist', payload: track.id })
+                    if (
+                        (state.mode === 'playlist' ||
+                            state.mode === 'search') &&
+                        !res.like
+                    ) {
+                        dispatch({
+                            type: 'removeFromPlaylist',
+                            payload: track.id
+                        });
                     }
                 }
-
             })
             .catch(console.log);
     };

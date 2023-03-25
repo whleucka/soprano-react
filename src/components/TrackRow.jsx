@@ -19,7 +19,8 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
         state.status === 'playing' && state.track.md5 === track.md5
             ? 'active'
             : 'text-secondary';
-    const trackId = playlistIndex !== null ? 'playlist-row-' + playlistIndex : '';
+    const trackId =
+        playlistIndex !== null ? 'playlist-row-' + playlistIndex : '';
 
     return (
         <div

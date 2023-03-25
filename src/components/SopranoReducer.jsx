@@ -48,8 +48,10 @@ export function SopranoReducer(state, action) {
             });
             return { ...state, target: updatedLike };
         case 'removeFromPlaylist':
-            const tracks = state.playlist.filter(track => track.id != action.payload)
-            return { ...state, playlist: tracks }
+            const tracks = state.playlist.filter(
+                (track) => track.id != action.payload
+            );
+            return { ...state, playlist: tracks };
         default:
             return state;
     }

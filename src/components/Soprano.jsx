@@ -48,7 +48,7 @@ const initialState = {
 
 const Soprano = () => {
     const [state, dispatch] = useReducer(SopranoReducer, initialState);
-    const [ trackUrl, setTrackUrl ] = useState('');
+    const [trackUrl, setTrackUrl] = useState('');
     const audioRef = useRef(null);
     const backdropRef = useRef(null);
     const [user] = useLocalStorage('uuid', '');
@@ -60,7 +60,7 @@ const Soprano = () => {
                 .then((res) => {
                     dispatch({ type: 'setUser', payload: res.uuid });
                 })
-                .catch((err) => console.log(err));
+                .catch(console.log);
         }
 
         // Load radio stations
@@ -100,7 +100,7 @@ const Soprano = () => {
         if (typeof state.track.src !== 'undefined') {
             setTrackUrl(state.track.src);
         }
-    }, [state.track])
+    }, [state.track]);
 
     const ContextValue = useMemo(() => {
         return { state, dispatch };

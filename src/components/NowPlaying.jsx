@@ -63,7 +63,6 @@ const NowPlaying = () => {
 
     const buttonAnimate = (e) => {
         return new Promise((resolve) => {
-            console.log(e.currentTarget.classList);
             e.currentTarget.classList.add('active');
             setTimeout(() => {
                 resolve();
