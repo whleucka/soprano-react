@@ -13,7 +13,7 @@ const Playlists = () => {
         API.getLikedPlaylist(state.user)
             .then((res) => {
                 dispatch({ type: 'setPlaylist', payload: res });
-                dispatch({ type: 'setPlaylistIndex', payload: 0 });
+                //dispatch({ type: 'setPlaylistIndex', payload: 0 });
                 dispatch({ type: 'setPlaylistId', payload: 'like' });
                 navigate('/playlist');
             })

@@ -73,7 +73,7 @@ const NowPlaying = () => {
     return (
         <section id="now-playing" className="h-100 w-100">
             <div className="d-flex flex-column justify-content-center align-items-center w-100 h-100">
-                <Link to={link}>
+                <Link to={link} title={"Back to playlist"}>
                     {state.mode === 'podcast' && (
                         <AlbumCover cover={track.cover} />
                     )}
@@ -88,6 +88,9 @@ const NowPlaying = () => {
                 >
                     <div id="title" className="truncate">
                         {state.track.title}
+                    </div>
+                    <div id="album" className="truncate">
+                        {state.track.album}
                     </div>
                     <div id="artist" className="truncate">
                         {state.track.artist}

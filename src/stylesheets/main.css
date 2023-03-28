@@ -300,7 +300,11 @@ label:focus,
     color: #fbfbfb;
 }
 #now-playing #track-info #artist {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+#now-playing #track-info #album {
+    font-size: 0.8rem;
     opacity: 0.6;
 }
 #now-playing svg {
