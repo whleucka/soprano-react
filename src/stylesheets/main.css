@@ -214,8 +214,11 @@ input[type='radio'] {
     opacity: 1 !important;
 }
 textarea:hover,
+select:focus,
+select:hover,
 input:hover,
 textarea:active,
+select:active,
 input:active,
 textarea:focus,
 input:focus,
