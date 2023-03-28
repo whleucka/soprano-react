@@ -126,7 +126,7 @@ const PlayerProgress = ({ audioRef }) => {
                         playerProgressbarRef.current.style.background =
                             color.hex;
                     })
-                    .catch(_ => {
+                    .catch((_) => {
                         playerProgressbarRef.current.style.background =
                             '#696969';
                     });

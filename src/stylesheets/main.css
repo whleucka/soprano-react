@@ -194,7 +194,8 @@ input[type='radio'] {
     height: 100%;
     padding: 20px 6px;
 }
-#view input, #view select {
+#view input,
+#view select {
     color: #bbb;
     border: 0;
     background-color: transparent !important;

@@ -21,7 +21,7 @@ const Player = ({ audioRef }) => {
             <PlayerProgress audioRef={audioRef} />
             <section id="player">
                 <div className="d-flex align-items-center justify-content-center h-100 w-100 ">
-                    <div id="left-cover" title={"View: " + state.track.album}>
+                    <div id="left-cover" title={'View: ' + state.track.album}>
                         {state.mode !== 'radio' && (
                             <Link to="/now-playing">
                                 {state.mode === 'podcast' && (
