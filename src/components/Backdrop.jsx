@@ -24,7 +24,7 @@ const Backdrop = ({ backdropRef }) => {
                 .then((color) => {
                     backdropRef.current.style.backgroundColor = color.hex;
                 })
-                .catch((err) => {});
+                .catch(console.log);
         }
     }, [state.track, backdropRef]);
 

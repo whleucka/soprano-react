@@ -194,7 +194,7 @@ input[type='radio'] {
     height: 100%;
     padding: 20px 6px;
 }
-#view input {
+#view input, #view select {
     color: #bbb;
     border: 0;
     background-color: transparent !important;
@@ -269,6 +269,10 @@ label:focus,
     border: 1px solid #fff;
     padding: 0 8px;
     margin: 0;
+}
+#music-search #type-select {
+    color: #999;
+    max-width: 115px;
 }
 
 /**

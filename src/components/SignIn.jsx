@@ -38,8 +38,8 @@ const SignIn = () => {
                 }
             })
             .catch((err) => {
-                setShowAlert(true);
                 console.log(err);
+                setShowAlert(true);
             });
     };
 

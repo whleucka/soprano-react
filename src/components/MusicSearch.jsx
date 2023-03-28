@@ -8,6 +8,7 @@ import API from './API';
 const MusicSearch = ({ searchRef }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const { state, dispatch } = useContext(SopranoContext);
+    const [type, setType] = useState('title');
     const [noResults, setNoResults] = useState(false);
     const [searching, setSearching] = useState(false);
 
@@ -28,13 +29,17 @@ const MusicSearch = ({ searchRef }) => {
         }
     };
 
+    const handleTypeChange = (e) => {
+        setType(e.currentTarget.value);
+    }
+
     const handleSubmit = () => {
         // Make some request to api
         setSearching(true);
         const term = searchTerm.trim();
         if (term.length > 0) {
             dispatch({ type: 'setSearchResults', payload: [] });
-            API.musicSearch(term, state.user)
+            API.musicSearch(term, type, state.user)
                 .then((tracks) => {
                     if (tracks.length > 0) {
                         dispatch({ type: 'setSearchResults', payload: tracks });
@@ -60,6 +65,13 @@ const MusicSearch = ({ searchRef }) => {
         setSearching(false);
     };
 
+    const types = [
+        {value: 'title', title: 'Title'},
+        {value: 'artist', title: 'Artist'},
+        {value: 'album', title: 'Album'},
+        {value: 'genre', title: 'Genre'},
+    ];
+
     return (
         <div id="music-search-module">
             <div id="music-search" className="input-group input-group-sm w-100">
@@ -72,6 +84,11 @@ const MusicSearch = ({ searchRef }) => {
                     value={searchTerm}
                     className="form-control form-control-sm bg-dark"
                 />
+                <select id="type-select" className="form-select bg-dark" onChange={handleTypeChange}>
+                    { types.length > 0 &&
+                        types.map((type, i) => <option key={i} value={type.value}>{type.title}</option>)
+                    }
+                </select>
                 <button
                     type="submit"
                     onClick={handleSubmit}

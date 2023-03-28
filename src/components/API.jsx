@@ -40,8 +40,8 @@ const API = {
         }
         return [];
     },
-    musicSearch: async (term, uuid = null) => {
-        const response = await postData('/music/search', { term, uuid });
+    musicSearch: async (term, type, uuid = null) => {
+        const response = await postData('/music/search', { term, type, uuid });
         if (response.success) return response.data;
         else {
             console.log(response);

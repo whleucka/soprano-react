@@ -90,7 +90,7 @@ const PlayerProgress = ({ audioRef }) => {
 
     const handleClick = (e) => {
         if (
-            Object.keys(state.track).length == 0 ||
+            Object.keys(state.track).length === 0 ||
             state.mode === 'radio' ||
             !audioRef.current.src
         )
@@ -126,7 +126,7 @@ const PlayerProgress = ({ audioRef }) => {
                         playerProgressbarRef.current.style.background =
                             color.hex;
                     })
-                    .catch((err) => {
+                    .catch(_ => {
                         playerProgressbarRef.current.style.background =
                             '#696969';
                     });
