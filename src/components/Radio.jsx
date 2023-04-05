@@ -12,7 +12,6 @@ const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
 
     const updateMeta = () => {
-        console.log(state.track.src);
         API.parseRadio(state.track.src)
             .then((res) => {
                 if (res.title && res.artist) {
@@ -49,7 +48,7 @@ const Radio = ({ audioRef }) => {
             hls.destroy();
             clearInterval(interval);
         };
-    }, [state.track.src]);
+    }, [state.track, state.mode, state.mode, updateMeta]);
 
     return (
         <>

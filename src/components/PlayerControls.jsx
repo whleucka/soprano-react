@@ -224,7 +224,7 @@ const PlayerControls = ({ audioRef }) => {
                 };
             }
         }
-    }, [state.track, audioRef, dispatch, next, play, updateMeta]);
+    }, [state.track, audioRef, dispatch, next, play, updateMeta, state.mode]);
 
     useEffect(() => {
         if (state.playlist.length > 0) {
