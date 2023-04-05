@@ -97,7 +97,7 @@ const Soprano = () => {
     }, [user]);
 
     useEffect(() => {
-        if (typeof state.track.src !== 'undefined') {
+        if (typeof state.track.src !== 'undefined' && state.mode != 'radio') {
             setTrackUrl(state.track.src);
         }
     }, [state.track.src]);

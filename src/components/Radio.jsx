@@ -12,18 +12,18 @@ const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
 
     const updateMeta = () => {
-        API.parseRadio(state.track.src)
-            .then((res) => {
-                if (res.title && res.artist) {
-                    res.title = res.title.replace('///', '').trim();
-                    res.artist = res.artist.replace('///', '').trim();
-                    if (res.title !== res.artist) {
-                        document.title = `Soprano • ${res.artist} — ${res.title}`;
-                        dispatch({ type: 'setTrackTitleArtist', payload: res });
-                    }
-                }
-            })
-            .catch(console.log);
+        //API.parseRadio(state.track.src)
+        //    .then((res) => {
+        //        if (res.title && res.artist) {
+        //            res.title = res.title.replace('///', '').trim();
+        //            res.artist = res.artist.replace('///', '').trim();
+        //            if (res.title !== res.artist) {
+        //                document.title = `Soprano • ${res.artist} — ${res.title}`;
+        //                dispatch({ type: 'setTrackTitleArtist', payload: res });
+        //            }
+        //        }
+        //    })
+        //    .catch(console.log);
     };
 
     useEffect(() => {
@@ -32,8 +32,8 @@ const Radio = ({ audioRef }) => {
             if (Hls.isSupported()) {
                 hls = new Hls();
                 hls.attachMedia(audioRef.current);
-                hls.loadSource(state.track.src);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
+                    hls.loadSource(state.track.src);
                     updateMeta();
                     interval = setInterval(updateMeta, 20000);
                 });
@@ -44,7 +44,7 @@ const Radio = ({ audioRef }) => {
             hls.destroy();
             clearInterval(interval);
         };
-    }, [state.track, state.mode]);
+    }, [state.track.src]);
 
     return (
         <>
