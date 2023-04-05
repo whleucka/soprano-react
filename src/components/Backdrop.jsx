@@ -4,7 +4,7 @@ import { FastAverageColor } from 'fast-average-color';
 
 const Backdrop = ({ backdropRef }) => {
     const { state } = useContext(SopranoContext);
-    let backdropImage = '/img/no-album';
+    let backdropImage = '/img/no-album.png';
     if (state.mode === 'search' || state.mode === 'playlist') {
         if (Object.keys(state.track).length > 0 && state.track.cover) {
             backdropImage =
@@ -28,13 +28,10 @@ const Backdrop = ({ backdropRef }) => {
         }
     }, [state.track, backdropRef]);
 
-    const imageUrl =
-        state.status === 'idle' ? '/img/no-album.png' : backdropImage;
-
     return (
         <section
             ref={backdropRef}
-            style={{ backgroundImage: `url(${imageUrl})` }}
+            style={{ backgroundImage: `url(${backdropImage})` }}
             id="backdrop"
         >
             &nbsp;

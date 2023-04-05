@@ -200,7 +200,7 @@ const PlayerControls = ({ audioRef }) => {
     });
 
     useEffect(() => {
-        if (Object.keys(state.track).length > 0 && state.mode != 'radio') {
+        if (Object.keys(state.track).length > 0) {
             if (audioRef.current) {
                 audioRef.current.onended = () => {
                     next();

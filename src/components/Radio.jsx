@@ -28,17 +28,13 @@ const Radio = ({ audioRef }) => {
 
     useEffect(() => {
         clearInterval(interval);
-        if (
-            Object.keys(state.track).length > 0 &&
-            state.track.src &&
-            state.mode === 'radio'
-        ) {
+        if (state.track) {
             if (Hls.isSupported()) {
                 hls = new Hls();
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
-                    updateMeta();
                     hls.loadSource(state.track.src);
+                    updateMeta();
                     interval = setInterval(updateMeta, 20000);
                 });
             }
@@ -48,7 +44,7 @@ const Radio = ({ audioRef }) => {
             hls.destroy();
             clearInterval(interval);
         };
-    }, [state.track, state.mode, state.mode, updateMeta]);
+    }, [state.track, state.mode]);
 
     return (
         <>
