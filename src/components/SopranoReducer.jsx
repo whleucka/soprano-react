@@ -31,8 +31,6 @@ export function SopranoReducer(state, action) {
         case 'setTrackTitleArtist':
             const track = { ...state.track, ...action.payload };
             return { ...state, track };
-        case 'setUser':
-            return { ...state, user: action.payload };
         case 'toggleShuffle':
             return { ...state, shuffle: action.payload };
         case 'toggleRepeat':
@@ -49,7 +47,7 @@ export function SopranoReducer(state, action) {
             return { ...state, target: updatedLike };
         case 'removeFromPlaylist':
             const tracks = state.playlist.filter(
-                (track) => track.id != action.payload
+                (track) => track.id !== action.payload
             );
             return { ...state, playlist: tracks };
         default:

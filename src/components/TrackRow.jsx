@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { SopranoContext } from './Soprano';
 import CoverSize from './CoverSize';
 import AlbumCover from './AlbumCover';

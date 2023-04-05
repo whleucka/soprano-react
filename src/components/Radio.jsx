@@ -6,13 +6,12 @@ import Hls from 'hls.js';
 import API from './API';
 
 let hls = new Hls();
-let interval = null;
+//let interval = null;
 
 const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
 
     const updateMeta = () => {
-        console.log(state.track.src);
         API.parseRadio(state.track.src)
             .then((res) => {
                 if (res.title && res.artist) {
@@ -28,7 +27,7 @@ const Radio = ({ audioRef }) => {
     };
 
     useEffect(() => {
-        clearInterval(interval);
+        //clearInterval(interval);
         if (
             Object.keys(state.track).length > 0 &&
             state.track.src &&
@@ -37,19 +36,16 @@ const Radio = ({ audioRef }) => {
             if (Hls.isSupported()) {
                 hls = new Hls();
                 hls.attachMedia(audioRef.current);
-                hls.url = hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
-                    updateMeta();
-                    hls.loadSource(state.track.src);
-                    interval = setInterval(updateMeta, 20000);
-                });
+                hls.loadSource(state.track.src);
+                audioRef.current.play()
             }
         }
         return () => {
             hls.stopLoad();
             hls.destroy();
-            clearInterval(interval);
+            //clearInterval(interval);
         };
-    }, [state.track.src]);
+    }, [state.track.src, audioRef, state.mode, state.track]);
 
     return (
         <>

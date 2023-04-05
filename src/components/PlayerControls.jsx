@@ -214,6 +214,7 @@ const PlayerControls = ({ audioRef }) => {
                 };
                 audioRef.current.onerror = (err) => {
                     console.log(err);
+                    stop();
                 };
                 audioRef.current.onloadeddata = () => {
                     play();
