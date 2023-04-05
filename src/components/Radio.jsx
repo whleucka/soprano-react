@@ -28,12 +28,12 @@ const Radio = ({ audioRef }) => {
 
     useEffect(() => {
         clearInterval(interval);
-        if (state.track) {
+        if (state.track.src) {
             if (Hls.isSupported()) {
                 hls = new Hls();
                 hls.attachMedia(audioRef.current);
+                hls.loadSource(state.track.src);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
-                    hls.loadSource(state.track.src);
                     updateMeta();
                     interval = setInterval(updateMeta, 20000);
                 });
