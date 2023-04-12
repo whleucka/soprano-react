@@ -34,15 +34,15 @@ const useMediaSession = (props) => {
     }, [title, artist, album, artwork, mediaSession]);
 
     useEffect(() => {
-        mediaSession.setActionHandler('play', onPlay);
         mediaSession.playbackState = 'playing';
+        mediaSession.setActionHandler('play', onPlay);
         return () => {
             mediaSession.setActionHandler('play', null);
         };
     }, [onPlay, mediaSession]);
     useEffect(() => {
-        mediaSession.setActionHandler('pause', onPause);
         mediaSession.playbackState = 'paused';
+        mediaSession.setActionHandler('pause', onPause);
         return () => {
             mediaSession.setActionHandler('pause', null);
         };

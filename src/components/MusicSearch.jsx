@@ -37,7 +37,7 @@ const MusicSearch = ({ searchRef }) => {
         return () => {
             dispatch({ type: 'setSearchResults', payload: [] });
         };
-    }, []);
+    }, [dispatch]);
 
     const handleSubmit = () => {
         setSearching(true);

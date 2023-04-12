@@ -29,7 +29,7 @@ const PlayerControls = ({ audioRef }) => {
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
         }
-    }, [state.track, audioRef]);
+    }, [state.track]);
 
     const play = useCallback(() => {
         if (audioRef.current) {
@@ -38,7 +38,7 @@ const PlayerControls = ({ audioRef }) => {
                 .then((_) => {})
                 .catch((_) => {});
         }
-    }, [audioRef, updatePositionState]);
+    }, [audioRef]);
 
     const pause = useCallback(() => {
         audioRef.current.pause();
@@ -228,7 +228,7 @@ const PlayerControls = ({ audioRef }) => {
                 };
             }
         }
-    }, [state.track, audioRef, dispatch, next, play, updateMeta, state.mode]);
+    }, [state.track, audioRef, dispatch, next, play, updateMeta, state.mode, updatePositionState]);
 
     useEffect(() => {
         if (state.playlistIndex >= 0) {
