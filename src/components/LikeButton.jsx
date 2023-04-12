@@ -9,12 +9,19 @@ const LikeButton = ({ track }) => {
         API.likeTrack(track.md5, state.user)
             .then((res) => {
                 setLike(res.like);
-                dispatch({
-                    type: 'updateTrackLike',
-                    mode: state.mode,
-                    payload: track,
-                    liked: res.like
-                });
+                // TODO refactor to work with other playlists when
+                // they are available
+                if (state.playlistId === 'like' && state.playlist.length > 0) {
+                    if (res.like) {
+                        track.liked = true;
+                        dispatch({ type: 'addToPlaylist', payload: track });
+                    } else {
+                        dispatch({
+                            type: 'removeFromPlaylist',
+                            payload: track
+                        });
+                    }
+                }
             })
             .catch(console.log);
     };
@@ -26,7 +33,7 @@ const LikeButton = ({ track }) => {
     }, [track]);
 
     const LikeIcon = like ? (
-        <HeartIcon stroke={'#ff69b4'} fill={'#ff69b4'} />
+        <HeartIcon stroke={'#F06292'} fill={'#F06292'} />
     ) : (
         <HeartIcon stroke={'#444'} />
     );

@@ -12,18 +12,18 @@ const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
 
     const updateMeta = () => {
-        //API.parseRadio(state.track.src)
-        //    .then((res) => {
-        //        if (res.title && res.artist) {
-        //            res.title = res.title.replace('///', '').trim();
-        //            res.artist = res.artist.replace('///', '').trim();
-        //            if (res.title !== res.artist) {
-        //                document.title = `Soprano • ${res.artist} — ${res.title}`;
-        //                dispatch({ type: 'setTrackTitleArtist', payload: res });
-        //            }
-        //        }
-        //    })
-        //    .catch(console.log);
+        API.parseRadio(state.track.src)
+            .then((res) => {
+                if (res.title && res.artist) {
+                    res.title = res.title.replace('///', '').trim();
+                    res.artist = res.artist.replace('///', '').trim();
+                    if (res.title !== res.artist) {
+                        document.title = `Soprano • ${res.artist} — ${res.title}`;
+                        dispatch({ type: 'setTrackTitleArtist', payload: res });
+                    }
+                }
+            })
+            .catch(console.log);
     };
 
     useEffect(() => {

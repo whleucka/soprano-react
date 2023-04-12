@@ -35,21 +35,14 @@ export function SopranoReducer(state, action) {
             return { ...state, shuffle: action.payload };
         case 'toggleRepeat':
             return { ...state, repeat: action.payload };
-        case 'updateTrackLike':
-            const target =
-                action.mode === 'search' ? state.searchResults : state.playlist;
-            let updatedLike = target.map((track) => {
-                if (track === action.payload) {
-                    track.liked = action.liked ? 1 : 0;
-                }
-                return track;
-            });
-            return { ...state, target: updatedLike };
         case 'removeFromPlaylist':
-            const tracks = state.playlist.filter(
-                (track) => track.id !== action.payload
+            const remove_tracks = state.playlist.filter(
+                (track) => track.id !== action.payload['id']
             );
-            return { ...state, playlist: tracks };
+            return { ...state, playlist: remove_tracks };
+        case 'addToPlaylist':
+            const add_tracks = [...state.playlist, action.payload];
+            return { ...state, playlist: add_tracks };
         default:
             return state;
     }

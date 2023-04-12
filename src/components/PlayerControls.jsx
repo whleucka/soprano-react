@@ -51,7 +51,7 @@ const PlayerControls = ({ audioRef }) => {
 
     const stop = () => {
         console.log('STOP!');
-    }
+    };
 
     const handlePlayPause = () => {
         if (audioRef.current) {
@@ -224,15 +224,14 @@ const PlayerControls = ({ audioRef }) => {
                     play();
                 };
                 audioRef.current.onloadedmetadata = () => {
-                    if (state.mode !== 'radio')
-                        updateMeta();
+                    if (state.mode !== 'radio') updateMeta();
                 };
             }
         }
     }, [state.track, audioRef, dispatch, next, play, updateMeta, state.mode]);
 
     useEffect(() => {
-        if (state.playlist.length > 0) {
+        if (state.playlistIndex >= 0) {
             const track = state.playlist[state.playlistIndex];
             if (track) {
                 dispatch({ type: 'setTrack', payload: track });
@@ -245,7 +244,7 @@ const PlayerControls = ({ audioRef }) => {
                 }
             }
         }
-    }, [state.playlistIndex, dispatch, state.playlist]);
+    }, [state.playlistIndex]);
 
     const disabledNextPrev = state.playlist.length === 0 ? ' disabled' : '';
 

@@ -97,7 +97,7 @@ const Soprano = () => {
     }, [user]);
 
     useEffect(() => {
-        if (typeof state.track.src !== 'undefined' && state.mode != 'radio') {
+        if (typeof state.track.src !== 'undefined' && state.mode !== 'radio') {
             setTrackUrl(state.track.src);
         }
     }, [state.track.src]);
@@ -181,7 +181,12 @@ const Soprano = () => {
                     </section>
                 </section>
                 <Player audioRef={audioRef} />
-                <audio ref={audioRef} id="audio" src={trackUrl} autoPlay="autoplay" />
+                <audio
+                    ref={audioRef}
+                    id="audio"
+                    src={trackUrl}
+                    autoPlay="autoplay"
+                />
             </Router>
         </SopranoContext.Provider>
     );

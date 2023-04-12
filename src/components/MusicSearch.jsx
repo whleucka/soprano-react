@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Search as SearchIcon, Trash as TrashIcon } from 'react-feather';
 import { SopranoContext } from './Soprano';
 import { BarLoader } from 'react-spinners';
@@ -33,8 +33,13 @@ const MusicSearch = ({ searchRef }) => {
         setType(e.currentTarget.value);
     };
 
+    useEffect(() => {
+        return () => {
+            dispatch({ type: 'setSearchResults', payload: [] });
+        };
+    }, []);
+
     const handleSubmit = () => {
-        // Make some request to api
         setSearching(true);
         const term = searchTerm.trim();
         if (term.length > 0) {
@@ -43,7 +48,7 @@ const MusicSearch = ({ searchRef }) => {
                 .then((tracks) => {
                     if (tracks.length > 0) {
                         dispatch({ type: 'setSearchResults', payload: tracks });
-                        setSearchTerm('');
+                        //setSearchTerm('');
                     } else {
                         setNoResults(true);
                     }
