@@ -28,6 +28,7 @@ const PlayerControls = ({ audioRef }) => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
+            updatePositionState();
         }
     }, [state.track]);
 
@@ -36,11 +37,9 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
-                    updatePositionState();
                 })
-                .catch((_) => {});
         }
-    }, [audioRef, updatePositionState]);
+    }, [audioRef]);
 
     const pause = useCallback(() => {
         audioRef.current.pause();
