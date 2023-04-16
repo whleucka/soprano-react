@@ -14,21 +14,10 @@ const PlayerControls = ({ audioRef }) => {
     const { dispatch, state } = useContext(SopranoContext);
     const track = state.track;
 
-    const updatePositionState = useCallback(() => {
-        if ('setPositionState' in navigator.mediaSession) {
-            navigator.mediaSession.setPositionState({
-                duration: Math.floor(audioRef.current.duration),
-                playbackRate: audioRef.current.playbackRate,
-                position: audioRef.current.currentTime
-            });
-        }
-    }, [audioRef]);
-
     const updateMeta = useCallback(() => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
-            updatePositionState();
         }
     }, [state.track]);
 
@@ -116,7 +105,6 @@ const PlayerControls = ({ audioRef }) => {
             return;
         }
         audioRef.current.currentTime = e.seekTime;
-        updatePositionState();
     };
 
     const seekBackward = (e) => {
@@ -126,7 +114,6 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current.currentTime - skipTime,
             0
         );
-        updatePositionState();
     };
 
     const seekForward = (e) => {
@@ -136,7 +123,6 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current.currentTime + skipTime,
             audioRef.current.duration
         );
-        updatePositionState();
     };
 
     const toggleShuffle = () => {
@@ -201,7 +187,8 @@ const PlayerControls = ({ audioRef }) => {
         onPreviousTrack: previous,
         onNextTrack: next,
         onSeekTo: seekTo,
-        onStop: stop
+        onStop: stop,
+        audioRef
     });
 
     useEffect(() => {
@@ -228,7 +215,7 @@ const PlayerControls = ({ audioRef }) => {
                 };
             }
         }
-    }, [state.track, audioRef, dispatch, next, play, updateMeta, state.mode, updatePositionState]);
+    }, [state.track, audioRef, dispatch, next, play, updateMeta, state.mode]);
 
     useEffect(() => {
         if (state.playlistIndex >= 0) {

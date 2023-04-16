@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 const useMediaSession = (props) => {
     const {
@@ -14,10 +14,21 @@ const useMediaSession = (props) => {
         onPreviousTrack,
         onNextTrack,
         onSeekTo,
-        onStop
+        onStop,
+        audioRef
     } = props;
 
     const { mediaSession } = navigator;
+
+    const updatePositionState = useCallback(() => {
+        if (audioRef.current.duration > 0 && 'setPositionState' in mediaSession) {
+            mediaSession.setPositionState({
+                duration: Math.floor(audioRef.current.duration),
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
+            });
+        }
+    }, [audioRef]);
 
     useEffect(() => {
         if (title.trim().length > 0 && artist.trim().length > 0) {
@@ -36,6 +47,7 @@ const useMediaSession = (props) => {
     useEffect(() => {
         mediaSession.playbackState = 'playing';
         mediaSession.setActionHandler('play', onPlay);
+        updatePositionState();
         return () => {
             mediaSession.setActionHandler('play', null);
         };
@@ -43,18 +55,21 @@ const useMediaSession = (props) => {
     useEffect(() => {
         mediaSession.playbackState = 'paused';
         mediaSession.setActionHandler('pause', onPause);
+        updatePositionState();
         return () => {
             mediaSession.setActionHandler('pause', null);
         };
     }, [onPause, mediaSession]);
     useEffect(() => {
         mediaSession.setActionHandler('seekbackward', onSeekBackward);
+        updatePositionState();
         return () => {
             mediaSession.setActionHandler('seekbackward', null);
         };
     }, [onSeekBackward, mediaSession]);
     useEffect(() => {
         mediaSession.setActionHandler('seekforward', onSeekForward);
+        updatePositionState();
         return () => {
             mediaSession.setActionHandler('seekforward', null);
         };
@@ -73,6 +88,7 @@ const useMediaSession = (props) => {
     }, [onNextTrack, mediaSession]);
     useEffect(() => {
         mediaSession.setActionHandler('seekto', onSeekTo);
+        updatePositionState();
         return () => {
             mediaSession.setActionHandler('seekto', null);
         };
