@@ -21,14 +21,14 @@ const useMediaSession = (props) => {
     const { mediaSession } = navigator;
 
     const updatePositionState = useCallback(() => {
-        if (audioRef.current.duration > 0 && 'setPositionState' in mediaSession) {
+        if (Math.floor(audioRef.current.duration) > 0 && audioRef.current.currentTime < Math.floor(audioRef.current.duration) && 'setPositionState' in mediaSession) {
             mediaSession.setPositionState({
                 duration: Math.floor(audioRef.current.duration),
                 playbackRate: audioRef.current.playbackRate,
                 position: audioRef.current.currentTime
             });
         }
-    }, [audioRef]);
+    }, [audioRef, mediaSession]);
 
     useEffect(() => {
         if (title.trim().length > 0 && artist.trim().length > 0) {
@@ -42,7 +42,7 @@ const useMediaSession = (props) => {
         return () => {
             mediaSession.metadata = null;
         };
-    }, [title, artist, album, artwork, mediaSession]);
+    }, [title, artist, album, mediaSession]);
 
     useEffect(() => {
         mediaSession.playbackState = 'playing';

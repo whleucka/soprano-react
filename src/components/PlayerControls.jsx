@@ -34,11 +34,6 @@ const PlayerControls = ({ audioRef }) => {
         audioRef.current.pause();
     }, [audioRef]);
 
-    //const stop = useCallback(() => {
-    //    console.log('STOP!');
-    //    pause();
-    //}, [pause]);
-
     const stop = () => {
         console.log('STOP!');
     };
