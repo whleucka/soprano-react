@@ -21,9 +21,9 @@ const useMediaSession = (props) => {
     const { mediaSession } = navigator;
 
     const updatePositionState = useCallback(() => {
-        if (Math.floor(audioRef.current.duration) > 0 && audioRef.current.currentTime < Math.floor(audioRef.current.duration) && 'setPositionState' in mediaSession) {
+        if (Math.floor(audioRef.current.duration) > 0 && audioRef.current.currentTime < audioRef.current.duration && 'setPositionState' in mediaSession) {
             mediaSession.setPositionState({
-                duration: Math.floor(audioRef.current.duration),
+                duration: audioRef.current.duration,
                 playbackRate: audioRef.current.playbackRate,
                 position: audioRef.current.currentTime
             });
