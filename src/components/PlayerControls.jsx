@@ -136,6 +136,11 @@ const PlayerControls = ({ audioRef }) => {
     const updatePositionState = useCallback(() => {
         const { mediaSession } = navigator;
         if (Math.floor(audioRef.current.duration) > 0 && audioRef.current.currentTime < audioRef.current.duration && 'setPositionState' in mediaSession) {
+            console.log("Now updating position", {
+                duration: audioRef.current.duration,
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
+            });
             navigator.mediaSession.setPositionState({
                 duration: audioRef.current.duration,
                 playbackRate: audioRef.current.playbackRate,
