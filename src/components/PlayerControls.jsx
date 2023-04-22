@@ -26,12 +26,14 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current
                 .play()
                 .then((_) => {
+                    updatePositionState();
                 })
         }
     }, [audioRef]);
 
     const pause = useCallback(() => {
         audioRef.current.pause();
+        updatePositionState();
     }, [audioRef]);
 
     const stop = () => {
@@ -100,6 +102,7 @@ const PlayerControls = ({ audioRef }) => {
             return;
         }
         audioRef.current.currentTime = e.seekTime;
+        updatePositionState();
     };
 
     const seekBackward = (e) => {
@@ -109,6 +112,7 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current.currentTime - skipTime,
             0
         );
+        updatePositionState();
     };
 
     const seekForward = (e) => {
@@ -118,6 +122,7 @@ const PlayerControls = ({ audioRef }) => {
             audioRef.current.currentTime + skipTime,
             audioRef.current.duration
         );
+        updatePositionState();
     };
 
     const toggleShuffle = () => {
@@ -127,6 +132,17 @@ const PlayerControls = ({ audioRef }) => {
     const toggleRepeat = () => {
         dispatch({ type: 'toggleRepeat', payload: !state.repeat });
     };
+
+    const updatePositionState = useCallback(() => {
+        const { mediaSession } = navigator;
+        if (Math.floor(audioRef.current.duration) > 0 && audioRef.current.currentTime < audioRef.current.duration && 'setPositionState' in mediaSession) {
+            navigator.mediaSession.setPositionState({
+                duration: audioRef.current.duration,
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
+            });
+        }
+    }, [audioRef]);
 
     useMediaSession({
         title: track.title,
@@ -182,8 +198,7 @@ const PlayerControls = ({ audioRef }) => {
         onPreviousTrack: previous,
         onNextTrack: next,
         onSeekTo: seekTo,
-        onStop: stop,
-        audioRef
+        onStop: stop
     });
 
     useEffect(() => {

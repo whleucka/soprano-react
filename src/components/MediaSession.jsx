@@ -14,21 +14,10 @@ const useMediaSession = (props) => {
         onPreviousTrack,
         onNextTrack,
         onSeekTo,
-        onStop,
-        audioRef
+        onStop
     } = props;
 
     const { mediaSession } = navigator;
-
-    const updatePositionState = useCallback(() => {
-        if (Math.floor(audioRef.current.duration) > 0 && audioRef.current.currentTime < audioRef.current.duration && 'setPositionState' in mediaSession) {
-            mediaSession.setPositionState({
-                duration: audioRef.current.duration,
-                playbackRate: audioRef.current.playbackRate,
-                position: audioRef.current.currentTime
-            });
-        }
-    }, [audioRef, mediaSession]);
 
     useEffect(() => {
         if (title.trim().length > 0 && artist.trim().length > 0) {
@@ -47,7 +36,6 @@ const useMediaSession = (props) => {
     useEffect(() => {
         mediaSession.playbackState = 'playing';
         mediaSession.setActionHandler('play', onPlay);
-        updatePositionState();
         return () => {
             mediaSession.setActionHandler('play', null);
         };
@@ -55,21 +43,18 @@ const useMediaSession = (props) => {
     useEffect(() => {
         mediaSession.playbackState = 'paused';
         mediaSession.setActionHandler('pause', onPause);
-        updatePositionState();
         return () => {
             mediaSession.setActionHandler('pause', null);
         };
     }, [onPause, mediaSession]);
     useEffect(() => {
         mediaSession.setActionHandler('seekbackward', onSeekBackward);
-        updatePositionState();
         return () => {
             mediaSession.setActionHandler('seekbackward', null);
         };
     }, [onSeekBackward, mediaSession]);
     useEffect(() => {
         mediaSession.setActionHandler('seekforward', onSeekForward);
-        updatePositionState();
         return () => {
             mediaSession.setActionHandler('seekforward', null);
         };
@@ -88,7 +73,6 @@ const useMediaSession = (props) => {
     }, [onNextTrack, mediaSession]);
     useEffect(() => {
         mediaSession.setActionHandler('seekto', onSeekTo);
-        updatePositionState();
         return () => {
             mediaSession.setActionHandler('seekto', null);
         };
