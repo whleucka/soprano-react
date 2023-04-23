@@ -1,7 +1,8 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SopranoContext } from './Soprano';
 import API from './API';
 import LikedRows from './LikedRows';
+import { BarLoader } from 'react-spinners';
 
 /**
  * User liked music tracks
@@ -11,9 +12,12 @@ import LikedRows from './LikedRows';
  */
 const Liked = () => {
     const { state, dispatch } = useContext(SopranoContext);
+    const [ loading, setLoading ] = useState(false);
 
     const load = () => {
+        setLoading(true);
         API.getLiked(state.user).then((liked) => {
+            setLoading(false);
             dispatch({ type: 'getLiked', payload: liked });
         });
     };
@@ -32,6 +36,7 @@ const Liked = () => {
             <div className="my-2">
                 <button onClick={handlePlayAll} className="btn btn-sm btn-dark">Play all</button>
             </div>
+            <BarLoader loading={loading} color="#36d7b7"  width="100%" />
             <LikedRows tracks={state.music.liked} />
         </section>
     );
