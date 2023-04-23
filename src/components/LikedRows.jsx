@@ -11,7 +11,7 @@ const LikedRows = (props) => {
     const image = <MD5Cover md5={track.md5} size={[60, 60]} />;
     const title = <TitleArtist title={track.title} artist={track.artist} />;
     const handleTitleClick = () => {
-      dispatch({ type: 'setPlayer', payload: { src: track.src, cover: track.cover } });
+      dispatch({ type: 'setTrack', payload: track });
     };
     return <TrackRow key={track.id} image={image} title={title} playtime={track.playtime_string} handleTitleClick={handleTitleClick} />
   });

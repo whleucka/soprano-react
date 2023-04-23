@@ -1,13 +1,12 @@
-import React, { useContext, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { SopranoContext } from './Soprano';
 import Home from './Home';
 import Playlist from './Playlist';
 import Search from './Search';
 import Liked from './Liked';
+import PlayerController from './PlayerController';
+import { useRef } from 'react';
 
 const Layout = () => {
-  const { state } = useContext(SopranoContext);
   const audio = useRef(null);
 
   return (
@@ -20,7 +19,7 @@ const Layout = () => {
           <Route exact path="/liked" element={<Liked />} />
         </Routes>
       </Router>
-      <audio ref={audio} src={state.player.src} autoPlay />
+      <PlayerController audio={audio} />
     </section>
   );
 };

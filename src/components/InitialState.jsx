@@ -1,9 +1,6 @@
 export const InitialState = {
     user: '514f7883-0225-45bf-9bcf-1a52092cdaf1',
-    player: {
-        src: '',
-        cover: ''
-    },
+    track: null,
     music: {
         search: {
             term: '',
@@ -11,7 +8,7 @@ export const InitialState = {
         },
         playlist: {
             tracks: [],
-            index: null
+            index: 0
         },
         playlists: [],
         liked: []

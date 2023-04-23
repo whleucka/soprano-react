@@ -9,11 +9,21 @@ export const SopranoReducer = (state, action) => {
       var playlist = music.playlist;
       playlist.tracks = action.payload;
       return { ...state, music };
-    case 'setPlayer':
-      var player = state.player;
-      player.src = action.payload.src;
-      player.cover = action.payload.cover;
-      return { ...state, player };
+    case 'setTrack':
+      var track = action.payload;
+      return { ...state, track };
+    case 'previousTrack':
+      var music = state.music;
+      var playlist = music.playlist;
+      var index = (playlist.index - 1 + playlist.tracks.length) % playlist.tracks.length;
+      playlist.index = index;
+      return { ...state, music };
+    case 'nextTrack':
+      var music = state.music;
+      var playlist = music.playlist;
+      var index = (playlist.index + 1) % playlist.tracks.length;
+      playlist.index = index;
+      return { ...state, music };
     default:
       return state;
   }
