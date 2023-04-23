@@ -18,6 +18,7 @@ body {
   font-size: 0.9rem;
 }
 .track-row .playtime {
+  padding-right: 10px;
   font-size: 1rem;
 }
 .track-row .title-artist div {

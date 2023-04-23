@@ -3,7 +3,7 @@ import Home from './Home';
 import Playlist from './Playlist';
 import Search from './Search';
 import Liked from './Liked';
-import PlayerController from './PlayerController';
+import AudioController from './AudioController';
 import { useRef } from 'react';
 
 const Layout = () => {
@@ -19,7 +19,7 @@ const Layout = () => {
           <Route exact path="/liked" element={<Liked />} />
         </Routes>
       </Router>
-      <PlayerController audio={audio} />
+      <AudioController audio={audio} />
     </section>
   );
 };
