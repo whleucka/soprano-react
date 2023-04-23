@@ -1,4 +1,4 @@
-const CoverSize = ({ md5 = null, size = null }) => {
+const MD5Cover = ({ md5 = null, size = null }) => {
     let cover = '/img/no-album.png';
     if (md5 && size) {
         const width = size[0];
@@ -17,4 +17,4 @@ const CoverSize = ({ md5 = null, size = null }) => {
     );
 };
 
-export default CoverSize;
+export default MD5Cover;

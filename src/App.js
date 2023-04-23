@@ -2,11 +2,7 @@ import Soprano from './components/Soprano';
 import './stylesheets/main.css';
 
 const App = () => {
-    return (
-        <section id="wrapper">
-            <Soprano />
-        </section>
-    );
+    return <Soprano />;
 };
 
 export default App;

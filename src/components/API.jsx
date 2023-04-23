@@ -24,91 +24,11 @@ const getData = async (endpoint = '', data = {}) => {
 };
 
 const API = {
-    signIn: async (email, password) => {
-        const response = await postData('/sign-in', { email, password });
-        if (response.success) return response.data;
-        else {
-            console.log(response);
-        }
-        return [];
-    },
-    loadUser: async (uuid) => {
-        const response = await postData('/customer/load', { uuid });
-        if (response.success) return response.data;
-        else {
-            console.log(response);
-        }
-        return [];
-    },
-    musicSearch: async (term, type, uuid = null) => {
-        const response = await postData('/music/search', { term, type, uuid });
-        if (response.success) return response.data;
-        else {
-            console.log(response);
-        }
-        return [];
-    },
-    radioStations: async () => {
-        const response = await getData('/radio/stations');
-        if (response.success) return response.data;
-        else {
-            console.log(response);
-        }
-        return [];
-    },
-    parseRadio: async (url) => {
-        if (url.length > 0) {
-            const response = await getData('/radio/parse', { url });
-            if (response.success) return response.data;
-            else {
-                console.log(response);
-            }
-        }
-        return [];
-    },
-    podcastSearch: async (searchTerm, sortByDate, offset) => {
-        const url = new URL('https://listen-api.listennotes.com/api/v2/search');
-        const data = {
-            q: searchTerm,
-            type: 'episode',
-            language: 'English',
-            region: 'ca,us,gb',
-            sort_by_date: sortByDate,
-            offset
-        };
-        url.search = new URLSearchParams(data);
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-ListenAPI-Key': process.env.REACT_APP_LISTEN_NOTES_API_KEY
-            }
-        });
-        return response.json();
-    },
-    likeTrack: async (md5, uuid) => {
-        const response = await postData(`/like/${md5}`, { uuid });
-        if (response.success) return response.data;
-        else {
-            console.log(response);
-        }
-        return [];
-    },
-    getLikeCount: async (uuid) => {
-        const response = await postData(`/liked/count`, { uuid });
-        if (response.success) return response.data;
-        else {
-            console.log(response);
-        }
-        return [];
-    },
-    getLikedPlaylist: async (uuid) => {
+    // Get user liked music tracks
+    getLiked: async (uuid) => {
+        if (!uuid || !uuid.length) return [];
         const response = await postData(`/liked/playlist`, { uuid });
-        if (response.success) return response.data;
-        else {
-            console.log(response);
-        }
-        return [];
+        return response.data;
     }
 };
 
