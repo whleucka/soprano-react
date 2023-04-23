@@ -8,33 +8,80 @@ import {
     Repeat
 } from 'react-feather';
 import { SopranoContext } from './Soprano';
-import useMediaSession from './MediaSession';
 
 const PlayerControls = ({ audioRef }) => {
     const { dispatch, state } = useContext(SopranoContext);
     const track = state.track;
 
-    const updateMeta = useCallback(() => {
+    const updateMeta = () => {
         const track = state.track;
         if (track) {
             document.title = `Soprano • ${track.artist} — ${track.title}`;
+            navigator.mediaSession.metadata = new MediaMetadata({
+            title: track.title,
+            artist: track.artist,
+            album: track.album,
+            artwork:
+                [
+                    {
+                        src:
+                            process.env.REACT_APP_API_URL + `/cover/${track.md5}/96/96`,
+                        sizes: '96x96',
+                        type: 'image/png'
+                    },
+                    {
+                        src:
+                            process.env.REACT_APP_API_URL +
+                            `/cover/${track.md5}/128/j28`,
+                        sizes: '128x128',
+                        type: 'image/png'
+                    },
+                    {
+                        src:
+                            process.env.REACT_APP_API_URL +
+                            `/cover/${track.md5}/192/192`,
+                        sizes: '192x192',
+                        type: 'image/png'
+                    },
+                    {
+                        src:
+                            process.env.REACT_APP_API_URL +
+                            `/cover/${track.md5}/256/256`,
+                        sizes: '256x256',
+                        type: 'image/png'
+                    },
+                    {
+                        src:
+                            process.env.REACT_APP_API_URL +
+                            `/cover/${track.md5}/384/384`,
+                        sizes: '384x384',
+                        type: 'image/png'
+                    },
+                    {
+                        src:
+                            process.env.REACT_APP_API_URL +
+                            `/cover/${track.md5}/512/512`,
+                        sizes: '512x512',
+                        type: 'image/png'
+                    }
+                ]
+        });
         }
-    }, [state.track]);
+    };
 
-    const play = useCallback(() => {
+    const play = async() => {
         if (audioRef.current) {
             audioRef.current
                 .play()
                 .then((_) => {
-                    updatePositionState();
+                    updateMeta();
                 })
         }
-    }, [audioRef]);
+    };
 
-    const pause = useCallback(() => {
+    const pause = () => {
         audioRef.current.pause();
-        updatePositionState();
-    }, [audioRef]);
+    };
 
     const stop = () => {
         console.log('STOP!');
@@ -50,15 +97,15 @@ const PlayerControls = ({ audioRef }) => {
         }
     };
 
-    const shuffleIndex = useCallback(() => {
+    const shuffleIndex = () => {
         let exit = false;
         while (!exit) {
             let index = Math.floor(Math.random() * state.playlist.length);
             if (index !== state.playlistIndex) return index;
         }
-    }, [state.playlist, state.playlistIndex]);
+    };
 
-    const previous = useCallback(() => {
+    const previous = () => {
         if (state.playlist.length < 2) {
             return;
         }
@@ -70,15 +117,9 @@ const PlayerControls = ({ audioRef }) => {
             prevIndex = shuffleIndex();
         }
         dispatch({ type: 'setPlaylistIndex', payload: prevIndex });
-    }, [
-        state.playlist.length,
-        state.playlistIndex,
-        dispatch,
-        shuffleIndex,
-        state.shuffle
-    ]);
+    };
 
-    const next = useCallback(() => {
+    const next = () => {
         if (state.playlist.length < 2) {
             return;
         }
@@ -88,13 +129,7 @@ const PlayerControls = ({ audioRef }) => {
             nextIndex = shuffleIndex();
         }
         dispatch({ type: 'setPlaylistIndex', payload: nextIndex });
-    }, [
-        state.playlist.length,
-        state.playlistIndex,
-        dispatch,
-        shuffleIndex,
-        state.shuffle
-    ]);
+    };
 
     const seekTo = (e) => {
         if (e.fastSeek && 'fastSeek' in audioRef.current) {
@@ -133,9 +168,9 @@ const PlayerControls = ({ audioRef }) => {
         dispatch({ type: 'toggleRepeat', payload: !state.repeat });
     };
 
-    const updatePositionState = useCallback(() => {
+    const updatePositionState = () => {
         const { mediaSession } = navigator;
-        if (Math.floor(audioRef.current.duration) > 0 && audioRef.current.currentTime < audioRef.current.duration && 'setPositionState' in mediaSession) {
+        if ('setPositionState' in mediaSession) {
             console.log("Now updating position", {
                 duration: audioRef.current.duration,
                 playbackRate: audioRef.current.playbackRate,
@@ -147,90 +182,43 @@ const PlayerControls = ({ audioRef }) => {
                 position: audioRef.current.currentTime
             });
         }
-    }, [audioRef]);
-
-    useMediaSession({
-        title: track.title,
-        artist: track.artist,
-        album: track.album,
-        artwork: [
-            {
-                src:
-                    process.env.REACT_APP_API_URL + `/cover/${track.md5}/96/96`,
-                sizes: '96x96',
-                type: 'image/png'
-            },
-            {
-                src:
-                    process.env.REACT_APP_API_URL +
-                    `/cover/${track.md5}/128/j28`,
-                sizes: '128x128',
-                type: 'image/png'
-            },
-            {
-                src:
-                    process.env.REACT_APP_API_URL +
-                    `/cover/${track.md5}/192/192`,
-                sizes: '192x192',
-                type: 'image/png'
-            },
-            {
-                src:
-                    process.env.REACT_APP_API_URL +
-                    `/cover/${track.md5}/256/256`,
-                sizes: '256x256',
-                type: 'image/png'
-            },
-            {
-                src:
-                    process.env.REACT_APP_API_URL +
-                    `/cover/${track.md5}/384/384`,
-                sizes: '384x384',
-                type: 'image/png'
-            },
-            {
-                src:
-                    process.env.REACT_APP_API_URL +
-                    `/cover/${track.md5}/512/512`,
-                sizes: '512x512',
-                type: 'image/png'
-            }
-        ],
-        onSeekBackward: seekBackward,
-        onSeekForward: seekForward,
-        onPlay: play,
-        onPause: pause,
-        onPreviousTrack: previous,
-        onNextTrack: next,
-        onSeekTo: seekTo,
-        onStop: stop
-    });
+    };
 
     useEffect(() => {
-        if (Object.keys(state.track).length > 0) {
-            if (audioRef.current) {
-                audioRef.current.onended = () => {
-                    next();
-                };
-                audioRef.current.onplaying = () => {
-                    dispatch({ type: 'setStatus', payload: 'playing' });
-                };
-                audioRef.current.onpause = () => {
-                    dispatch({ type: 'setStatus', payload: 'paused' });
-                };
-                audioRef.current.onerror = (err) => {
-                    console.log(err);
-                    stop();
-                };
-                audioRef.current.onloadeddata = () => {
-                    play();
-                };
-                audioRef.current.onloadedmetadata = () => {
-                    if (state.mode !== 'radio') updateMeta();
-                };
-            }
+        if (state.track) {
+            updateMeta();
+
+            navigator.mediaSession.setActionHandler('play', async function() {
+                console.log('> User clicked "Play" icon.');
+                await play();
+            });
+
+            navigator.mediaSession.setActionHandler('pause', function() {
+                console.log('> User clicked "Pause" icon.');
+                pause();
+            });
+
+            audioRef.current.addEventListener('play', function() {
+                navigator.mediaSession.playbackState = 'playing';
+                dispatch({ type: 'setStatus', payload: 'playing' });
+            });
+
+            audioRef.current.addEventListener('pause', function() {
+                navigator.mediaSession.playbackState = 'paused';
+                dispatch({ type: 'setStatus', payload: 'paused' });
+            });
+
+            navigator.mediaSession.setActionHandler('previoustrack', function() {
+                console.log('> User clicked "Previous Track" icon.');
+                previous();
+            });
+
+            navigator.mediaSession.setActionHandler('nexttrack', function() {
+                console.log('> User clicked "Next Track" icon.');
+                next();
+            });
         }
-    }, [state.track, audioRef, dispatch, next, play, updateMeta, state.mode]);
+    }, [state.track]);
 
     useEffect(() => {
         if (state.playlistIndex >= 0) {

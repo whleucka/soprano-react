@@ -10,9 +10,10 @@ const TrackRow = ({ track, mode, playlistIndex = null }) => {
     const { artist, title, playtime_string } = track;
     const handleSetTrack = () => {
         dispatch({ type: 'setMode', payload: mode });
-        dispatch({ type: 'setTrack', payload: track });
         if (playlistIndex !== null)
             dispatch({ type: 'setPlaylistIndex', payload: playlistIndex });
+        else
+            dispatch({ type: 'setTrack', payload: track });
     };
     // const buttonClass =
     //     state.status === 'playing' && state.track.md5 === track.md5
