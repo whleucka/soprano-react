@@ -2,32 +2,97 @@ body {
   color: #fbfbfb;
   background-color: #111;
   font-family: 'Inter', sans-serif;
+  height: 100%;
+}
+::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+}
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b3afb3;
+}
+::-webkit-scrollbar-track {
+    background: #222222;
+    border-radius: 0px;
+    -webkit-box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+    box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
 h1,h2,h3,h4,h5 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
 }
-.track-row .image img {
-  width: 60px;
-  height: 60px;
+#root {
+  height: 100vh;
+}
+#soprano {
+  height: 100%;
+}
+#inner {
+  height: calc(100% - 100px);
+}
+#main-content {
+  width: 100%;
+  overflow-y: auto;
+}
+#sidebar {
+  width: 200px;
+}
+#sidebar .navbar-nav li {
+  margin-left: 10px;
+}
+#sidebar a {
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    font-weight: 600;
+    color: #fbfbfb;
+    text-decoration: none;
+}
+#sidebar a {
+    opacity: 0.5;
+}
+#sidebar a:hover {
+    opacity: 1;
+}
+#player {
+  height: 100px;
+}
+#player #cover {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+#player #volume-progress {
+  width: 80px;
+}
+.track-row {
+  margin-bottom: 5px;
 }
 .track-row:hover {
   background-color: #222;
 }
-.track-row .cover {
+.track-row .image img {
+  width: 60px;
+  height: 60px;
+}
+.track-row .cover, #player #cover img {
   border-radius: 8%;
 }
 .track-row .title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 .track-row .artist {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: #aaa;
 }
 .track-row .playtime {
   padding-right: 10px;
-  font-size: 1rem;
+  font-size: 0.7rem;
+  color: #aaa;
 }
 .track-row .title-artist div {
   margin-left: 10px;
@@ -35,7 +100,6 @@ h1,h2,h3,h4,h5 {
 .track-row .title-artist .title {
   font-weight: bold;
 }
-
 .truncate {
   white-space: nowrap;
   overflow: hidden;

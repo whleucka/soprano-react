@@ -5,20 +5,28 @@ import Search from './Search';
 import Liked from './Liked';
 import AudioController from './AudioController';
 import { useRef } from 'react';
+import Sidebar from './Sidebar';
+import Player from './Player';
 
 const Layout = () => {
   const audio = useRef(null);
 
   return (
     <section id="soprano">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/playlist" element={<Playlist />} />
-          <Route exact path="/search" element={<Search />} />
-          <Route exact path="/liked" element={<Liked />} />
-        </Routes>
-      </Router>
+      <div id="inner" className="d-flex">
+        <Router>
+          <Sidebar />
+          <div id="main-content">
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route exact path="/playlist" element={<Playlist />} />
+              <Route exact path="/search" element={<Search />} />
+              <Route exact path="/liked" element={<Liked />} />
+            </Routes>
+          </div>
+        </Router>
+      </div>
+      <Player />
       <AudioController audio={audio} />
     </section>
   );
