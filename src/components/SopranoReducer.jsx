@@ -4,6 +4,11 @@ export const SopranoReducer = (state, action) => {
       var music = state.music;
       music.liked = action.payload;
       return { ...state, music };
+    case 'setPlaylistIndex':
+      var music = state.music;
+      var playlist = music.playlist;
+      playlist.index = action.payload;
+      return { ...state, music };
     case 'setPlaylistTracks':
       var music = state.music;
       var playlist = music.playlist;
@@ -12,18 +17,6 @@ export const SopranoReducer = (state, action) => {
     case 'setTrack':
       var track = action.payload;
       return { ...state, track };
-    case 'previousTrack':
-      var music = state.music;
-      var playlist = music.playlist;
-      var index = (playlist.index - 1 + playlist.tracks.length) % playlist.tracks.length;
-      playlist.index = index;
-      return { ...state, music };
-    case 'nextTrack':
-      var music = state.music;
-      var playlist = music.playlist;
-      var index = (playlist.index + 1) % playlist.tracks.length;
-      playlist.index = index;
-      return { ...state, music };
     default:
       return state;
   }

@@ -13,58 +13,62 @@ const AudioController = (props) => {
         audio.current.pause();
     };
     const prev = () => {
-        dispatch({ type: 'previousTrack' });
+        if (!state.music.playlist.length) return;
+        const index = (state.music.playlist.index - 1 + state.music.playlist.tracks.length) % state.music.playlist.tracks.length;
+        dispatch({ type: 'setPlaylistIndex', payload: index });
         play();
     };
     const next = () => {
-        dispatch({ type: 'nextTrack' });
+        if (!state.music.playlist.length) return;
+        const index = (state.music.playlist.index + 1) % state.music.playlist.tracks.length;
+        dispatch({ type: 'setPlaylistIndex', payload: index });
         play();
     };
     const updateMetadata = () => {
         navigator.mediaSession.metadata = new MediaMetadata({
-            title: state.track?.title,
-            artist: state.track?.artist,
-            album: state.track?.album,
+            title: state.track.title,
+            artist: state.track.artist,
+            album: state.track.album,
             artwork:
                 [
                     {
                         src:
-                            process.env.REACT_APP_API_URL + `/cover/${state.track?.md5}/96/96`,
+                            process.env.REACT_APP_API_URL + `/cover/${state.track.md5}/96/96`,
                         sizes: '96x96',
                         type: 'image/png'
                     },
                     {
                         src:
                             process.env.REACT_APP_API_URL +
-                            `/cover/${state.track?.md5}/128/j28`,
+                            `/cover/${state.track.md5}/128/j28`,
                         sizes: '128x128',
                         type: 'image/png'
                     },
                     {
                         src:
                             process.env.REACT_APP_API_URL +
-                            `/cover/${state.track?.md5}/192/192`,
+                            `/cover/${state.track.md5}/192/192`,
                         sizes: '192x192',
                         type: 'image/png'
                     },
                     {
                         src:
                             process.env.REACT_APP_API_URL +
-                            `/cover/${state.track?.md5}/256/256`,
+                            `/cover/${state.track.md5}/256/256`,
                         sizes: '256x256',
                         type: 'image/png'
                     },
                     {
                         src:
                             process.env.REACT_APP_API_URL +
-                            `/cover/${state.track?.md5}/384/384`,
+                            `/cover/${state.track.md5}/384/384`,
                         sizes: '384x384',
                         type: 'image/png'
                     },
                     {
                         src:
                             process.env.REACT_APP_API_URL +
-                            `/cover/${state.track?.md5}/512/512`,
+                            `/cover/${state.track.md5}/512/512`,
                         sizes: '512x512',
                         type: 'image/png'
                     }
@@ -77,12 +81,10 @@ const AudioController = (props) => {
             play();
 
             navigator.mediaSession.setActionHandler('play', async function() {
-                console.log('> User clicked "Play" icon.');
                 await play();
             });
 
             navigator.mediaSession.setActionHandler('pause', function() {
-                console.log('> User clicked "Pause" icon.');
                 pause();
             });
 
@@ -95,12 +97,10 @@ const AudioController = (props) => {
             });
 
             navigator.mediaSession.setActionHandler('previoustrack', function() {
-                console.log('> User clicked "Previous Track" icon.');
                 prev();
             });
 
             navigator.mediaSession.setActionHandler('nexttrack', function() {
-                console.log('> User clicked "Next Track" icon.');
                 next();
             });
         }
