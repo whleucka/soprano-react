@@ -17,6 +17,10 @@ export const SopranoReducer = (state, action) => {
     case 'setTrack':
       var track = action.payload;
       return { ...state, track };
+    case 'playAllLiked':
+      var music = state.music;
+      music.playlist.tracks = music.liked;
+      return { ...state, music };
     default:
       return state;
   }

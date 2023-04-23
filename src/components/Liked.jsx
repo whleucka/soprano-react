@@ -10,23 +10,31 @@ import LikedRows from './LikedRows';
  * - Set the music playlist to the liked music tracks on track play
  */
 const Liked = () => {
-  const { state, dispatch } = useContext(SopranoContext);
+    const { state, dispatch } = useContext(SopranoContext);
 
-  const load = () => {
-    API.getLiked(state.user).then((liked) => {
-      dispatch({ type: 'getLiked', payload: liked });
-    });
-  };
+    const load = () => {
+        API.getLiked(state.user).then((liked) => {
+            dispatch({ type: 'getLiked', payload: liked });
+        });
+    };
 
-  useEffect(() => {
-    load();
-  }, []);
+    const handlePlayAll = () => {
+        dispatch({ type: "playAllLiked" });
+    }
 
-  return (
-    <section id="liked">
-      <LikedRows tracks={state.music.liked} />
-    </section>
-  );
+    useEffect(() => {
+        load();
+    }, []);
+
+    return (
+        <section id="liked">
+            <h3>Liked</h3>
+            <div className="my-2">
+                <button onClick={handlePlayAll} className="btn btn-sm btn-dark">Play all</button>
+            </div>
+            <LikedRows tracks={state.music.liked} />
+        </section>
+    );
 };
 
 export default Liked;
