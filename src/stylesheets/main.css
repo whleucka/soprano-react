@@ -1,12 +1,19 @@
 body {
   color: #fbfbfb;
   background-color: #111;
+  font-family: 'Inter', sans-serif;
+}
+h1,h2,h3,h4,h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 .track-row .image img {
   width: 60px;
   height: 60px;
 }
-
+.track-row:hover {
+  background-color: #222;
+}
 .track-row .cover {
   border-radius: 8%;
 }
@@ -15,7 +22,8 @@ body {
   cursor: pointer;
 }
 .track-row .artist {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  color: #aaa;
 }
 .track-row .playtime {
   padding-right: 10px;
