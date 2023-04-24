@@ -189,12 +189,10 @@ const PlayerControls = ({ audioRef }) => {
             updateMeta();
 
             navigator.mediaSession.setActionHandler('play', async function() {
-                console.log('> User clicked "Play" icon.');
                 await play();
             });
 
             navigator.mediaSession.setActionHandler('pause', function() {
-                console.log('> User clicked "Pause" icon.');
                 pause();
             });
 
@@ -208,13 +206,15 @@ const PlayerControls = ({ audioRef }) => {
                 dispatch({ type: 'setStatus', payload: 'paused' });
             });
 
+            audioRef.current.addEventListener('ended', function() {
+                next();
+            });
+
             navigator.mediaSession.setActionHandler('previoustrack', function() {
-                console.log('> User clicked "Previous Track" icon.');
                 previous();
             });
 
             navigator.mediaSession.setActionHandler('nexttrack', function() {
-                console.log('> User clicked "Next Track" icon.');
                 next();
             });
         }
