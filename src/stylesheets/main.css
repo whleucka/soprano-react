@@ -39,6 +39,7 @@ h1,h2,h3,h4,h5 {
   overflow-y: auto;
 }
 #sidebar {
+  display: none;
   width: 200px;
 }
 #sidebar .navbar-nav li {
@@ -64,6 +65,9 @@ h1,h2,h3,h4,h5 {
 #player #cover {
   margin-left: 10px;
   margin-right: 10px;
+}
+#player #volume {
+  display: none !important;
 }
 #player #volume-progress {
   width: 80px;
@@ -104,4 +108,12 @@ h1,h2,h3,h4,h5 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+@media (min-width: 576px) {
+  #sidebar {
+    display: block;
+  }
+  #player #volume {
+    display: flex !important;
+  }
 }
