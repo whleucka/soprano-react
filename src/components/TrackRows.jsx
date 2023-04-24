@@ -9,7 +9,8 @@ const TrackRows = (props) => {
     const { dispatch } = useContext(SopranoContext);
     const { tracks, mode } = props;
     return tracks.map((track, i) => {
-        const image = <MD5Cover md5={track.md5} size={[60, 60]} />;
+        const size = [42,42];
+        const image = <MD5Cover md5={track.md5} size={size} />;
         const title = <TitleArtist title={track.title} artist={track.artist} />;
         const playtime = <Playtime playtime={track.playtime_string} />;
         const handleTitleClick = () => {
