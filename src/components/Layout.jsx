@@ -15,6 +15,7 @@ const Layout = () => {
     <section id="soprano">
       <div id="inner" className="d-flex">
         <Router>
+          <AudioController audio={audio} />
           <Sidebar />
           <div id="main-content">
             <Routes>
@@ -27,7 +28,6 @@ const Layout = () => {
         </Router>
       </div>
       <Player />
-      <AudioController audio={audio} />
     </section>
   );
 };
