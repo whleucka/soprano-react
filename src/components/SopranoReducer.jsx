@@ -1,6 +1,6 @@
 export const SopranoReducer = (state, action) => {
   switch (action.type) {
-    case 'getLiked':
+    case 'setLiked':
       var music = state.music;
       music.liked = action.payload;
       return { ...state, music };
@@ -17,6 +17,9 @@ export const SopranoReducer = (state, action) => {
     case 'setTrack':
       var track = action.payload;
       return { ...state, track };
+    case 'setStatus':
+      var status = action.payload;
+      return { ...state, status };
     case 'playAllLiked':
       var music = state.music;
       music.playlist.tracks = music.liked;

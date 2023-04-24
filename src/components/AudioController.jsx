@@ -111,10 +111,12 @@ const AudioController = (props) => {
             });
 
             audio.current.addEventListener('play', function() {
+                dispatch({ type: 'setStatus', payload: 'playing' });
                 navigator.mediaSession.playbackState = 'playing';
             });
 
             audio.current.addEventListener('pause', function() {
+                dispatch({ type: 'setStatus', payload: 'paused' });
                 navigator.mediaSession.playbackState = 'paused';
             });
 
@@ -127,6 +129,23 @@ const AudioController = (props) => {
             });
         }
     }, [state.track]);
+
+    useEffect(() => {
+        switch(state.status) {
+            case 'setNext':
+                next();
+                break;
+            case 'setPrev':
+                prev();
+                break;
+            case 'setPlay':
+                play();
+                break;
+            case 'setPause':
+                pause();
+                break;
+        }
+    }, [state.status]);
 
     /**
      * When the playlist index changes
