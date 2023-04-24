@@ -25,20 +25,21 @@ const Liked = () => {
     };
 
     const handlePlayAll = () => {
-        dispatch({ type: "playAllLiked" });
+        dispatch({ type: 'playAllLiked' });
         navigate('/playlist');
-    }
+    };
 
     useEffect(() => {
-        if (!state.music.liked.length)
-            load();
+        if (!state.music.liked.length) load();
     }, []);
 
     return (
         <section id="liked">
             <h2>Liked</h2>
             <div className="my-2">
-                <button onClick={handlePlayAll} className="btn btn-dark">Play all</button>
+                <button onClick={handlePlayAll} className="btn btn-dark">
+                    Play all
+                </button>
             </div>
             <div className="my-2">
                 <BarLoader loading={loading} color="#36d7b7" width="100%" />

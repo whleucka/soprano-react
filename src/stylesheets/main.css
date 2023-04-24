@@ -1,8 +1,8 @@
 body {
-  color: #fbfbfb;
-  background-color: #111;
-  font-family: 'Inter', sans-serif;
-  height: 100%;
+    color: #fbfbfb;
+    background-color: #111;
+    font-family: 'Inter', sans-serif;
+    height: 100%;
 }
 ::-webkit-scrollbar {
     width: 11px;
@@ -21,30 +21,34 @@ body {
     -webkit-box-shadow: inset 0px 0px 0px 0px #f0f0f0;
     box-shadow: inset 0px 0px 0px 0px #f0f0f0;
 }
-h1,h2,h3,h4,h5 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 #root {
-  height: 100vh;
+    height: 100vh;
 }
 #soprano {
-  height: 100%;
+    height: 100%;
 }
 #inner {
-  height: calc(100% - 100px);
+    height: calc(100% - 100px);
 }
 #main-content {
-  width: 100%;
-  overflow-y: auto;
-  padding: 5px;
+    width: 100%;
+    overflow-y: auto;
+    padding: 5px;
 }
 #sidebar {
-  display: none;
-  width: 200px;
+    display: none;
+    width: 200px;
 }
 #sidebar .navbar-nav li {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 #sidebar a {
     -webkit-transition: opacity 0.5s;
@@ -61,60 +65,61 @@ h1,h2,h3,h4,h5 {
     opacity: 1;
 }
 #player {
-  height: 100px;
+    height: 100px;
 }
 #player #cover {
-  margin-left: 10px;
-  margin-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 #player #volume {
-  display: none !important;
+    display: none !important;
 }
 #player #volume-progress {
-  width: 80px;
+    width: 80px;
 }
 .track-row {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 .track-row:hover {
-  background-color: #222;
+    background-color: #222;
 }
 .track-row .image img {
-  width: 42px;
-  height: 42px;
+    width: 42px;
+    height: 42px;
 }
-.track-row .cover, #player #cover img {
-  border-radius: 8%;
+.track-row .cover,
+#player #cover img {
+    border-radius: 8%;
 }
 .track-row .title {
-  font-size: 0.9rem;
-  cursor: pointer;
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 .track-row .artist {
-  font-size: 0.8rem;
-  color: #aaa;
+    font-size: 0.8rem;
+    color: #aaa;
 }
 .track-row .playtime {
-  padding-right: 10px;
-  font-size: 0.7rem;
-  color: #aaa;
+    padding-right: 10px;
+    font-size: 0.7rem;
+    color: #aaa;
 }
 .track-row .title-artist div {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 .track-row .title-artist .title {
-  font-weight: bold;
+    font-weight: bold;
 }
 .truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 @media (min-width: 576px) {
-  #sidebar {
-    display: block;
-  }
-  #player #volume {
-    display: flex !important;
-  }
+    #sidebar {
+        display: block;
+    }
+    #player #volume {
+        display: flex !important;
+    }
 }
