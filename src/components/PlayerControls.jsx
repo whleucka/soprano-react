@@ -196,19 +196,19 @@ const PlayerControls = ({ audioRef }) => {
                 pause();
             });
 
-            audioRef.current.addEventListener('play', function() {
+            audioRef.current.onplay = () => {
                 navigator.mediaSession.playbackState = 'playing';
                 dispatch({ type: 'setStatus', payload: 'playing' });
-            });
+            };
 
-            audioRef.current.addEventListener('pause', function() {
+            audioRef.current.onpause = () => {
                 navigator.mediaSession.playbackState = 'paused';
                 dispatch({ type: 'setStatus', payload: 'paused' });
-            });
+            };
 
-            audioRef.current.addEventListener('ended', function() {
+            audioRef.current.onended = () => {
                 next();
-            });
+            };
 
             navigator.mediaSession.setActionHandler('previoustrack', function() {
                 previous();
