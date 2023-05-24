@@ -117,6 +117,9 @@ h5 {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.alert {
+    padding: 10px;
+}
 @media (min-width: 576px) {
     #sidebar {
         display: block;
