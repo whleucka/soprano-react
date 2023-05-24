@@ -10,9 +10,12 @@ const Sidebar = () => {
                 <Link to="/playlist">
                     <li className="nav-item">Playlist</li>
                 </Link>
-                <Link to="/liked">
-                    <li className="nav-item">Liked</li>
+                <Link to="/search">
+                    <li className="nav-item">Search</li>
                 </Link>
+                {/* <Link to="/liked"> */}
+                {/*     <li className="nav-item">Liked</li> */}
+                {/* </Link> */}
             </ul>
         </nav>
     );

@@ -1,16 +1,12 @@
 import { useContext } from 'react';
 import { SopranoContext } from './Soprano';
-import MD5Cover from './MD5Cover';
+import Cover from './Cover';
 import VolumeProgress from './VolumeProgress';
 import PlayerControls from './PlayerControls';
 
 const Player = () => {
     const { state } = useContext(SopranoContext);
-    const cover = state.track ? (
-        <MD5Cover md5={state.track?.md5} size={[80, 80]} />
-    ) : (
-        <img src="/img/no-album.png" width="80" height="80" />
-    );
+    const cover = <Cover cover={state.track?.cover} />;
 
     return (
         <section id="player" className="d-flex">

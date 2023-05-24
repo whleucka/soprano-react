@@ -1,5 +1,5 @@
 export const InitialState = {
-    user: '514f7883-0225-45bf-9bcf-1a52092cdaf1',
+    user: '',
     track: null,
     status: 'idle',
     music: {

@@ -20,9 +20,14 @@ export const SopranoReducer = (state, action) => {
         case 'setStatus':
             var status = action.payload;
             return { ...state, status };
-        case 'playAllLiked':
+        case 'setPlaylistLiked':
             var music = state.music;
             music.playlist.tracks = music.liked;
+            return { ...state, music };
+        case 'setSearchTerm':
+            var music = state.music;
+            var search = music.search;
+            search.term = action.payload;
             return { ...state, music };
         default:
             return state;

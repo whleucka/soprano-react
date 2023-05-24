@@ -25,7 +25,7 @@ const Liked = () => {
     };
 
     const handlePlayAll = () => {
-        dispatch({ type: 'playAllLiked' });
+        dispatch({ type: 'setPlaylistLiked' });
         navigate('/playlist');
     };
 
