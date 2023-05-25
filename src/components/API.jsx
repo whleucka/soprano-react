@@ -24,11 +24,9 @@ const getData = async (endpoint = '', data = {}) => {
 };
 
 const API = {
-    // Get user liked music tracks
-    getLiked: async (uuid) => {
-        if (!uuid || !uuid.length) return [];
-        const response = await postData(`/liked/playlist`, { uuid });
-        return response.data;
+    searchMusic: async (term) => {
+        const response = await getData('/tracks/search', { term });
+        return response;
     }
 };
 

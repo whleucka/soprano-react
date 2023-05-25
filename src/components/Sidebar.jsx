@@ -13,9 +13,6 @@ const Sidebar = () => {
                 <Link to="/search">
                     <li className="nav-item">Search</li>
                 </Link>
-                {/* <Link to="/liked"> */}
-                {/*     <li className="nav-item">Liked</li> */}
-                {/* </Link> */}
             </ul>
         </nav>
     );

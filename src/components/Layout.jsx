@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Playlist from './Playlist';
 import Search from './Search';
-// import Liked from './Liked';
 import AudioController from './AudioController';
 import { useRef } from 'react';
 import Sidebar from './Sidebar';
@@ -26,7 +25,6 @@ const Layout = () => {
                                 element={<Playlist />}
                             />
                             <Route exact path="/search" element={<Search />} />
-                            {/* <Route exact path="/liked" element={<Liked />} /> */}
                         </Routes>
                     </div>
                 </Router>

@@ -4,6 +4,28 @@ body {
     font-family: 'Inter', sans-serif;
     height: 100%;
 }
+textarea:focus,
+button[type='button']:focus,
+input[type='button']:focus,
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='datetime']:focus,
+input[type='datetime-local']:focus,
+input[type='date']:focus,
+input[type='month']:focus,
+input[type='time']:focus,
+input[type='week']:focus,
+input[type='number']:focus,
+input[type='email']:focus,
+input[type='url']:focus,
+input[type='search']:focus,
+input[type='tel']:focus,
+input[type='color']:focus,
+.uneditable-input:focus {
+    border-color: rgba(126, 239, 104, 0.8);
+    box-shadow: none;
+    outline: 0 none;
+}
 ::-webkit-scrollbar {
     width: 11px;
     height: 11px;
@@ -48,7 +70,7 @@ h5 {
     width: 200px;
 }
 #sidebar .navbar-nav li {
-    margin-left: 10px;
+    padding: 2px 8px;
 }
 #sidebar a {
     -webkit-transition: opacity 0.5s;
