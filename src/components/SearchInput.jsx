@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import API from './API';
 import { SopranoContext } from './Soprano';
+import { Search as SearchIcon } from 'react-feather';
 
 const SearchInput = () => {
     const { state, dispatch } = useContext(SopranoContext);
@@ -9,9 +10,7 @@ const SearchInput = () => {
         // Set the global state search term
         dispatch({ type: 'setMusicSearchTerm', payload: term });
         // Clear the search results when the term is empty
-        if (!term.length) {
-            clearResults();
-        }
+        !term.length && clearResults();
     };
 
     const clearResults = () => {
@@ -22,9 +21,7 @@ const SearchInput = () => {
     };
 
     const handleEnter = (e) => {
-        if (e.key === 'Enter') {
-            handleSearch();
-        }
+        e.key === 'Enter' && handleSearch();
     };
 
     const handleSearch = () => {
@@ -55,16 +52,16 @@ const SearchInput = () => {
                 onKeyDown={(e) => handleEnter(e)}
                 type="search"
                 value={state.music.search.term}
-                onChange={(e) => handleTerm(e.currentTarget.value)}
+                onInput={(e) => handleTerm(e.currentTarget.value)}
                 className="form-control form-control-sm bg-dark text-light border-0"
                 placeholder="What music would you like to hear?"
             />
             <button
                 onClick={handleSearch}
-                className="btn btn-light"
+                className="btn btn-dark"
                 type="button"
             >
-                Search
+                <SearchIcon />
             </button>
         </div>
     );

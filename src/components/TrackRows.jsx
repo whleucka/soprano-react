@@ -11,12 +11,11 @@ const TrackRows = (props) => {
     return tracks.map((track, i) => {
         const image = <Cover cover={track?.cover} />;
         const title = <TitleArtist title={track.title} artist={track.artist} />;
-        const playtime = <Playtime playtime={track.playtime_string} />;
+        const playtime = <Playtime playtime={track.playtime} />;
         const handleTitleClick = () => {
             dispatch({ type: 'setTrack', payload: track });
-            if (mode === 'playlist') {
+            mode === 'playlist' &&
                 dispatch({ type: 'setPlaylistIndex', payload: i });
-            }
         };
         return (
             <TrackRow

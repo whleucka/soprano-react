@@ -22,7 +22,7 @@ input[type='search']:focus,
 input[type='tel']:focus,
 input[type='color']:focus,
 .uneditable-input:focus {
-    border-color: rgba(126, 239, 104, 0.8);
+    border-color: none;
     box-shadow: none;
     outline: 0 none;
 }
@@ -67,7 +67,7 @@ h5 {
 }
 #sidebar {
     display: none;
-    width: 200px;
+    width: 130px;
 }
 #sidebar .navbar-nav li {
     padding: 2px 8px;

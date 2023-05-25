@@ -32,19 +32,19 @@ const PlayerControls = () => {
 
     return (
         <section id="player-controls">
-            <button className="btn">
+            <button className="btn text-secondary">
                 <Shuffle />
             </button>
-            <button className="btn" onClick={handlePrev}>
+            <button className="btn text-secondary" onClick={handlePrev}>
                 <SkipBack />
             </button>
-            <button className="btn" onClick={handlePlayPause}>
+            <button className="btn text-secondary" onClick={handlePlayPause}>
                 {PlayPauseIcon}
             </button>
-            <button className="btn" onClick={handleNext}>
+            <button className="btn text-secondary" onClick={handleNext}>
                 <SkipForward />
             </button>
-            <button className="btn" onClick={handlePrev}>
+            <button className="btn text-secondary" onClick={handlePrev}>
                 <Repeat />
             </button>
         </section>

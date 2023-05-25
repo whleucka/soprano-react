@@ -30,7 +30,7 @@ const Liked = () => {
     };
 
     useEffect(() => {
-        if (!state.music.liked.length) load();
+        !state.music.liked.length && load();
     }, []);
 
     return (
