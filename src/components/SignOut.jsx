@@ -9,7 +9,8 @@ const SignOut = () => {
     useEffect(() => {
         dispatch({ type: 'setUser', payload: null });
         setUser(null);
-    }, [dispatch, setUser]);
+    }, []);
+    
     return (
         <>
             <h2 className="header">Goodbye</h2>
