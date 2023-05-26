@@ -7,9 +7,8 @@ const SearchActions = () => {
     const { state, dispatch } = useContext(SopranoContext);
     const navigate = useNavigate();
     const setPlaylist = () => {
-        dispatch({ type: 'setPlaylist', payload: state.searchResults });
+        dispatch({ type: 'setPlaylist', payload: state.music.search.results });
         dispatch({ type: 'setPlaylistIndex', payload: 0 });
-        dispatch({ type: 'setPlaylistId', payload: null });
         navigate('/playlist');
     };
 

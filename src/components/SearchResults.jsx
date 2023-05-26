@@ -1,22 +1,10 @@
 import { useContext } from 'react';
-import SearchActions from './SearchActions';
 import { SopranoContext } from './Soprano';
-import TrackRow from './TrackRow';
+import TrackRows from './TrackRows';
 
-const SearchResults = ({ searchRef }) => {
+const SearchResults = () => {
     const { state } = useContext(SopranoContext);
-    return (
-        <div>
-            {state.searchResults.length > 0 && (
-                <div>
-                    <SearchActions />
-                    {state.searchResults.map((result, i) => (
-                        <TrackRow key={i} mode="search" track={result} />
-                    ))}
-                </div>
-            )}
-        </div>
-    );
+    return <TrackRows tracks={state.music.search.results} mode="search" />;
 };
 
 export default SearchResults;

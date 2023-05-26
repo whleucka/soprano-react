@@ -5,7 +5,6 @@ import {
     Disc as DiscIcon,
     Music as MusicIcon,
     Radio as RadioIcon,
-    Tool as ToolIcon,
     Mic as MicIcon,
     LogIn as LogInIcon,
     LogOut as LogOutIcon
@@ -38,25 +37,25 @@ const NavLinks = () => {
                     <MusicIcon size="18" /> Playlist
                 </li>
             </Link>
-            {state.user && (
-                <>
-                    <Link onClick={handleClick} to="/library">
-                        <li className="nav-item truncate">
-                            <DiscIcon size="18" /> Library
-                        </li>
-                    </Link>
-                </>
-            )}
-            <Link to="/radio">
-                <li onClick={handleClick} className="nav-item truncate">
-                    <RadioIcon size="18" /> Radio
-                </li>
-            </Link>
-            <Link to="/podcasts">
-                <li onClick={handleClick} className="nav-item truncate">
-                    <MicIcon size="18" /> Podcasts
-                </li>
-            </Link>
+            {/* {state.user && ( */}
+            {/*     <> */}
+            {/*         <Link onClick={handleClick} to="/library"> */}
+            {/*             <li className="nav-item truncate"> */}
+            {/*                 <DiscIcon size="18" /> Library */}
+            {/*             </li> */}
+            {/*         </Link> */}
+            {/*     </> */}
+            {/* )} */}
+            {/* <Link to="/radio"> */}
+            {/*     <li onClick={handleClick} className="nav-item truncate"> */}
+            {/*         <RadioIcon size="18" /> Radio */}
+            {/*     </li> */}
+            {/* </Link> */}
+            {/* <Link to="/podcasts"> */}
+            {/*     <li onClick={handleClick} className="nav-item truncate"> */}
+            {/*         <MicIcon size="18" /> Podcasts */}
+            {/*     </li> */}
+            {/* </Link> */}
             {/* <Link to="/options"> */}
             {/*     <li onClick={handleClick} className="nav-item truncate"> */}
             {/*         <ToolIcon size="18" /> Options */}

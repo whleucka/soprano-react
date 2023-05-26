@@ -321,53 +321,37 @@ label:focus,
  * Track Row
  */
 .track-row {
-    margin-bottom: 6px;
-    -webkit-transition: background-color 0.2s;
-    -o-transition: background-color 0.2s;
-    transition: background-color 0.2s;
-    width: 100%;
+    margin-bottom: 5px;
 }
 .track-row:hover {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: #222;
 }
-.track-row .cover {
-    height: 40px;
-    width: 40px;
+.track-row .image img {
+    width: 42px;
+    height: 42px;
 }
-.track-row #title {
-    font-weight: bold;
+.track-row .cover,
+#player #cover img {
+    border-radius: 8%;
+}
+.track-row .title {
     font-size: 0.8rem;
-    max-width: 90%;
-    color: #ddd;
+    cursor: pointer;
 }
-.track-row #artist {
+.track-row .artist {
     font-size: 0.7rem;
-    color: #ccc;
-    opacity: 0.7;
-    max-width: 90%;
+    color: #aaa;
 }
-.track-row #playtime {
-    font-size: 0.65rem;
-    padding-right: 4px;
+.track-row .playtime {
+    padding-right: 10px;
+    font-size: 0.7rem;
+    color: #aaa;
 }
-.track-row .play-button {
-    font-size: 0.9rem;
-    background: none;
-    border: 0;
+.track-row .title-artist div {
+    margin-left: 10px;
 }
-
-.track-row .play-button svg {
-    opacity: 0.4;
-    stroke-width: 3px;
-}
-
-.track-row .play-button.active svg,
-#play-pause-btn.active,
-#now-playing-play.active {
-    color: limegreen;
-    -webkit-animation: colorChange 30s alternate infinite;
-    animation: colorChange 30s alternate infinite;
-    opacity: 1;
+.track-row .title-artist .title {
+    font-weight: bold;
 }
 
 .actions {

@@ -1,55 +1,15 @@
-import { useContext } from 'react';
-import { SopranoContext } from './Soprano';
-import CoverSize from './CoverSize';
-import AlbumCover from './AlbumCover';
-import TrackTitle from './TrackTitle';
-import LikeButton from './LikeButton';
-
-const TrackRow = ({ track, mode, playlistIndex = null }) => {
-    const { state, dispatch } = useContext(SopranoContext);
-    const { artist, title, playtime_string } = track;
-    const handleSetTrack = () => {
-        dispatch({ type: 'setMode', payload: mode });
-        if (playlistIndex !== null)
-            dispatch({ type: 'setPlaylistIndex', payload: playlistIndex });
-        else
-            dispatch({ type: 'setTrack', payload: track });
-    };
-    // const buttonClass =
-    //     state.status === 'playing' && state.track.md5 === track.md5
-    //         ? 'active'
-    //         : 'text-secondary';
-    const trackId =
-        playlistIndex !== null ? 'playlist-row-' + playlistIndex : '';
-
+const TrackRow = (props) => {
+    const { image, title, playtime } = props;
     return (
-        <div
-            tabIndex="-1"
-            id={trackId}
-            className="track-row d-flex align-items-center"
-        >
-            <div>
-                {state.user && (mode === 'search' || mode === 'playlist') && (
-                    <LikeButton track={track} />
-                )}
-            </div>
-            <div title={track.album}>
-                {(mode === 'radio' || mode === 'podcast') && (
-                    <AlbumCover cover={track.cover} />
-                )}
-                {(mode === 'search' || mode === 'playlist') && (
-                    <CoverSize md5={track.md5} size={[40, 40]} />
-                )}
-            </div>
+        <div className="track-row d-flex align-items-center">
+            <div className="image">{image}</div>
             <div
-                role="button"
-                onClick={handleSetTrack}
-                className="flex-grow-1"
-                style={{ width: '50%' }}
+                onClick={props.handleTitleClick}
+                className="title flex-grow-1 truncate"
             >
-                <TrackTitle title={title} artist={artist} />
+                {title}
             </div>
-            <div id="playtime">{playtime_string}</div>
+            <div className="playtime">{playtime}</div>
         </div>
     );
 };

@@ -1,17 +1,20 @@
+import { useContext } from 'react';
 import SearchResults from './SearchResults';
-import MusicSearch from './MusicSearch';
+import SearchInput from './SearchInput';
 import { SopranoContext } from './Soprano';
-import { useRef, useEffect, useContext } from 'react';
+import SearchActions from './SearchActions';
 
 const Search = () => {
-    const { dispatch } = useContext(SopranoContext);
-    const searchRef = useRef(null);
+    const {state} = useContext(SopranoContext);
 
     return (
         <>
             <h2 className="header">Search</h2>
-            <MusicSearch searchRef={searchRef} />
-            <SearchResults searchRef={searchRef} />
+            <SearchInput />
+            { state.music.search.results.length > 0 &&
+                <SearchActions />
+            }
+            <SearchResults />
         </>
     );
 };
