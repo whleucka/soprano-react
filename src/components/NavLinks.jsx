@@ -46,11 +46,11 @@ const NavLinks = () => {
             {/*         </Link> */}
             {/*     </> */}
             {/* )} */}
-            {/* <Link to="/radio"> */}
-            {/*     <li onClick={handleClick} className="nav-item truncate"> */}
-            {/*         <RadioIcon size="18" /> Radio */}
-            {/*     </li> */}
-            {/* </Link> */}
+            <Link to="/radio">
+                <li onClick={handleClick} className="nav-item truncate">
+                    <RadioIcon size="18" /> Radio
+                </li>
+            </Link>
             {/* <Link to="/podcasts"> */}
             {/*     <li onClick={handleClick} className="nav-item truncate"> */}
             {/*         <MicIcon size="18" /> Podcasts */}

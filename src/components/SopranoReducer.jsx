@@ -43,6 +43,10 @@ export function SopranoReducer(state, action) {
             var music = state.music;
             music.playlist.tracks = music.liked;
             return { ...state, music };
+        case 'setRadioStations':
+            var radio = state.radio;
+            radio.stations = action.payload
+            return { ...state, radio };
 
 
 
@@ -60,8 +64,6 @@ export function SopranoReducer(state, action) {
         // case 'appendToPlaylist':
         //     const appendedPlaylist = [...state.playlist, action.payload];
         //     return { ...state, playlist: appendedPlaylist };
-        // case 'setRadioStations':
-        //     return { ...state, radioStations: action.payload };
         // case 'setTrackTitleArtist':
         //     const track = { ...state.track, ...action.payload };
         //     return { ...state, track };

@@ -7,7 +7,6 @@ const PlaylistActions = () => {
 
     const handleClear = () => {
         dispatch({ type: 'setPlaylist', payload: [] });
-        dispatch({ type: 'setPlaylistIndex', payload: 0 });
     };
 
     return (

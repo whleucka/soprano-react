@@ -1,7 +1,7 @@
 export const InitialState = {
     user: '',
     mode: null,
-    track: null,
+    track: {},
     status: 'idle',
     music: {
         search: {

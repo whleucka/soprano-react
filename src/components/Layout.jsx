@@ -10,7 +10,7 @@ import AudioController from './AudioController';
 const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
-// const Radio = lazy(() => import('./Radio'));
+const Radio = lazy(() => import('./Radio'));
 // const Podcasts = lazy(() => import('./Podcasts'));
 // const Library = lazy(() => import('./Library'));
 // const Options = lazy(() => import('./Options'));
@@ -57,11 +57,11 @@ const Layout = () => {
                                     path="/playlist"
                                     element={<Playlist />}
                                 />
-                                {/* <Route */}
-                                {/*     exact */}
-                                {/*     path="/radio" */}
-                                {/*     element={<Radio audioRef={audioRef} />} */}
-                                {/* /> */}
+                                <Route
+                                    exact
+                                    path="/radio"
+                                    element={<Radio audioRef={audioRef} />}
+                                />
                                 {/* <Route */}
                                 {/*     exact */}
                                 {/*     path="/podcasts" */}

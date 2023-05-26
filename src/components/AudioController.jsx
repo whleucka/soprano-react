@@ -9,7 +9,7 @@ const AudioController = (props) => {
      * Play track
      */
     const play = async () => {
-        audioRef.current.play().then((_) => updateMetadata());
+        if (state.track) audioRef.current.play().then((_) => updateMetadata());
     };
 
     /**
@@ -153,7 +153,7 @@ const AudioController = (props) => {
                 pause();
                 break;
             default:
-                console.log("unexpected status")
+                return;
         }
     }, [state.status]);
 
@@ -166,7 +166,7 @@ const AudioController = (props) => {
         dispatch({ type: 'setTrack', payload: track });
     }, [state.music.playlist.index]);
 
-    return <audio ref={audioRef} src={state.track?.src} />;
+    return <audio ref={audioRef} src={state.track?.src} autoPlay/>;
 };
 
 export default AudioController;

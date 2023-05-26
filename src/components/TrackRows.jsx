@@ -7,11 +7,11 @@ import AlbumCover from './AlbumCover';
 import CoverSize from './CoverSize';
 
 const TrackRows = (props) => {
-    const { state, dispatch } = useContext(SopranoContext);
+    const { dispatch } = useContext(SopranoContext);
     const { tracks, mode } = props;
     return tracks.map((track, i) => {
         const image =
-            state.mode === 'podcast' ? (
+            props.mode === 'podcast' || props.mode === 'radio' ? (
                 <AlbumCover cover={track.cover} />
             ) : (
                 <CoverSize md5={track.md5} size={[70, 70]} />
@@ -25,7 +25,7 @@ const TrackRows = (props) => {
         };
         return (
             <TrackRow
-                key={track.id}
+                key={i}
                 image={image}
                 title={title}
                 playtime={playtime}
