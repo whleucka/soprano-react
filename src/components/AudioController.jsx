@@ -104,7 +104,7 @@ const AudioController = (props) => {
      * When the track changes
      */
     useEffect(() => {
-        if (state.track) {
+        if (state.track?.src) {
             play();
 
             navigator.mediaSession.setActionHandler('play', async function () {
