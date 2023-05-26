@@ -41,6 +41,7 @@ const SearchInput = () => {
 
     const handleClear = () => {
         dispatch({ type: 'setMusicSearchResults', payload: [] });
+        dispatch({ type: 'setMusicSearchTerm', payload: '' });
     };
 
     const types = [

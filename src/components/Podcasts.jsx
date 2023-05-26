@@ -1,9 +1,7 @@
-import PodcastSearch from './PodcastSearch';
-import { useRef } from 'react';
+import PodcastSearchInput from './PodcastSearchInput';
+import PodcastSearchResults from './PodcastSearchResults';
 
 const Podcasts = () => {
-    const searchRef = useRef(null);
-
     return (
         <>
             <h2 className="header">
@@ -15,7 +13,8 @@ const Podcasts = () => {
                     title="Listen Notes"
                 />
             </h2>
-            <PodcastSearch searchRef={searchRef} />
+            <PodcastSearchInput />
+            <PodcastSearchResults />
         </>
     );
 };

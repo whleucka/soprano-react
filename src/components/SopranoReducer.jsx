@@ -47,6 +47,16 @@ export function SopranoReducer(state, action) {
             var radio = state.radio;
             radio.stations = action.payload
             return { ...state, radio };
+        case 'setPodcastSearchResults':
+            var podcasts = state.podcasts;
+            var search = podcasts.search;
+            search.results = action.payload;
+            return { ...state, podcasts };
+        case 'setPodcastSearchTerm':
+            var podcasts = state.podcasts;
+            var search = podcasts.search;
+            search.term = action.payload;
+            return { ...state, podcasts };
 
 
 

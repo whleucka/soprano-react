@@ -11,7 +11,7 @@ const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
 const Radio = lazy(() => import('./Radio'));
-// const Podcasts = lazy(() => import('./Podcasts'));
+const Podcasts = lazy(() => import('./Podcasts'));
 // const Library = lazy(() => import('./Library'));
 // const Options = lazy(() => import('./Options'));
 const NowPlaying = lazy(() => import('./NowPlaying'));
@@ -62,11 +62,11 @@ const Layout = () => {
                                     path="/radio"
                                     element={<Radio audioRef={audioRef} />}
                                 />
-                                {/* <Route */}
-                                {/*     exact */}
-                                {/*     path="/podcasts" */}
-                                {/*     element={<Podcasts />} */}
-                                {/* /> */}
+                                <Route
+                                    exact
+                                    path="/podcasts"
+                                    element={<Podcasts />}
+                                />
                                 <Route
                                     exact
                                     path="/now-playing"

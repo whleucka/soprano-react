@@ -131,9 +131,7 @@ const PodcastSearch = ({ searchRef }) => {
                 <BarLoader className="mt-3" color="#36d7b7" width="100%" />
             )}
 
-            <PodcastResults />
-
-            {state.podcastResults.length > 0 && offset < total && (
+            {state.podcasts.search.results.length > 0 && offset < total && (
                 <button
                     onClick={loadMore}
                     className="btn btn-sm btn-secondary my-2"
