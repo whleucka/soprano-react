@@ -127,6 +127,10 @@ const AudioController = (props) => {
                 navigator.mediaSession.playbackState = 'paused';
             });
 
+            audioRef.current.addEventListener('ended', function () {
+                next();
+            });
+
             navigator.mediaSession.setActionHandler(
                 'previoustrack',
                 function () {
