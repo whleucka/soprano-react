@@ -110,7 +110,7 @@ const PlayerProgress = ({ audioRef }) => {
     };
 
     useEffect(() => {
-        if (Object.keys(state.track).length > 0) {
+        if (state.track) {
             clearTimer();
             setTimer(state.track.playtime_seconds);
 

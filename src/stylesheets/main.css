@@ -374,10 +374,10 @@ label:focus,
     height: 100px;
 }
 #player #cover > img {
-    width: 80px;
-    height: 80px;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 6px;
+    margin-left: 6px;
 }
 #player #volume-progress {
     width: 80px;
