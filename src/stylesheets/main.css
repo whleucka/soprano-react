@@ -367,6 +367,9 @@ label:focus,
 /**
  * Player
  */
+#player {
+    z-index: 3;
+}
 #player #cover img {
     border-radius: 8%;
 }
