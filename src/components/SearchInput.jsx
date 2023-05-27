@@ -7,8 +7,8 @@ const SearchInput = () => {
     const { state, dispatch } = useContext(SopranoContext);
 
     const handleInput = (e) => {
-        const term = e.currentTarget.value.trim();
-        dispatch({ type: 'setMusicSearchTerm', payload: term})
+        const term = e.currentTarget.value;
+        dispatch({ type: 'setMusicSearchTerm', payload: term });
     };
 
     const handleKey = (e) => {
@@ -21,7 +21,7 @@ const SearchInput = () => {
 
     const handleTypeChange = (e) => {
         const type = e.currentTarget.value;
-        dispatch({ type: 'setMusicSearchType', payload: type})
+        dispatch({ type: 'setMusicSearchType', payload: type });
     };
 
     const handleSubmit = () => {
@@ -30,8 +30,11 @@ const SearchInput = () => {
             API.musicSearch(term, state.music.search.type, state.user)
                 .then((tracks) => {
                     if (tracks.length > 0) {
-                        dispatch({ type: 'setMusicSearchResults', payload: tracks });
-                    } 
+                        dispatch({
+                            type: 'setMusicSearchResults',
+                            payload: tracks
+                        });
+                    }
                 })
                 .catch((err) => {
                     console.log(err);
@@ -52,7 +55,10 @@ const SearchInput = () => {
     ];
 
     return (
-        <div id="music-search" className="input-group input-group-sm w-100 mb-2">
+        <div
+            id="music-search"
+            className="input-group input-group-sm w-100 mb-2"
+        >
             <input
                 placeholder="I want to listen to..."
                 type="search"
@@ -69,9 +75,11 @@ const SearchInput = () => {
             >
                 {types.length > 0 &&
                     types.map((type, i) => {
-                        return <option key={i} value={type.value}>
-                            {type.title}
-                        </option>
+                        return (
+                            <option key={i} value={type.value}>
+                                {type.title}
+                            </option>
+                        );
                     })}
             </select>
             <button
@@ -81,7 +89,8 @@ const SearchInput = () => {
             >
                 <SearchIcon height="14" />
             </button>
-            {(state.music.search.results.length > 0 || state.music.search.term.length > 0) && (
+            {(state.music.search.results.length > 0 ||
+                state.music.search.term.length > 0) && (
                 <button
                     type="submit"
                     onClick={handleClear}
