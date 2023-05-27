@@ -390,8 +390,6 @@ label:focus,
     color: limegreen !important;
 }
 
-
-
 .gradient-blue {
     background: #8e2de2; /* fallback for old browsers */
     background: -webkit-linear-gradient(
@@ -520,7 +518,7 @@ label:focus,
 @media (min-width: 576px) {
     #content,
     #backdrop {
-        height: calc(100% - 98px);
+        height: calc(100% - 100px);
     }
     #backdrop {
         top: 0;
