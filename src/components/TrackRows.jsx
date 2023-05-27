@@ -19,6 +19,7 @@ const TrackRows = (props) => {
         const title = <TitleArtist title={track.title} artist={track.artist} />;
         const playtime = <Playtime playtime={track.playtime_string} />;
         const handleTitleClick = () => {
+            dispatch({ type: 'setMode', payload: props.mode });
             dispatch({ type: 'setTrack', payload: track });
             mode === 'playlist' &&
                 dispatch({ type: 'setPlaylistIndex', payload: i });

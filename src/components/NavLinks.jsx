@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import {
     Home as HomeIcon,
     Search as SearchIcon,
-    Disc as DiscIcon,
     Music as MusicIcon,
     Radio as RadioIcon,
     Mic as MicIcon,
@@ -56,11 +55,6 @@ const NavLinks = () => {
                     <MicIcon size="18" /> Podcasts
                 </li>
             </Link>
-            {/* <Link to="/options"> */}
-            {/*     <li onClick={handleClick} className="nav-item truncate"> */}
-            {/*         <ToolIcon size="18" /> Options */}
-            {/*     </li> */}
-            {/* </Link> */}
             {state.user && (
                 <Link to="/sign-out">
                     <li onClick={handleClick} className="nav-item truncate">

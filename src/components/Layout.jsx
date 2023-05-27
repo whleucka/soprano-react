@@ -13,13 +13,11 @@ const Playlist = lazy(() => import('./Playlist'));
 const Radio = lazy(() => import('./Radio'));
 const Podcasts = lazy(() => import('./Podcasts'));
 // const Library = lazy(() => import('./Library'));
-// const Options = lazy(() => import('./Options'));
-const NowPlaying = lazy(() => import('./NowPlaying'));
 const SignIn = lazy(() => import('./SignIn'));
 const SignOut = lazy(() => import('./SignOut'));
 
 const Layout = () => {
-    const {state} = useContext(SopranoContext);
+    const { state } = useContext(SopranoContext);
     const audioRef = useRef(null);
     const backdropRef = useRef(null);
     return (
@@ -67,11 +65,6 @@ const Layout = () => {
                                     path="/podcasts"
                                     element={<Podcasts />}
                                 />
-                                <Route
-                                    exact
-                                    path="/now-playing"
-                                    element={<NowPlaying />}
-                                />
                                 {state.user && (
                                     <>
                                         {/* <Route */}
@@ -86,11 +79,6 @@ const Layout = () => {
                                         />
                                     </>
                                 )}
-                                {/* <Route */}
-                                {/*     exact */}
-                                {/*     path="/options" */}
-                                {/*     element={<Options />} */}
-                                {/* /> */}
                             </Routes>
                         </Suspense>
                     </section>

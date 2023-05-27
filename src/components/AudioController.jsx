@@ -30,6 +30,7 @@ const AudioController = (props) => {
                 state.music.playlist.tracks.length) %
             state.music.playlist.tracks.length;
         dispatch({ type: 'setPlaylistIndex', payload: index });
+        dispatch({ type: 'setMode', payload: 'playlist' });
         play();
     };
 
@@ -42,6 +43,7 @@ const AudioController = (props) => {
             (state.music.playlist.index + 1) %
             state.music.playlist.tracks.length;
         dispatch({ type: 'setPlaylistIndex', payload: index });
+        dispatch({ type: 'setMode', payload: 'playlist' });
         play();
     };
 
@@ -166,7 +168,7 @@ const AudioController = (props) => {
         dispatch({ type: 'setTrack', payload: track });
     }, [state.music.playlist.index]);
 
-    return <audio ref={audioRef} src={state.track?.src} autoPlay/>;
+    return <audio ref={audioRef} src={state.track?.src} autoPlay />;
 };
 
 export default AudioController;

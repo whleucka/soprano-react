@@ -28,7 +28,8 @@ const PlayerControls = () => {
         dispatch({ type: 'setStatus', payload: 'pause' });
     };
 
-    const PlayPauseIcon = state.status === 'paused' ? <Play /> : <Pause />;
+    const PlayPauseIcon =
+        state.status === 'paused' || !state.track ? <Play /> : <Pause />;
 
     return (
         <section id="player-controls">
