@@ -2,7 +2,6 @@ import React, { useReducer, useMemo } from 'react';
 import { SopranoReducer } from './SopranoReducer';
 import { InitialState } from './InitialState';
 import Layout from './Layout';
-import User from './User';
 
 export const SopranoContext = React.createContext();
 
@@ -15,7 +14,6 @@ const Soprano = () => {
 
     return (
         <SopranoContext.Provider value={ContextValue}>
-            <User />
             <Layout />
         </SopranoContext.Provider>
     );
