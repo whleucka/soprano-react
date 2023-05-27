@@ -376,8 +376,7 @@ label:focus,
 #player #cover > img {
     width: 70px;
     height: 70px;
-    margin-bottom: 6px;
-    margin-left: 6px;
+    margin-left: 15px;
 }
 #player #volume-progress {
     width: 80px;
@@ -518,7 +517,7 @@ label:focus,
 @media (min-width: 576px) {
     #content,
     #backdrop {
-        height: calc(100% - 100px);
+        height: calc(100% - 108px);
     }
     #backdrop {
         top: 0;
