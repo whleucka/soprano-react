@@ -27,25 +27,39 @@ const PlayerControls = () => {
     const handlePause = () => {
         dispatch({ type: 'setStatus', payload: 'pause' });
     };
+    const handleShuffle = () => {
+        dispatch({ type: 'setShuffle', payload: !state.music.controls.shuffle });
+    };
+    const handleRepeat = () => {
+        dispatch({ type: 'setRepeat', payload: !state.music.controls.repeat });
+    };
 
-    const PlayPauseIcon =
+    const shuffleClass = state.music.controls.shuffle 
+    ? 'active'
+    : '';
+
+    const repeatClass = state.music.controls.repeat
+    ? 'active'
+    : '';
+    
+    const playPauseIcon =
         state.status === 'paused' || !state.track ? <Play /> : <Pause />;
 
     return (
         <section id="player-controls">
-            <button className="btn text-secondary">
+            <button className={shuffleClass + " btn text-secondary"} onClick={handleShuffle}>
                 <Shuffle />
             </button>
             <button className="btn text-secondary" onClick={handlePrev}>
                 <SkipBack />
             </button>
-            <button className="btn text-secondary" onClick={handlePlayPause}>
-                {PlayPauseIcon}
+            <button className={"btn text-secondary"} onClick={handlePlayPause}>
+                {playPauseIcon}
             </button>
             <button className="btn text-secondary" onClick={handleNext}>
                 <SkipForward />
             </button>
-            <button className="btn text-secondary" onClick={handlePrev}>
+            <button className={repeatClass + " btn text-secondary"} onClick={handleRepeat}>
                 <Repeat />
             </button>
         </section>

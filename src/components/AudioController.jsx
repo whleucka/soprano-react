@@ -24,11 +24,9 @@ const AudioController = (props) => {
      */
     const prev = () => {
         if (!state.music.playlist.tracks.length) return;
-        const index =
-            (state.music.playlist.index -
-                1 +
-                state.music.playlist.tracks.length) %
-            state.music.playlist.tracks.length;
+        const index = state.music.controls.shuffle
+            ? shuffleIndex()
+            : prevIndex()
         dispatch({ type: 'setPlaylistIndex', payload: index });
         dispatch({ type: 'setMode', payload: 'playlist' });
         play();
@@ -39,13 +37,26 @@ const AudioController = (props) => {
      */
     const next = () => {
         if (!state.music.playlist.tracks.length) return;
-        const index =
-            (state.music.playlist.index + 1) %
-            state.music.playlist.tracks.length;
+        const index = state.music.controls.shuffle
+            ? shuffleIndex()
+            : nextIndex()
         dispatch({ type: 'setPlaylistIndex', payload: index });
         dispatch({ type: 'setMode', payload: 'playlist' });
         play();
     };
+
+    const prevIndex = () => {
+        return (state.music.playlist.index - 1 + state.music.playlist.tracks.length) % state.music.playlist.tracks.length;
+    }
+
+    const nextIndex = () => {
+        return (state.music.playlist.index + 1) % state.music.playlist.tracks.length;
+    }
+
+    const shuffleIndex = () => {
+        let mod = Math.floor(Math.random() * state.music.playlist.tracks.length) + 1;
+        return (state.music.playlist.index + mod) % state.music.playlist.tracks.length;
+    }
 
     /**
      * Update the navigator media sessoin meta

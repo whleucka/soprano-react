@@ -4,6 +4,10 @@ export const InitialState = {
     track: {},
     status: 'idle',
     music: {
+        controls: {
+            repeat: false,
+            shuffle: true,
+        },
         search: {
             term: '',
             type: 'title',

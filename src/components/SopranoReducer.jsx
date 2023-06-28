@@ -57,6 +57,16 @@ export function SopranoReducer(state, action) {
             var search = podcasts.search;
             search.term = action.payload;
             return { ...state, podcasts };
+        case 'setRepeat':
+            var music = state.music;
+            var controls = music.controls;
+            controls.repeat = action.payload;
+            return { ...state, music }
+        case 'setShuffle':
+            var music = state.music;
+            var controls = music.controls;
+            controls.shuffle = action.payload;
+            return { ...state, music }
 
 
 

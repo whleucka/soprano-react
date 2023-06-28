@@ -280,44 +280,6 @@ label:focus,
 }
 
 /**
- * Now Playing
- */
-#now-playing img {
-    height: 280px;
-    width: 280px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    margin-bottom: 40px;
-}
-
-#now-playing #player-controls {
-    position: absolute;
-    bottom: 50px;
-}
-#now-playing #player-controls .btn {
-    width: 60px;
-}
-
-#now-playing #track-info #title {
-    font-size: 1.3rem;
-    font-weight: 800;
-    opacity: 0.9;
-    color: #fbfbfb;
-}
-#now-playing #track-info #artist {
-    font-size: 0.8rem;
-    opacity: 0.6;
-}
-#now-playing #track-info #album {
-    font-size: 0.8rem;
-    opacity: 0.6;
-}
-#now-playing svg {
-    -webkit-transform: scale(1.3);
-    -ms-transform: scale(1.3);
-    transform: scale(1.3);
-}
-
-/**
  * Track Row
  */
 .track-row {
@@ -388,6 +350,22 @@ label:focus,
     display: none !important;
 }
 
+/**
+* Player controls
+*/
+#player-controls .btn {
+    width: 60px;
+    opacity: 0.9;
+}
+
+#player-controls > button.active {
+    opacity: 1;
+    color: lightgreen !important;
+}
+
+/**
+* Colors
+*/
 .lime-green {
     color: limegreen !important;
 }
@@ -486,6 +464,10 @@ label:focus,
     height: 10px;
 }
 
+#volume-progress .progress-bar {
+    background-color: lightgreen;
+}
+
 #volume-progress:hover {
     opacity: 1;
 }
@@ -499,7 +481,7 @@ label:focus,
 }
 
 #player-progressbar {
-    background-color: limegreen;
+    background-color: lightgreen;
 }
 
 #progress-cont {
