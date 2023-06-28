@@ -27,6 +27,7 @@ const TrackRows = (props) => {
         return (
             <TrackRow
                 key={i}
+                id={i}
                 image={image}
                 title={title}
                 playtime={playtime}
