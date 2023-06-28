@@ -35,7 +35,10 @@ const SearchInput = () => {
                             payload: tracks
                         });
                     } else {
-                        dispatch({ type: 'setMusicSearchResults', payload: [] });
+                        dispatch({
+                            type: 'setMusicSearchResults',
+                            payload: []
+                        });
                     }
                 })
                 .catch((err) => {

@@ -30,35 +30,34 @@ const Radio = ({ audioRef }) => {
         // Load radio stations
         // you must reload the app to see newly added radio stations, for now
         if (!state.radio.stations.length) {
-            API.radioStations()
-                .then((res) => {
-                    if (res.length > 0) {
-                        const stations = [];
-                        res.forEach((station) => {
-                            const cover = station.cover_url
-                                ? station.cover_url
-                                : '/img/no-album.png';
-                            const location = station.location
-                                ? station.location
-                                : 'Internet';
-                            let s = {
-                                md5: station.id + '_radio',
-                                artist: location,
-                                album: 'Soprano Radio',
-                                title: station.station_name,
-                                cover,
-                                playtime_seconds: 0,
-                                playtime_string: null,
-                                src: station.src_url
-                            };
-                            stations.push(s);
-                        });
-                        dispatch({
-                            type: 'setRadioStations',
-                            payload: stations
-                        });
-                    }
-                })
+            API.radioStations().then((res) => {
+                if (res.length > 0) {
+                    const stations = [];
+                    res.forEach((station) => {
+                        const cover = station.cover_url
+                            ? station.cover_url
+                            : '/img/no-album.png';
+                        const location = station.location
+                            ? station.location
+                            : 'Internet';
+                        let s = {
+                            md5: station.id + '_radio',
+                            artist: location,
+                            album: 'Soprano Radio',
+                            title: station.station_name,
+                            cover,
+                            playtime_seconds: 0,
+                            playtime_string: null,
+                            src: station.src_url
+                        };
+                        stations.push(s);
+                    });
+                    dispatch({
+                        type: 'setRadioStations',
+                        payload: stations
+                    });
+                }
+            });
         }
     }, []);
 

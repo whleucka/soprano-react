@@ -10,7 +10,7 @@ const SignOut = () => {
         dispatch({ type: 'setUser', payload: null });
         setUser(null);
     }, []);
-    
+
     return (
         <>
             <h2 className="header">Goodbye</h2>

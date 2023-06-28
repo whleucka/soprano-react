@@ -29,11 +29,11 @@ export function SopranoReducer(state, action) {
             var playlist = music.playlist;
             playlist.index = action.payload;
             return { ...state, playlist };
-         case 'setLiked':
+        case 'setLiked':
             var music = state.music;
             music.liked = action.payload;
             return { ...state, music };
-            case 'setTrack':
+        case 'setTrack':
             var track = action.payload;
             return { ...state, track };
         case 'setStatus':
@@ -45,7 +45,7 @@ export function SopranoReducer(state, action) {
             return { ...state, music };
         case 'setRadioStations':
             var radio = state.radio;
-            radio.stations = action.payload
+            radio.stations = action.payload;
             return { ...state, radio };
         case 'setPodcastSearchResults':
             var podcasts = state.podcasts;
@@ -61,14 +61,12 @@ export function SopranoReducer(state, action) {
             var music = state.music;
             var controls = music.controls;
             controls.repeat = action.payload;
-            return { ...state, music }
+            return { ...state, music };
         case 'setShuffle':
             var music = state.music;
             var controls = music.controls;
             controls.shuffle = action.payload;
-            return { ...state, music }
-
-
+            return { ...state, music };
 
         // case 'setPodcastResults':
         //     return { ...state, podcastResults: action.payload };

@@ -1,10 +1,10 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext } from 'react';
 import API from './API';
-import { SopranoContext } from "./Soprano";
+import { SopranoContext } from './Soprano';
 import { useLocalStorage } from './useLocalStorage';
 
 const User = () => {
-    const {dispatch} = useContext(SopranoContext);
+    const { dispatch } = useContext(SopranoContext);
     const [user] = useLocalStorage('uuid', '');
     useEffect(() => {
         // Load user, if possible

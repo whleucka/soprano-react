@@ -10,7 +10,8 @@ const Playlist = () => {
 
     useEffect(() => {
         if (state.music.playlist.tracks.length > 0) {
-            const track = state.music.playlist.tracks[state.music.playlist.index];
+            const track =
+                state.music.playlist.tracks[state.music.playlist.index];
             if (track) {
                 const playlistRow = document.getElementById(
                     'playlist-row-' + state.music.playlist.index
@@ -35,11 +36,8 @@ const Playlist = () => {
                     </Link>
                 </div>
             )}
-            {state.music.playlist.tracks.length > 0 && (
-                <PlaylistActions />
-            )}
+            {state.music.playlist.tracks.length > 0 && <PlaylistActions />}
             <PlaylistTracks />
-
         </>
     );
 };

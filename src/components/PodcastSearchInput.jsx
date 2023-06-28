@@ -11,7 +11,7 @@ const PodcastSearchInput = () => {
 
     const handleInput = (e) => {
         const term = e.currentTarget.value;
-        dispatch({ type: 'setPodcastSearchTerm', payload: term})
+        dispatch({ type: 'setPodcastSearchTerm', payload: term });
     };
 
     const handleKey = (e) => {
@@ -56,11 +56,14 @@ const PodcastSearchInput = () => {
 
     const handleClear = () => {
         dispatch({ type: 'setPodcastSearchResults', payload: [] });
-        dispatch({ type: 'setPodcastSearchTerm', payload: "" });
+        dispatch({ type: 'setPodcastSearchTerm', payload: '' });
     };
 
     return (
-        <div id="podcast-search" className="input-group input-group-sm w-100 mb-2">
+        <div
+            id="podcast-search"
+            className="input-group input-group-sm w-100 mb-2"
+        >
             <input
                 placeholder="I want to listen to..."
                 type="search"
@@ -76,7 +79,8 @@ const PodcastSearchInput = () => {
             >
                 <SearchIcon height="14" />
             </button>
-            {(state.podcasts.search.results.length > 0 || state.podcasts.search.term.length > 0) && (
+            {(state.podcasts.search.results.length > 0 ||
+                state.podcasts.search.term.length > 0) && (
                 <button
                     type="submit"
                     onClick={handleClear}

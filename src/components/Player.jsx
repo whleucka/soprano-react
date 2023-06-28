@@ -7,7 +7,7 @@ import PlayerControls from './PlayerControls';
 const Player = () => {
     const { state } = useContext(SopranoContext);
     const cover_src = state.track ? state.track.cover : '/img/no-album.png';
-    const cover = <AlbumCover cover={cover_src} />
+    const cover = <AlbumCover cover={cover_src} />;
 
     return (
         <section id="player" className="d-flex">

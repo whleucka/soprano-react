@@ -6,7 +6,7 @@ export const InitialState = {
     music: {
         controls: {
             repeat: false,
-            shuffle: true,
+            shuffle: true
         },
         search: {
             term: '',

@@ -26,7 +26,7 @@ const AudioController = (props) => {
         if (!state.music.playlist.tracks.length) return;
         const index = state.music.controls.shuffle
             ? shuffleIndex()
-            : prevIndex()
+            : prevIndex();
         dispatch({ type: 'setPlaylistIndex', payload: index });
         dispatch({ type: 'setMode', payload: 'playlist' });
         play();
@@ -39,24 +39,36 @@ const AudioController = (props) => {
         if (!state.music.playlist.tracks.length) return;
         const index = state.music.controls.shuffle
             ? shuffleIndex()
-            : nextIndex()
+            : nextIndex();
         dispatch({ type: 'setPlaylistIndex', payload: index });
         dispatch({ type: 'setMode', payload: 'playlist' });
         play();
     };
 
     const prevIndex = () => {
-        return (state.music.playlist.index - 1 + state.music.playlist.tracks.length) % state.music.playlist.tracks.length;
-    }
+        return (
+            (state.music.playlist.index -
+                1 +
+                state.music.playlist.tracks.length) %
+            state.music.playlist.tracks.length
+        );
+    };
 
     const nextIndex = () => {
-        return (state.music.playlist.index + 1) % state.music.playlist.tracks.length;
-    }
+        return (
+            (state.music.playlist.index + 1) %
+            state.music.playlist.tracks.length
+        );
+    };
 
     const shuffleIndex = () => {
-        let mod = Math.floor(Math.random() * state.music.playlist.tracks.length) + 1;
-        return (state.music.playlist.index + mod) % state.music.playlist.tracks.length;
-    }
+        let mod =
+            Math.floor(Math.random() * state.music.playlist.tracks.length) + 1;
+        return (
+            (state.music.playlist.index + mod) %
+            state.music.playlist.tracks.length
+        );
+    };
 
     /**
      * Update the navigator media sessoin meta

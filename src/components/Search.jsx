@@ -5,15 +5,13 @@ import { SopranoContext } from './Soprano';
 import SearchActions from './SearchActions';
 
 const Search = () => {
-    const {state} = useContext(SopranoContext);
+    const { state } = useContext(SopranoContext);
 
     return (
         <>
             <h2 className="header">Search</h2>
             <SearchInput />
-            { state.music.search.results.length > 0 &&
-                <SearchActions />
-            }
+            {state.music.search.results.length > 0 && <SearchActions />}
             <SearchResults />
         </>
     );
