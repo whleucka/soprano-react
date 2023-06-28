@@ -64,10 +64,14 @@ const AudioController = (props) => {
     const shuffleIndex = () => {
         let mod =
             Math.floor(Math.random() * state.music.playlist.tracks.length) + 1;
-        return (
+        let index = (
             (state.music.playlist.index + mod) %
             state.music.playlist.tracks.length
         );
+        if (index === state.music.playlist.index) {
+            return shuffleIndex();
+        }
+        return index;
     };
 
     /**
