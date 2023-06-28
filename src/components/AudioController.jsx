@@ -68,7 +68,7 @@ const AudioController = (props) => {
             (state.music.playlist.index + mod) %
             state.music.playlist.tracks.length
         );
-        if (index === state.music.playlist.index) {
+        if (state.music.playlist.tracks.length > 1 && index === state.music.playlist.index) {
             return shuffleIndex();
         }
         return index;
