@@ -127,6 +127,18 @@ const AudioController = (props) => {
                 }
             ]
         });
+        updatePositionState(); 
+    };
+
+    const updatePositionState = () => {
+        if ('setPositionState' in navigator.mediaSession) {
+            console.log('Updating position state...');
+            navigator.mediaSession.setPositionState({
+                duration: audioRef.current.duration,
+                playbackRate: audioRef.current.playbackRate,
+                position: audioRef.current.currentTime
+            });
+        }
     };
 
     /**

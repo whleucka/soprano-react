@@ -107,6 +107,7 @@ const PlayerProgress = ({ audioRef }) => {
         audioRef.current.currentTime = new_seconds;
         setPlayback((pct * 100).toFixed(2));
         updatePositionState();
+
     };
 
     useEffect(() => {
