@@ -16,7 +16,6 @@ const PlayerControls = ({ audioRef }) => {
     const updateMeta = () => {
         const track = state.track;
         if (track) {
-            document.title = `Soprano • ${track.artist} — ${track.title}`;
             navigator.mediaSession.metadata = new MediaMetadata({
             title: track.title,
             artist: track.artist,
