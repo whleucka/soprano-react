@@ -195,7 +195,7 @@ const AudioController = (props) => {
     useEffect(() => {
         if (state.track?.src) {
             navigator.mediaSession.setActionHandler('play', async function () {
-                await play().catch(_ => {});
+                await play();
             });
 
             navigator.mediaSession.setActionHandler('pause', function () {
@@ -210,6 +210,10 @@ const AudioController = (props) => {
             audioRef.current.addEventListener('pause', function () {
                 dispatch({ type: 'setStatus', payload: 'paused' });
                 navigator.mediaSession.playbackState = 'paused';
+            });
+
+            audioRef.current.addEventListener('loadeddata', function () {
+                play();
             });
 
             audioRef.current.addEventListener('ended', function () {
@@ -257,7 +261,7 @@ const AudioController = (props) => {
         dispatch({ type: 'setTrack', payload: track });
     }, [state.music.playlist.index]);
 
-    return <audio ref={audioRef} src={state.track?.src} preload="false" autoPlay />;
+    return <audio ref={audioRef} src={state.track?.src} preload="false" />;
 };
 
 export default AudioController;

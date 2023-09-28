@@ -13,6 +13,7 @@ const Radio = ({ audioRef }) => {
 
     useEffect(() => {
         if (state.track?.src) {
+            audioRef.current.autoPlay = true;
             if (Hls.isSupported()) {
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
@@ -21,6 +22,7 @@ const Radio = ({ audioRef }) => {
             }
         }
         return () => {
+            audioRef.current.autoPlay = false;
             //hls.stopLoad();
             //hls.destroy();
         };
