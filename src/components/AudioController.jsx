@@ -175,6 +175,7 @@ const AudioController = (props) => {
     const updatePositionState = () => {
         try {
             const duration = audioRef.current?.duration; 
+            console.log('Duration:', duration);
             if ('setPositionState' in navigator.mediaSession && !isNaN(duration) && isFinite(duration)) {
                 navigator.mediaSession.setPositionState({
                     duration: audioRef.current.duration,
@@ -193,8 +194,6 @@ const AudioController = (props) => {
      */
     useEffect(() => {
         if (state.track?.src) {
-            play();
-
             navigator.mediaSession.setActionHandler('play', async function () {
                 await play().catch(_ => {});
             });
