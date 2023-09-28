@@ -7,11 +7,11 @@ const Backdrop = ({ backdropRef }) => {
     let backdropImage = '/img/no-album.png';
     if (state.mode === 'search' || state.mode === 'playlist') {
         if (state.track && state.track.cover) {
-            backdropImage = state.track.cover;
-                // process.env.REACT_APP_SERVER_URL +
-                // '/api/v1/cover/' +
-                // state.track.md5 +
-                // '/500/500';
+            backdropImage =
+                process.env.REACT_APP_SERVER_URL +
+                    '/api/v1/cover/' +
+                    state.track.md5 +
+                    '/10/10';
         }
     } else if (state.mode === 'radio' || state.mode === 'podcast') {
         backdropImage = state.track.cover;
@@ -19,19 +19,23 @@ const Backdrop = ({ backdropRef }) => {
 
     useEffect(() => {
         if (state.track) {
+            // Set background image
+            backdropRef.current.style.backgroundImage = `url(${backdropImage})`;
+
+            // Set background colour
             const fac = new FastAverageColor();
-            fac.getColorAsync(state.track.cover)
+            fac.getColorAsync(backdropImage)
                 .then((color) => {
                     backdropRef.current.style.backgroundColor = color.hex;
                 })
                 .catch((_) => {});
         }
-    }, [state.track, backdropRef]);
+    }, [state.track?.cover]);
 
     return (
         <section
             ref={backdropRef}
-            style={{ backgroundImage: `url(${backdropImage})` }}
+            style={{ backgroundImage: `url(/img/no-album.png)` }}
             id="backdrop"
         >
             &nbsp;

@@ -118,22 +118,37 @@ const PlayerProgress = ({ audioRef }) => {
             if (state.mode === 'radio') {
                 setPlayback(100);
             }
-
-            if (state.track) {
-                const fac = new FastAverageColor();
-
-                fac.getColorAsync(state.track.cover)
-                    .then((color) => {
-                        playerProgressbarRef.current.style.background =
-                            color.hex;
-                    })
-                    .catch((_) => {
-                        playerProgressbarRef.current.style.background =
-                            '#696969';
-                    });
-            }
         }
     }, [state.track, setTimer]);
+
+    useEffect(() => {
+        if (state.track) {
+            let backdropImage = '/img/no-album.png';
+            if (state.mode === 'search' || state.mode === 'playlist') {
+                if (state.track && state.track.cover) {
+                    backdropImage =
+                        process.env.REACT_APP_SERVER_URL +
+                            '/api/v1/cover/' +
+                            state.track.md5 +
+                            '/10/10';
+                }
+            } else {
+                backdropImage = state.track.cover;
+            }
+            // Set progress bar color
+            const fac = new FastAverageColor();
+
+            fac.getColorAsync(backdropImage)
+                .then((color) => {
+                    playerProgressbarRef.current.style.background =
+                        color.hex;
+                })
+                .catch((_) => {
+                    playerProgressbarRef.current.style.background =
+                        '#696969';
+                });
+        }
+    }, [state.track?.cover]);
 
     useEffect(() => {
         return () => {

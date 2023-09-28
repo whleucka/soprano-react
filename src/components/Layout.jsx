@@ -13,7 +13,7 @@ const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
 const Radio = lazy(() => import('./Radio'));
 const Podcasts = lazy(() => import('./Podcasts'));
-// const Library = lazy(() => import('./Library'));
+const Library = lazy(() => import('./Library'));
 const SignIn = lazy(() => import('./SignIn'));
 const SignOut = lazy(() => import('./SignOut'));
 
@@ -68,11 +68,11 @@ const Layout = () => {
                                 />
                                 {state.user && (
                                     <>
-                                        {/* <Route */}
-                                        {/*     exact */}
-                                        {/*     path="/library" */}
-                                        {/*     element={<Library />} */}
-                                        {/* /> */}
+                                        <Route
+                                            exact
+                                            path="/library"
+                                            element={<Library />}
+                                        />
                                         <Route
                                             exact
                                             path="/sign-out"

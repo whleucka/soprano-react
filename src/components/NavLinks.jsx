@@ -6,7 +6,8 @@ import {
     Radio as RadioIcon,
     Mic as MicIcon,
     LogIn as LogInIcon,
-    LogOut as LogOutIcon
+    LogOut as LogOutIcon,
+    Disc as DiscIcon
 } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { SopranoContext } from './Soprano';
@@ -36,15 +37,15 @@ const NavLinks = () => {
                     <MusicIcon size="18" /> Playlist
                 </li>
             </Link>
-            {/* {state.user && ( */}
-            {/*     <> */}
-            {/*         <Link onClick={handleClick} to="/library"> */}
-            {/*             <li className="nav-item truncate"> */}
-            {/*                 <DiscIcon size="18" /> Library */}
-            {/*             </li> */}
-            {/*         </Link> */}
-            {/*     </> */}
-            {/* )} */}
+            {state.user && (
+                <>
+                    <Link onClick={handleClick} to="/library">
+                        <li className="nav-item truncate">
+                            <DiscIcon size="18" /> Library
+                        </li>
+                    </Link>
+                </>
+            )}
             <Link to="/radio">
                 <li onClick={handleClick} className="nav-item truncate">
                     <RadioIcon size="18" /> Radio

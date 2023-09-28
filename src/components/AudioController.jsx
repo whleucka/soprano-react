@@ -9,7 +9,9 @@ const AudioController = (props) => {
      * Play track
      */
     const play = async () => {
-        if (state.track) audioRef.current.play().then((_) => updateMetadata());
+        if (state.track) audioRef.current.play().then((_) => {
+            updatePositionState();
+        });
     };
 
     /**
@@ -74,15 +76,9 @@ const AudioController = (props) => {
         return index;
     };
 
-    /**
-     * Update the navigator media sessoin meta
-     */
-    const updateMetadata = () => {
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: state.track.title,
-            artist: state.track.artist,
-            album: state.track.album,
-            artwork: [
+    const getAlbumArtwork = () => {
+        if (state.mode === "search" || state.mode === "playlist") {
+            return [
                 {
                     src:
                         process.env.REACT_APP_API_URL +
@@ -93,7 +89,7 @@ const AudioController = (props) => {
                 {
                     src:
                         process.env.REACT_APP_API_URL +
-                        `/cover/${state.track.md5}/128/j28`,
+                        `/cover/${state.track.md5}/128/128`,
                     sizes: '128x128',
                     type: 'image/png'
                 },
@@ -125,12 +121,57 @@ const AudioController = (props) => {
                     sizes: '512x512',
                     type: 'image/png'
                 }
-            ]
+            ];
+        } else {
+            return [
+                {
+                    src: state.track.cover,
+                    sizes: '96x96',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '128x128',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '192x192',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '256x256',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '384x384',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '512x512',
+                    type: 'image/png'
+                }
+            ];
+        }
+    }
+
+    /**
+     * Update the navigator media sessoin meta
+     */
+    const updateMetadata = () => {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: state.track.title,
+            artist: state.track.artist,
+            album: state.track.album,
+            artwork: getAlbumArtwork()
         });
-        updatePositionState(); 
     };
 
     const updatePositionState = () => {
+        if (state.mode === "radio" || state.mode === "podcast") return;
         if ('setPositionState' in navigator.mediaSession) {
             console.log('Updating position state...');
             navigator.mediaSession.setPositionState({
@@ -149,7 +190,7 @@ const AudioController = (props) => {
             play();
 
             navigator.mediaSession.setActionHandler('play', async function () {
-                await play();
+                await play().catch(_ => {});
             });
 
             navigator.mediaSession.setActionHandler('pause', function () {
@@ -180,6 +221,8 @@ const AudioController = (props) => {
             navigator.mediaSession.setActionHandler('nexttrack', function () {
                 next();
             });
+
+            updateMetadata();
         }
     }, [state.track]);
 

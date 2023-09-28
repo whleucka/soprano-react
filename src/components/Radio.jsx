@@ -9,11 +9,11 @@ let hls = new Hls();
 
 const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
+    hls = new Hls();
 
     useEffect(() => {
         if (state.track?.src) {
             if (Hls.isSupported()) {
-                hls = new Hls();
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
                     hls.loadSource(state.track?.src);
