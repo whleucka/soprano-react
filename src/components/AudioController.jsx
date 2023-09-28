@@ -11,6 +11,7 @@ const AudioController = (props) => {
     const play = async () => {
         if (state.track) {
             await audioRef.current.play().catch(_ => {});
+            updateMetadata();
             updatePositionState();
         };
     };
@@ -172,14 +173,16 @@ const AudioController = (props) => {
     };
 
     const updatePositionState = () => {
-        if (state.mode === "radio" || state.mode === "podcast") return;
-        
-        if ('setPositionState' in navigator.mediaSession && (!isNaN(audioRef.current.duration) && isFinite(audioRef.current.duration))) {
-            navigator.mediaSession.setPositionState({
-                duration: audioRef.current.duration,
-                playbackRate: audioRef.current.playbackRate,
-                position: audioRef.current.currentTime
-            });
+        try {
+            if ('setPositionState' in navigator.mediaSession) {
+                navigator.mediaSession.setPositionState({
+                    duration: audioRef.current.duration,
+                    playbackRate: audioRef.current.playbackRate,
+                    position: audioRef.current.currentTime
+                });
+            }
+        } catch (err) {
+            console.log("Position error", audioRef);
         }
     };
 
@@ -222,8 +225,6 @@ const AudioController = (props) => {
             navigator.mediaSession.setActionHandler('nexttrack', function () {
                 next();
             });
-
-            updateMetadata();
         }
     }, [state.track]);
 
