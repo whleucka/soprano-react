@@ -19,12 +19,14 @@ const Backdrop = ({ backdropRef }) => {
 
     useEffect(() => {
         if (state.track) {
-            console.log("Updating backdropImage");
+            // Set background image
+            backdropRef.current.style.backgroundImage = `url(${backdropImage})`;
+
+            // Attempt to set background color
             const fac = new FastAverageColor();
             fac.getColorAsync(backdropImage)
                 .then((color) => {
                     backdropRef.current.style.backgroundColor = color.hex;
-                    backdropRef.current.style.backgroundImage = `url(${backdropImage})`;
                 })
                 .catch((_) => {});
         }
