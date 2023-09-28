@@ -8,7 +8,7 @@ import API from './API';
 const MusicSearch = ({ searchRef }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const { state, dispatch } = useContext(SopranoContext);
-    const [type, setType] = useState('title');
+    const [type, setType] = useState('all');
     const [noResults, setNoResults] = useState(false);
     const [searching, setSearching] = useState(false);
 
@@ -71,6 +71,7 @@ const MusicSearch = ({ searchRef }) => {
     };
 
     const types = [
+        { value: 'all', title: 'All' },
         { value: 'title', title: 'Title' },
         { value: 'artist', title: 'Artist' },
         { value: 'album', title: 'Album' },
