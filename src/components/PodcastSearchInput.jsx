@@ -34,7 +34,7 @@ const PodcastSearchInput = () => {
                             artist: track.podcast.title_original,
                             album: 'Soprano Podcast',
                             title: track.title_original,
-                            cover: track.image,
+                            cover: process.env.REACT_APP_SERVER_URL + '/api/v1/image?url=' + track.image,
                             playtime_seconds: track.audio_length_sec,
                             playtime_string: Util.convertSeconds(
                                 track.audio_length_sec

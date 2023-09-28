@@ -35,7 +35,7 @@ const Radio = ({ audioRef }) => {
                     const stations = [];
                     res.forEach((station) => {
                         const cover = station.cover_url
-                            ? station.cover_url
+                            ? process.env.REACT_APP_SERVER_URL + '/api/v1/image?url=' + station.cover_url
                             : '/img/no-album.png';
                         const location = station.location
                             ? station.location
