@@ -3,6 +3,7 @@ import { Info as InfoIcon } from 'react-feather';
 import API from './API';
 import { SopranoContext } from './Soprano';
 import { useLocalStorage } from './useLocalStorage';
+import Cookies from 'js-cookie';
 
 const SignIn = () => {
     const { dispatch } = useContext(SopranoContext);
@@ -33,6 +34,7 @@ const SignIn = () => {
                     setEmail('');
                     dispatch({ type: 'setUser', payload: user.uuid });
                     setUser(user.uuid);
+                    Cookies.set('uuid', user.uuid);
                 } else {
                     setShowAlert(true);
                 }

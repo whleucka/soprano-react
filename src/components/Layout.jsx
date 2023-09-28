@@ -16,6 +16,7 @@ const Podcasts = lazy(() => import('./Podcasts'));
 const Library = lazy(() => import('./Library'));
 const SignIn = lazy(() => import('./SignIn'));
 const SignOut = lazy(() => import('./SignOut'));
+const User = lazy(() => import('./User'));
 
 const Layout = () => {
     const { state } = useContext(SopranoContext);
@@ -87,6 +88,7 @@ const Layout = () => {
             </section>
             <PlayerProgress audioRef={audioRef} />
             <Player audioRef={audioRef} />
+            <User />
         </Router>
     );
 };
