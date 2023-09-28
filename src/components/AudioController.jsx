@@ -9,9 +9,10 @@ const AudioController = (props) => {
      * Play track
      */
     const play = async () => {
-        if (state.track) audioRef.current.play().then((_) => {
+        if (state.track) {
+            await audioRef.current.play();
             updatePositionState();
-        });
+        };
     };
 
     /**
@@ -173,7 +174,6 @@ const AudioController = (props) => {
     const updatePositionState = () => {
         if (state.mode === "radio" || state.mode === "podcast") return;
         if ('setPositionState' in navigator.mediaSession) {
-            console.log('Updating position state...');
             navigator.mediaSession.setPositionState({
                 duration: audioRef.current.duration,
                 playbackRate: audioRef.current.playbackRate,
