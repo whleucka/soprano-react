@@ -10,7 +10,7 @@ export const InitialState = {
         },
         search: {
             term: '',
-            type: 'title',
+            type: 'all',
             results: []
         },
         playlist: {

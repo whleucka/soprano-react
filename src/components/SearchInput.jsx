@@ -53,6 +53,7 @@ const SearchInput = () => {
     };
 
     const types = [
+        { value: 'all', title: 'All' },
         { value: 'title', title: 'Title' },
         { value: 'artist', title: 'Artist' },
         { value: 'album', title: 'Album' },
