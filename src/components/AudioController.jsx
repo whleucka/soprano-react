@@ -161,7 +161,7 @@ const AudioController = (props) => {
     }
 
     /**
-     * Update the navigator media sessoin meta
+     * Update the navigator media session meta
      */
     const updateMetadata = () => {
         navigator.mediaSession.metadata = new MediaMetadata({
@@ -174,7 +174,8 @@ const AudioController = (props) => {
 
     const updatePositionState = () => {
         try {
-            if ('setPositionState' in navigator.mediaSession) {
+            const duration = audioRef.current?.duration; 
+            if ('setPositionState' in navigator.mediaSession && !isNaN(duration) && isFinite(duration)) {
                 navigator.mediaSession.setPositionState({
                     duration: audioRef.current.duration,
                     playbackRate: audioRef.current.playbackRate,
@@ -183,6 +184,7 @@ const AudioController = (props) => {
             }
         } catch (err) {
             console.log("Position error", audioRef);
+            console.log(err);
         }
     };
 
