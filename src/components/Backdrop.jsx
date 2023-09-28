@@ -11,7 +11,7 @@ const Backdrop = ({ backdropRef }) => {
                 process.env.REACT_APP_SERVER_URL +
                 '/api/v1/cover/' +
                 state.track.md5 +
-                '/200/200';
+                '/10/10';
         }
     } else if (state.mode === 'radio' || state.mode === 'podcast') {
         backdropImage = state.track.cover;
