@@ -29,7 +29,7 @@ const TrackRows = (props) => {
                 dispatch({ type: 'setPlaylistIndex', payload: i });
         };
         return (
-            <div className="d-flex" key={i}>
+            <div title={track.artist + " - " + track.title} className="d-flex" key={i}>
                 { like_button }
                 <TrackRow
                     id={i}

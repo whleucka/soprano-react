@@ -15,6 +15,7 @@ const Player = (props) => {
             <div
                 id="cover"
                 className="d-flex justify-content-center align-items-center"
+                title = {state.track?.artist + " - " + state.track?.title}
             >
                 {cover}
             </div>
