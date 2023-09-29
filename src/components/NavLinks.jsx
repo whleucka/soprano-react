@@ -48,7 +48,7 @@ const NavLinks = () => {
             )}
             <Link to="/radio">
                 <li onClick={handleClick} className="nav-item truncate">
-                    <RadioIcon size="18" /> Radio
+                    <RadioIcon size="18" /> HD Radio
                 </li>
             </Link>
             <Link to="/podcasts">

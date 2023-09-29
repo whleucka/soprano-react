@@ -130,7 +130,7 @@ const Radio = ({ audioRef }) => {
 
     return (
         <>
-            <h2 className="header">Radio</h2>
+            <h2 className="header">HD Radio</h2>
             {state.radio.stations.length > 0 && (
                 <TrackRows tracks={state.radio.stations} mode="radio" />
             )}
