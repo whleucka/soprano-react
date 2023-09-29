@@ -9,9 +9,10 @@ const AudioController = (props) => {
      * Play track
      */
     const play = () => {
-        if (state.track) {
+        if (state.track?.src) {
             audioRef.current.play()
-                .then(_ => updateMetadata());
+                .then(_ => updateMetadata())
+                .catch(err => {});
         };
     };
 
