@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Heart as HeartIcon } from 'react-feather';
 import API from './API';
 import { SopranoContext } from './Soprano';
+
 const LikeButton = ({ track }) => {
     const { state, dispatch } = useContext(SopranoContext);
     const [like, setLike] = useState(false);
@@ -9,13 +10,12 @@ const LikeButton = ({ track }) => {
         API.likeTrack(track.md5, state.user)
             .then((res) => {
                 setLike(res.like);
-                // TODO refactor to work with other playlists when
-                // they are available
-                if (state.playlistId === 'like' && state.playlist.length > 0) {
+                if (state.music.playlist.tracks.length > 0) {
                     if (res.like) {
                         track.liked = true;
                         dispatch({ type: 'addToPlaylist', payload: track });
                     } else {
+                        track.liked = false;
                         dispatch({
                             type: 'removeFromPlaylist',
                             payload: track

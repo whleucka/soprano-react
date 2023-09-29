@@ -5,6 +5,7 @@ import { SopranoContext } from './Soprano';
 import Playtime from './Playtime';
 import AlbumCover from './AlbumCover';
 import CoverSize from './CoverSize';
+import LikeButton from './LikeButton';
 
 const TrackRows = (props) => {
     const { dispatch } = useContext(SopranoContext);
@@ -25,14 +26,16 @@ const TrackRows = (props) => {
                 dispatch({ type: 'setPlaylistIndex', payload: i });
         };
         return (
-            <TrackRow
-                key={i}
-                id={i}
-                image={image}
-                title={title}
-                playtime={playtime}
-                handleTitleClick={handleTitleClick}
-            />
+            <div className="d-flex" key={i}>
+                <LikeButton track={track} />
+                <TrackRow
+                    id={i}
+                    image={image}
+                    title={title}
+                    playtime={playtime}
+                    handleTitleClick={handleTitleClick}
+                />
+            </div>
         );
     });
 };

@@ -1,7 +1,7 @@
 const TrackRow = (props) => {
     const { image, title, playtime, id = null } = props;
     return (
-        <div tabIndex="-1" id={'playlist-row-' +id} className="track-row d-flex align-items-center">
+        <div tabIndex="-1" id={'playlist-row-' +id} className="track-row d-flex align-items-center w-100">
             <div className="image">{image}</div>
             <div
                 onClick={props.handleTitleClick}

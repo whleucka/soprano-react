@@ -236,7 +236,6 @@ const AudioController = (props) => {
             navigator.mediaSession.setActionHandler('pause', null);
             navigator.mediaSession.setActionHandler('nexttrack', null);
             navigator.mediaSession.setActionHandler('previoustrack', null);
-            console.log("unmounted");
         }
     }, [state.track]);
 

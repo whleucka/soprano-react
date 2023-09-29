@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Search as SearchIcon, Trash as TrashIcon } from 'react-feather';
 import API from './API';
 import { SopranoContext } from './Soprano';
@@ -59,6 +59,10 @@ const SearchInput = () => {
         { value: 'album', title: 'Album' },
         { value: 'genre', title: 'Genre' }
     ];
+
+    useEffect(() => {
+        handleSubmit();
+    }, [])
 
     return (
         <div

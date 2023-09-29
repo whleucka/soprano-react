@@ -67,6 +67,22 @@ export function SopranoReducer(state, action) {
             var controls = music.controls;
             controls.shuffle = action.payload;
             return { ...state, music };
+        case 'removeFromPlaylist':
+            var music = state.music;
+            var playlist = music.playlist;
+            var tracks = playlist.tracks.filter(
+                (track) => track.id !== action.payload['id']
+            );
+            playlist.tracks = tracks;
+            return { ...state, music };
+        case 'addToPlaylist':
+            var music = state.music;
+            var playlist = music.playlist;
+            var tracks = playlist.tracks;
+            if (!playlist.tracks.includes(action.payload)) {
+                playlist.tracks = [...tracks, action.payload];
+            }
+            return { ...state, music };
 
         // case 'setPodcastResults':
         //     return { ...state, podcastResults: action.payload };
