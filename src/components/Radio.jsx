@@ -11,6 +11,88 @@ const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
     hls = new Hls();
 
+    const getAlbumArtwork = () => {
+        if (state.mode === "search" || state.mode === "playlist") {
+            return [
+                {
+                    src:
+                        process.env.REACT_APP_API_URL +
+                        `/cover/${state.track.md5}/96/96`,
+                    sizes: '96x96',
+                    type: 'image/png'
+                },
+                {
+                    src:
+                        process.env.REACT_APP_API_URL +
+                        `/cover/${state.track.md5}/128/128`,
+                    sizes: '128x128',
+                    type: 'image/png'
+                },
+                {
+                    src:
+                        process.env.REACT_APP_API_URL +
+                        `/cover/${state.track.md5}/192/192`,
+                    sizes: '192x192',
+                    type: 'image/png'
+                },
+                {
+                    src:
+                        process.env.REACT_APP_API_URL +
+                        `/cover/${state.track.md5}/256/256`,
+                    sizes: '256x256',
+                    type: 'image/png'
+                },
+                {
+                    src:
+                        process.env.REACT_APP_API_URL +
+                        `/cover/${state.track.md5}/384/384`,
+                    sizes: '384x384',
+                    type: 'image/png'
+                },
+                {
+                    src:
+                        process.env.REACT_APP_API_URL +
+                        `/cover/${state.track.md5}/512/512`,
+                    sizes: '512x512',
+                    type: 'image/png'
+                }
+            ];
+        } else {
+            return [
+                {
+                    src: state.track.cover,
+                    sizes: '96x96',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '128x128',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '192x192',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '256x256',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '384x384',
+                    type: 'image/png'
+                },
+                {
+                    src: state.track.cover,
+                    sizes: '512x512',
+                    type: 'image/png'
+                }
+            ];
+        }
+    }
+
     const updateMetadata = () => {
         if (state.track.cover) {
             const metadataInit = {
@@ -22,6 +104,23 @@ const Radio = ({ audioRef }) => {
             navigator.mediaSession.metadata = new MediaMetadata(metadataInit);
             // console.log(navigator.mediaSession);
             updatePositionState();
+        }
+    };
+
+    const updatePositionState = () => {
+        try {
+            const duration = audioRef.current?.duration; 
+            if ('setPositionState' in navigator.mediaSession && !isNaN(duration) && isFinite(duration)) {
+                console.log("Logging position", audioRef.current.currentTime);
+                navigator.mediaSession.setPositionState({
+                    duration: audioRef.current.duration,
+                    playbackRate: audioRef.current.playbackRate,
+                    position: audioRef.current.currentTime
+                });
+            }
+        } catch (err) {
+            console.log("Position error", audioRef);
+            console.log(err);
         }
     };
 
