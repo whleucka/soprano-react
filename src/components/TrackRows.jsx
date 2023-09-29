@@ -8,9 +8,12 @@ import CoverSize from './CoverSize';
 import LikeButton from './LikeButton';
 
 const TrackRows = (props) => {
-    const { dispatch } = useContext(SopranoContext);
+    const { state, dispatch } = useContext(SopranoContext);
     const { tracks, mode } = props;
     return tracks.map((track, i) => {
+        let like_button = (props.mode === "playlist" || props.mode === "search") && state.user
+            ? <LikeButton track={track} />
+            : null;
         const image =
             props.mode === 'podcast' || props.mode === 'radio' ? (
                 <AlbumCover cover={track.cover} />
@@ -27,7 +30,7 @@ const TrackRows = (props) => {
         };
         return (
             <div className="d-flex" key={i}>
-                <LikeButton track={track} />
+                { like_button }
                 <TrackRow
                     id={i}
                     image={image}
