@@ -11,13 +11,27 @@ const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
     hls = new Hls();
 
+    const updateMetadata = () => {
+        if (state.track.cover) {
+            const metadataInit = {
+                title: state.track.title,
+                artist: state.track.artist,
+                album: state.track.album,
+                artwork: getAlbumArtwork()
+            };
+            navigator.mediaSession.metadata = new MediaMetadata(metadataInit);
+            // console.log(navigator.mediaSession);
+            updatePositionState();
+        }
+    };
+
     useEffect(() => {
         if (state.track?.src) {
             if (Hls.isSupported()) {
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
                     hls.loadSource(state.track?.src);
-                    audioRef.current.play();
+                    audioRef.current.play().then(_ => updateMetadata());
                 });
             }
         }
