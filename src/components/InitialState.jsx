@@ -1,7 +1,9 @@
 export const InitialState = {
     user: '',
     mode: null,
-    track: {},
+    track: {
+        cover: "/img/no-album.png"
+    },
     status: 'idle',
     music: {
         controls: {

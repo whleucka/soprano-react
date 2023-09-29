@@ -8,11 +8,10 @@ const AudioController = (props) => {
     /**
      * Play track
      */
-    const play = async () => {
+    const play = () => {
         if (state.track) {
-            await audioRef.current.play().catch(_ => {});
-            updateMetadata();
-            updatePositionState();
+            audioRef.current.play()
+                .then(_ => updateMetadata());
         };
     };
 
@@ -33,7 +32,6 @@ const AudioController = (props) => {
             : prevIndex();
         dispatch({ type: 'setPlaylistIndex', payload: index });
         dispatch({ type: 'setMode', payload: 'playlist' });
-        play();
     };
 
     /**
@@ -46,7 +44,6 @@ const AudioController = (props) => {
             : nextIndex();
         dispatch({ type: 'setPlaylistIndex', payload: index });
         dispatch({ type: 'setMode', payload: 'playlist' });
-        play();
     };
 
     const prevIndex = () => {
@@ -164,19 +161,24 @@ const AudioController = (props) => {
      * Update the navigator media session meta
      */
     const updateMetadata = () => {
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: state.track.title,
-            artist: state.track.artist,
-            album: state.track.album,
-            artwork: getAlbumArtwork()
-        });
+        if (state.track.cover) {
+            const metadataInit = {
+                title: state.track.title,
+                artist: state.track.artist,
+                album: state.track.album,
+                artwork: getAlbumArtwork()
+            };
+            navigator.mediaSession.metadata = new MediaMetadata(metadataInit);
+            // console.log(navigator.mediaSession);
+            updatePositionState();
+        }
     };
 
     const updatePositionState = () => {
         try {
             const duration = audioRef.current?.duration; 
-            console.log('Duration:', duration);
             if ('setPositionState' in navigator.mediaSession && !isNaN(duration) && isFinite(duration)) {
+                console.log("Logging position", audioRef.current.currentTime);
                 navigator.mediaSession.setPositionState({
                     duration: audioRef.current.duration,
                     playbackRate: audioRef.current.playbackRate,
@@ -193,31 +195,13 @@ const AudioController = (props) => {
      * When the track changes
      */
     useEffect(() => {
-        if (state.track?.src) {
-            navigator.mediaSession.setActionHandler('play', async function () {
-                await play();
+        if (state.track) {
+            navigator.mediaSession.setActionHandler('play', function () {
+                play();
             });
 
             navigator.mediaSession.setActionHandler('pause', function () {
                 pause();
-            });
-
-            audioRef.current.addEventListener('play', function () {
-                dispatch({ type: 'setStatus', payload: 'playing' });
-                navigator.mediaSession.playbackState = 'playing';
-            });
-
-            audioRef.current.addEventListener('pause', function () {
-                dispatch({ type: 'setStatus', payload: 'paused' });
-                navigator.mediaSession.playbackState = 'paused';
-            });
-
-            audioRef.current.addEventListener('loadeddata', function () {
-                play();
-            });
-
-            audioRef.current.addEventListener('ended', function () {
-                next();
             });
 
             navigator.mediaSession.setActionHandler(
@@ -230,6 +214,29 @@ const AudioController = (props) => {
             navigator.mediaSession.setActionHandler('nexttrack', function () {
                 next();
             });
+
+            audioRef.current.addEventListener('play', function () {
+                dispatch({ type: 'setStatus', payload: 'playing' });
+                navigator.mediaSession.playbackState = 'playing';
+            });
+
+            audioRef.current.addEventListener('pause', function () {
+                dispatch({ type: 'setStatus', payload: 'paused' });
+                navigator.mediaSession.playbackState = 'paused';
+            });
+
+            audioRef.current.addEventListener('ended', function () {
+                next();
+            });
+
+            play();
+        }
+        return () => {
+            navigator.mediaSession.setActionHandler('play', null);
+            navigator.mediaSession.setActionHandler('pause', null);
+            navigator.mediaSession.setActionHandler('nexttrack', null);
+            navigator.mediaSession.setActionHandler('previoustrack', null);
+            console.log("unmounted");
         }
     }, [state.track]);
 

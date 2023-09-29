@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { SopranoContext } from './Soprano';
 import AlbumCover from './AlbumCover';
 import VolumeProgress from './VolumeProgress';
 import PlayerControls from './PlayerControls';
 
-const Player = () => {
+const Player = (props) => {
+    const { audioRef } = props;
     const { state } = useContext(SopranoContext);
     const cover_src = state.track ? state.track.cover : '/img/no-album.png';
     const cover = <AlbumCover cover={cover_src} />;
@@ -21,7 +22,7 @@ const Player = () => {
                 id="controls"
                 className="d-flex justify-content-center align-items-center flex-grow-1"
             >
-                <PlayerControls />
+                <PlayerControls audioRef={audioRef} />
             </div>
             <div id="volume" className="d-flex align-items-center">
                 <VolumeProgress />
