@@ -11,79 +11,13 @@ const Radio = ({ audioRef }) => {
     const { state, dispatch } = useContext(SopranoContext);
     hls = new Hls();
 
-    const getAlbumArtwork = () => {
-        return [
-            {
-                src: state.track.cover,
-                sizes: '96x96',
-                type: 'image/png'
-            },
-            {
-                src: state.track.cover,
-                sizes: '128x128',
-                type: 'image/png'
-            },
-            {
-                src: state.track.cover,
-                sizes: '192x192',
-                type: 'image/png'
-            },
-            {
-                src: state.track.cover,
-                sizes: '256x256',
-                type: 'image/png'
-            },
-            {
-                src: state.track.cover,
-                sizes: '384x384',
-                type: 'image/png'
-            },
-            {
-                src: state.track.cover,
-                sizes: '512x512',
-                type: 'image/png'
-            }
-        ];
-    }
-
-    const updateMetadata = () => {
-        if (state.track.cover) {
-            const metadataInit = {
-                title: state.track.title,
-                artist: state.track.artist,
-                album: state.track.album,
-                artwork: getAlbumArtwork()
-            };
-            navigator.mediaSession.metadata = new MediaMetadata(metadataInit);
-            // console.log(navigator.mediaSession);
-            updatePositionState();
-        }
-    };
-
-    const updatePositionState = () => {
-        try {
-            const duration = audioRef.current?.duration;
-            if ('setPositionState' in navigator.mediaSession && !isNaN(duration) && isFinite(duration)) {
-                console.log("Logging position", audioRef.current.currentTime);
-                navigator.mediaSession.setPositionState({
-                    duration: audioRef.current.duration,
-                    playbackRate: audioRef.current.playbackRate,
-                    position: audioRef.current.currentTime
-                });
-            }
-        } catch (err) {
-            console.log("Position error", audioRef);
-            console.log(err);
-        }
-    };
-
     useEffect(() => {
         if (state.track?.src && state.mode === "radio") {
             if (Hls.isSupported()) {
                 hls.attachMedia(audioRef.current);
                 hls.on(Hls.Events.MEDIA_ATTACHED, (event, data) => {
                     hls.loadSource(state.track?.src);
-                    audioRef.current.play().then(_ => updateMetadata());
+                    dispatch({ type: "setStatus", payload: "play"});
                 });
             }
         }
