@@ -1,11 +1,9 @@
 import { useContext } from 'react';
-import TitleArtist from './TitleArtist';
-import TrackRow from './TrackRow';
 import { SopranoContext } from './Soprano';
-import Playtime from './Playtime';
 import AlbumCover from './AlbumCover';
 import CoverSize from './CoverSize';
 import LikeButton from './LikeButton';
+import TrackDropdown from "./TrackDropdown";
 
 const TrackRows = (props) => {
     const { state, dispatch } = useContext(SopranoContext);
@@ -20,24 +18,25 @@ const TrackRows = (props) => {
             ) : (
                 <CoverSize md5={track.md5} size={[70, 70]} />
             );
-        const title = <TitleArtist title={track.title} artist={track.artist} />;
-        const playtime = <Playtime playtime={track.playtime_string} />;
-        const handleTitleClick = () => {
+        const handleClick = () => {
             dispatch({ type: 'setMode', payload: props.mode });
             dispatch({ type: 'setTrack', payload: track });
             mode === 'playlist' &&
                 dispatch({ type: 'setPlaylistIndex', payload: i });
         };
         return (
-            <div title={track.artist + " - " + track.title} className="d-flex" key={i}>
+            <div title={track.artist + " - " + track.title} className="track-row d-flex justify-content-center align-items-center w-100" key={i}>
                 { like_button }
-                <TrackRow
-                    id={i}
-                    image={image}
-                    title={title}
-                    playtime={playtime}
-                    handleTitleClick={handleTitleClick}
-                />
+                <div className="image">
+                    <TrackDropdown image={image} track={track} />
+                </div>
+                <div className="flex-grow-1 truncate px-2" onClick={handleClick}>
+                    <div className="truncate title">{track.title}</div>
+                    <div className="truncate artist">{track.artist}</div>
+                </div>
+                <div className="playtime">
+                    {track.playtime_string}
+                </div>
             </div>
         );
     });

@@ -1,10 +1,10 @@
 const TitleArtist = ({ title, artist }) => {
     return (
-        <div className="title-artist d-flex flex-column">
-            <div className="title truncate" title={title}>
+        <div className="title-artist">
+            <div className="title" title={title}>
                 {title}
             </div>
-            <div className="artist truncate" title={artist}>
+            <div className="artist" title={artist}>
                 {artist}
             </div>
         </div>

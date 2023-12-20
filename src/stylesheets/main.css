@@ -185,6 +185,7 @@ input[type='radio'] {
     z-index: 4;
     width: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /**
@@ -282,9 +283,6 @@ label:focus,
 /**
  * Track Row
  */
-.track-row {
-    margin-bottom: 5px;
-}
 .track-row:hover {
     background-color: #222;
 }
@@ -297,6 +295,7 @@ label:focus,
     border-radius: 8%;
 }
 .track-row .title {
+    font-weight: bold;
     font-size: 0.8rem;
     cursor: pointer;
 }
@@ -308,12 +307,6 @@ label:focus,
     padding-right: 10px;
     font-size: 0.7rem;
     color: #aaa;
-}
-.track-row .title-artist div {
-    margin-left: 10px;
-}
-.track-row .title-artist .title {
-    font-weight: bold;
 }
 .actions {
     margin: 10px 0;

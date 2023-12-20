@@ -50,6 +50,7 @@ const SearchInput = () => {
     const handleClear = () => {
         dispatch({ type: 'setMusicSearchResults', payload: [] });
         dispatch({ type: 'setMusicSearchTerm', payload: '' });
+        dispatch({ type: 'setMusicSearchType', payload: 'all' });
     };
 
     const types = [
@@ -102,6 +103,7 @@ const SearchInput = () => {
             {(state.music.search.results.length > 0 ||
                 state.music.search.term.length > 0) && (
                 <button
+                    id="search-submit"
                     type="submit"
                     onClick={handleClear}
                     style={{ borderLeft: 0 }}

@@ -1,15 +1,18 @@
+import TrackDropdown from "./TrackDropdown";
+
 const TrackRow = (props) => {
-    const { image, title, playtime, id = null } = props;
+    const { image, track, id = null } = props;
     return (
-        <div tabIndex="-1" id={'playlist-row-' +id} className="track-row d-flex align-items-center flex-grow-1 truncate">
+        <div tabIndex="-1" id={'playlist-row-' +id} className="track-row d-flex align-items-center w-100">
             <div className="image">{image}</div>
             <div
                 onClick={props.handleTitleClick}
-                className="title flex-grow-1 truncate"
+                className="px-1 flex-grow-1 w-100"
             >
-                {title}
+                <div class="title truncate"><strong>{track.title}</strong></div>
+                <div class="artist truncate">{track.artist}</div>
             </div>
-            <div className="playtime">{playtime}</div>
+            <TrackDropdown playtime={track.playtime_string} />
         </div>
     );
 };
