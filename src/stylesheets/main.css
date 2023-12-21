@@ -283,9 +283,6 @@ label:focus,
 /**
  * Track Row
  */
-.track-row:hover {
-    background-color: #222;
-}
 .track-row .image img {
     width: 42px;
     height: 42px;

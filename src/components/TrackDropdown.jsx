@@ -53,7 +53,7 @@ const TrackDropdown = ({ image, track }) => {
 	const menuClass = `dropdown-menu dropdown-menu-start dropdown-menu-dark ${isOpen ? ' show' : ''}`;
 
 	return (<div className="dropdown" onClick={toggleOpen}>
-		<button className="btn btn-primary dropdown-toggle d-flex align-items-center" data-bs-auto-close="*" type="button">
+		<button className="btn btn-primary m-0 p-0 dropdown-toggle d-flex align-items-center" data-bs-auto-close="*" type="button">
 			<span className="playtime">{image}</span>
 		</button>
 		<ul class={menuClass}>

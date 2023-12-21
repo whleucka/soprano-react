@@ -13,11 +13,11 @@ const Playlist = () => {
             const track =
                 state.music.playlist.tracks[state.music.playlist.index];
             if (track) {
-                const playlistRow = document.getElementById(
-                    'playlist-row-' + state.music.playlist.index
+                const trackRow = document.getElementById(
+                    'track-row-' + state.music.playlist.index
                 );
-                if (playlistRow) {
-                    playlistRow.focus();
+                if (trackRow) {
+                    trackRow.focus();
                 }
             }
         }

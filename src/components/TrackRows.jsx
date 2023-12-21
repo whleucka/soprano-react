@@ -26,10 +26,15 @@ const TrackRows = (props) => {
         };
         // TODO refactor TrackRow
         return (
-            <div title={track.artist + " - " + track.title} className="track-row d-flex justify-content-center align-items-center w-100" key={i}>
+            <div tabIndex="-1" id={'track-row-' +i} title={track.artist + " - " + track.title} className="track-row pointer d-flex justify-content-center align-items-center w-100" key={i}>
                 { like_button }
                 <div className="image">
-                    <TrackDropdown image={image} track={track} />
+                    { (props.mode === 'podcast' || props.mode === 'radio') && (
+                        <div className="mb-2">{image}</div>
+                    )}
+                    { !(props.mode === 'podcast' || props.mode === 'radio') && (
+                        <div className="mb-2"><TrackDropdown image={image} track={track} /></div>
+                    )}
                 </div>
                 <div className="flex-grow-1 truncate px-2" onClick={handleClick}>
                     <div className="truncate title">{track.title}</div>
