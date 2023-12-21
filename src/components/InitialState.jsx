@@ -20,7 +20,10 @@ export const InitialState = {
             index: 0
         },
         playlists: [],
-        liked: []
+        liked: [],
+        artists: [],
+        albums: [],
+        genres: [],
     },
     radio: {
         stations: []

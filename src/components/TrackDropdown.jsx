@@ -14,16 +14,16 @@ const TrackDropdown = ({ image, track }) => {
 	const handleSearchAlbum = () => {
 		dispatch({ type: 'setMusicSearchType', payload: 'album' });
 		dispatch({ type: 'setMusicSearchTerm', payload: track.album });
-		invokeSearch();
+		invokeSearch(track.album, 'album');
 	}
 
 	const handleSearchArtist = () => {
 		dispatch({ type: 'setMusicSearchType', payload: 'artist' });
 		dispatch({ type: 'setMusicSearchTerm', payload: track.artist });
-		invokeSearch();
+		invokeSearch(track.artist, 'artist');
 	}
 
-	const invokeSearch = () => {
+	const invokeSearch = (term, type) => {
 		if (window.location.pathname !== '/search') {
 			navigate('/search');
 		}
@@ -31,25 +31,23 @@ const TrackDropdown = ({ image, track }) => {
 			type: 'setMusicSearchResults',
 			payload: []
 		});
-		setTimeout(() => {
-			API.musicSearch(state.music.search.term, state.music.search.type, state.user)
-				.then((tracks) => {
-					if (tracks.length > 0) {
-						dispatch({
-							type: 'setMusicSearchResults',
-							payload: tracks
-						});
-					} else {
-						dispatch({
-							type: 'setMusicSearchResults',
-							payload: []
-						});
-					}
-				})
-				.catch((err) => {
-					console.log(err);
-				});
-			}, 250);
+		API.musicSearch(term, type, state.user)
+			.then((tracks) => {
+				if (tracks.length > 0) {
+				dispatch({
+						type: 'setMusicSearchResults',
+						payload: tracks
+					});
+				} else {
+				dispatch({
+						type: 'setMusicSearchResults',
+						payload: []
+					});
+				}
+			})
+			.catch((err) => {
+			console.log(err);
+		});
 	}
 
 	const menuClass = `dropdown-menu dropdown-menu-start dropdown-menu-dark ${isOpen ? ' show' : ''}`;

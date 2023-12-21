@@ -83,36 +83,18 @@ export function SopranoReducer(state, action) {
                 playlist.tracks = [...tracks, action.payload];
             }
             return { ...state, music };
-
-        // case 'setPodcastResults':
-        //     return { ...state, podcastResults: action.payload };
-        // case 'setTrack':
-        //     return { ...state, track: action.payload };
-        // case 'setStatus':
-        //     return { ...state, status: action.payload };
-        // case 'setPlaylists':
-        //     return { ...state, playlists: action.payload };
-        // case 'mergePlaylist':
-        //     const mergedPlaylist = [...state.playlist, ...action.payload];
-        //     return { ...state, playlist: mergedPlaylist };
-        // case 'appendToPlaylist':
-        //     const appendedPlaylist = [...state.playlist, action.payload];
-        //     return { ...state, playlist: appendedPlaylist };
-        // case 'setTrackTitleArtist':
-        //     const track = { ...state.track, ...action.payload };
-        //     return { ...state, track };
-        // case 'toggleShuffle':
-        //     return { ...state, shuffle: action.payload };
-        // case 'toggleRepeat':
-        //     return { ...state, repeat: action.payload };
-        // case 'removeFromPlaylist':
-        //     const remove_tracks = state.playlist.filter(
-        //         (track) => track.id !== action.payload['id']
-        //     );
-        //     return { ...state, playlist: remove_tracks };
-        // case 'addToPlaylist':
-        //     const add_tracks = [...state.playlist, action.payload];
-        //     return { ...state, playlist: add_tracks };
+        case 'setAlbumResults':
+            var music = state.music;
+            music.albums = action.payload;
+            return { ...state, music };
+        case 'setArtistsResults':
+            var music = state.music;
+            music.artists = action.payload;
+            return { ...state, music };
+        case 'setGenresResults':
+            var music = state.music;
+            music.genres = action.payload;
+            return { ...state, music };
         default:
             return state;
     }

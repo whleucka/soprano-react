@@ -408,7 +408,7 @@ label:focus,
 }
 
 .library-playlist-cont {
-    width: 330px;
+    width: 100%;
     padding: 20px;
     margin: 8px;
 }
@@ -492,7 +492,18 @@ label:focus,
     background-color: #333;
 }
 
+.dropdown-item {
+    cursor: pointer;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
 @media (min-width: 576px) {
+    .library-playlist-cont {
+        width: 310px;
+    }
     #content,
     #backdrop {
         height: calc(100% - 108px);

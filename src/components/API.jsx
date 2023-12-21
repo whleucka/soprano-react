@@ -109,7 +109,31 @@ const API = {
             console.log(response);
         }
         return [];
-    }
+    },
+    getAlbums: async () => {
+        const response = await getData('/music/albums');
+        if (response.success) return response.data;
+        else {
+            console.log(response);
+        }
+        return [];
+    },
+    getArtists: async () => {
+        const response = await getData('/music/artists');
+        if (response.success) return response.data;
+        else {
+            console.log(response);
+        }
+        return [];
+    },
+    getGenres: async () => {
+        const response = await getData('/music/genres');
+        if (response.success) return response.data;
+        else {
+            console.log(response);
+        }
+        return [];
+    },
 };
 
 export default API;

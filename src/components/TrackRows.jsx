@@ -24,6 +24,7 @@ const TrackRows = (props) => {
             mode === 'playlist' &&
                 dispatch({ type: 'setPlaylistIndex', payload: i });
         };
+        // TODO refactor TrackRow
         return (
             <div title={track.artist + " - " + track.title} className="track-row d-flex justify-content-center align-items-center w-100" key={i}>
                 { like_button }

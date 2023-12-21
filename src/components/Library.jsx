@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import LibraryActions from './LibraryActions';
 import Playlists from './Playlists';
+import Artists from './Artists';
+import Albums from './Albums';
+import Genres from './Genres';
+import { SopranoContext } from './Soprano';
 
 const Library = () => {
+    const { state, dispatch } = useContext(SopranoContext);
     const [content, setContent] = useState('playlists');
 
     const handleOnClickActions = (e) => {
@@ -14,10 +19,10 @@ const Library = () => {
         <>
             <h2 className="header">Library</h2>
             <LibraryActions onClick={handleOnClickActions} />
-            {content == 'playlists' && <Playlists />}
-            {content == 'artists' && <div>artists</div>}
-            {content == 'albums' && <div>albums</div>}
-            {content == 'genres' && <div>genres</div>}
+            {content === 'playlists' && <Playlists />}
+            {content === 'artists' && <Artists artists={state.music.artists} />}
+            {content === 'albums' && <Albums albums={state.music.albums} />}
+            {content === 'genres' && <Genres genres={state.music.genres} />}
         </>
     );
 };
