@@ -27,6 +27,8 @@ const Artists = (props) => {
 		if (!state.music.artists.page) {
 			console.log("loading artists..");
 			fetchArtists(1);
+		} else {
+			setShowMore(artists.max_pages > artists.page);
 		}
 	}, [state.music.artists]);
 

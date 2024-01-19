@@ -27,6 +27,8 @@ const Albums = (props) => {
 		if (!state.music.albums.page) {
 			console.log("loading albums..");
 			fetchAlbums(1);
+		} else {
+			setShowMore(albums.max_pages > albums.page);
 		}
 	}, [state.music.albums]);
 

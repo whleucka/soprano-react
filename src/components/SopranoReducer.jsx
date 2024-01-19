@@ -99,7 +99,10 @@ export function SopranoReducer(state, action) {
             return { ...state, music };
         case 'setGenresResults':
             var music = state.music;
-            music.genres = action.payload;
+            var genres = music.genres;
+            genres.genres = [...genres.genres, ...action.payload['genres']];
+            genres.page = action.payload['page'];
+            genres.max_pages = action.payload['max_pages'];
             return { ...state, music };
         default:
             return state;

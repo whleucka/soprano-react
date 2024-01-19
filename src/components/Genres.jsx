@@ -28,6 +28,8 @@ const Genres = (props) => {
 		if (!state.music.genres.page) {
 			console.log("loading genres..");
 			fetchGenres(1);
+		} else {
+			setShowMore(genres.max_pages > genres.page);
 		}
 	}, [state.music.genres]);
 
