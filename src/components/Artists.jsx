@@ -2,7 +2,8 @@ import { useEffect, useContext, useState } from 'react';
 import API from './API';
 import { SopranoContext } from './Soprano';
 import { useNavigate } from 'react-router-dom';
-import AlbumCover from './AlbumCover';
+import SearchLinks from './SearchLinks';
+import Avatar from 'react-avatar';
 
 const Artists = (props) => {
 	const [showMore, setShowMore] = useState(true);
@@ -22,9 +23,17 @@ const Artists = (props) => {
 		fetchArtists(parseInt(artists.page) + 1);
 	}
 
+	useEffect(() => {
+		if (!state.music.artists.page) {
+			console.log("loading artists..");
+			fetchArtists(1);
+		}
+	}, [state.music.artists]);
+
 	const { artists } = props;
 	return (
 		<div>
+			<SearchLinks />
 			{ artists.artists.length > 0 &&
 				artists.artists.map((track, i) => {
 					return <Artist key={i} track={track} />
@@ -77,7 +86,7 @@ const Artist = ({ track }) => {
 			});
 	}
 
-    const image = <AlbumCover cover="/img/no-album.png" />;
+    const image = <Avatar name={artist} size={40} />
 
 	return (
 		<div title={artist} className="track-row pointer d-flex justify-content-center align-items-center w-100">

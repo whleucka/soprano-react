@@ -4,6 +4,7 @@ import API from './API';
 import { SopranoContext } from './Soprano';
 import { useNavigate } from 'react-router-dom';
 import AlbumCover from './AlbumCover';
+import SearchLinks from './SearchLinks';
 
 const Genres = (props) => {
 	const [showMore, setShowMore] = useState(true);
@@ -23,9 +24,17 @@ const Genres = (props) => {
 		fetchGenres(parseInt(genres.page) + 1);
 	}
 
+	useEffect(() => {
+		if (!state.music.genres.page) {
+			console.log("loading genres..");
+			fetchGenres(1);
+		}
+	}, [state.music.genres]);
+
 	const { genres } = props;
 	return (
 		<div>
+			<SearchLinks />
 			{ genres.genres.length > 0 &&
 				genres.genres.map((track, i) => {
 					return <Genre key={i} track={track} />
@@ -78,7 +87,7 @@ const Genre = ({ track }) => {
 			});
 	}
 
-    const image = <AlbumCover cover="/img/no-album.png" />;
+    const image = <Avatar name={genre} size={40} />
 
 	return (
 		<div title={genre} className="track-row pointer d-flex justify-content-center align-items-center w-100">

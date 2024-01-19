@@ -3,18 +3,17 @@ import API from './API';
 import { SopranoContext } from './Soprano';
 import { useNavigate } from 'react-router-dom';
 import CoverSize from './CoverSize';
+import SearchLinks from './SearchLinks';
 
 const Albums = (props) => {
 	const [showMore, setShowMore] = useState(true);
 	const { state, dispatch } = useContext(SopranoContext);
 	const fetchAlbums = (page = 1) => {
 		API.getAlbums(page).then((res) => {
-			if (res) {
-				dispatch({
-					type: 'setAlbumResults',
-					payload: res
-				});
-			}
+			dispatch({
+				type: 'setAlbumResults',
+				payload: res
+			});
 		}).catch((err) => {
 			console.log(err);
 		});
@@ -24,9 +23,17 @@ const Albums = (props) => {
 		fetchAlbums(parseInt(albums.page) + 1);
 	}
 
+	useEffect(() => {
+		if (!state.music.albums.page) {
+			console.log("loading albums..");
+			fetchAlbums(1);
+		}
+	}, [state.music.albums]);
+
 	const { albums } = props;
 	return (
 		<div>
+			<SearchLinks />
 			{ albums.albums.length > 0 &&
 				albums.albums.map((track, i) => {
 					return <Album key={i} track={track} />

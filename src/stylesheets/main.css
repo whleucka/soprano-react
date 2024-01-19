@@ -453,6 +453,34 @@ label:focus,
     border-radius: 5px;
     font-size: 0.9rem;
 }
+.list-inline {
+    display:block;
+}
+.list-inline li {
+    border: 1px solid #bbb;
+    color: #bbb;
+    background-color: #222 !important;
+    padding: 7px 12px;
+    border-radius: 6px;
+    margin: 0 8px;
+    display:inline-block;
+}
+.list-inline li.active {
+    background: #8e2de2; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to right,
+        #4a00e0,
+        #8e2de2
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to right,
+        #4a00e0,
+        #8e2de2
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #fff !important;
+    font-weight: bold;
+    border-color: teal;
+}
 
 /**
  * Progress bars

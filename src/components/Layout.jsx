@@ -8,6 +8,9 @@ import { BarLoader } from 'react-spinners';
 import { SopranoContext } from './Soprano';
 import AudioController from './AudioController';
 import PlayerProgress from './PlayerProgress';
+import Artists from './Artists';
+import Albums from './Albums';
+import Genres from './Genres';
 const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
@@ -51,6 +54,21 @@ const Layout = () => {
                                     exact
                                     path="/search"
                                     element={<Search />}
+                                />
+                                <Route
+                                    exact
+                                    path="/artists"
+                                    element={<Artists artists={state.music.artists} />}
+                                />
+                                <Route
+                                    exact
+                                    path="/albums"
+                                    element={<Albums albums={state.music.albums} />}
+                                />
+                                <Route
+                                    exact
+                                    path="/genres"
+                                    element={<Genres genres={state.music.genres} />}
                                 />
                                 <Route
                                     exact
