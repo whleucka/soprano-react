@@ -21,9 +21,21 @@ export const InitialState = {
         },
         playlists: [],
         liked: [],
-        artists: [],
-        albums: [],
-        genres: [],
+        artists: {
+            artists: [],
+            page: 0,
+            max_pages: 0
+        },
+        albums: {
+            albums: [],
+            page: 0,
+            max_pages: 0
+        },
+        genres: {
+            genres: [],
+            page: 0,
+            max_pages: 0
+        },
     },
     radio: {
         stations: []

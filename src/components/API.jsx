@@ -110,24 +110,24 @@ const API = {
         }
         return [];
     },
-    getAlbums: async () => {
-        const response = await getData('/music/albums');
+    getAlbums: async (page = 1) => {
+        const response = await getData('/music/albums', { page });
         if (response.success) return response.data;
         else {
             console.log(response);
         }
         return [];
     },
-    getArtists: async () => {
-        const response = await getData('/music/artists');
+    getArtists: async (page = 1) => {
+        const response = await getData('/music/artists', { page });
         if (response.success) return response.data;
         else {
             console.log(response);
         }
         return [];
     },
-    getGenres: async () => {
-        const response = await getData('/music/genres');
+    getGenres: async (page = 1) => {
+        const response = await getData('/music/genres', { page });
         if (response.success) return response.data;
         else {
             console.log(response);

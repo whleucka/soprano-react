@@ -1,38 +1,49 @@
-import { useEffect, useContext } from 'react';
-import Avatar from 'react-avatar';
+import { useEffect, useContext, useState } from 'react';
 import API from './API';
 import { SopranoContext } from './Soprano';
 import { useNavigate } from 'react-router-dom';
+import CoverSize from './CoverSize';
 
 const Albums = (props) => {
-    const { dispatch } = useContext(SopranoContext);
-	const fetchAlbums = () => {
-		API.getAlbums().then((res) => {
-			dispatch({
-				type: 'setAlbumResults',
-				payload: res
-			});
+	const [showMore, setShowMore] = useState(true);
+	const { state, dispatch } = useContext(SopranoContext);
+	const fetchAlbums = (page = 1) => {
+		API.getAlbums(page).then((res) => {
+			if (res) {
+				dispatch({
+					type: 'setAlbumResults',
+					payload: res
+				});
+			}
 		}).catch((err) => {
 			console.log(err);
 		});
 	}
 
-	useEffect(() => {
-		if (!props.albums.length) {
-			fetchAlbums();
-		}
-	}, []);
+	const fetchMore = () => {
+		fetchAlbums(parseInt(albums.page) + 1);
+	}
 
 	const { albums } = props;
-	return albums.map((album, i) => {
-		return <Album key={i} album={album.album} />
-	});
+	return (
+		<div>
+			{ albums.albums.length > 0 &&
+				albums.albums.map((track, i) => {
+					return <Album key={i} track={track} />
+				})
+			}
+			{ showMore &&
+				<button tabIndex="-1" className="load-more font-weight-bold text-success" onClick={fetchMore}>Load More!</button>
+			}
+		</div>
+	)
 }
 
 export default Albums;
 
-const Album = ({ album }) => {
-    const { state, dispatch } = useContext(SopranoContext);
+const Album = ({ track }) => {
+	const { md5, album } = track;
+	const { state, dispatch } = useContext(SopranoContext);
 	const navigate = useNavigate();
 
 	const handleSearchAlbum = () => {
@@ -67,6 +78,16 @@ const Album = ({ album }) => {
 				console.log(err);
 			});
 	}
+    const image = <CoverSize md5={md5} size={[70, 70]} />
 
-	return (<Avatar onClick={handleSearchAlbum} className="m-2 pointer" name={album} title={album} size="40" />)
+	return (
+		<div title={album} className="track-row pointer d-flex justify-content-center align-items-center w-100">
+			<div className="image">
+				<div className="mb-2">{image}</div>
+			</div>
+			<div className="flex-grow-1 truncate px-2" onClick={handleSearchAlbum}>
+				<div className="truncate">{album}</div>
+			</div>
+		</div>
+	);
 }

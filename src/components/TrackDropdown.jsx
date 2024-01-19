@@ -56,7 +56,7 @@ const TrackDropdown = ({ image, track }) => {
 		<button className="btn btn-primary m-0 p-0 dropdown-toggle d-flex align-items-center" data-bs-auto-close="*" type="button">
 			<span className="playtime">{image}</span>
 		</button>
-		<ul class={menuClass}>
+		<ul className={menuClass}>
 			<li onClick={handleSearchAlbum} className="dropdown-item"><DiscIcon className="me-2" /> {track.album}</li>
 			<li onClick={handleSearchArtist} className="dropdown-item"><UserIcon className="me-2" /> {track.artist}</li>
 		</ul>

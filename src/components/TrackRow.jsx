@@ -9,8 +9,8 @@ const TrackRow = (props) => {
                 onClick={props.handleTitleClick}
                 className="px-1 flex-grow-1 w-100"
             >
-                <div class="title truncate"><strong>{track.title}</strong></div>
-                <div class="artist truncate">{track.artist}</div>
+                <div className="title truncate"><strong>{track.title}</strong></div>
+                <div className="artist truncate">{track.artist}</div>
             </div>
             <TrackDropdown playtime={track.playtime_string} />
         </div>

@@ -440,6 +440,20 @@ label:focus,
     -webkit-filter: blur(40px);
 }
 
+.load-more:hover {
+    font-weight: 800;
+}
+.load-more {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    background-color: #666 !important;
+    color: #bbb !important;
+    border: 1px solid #bbb !important;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
 /**
  * Progress bars
  */

@@ -1,13 +1,14 @@
-import { useEffect, useContext } from 'react';
-import Avatar from 'react-avatar';
+import { useEffect, useContext, useState } from 'react';
 import API from './API';
 import { SopranoContext } from './Soprano';
 import { useNavigate } from 'react-router-dom';
+import AlbumCover from './AlbumCover';
 
 const Artists = (props) => {
-    const { dispatch } = useContext(SopranoContext);
-	const fetchArtists = () => {
-		API.getArtists().then((res) => {
+	const [showMore, setShowMore] = useState(true);
+	const { state, dispatch } = useContext(SopranoContext);
+	const fetchArtists = (page = 1) => {
+		API.getArtists(page).then((res) => {
 			dispatch({
 				type: 'setArtistsResults',
 				payload: res
@@ -17,21 +18,29 @@ const Artists = (props) => {
 		});
 	}
 
-	useEffect(() => {
-		if (!props.artists.length) {
-			fetchArtists();
-		}
-	}, []);
+	const fetchMore = () => {
+		fetchArtists(parseInt(artists.page) + 1);
+	}
 
 	const { artists } = props;
-	return artists.map((artist, i) => {
-		return <Artist key={i} artist={artist.artist} />
-	});
+	return (
+		<div>
+			{ artists.artists.length > 0 &&
+				artists.artists.map((track, i) => {
+					return <Artist key={i} track={track} />
+				})
+			}
+			{ showMore &&
+				<button tabIndex="-1" className="load-more font-weight-bold text-success" onClick={fetchMore}>Load More!</button>
+			}
+		</div>
+	)
 }
 
 export default Artists;
 
-const Artist = ({ artist }) => {
+const Artist = ({ track }) => {
+	const { artist } = track;
     const { state, dispatch } = useContext(SopranoContext);
 	const navigate = useNavigate();
 
@@ -68,5 +77,16 @@ const Artist = ({ artist }) => {
 			});
 	}
 
-	return (<Avatar onClick={handleSearchArtist} className="m-2 pointer" name={artist} title={artist} size="40" />)
+    const image = <AlbumCover cover="/img/no-album.png" />;
+
+	return (
+		<div title={artist} className="track-row pointer d-flex justify-content-center align-items-center w-100">
+			<div className="image">
+				<div className="mb-2">{image}</div>
+			</div>
+			<div className="flex-grow-1 truncate px-2" onClick={handleSearchArtist}>
+				<div className="truncate">{artist}</div>
+			</div>
+		</div>
+	);
 }

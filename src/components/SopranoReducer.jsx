@@ -85,11 +85,17 @@ export function SopranoReducer(state, action) {
             return { ...state, music };
         case 'setAlbumResults':
             var music = state.music;
-            music.albums = action.payload;
+            var albums = music.albums;
+            albums.albums = [...albums.albums, ...action.payload['albums']];
+            albums.page = action.payload['page'];
+            albums.max_pages = action.payload['max_pages'];
             return { ...state, music };
         case 'setArtistsResults':
             var music = state.music;
-            music.artists = action.payload;
+            var artists = music.artists;
+            artists.artists = [...artists.artists, ...action.payload['artists']];
+            artists.page = action.payload['page'];
+            artists.max_pages = action.payload['max_pages'];
             return { ...state, music };
         case 'setGenresResults':
             var music = state.music;
