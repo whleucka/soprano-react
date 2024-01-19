@@ -1,5 +1,4 @@
 import PodcastSearchInput from './PodcastSearchInput';
-import PodcastSearchResults from './PodcastSearchResults';
 
 const Podcasts = () => {
     return (
@@ -14,7 +13,6 @@ const Podcasts = () => {
                 />
             </h2>
             <PodcastSearchInput />
-            <PodcastSearchResults />
         </>
     );
 };
