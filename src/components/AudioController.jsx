@@ -230,7 +230,7 @@ const AudioController = (props) => {
             });
 
             audioRef.current.addEventListener('error', function () {
-                next();
+                //next();
             })
 
             play();
