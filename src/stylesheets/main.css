@@ -321,7 +321,7 @@ label:focus,
  */
 #player {
     background-color: unset;
-    z-index: 3;
+    z-index: 5;
 }
 #player #cover img {
     border-radius: 8%;
@@ -344,14 +344,14 @@ label:focus,
 /**
 * Player controls
 */
-#player-controls .btn {
-    width: 60px;
-    opacity: 0.9;
-}
-
 #player-controls > button.active {
     opacity: 1;
     color: lightgreen !important;
+}
+
+#player-controls .btn {
+    width: 60px;
+    opacity: 0.9;
 }
 
 /**
@@ -425,6 +425,7 @@ label:focus,
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: -1;
 }
 #backdrop {
     height: 100%;

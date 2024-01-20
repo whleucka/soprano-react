@@ -45,7 +45,7 @@ const PlayerControls = () => {
         state.status === 'paused' || !state.track ? <Play /> : <Pause />;
 
     return (
-        <section id="player-controls">
+        <section id="player-controls" style={{zIndex: 7}}>
             <button
                 className={shuffleClass + ' btn text-secondary'}
                 onClick={handleShuffle}
