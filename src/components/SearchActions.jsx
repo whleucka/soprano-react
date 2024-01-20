@@ -9,7 +9,7 @@ const SearchActions = () => {
     const setPlaylist = () => {
         dispatch({ type: 'setPlaylist', payload: state.music.search.results });
         dispatch({ type: 'setPlaylistIndex', payload: 0 });
-        navigate('/playlist');
+        navigate('/');
     };
 
     return (

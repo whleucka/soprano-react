@@ -24,7 +24,7 @@ const NavLinks = () => {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <Link to="/">
                 <li onClick={handleClick} className="nav-item truncate">
-                    <HomeIcon size="18" /> Home
+                    <MusicIcon size="18" /> Playlist
                 </li>
             </Link>
             <Link to="/search">
@@ -32,19 +32,12 @@ const NavLinks = () => {
                     <SearchIcon size="18" /> Search
                 </li>
             </Link>
-            <Link to="/playlist">
-                <li onClick={handleClick} className="nav-item truncate">
-                    <MusicIcon size="18" /> Playlist
-                </li>
-            </Link>
             {state.user && (
-                <>
-                    <Link onClick={handleClick} to="/library">
-                        <li className="nav-item truncate">
-                            <DiscIcon size="18" /> Library
-                        </li>
-                    </Link>
-                </>
+                <Link onClick={handleClick} to="/library">
+                    <li className="nav-item truncate">
+                        <DiscIcon size="18" /> Library
+                    </li>
+                </Link>
             )}
             <Link to="/radio">
                 <li onClick={handleClick} className="nav-item truncate">

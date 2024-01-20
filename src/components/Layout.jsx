@@ -49,7 +49,6 @@ const Layout = () => {
                                     path="/sign-in"
                                     element={<SignIn />}
                                 />
-                                <Route exact path="/" element={<Home />} />
                                 <Route
                                     exact
                                     path="/search"
@@ -72,7 +71,7 @@ const Layout = () => {
                                 />
                                 <Route
                                     exact
-                                    path="/playlist"
+                                    path="/"
                                     element={<Playlist />}
                                 />
                                 <Route

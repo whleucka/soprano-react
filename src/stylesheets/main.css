@@ -25,7 +25,7 @@ body,
     color: #fff;
 }
 #content {
-    height: calc(100% - 165px);
+    height: calc(100% - 163px);
     overflow: hidden;
 }
 
@@ -320,6 +320,7 @@ label:focus,
  * Player
  */
 #player {
+    background-color: unset;
     z-index: 3;
 }
 #player #cover img {
@@ -426,7 +427,7 @@ label:focus,
     left: 0;
 }
 #backdrop {
-    height: calc(100% - 165px);
+    height: 100%;
     width: 100%;
     top: 50px;
     left: 0;
@@ -540,12 +541,11 @@ label:focus,
 }
 
 @media (min-width: 576px) {
+    #content {
+        height: calc(100% - 108px);
+    }
     .library-playlist-cont {
         width: 310px;
-    }
-    #content,
-    #backdrop {
-        height: calc(100% - 108px);
     }
     #backdrop {
         top: 0;

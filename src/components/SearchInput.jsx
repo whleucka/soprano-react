@@ -129,7 +129,7 @@ const SearchInput = () => {
             {noResults && (
                 <div className="alert alert-secondary mt-2" role="alert">
                     <i className="bi bi-search me-2"></i> No results found for
-                    "<strong>{state.podcasts.search.term}</strong>"
+                    "<strong>{state.music.search.term}</strong>"
                 </div>
             )}
 

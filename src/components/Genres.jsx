@@ -3,7 +3,6 @@ import Avatar from 'react-avatar';
 import API from './API';
 import { SopranoContext } from './Soprano';
 import { useNavigate } from 'react-router-dom';
-import AlbumCover from './AlbumCover';
 import SearchLinks from './SearchLinks';
 
 const Genres = (props) => {

@@ -15,7 +15,7 @@ const LikedSongs = () => {
                 dispatch({ type: 'setPlaylist', payload: res });
                 //dispatch({ type: 'setPlaylistIndex', payload: 0 });
                 dispatch({ type: 'setPlaylistId', payload: 'like' });
-                navigate('/playlist');
+                navigate('/');
             })
             .catch(console.log);
     };
