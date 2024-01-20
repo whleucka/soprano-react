@@ -177,9 +177,8 @@ const AudioController = (props) => {
 
     const updatePositionState = () => {
         try {
-            const duration = audioRef.current?.duration; 
+            const duration = audioRef.current?.duration;
             if ('setPositionState' in navigator.mediaSession && !isNaN(duration) && isFinite(duration)) {
-                console.log("Logging position", audioRef.current.currentTime);
                 navigator.mediaSession.setPositionState({
                     duration: audioRef.current.duration,
                     playbackRate: audioRef.current.playbackRate,
@@ -272,7 +271,7 @@ const AudioController = (props) => {
         dispatch({ type: 'setTrack', payload: track });
     }, [state.music.playlist.index]);
 
-    return <audio ref={audioRef} src={state.track?.src} preload="false" />;
+    return <audio ref={audioRef} src={state.track?.src} />;
 };
 
 export default AudioController;

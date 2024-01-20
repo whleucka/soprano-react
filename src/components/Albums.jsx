@@ -24,10 +24,7 @@ const Albums = (props) => {
 	}
 
 	useEffect(() => {
-		if (!state.music.albums.page) {
-			console.log("loading albums..");
-			fetchAlbums(1);
-		} else {
+		if (state.music.albums.page) {
 			setShowMore(albums.max_pages > albums.page);
 		}
 	}, [state.music.albums]);

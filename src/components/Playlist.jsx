@@ -21,7 +21,7 @@ const Playlist = () => {
                 }
             }
         }
-    }, [state.music.playlist.index, state.music.playlist.tracks]);
+    }, [state.music.playlist.index]);
 
     return (
         <>

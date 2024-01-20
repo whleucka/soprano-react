@@ -24,10 +24,7 @@ const Artists = (props) => {
 	}
 
 	useEffect(() => {
-		if (!state.music.artists.page) {
-			console.log("loading artists..");
-			fetchArtists(1);
-		} else {
+		if (state.music.artists.page) {
 			setShowMore(artists.max_pages > artists.page);
 		}
 	}, [state.music.artists]);

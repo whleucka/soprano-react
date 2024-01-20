@@ -1,4 +1,4 @@
-import PodcastSearchInput from './PodcastSearchInput';
+import PodcastSearch from './PodcastSearch';
 
 const Podcasts = () => {
     return (
@@ -12,7 +12,7 @@ const Podcasts = () => {
                     title="Listen Notes"
                 />
             </h2>
-            <PodcastSearchInput />
+            <PodcastSearch />
         </>
     );
 };

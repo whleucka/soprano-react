@@ -1,10 +1,13 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Search as SearchIcon, Trash as TrashIcon } from 'react-feather';
 import API from './API';
 import { SopranoContext } from './Soprano';
+import { BarLoader } from 'react-spinners';
 
 const SearchInput = () => {
     const { state, dispatch } = useContext(SopranoContext);
+    const [searching, setSearching] = useState(false);
+    const [noResults, setNoResults] = useState(false);
 
     const handleInput = (e) => {
         const term = e.currentTarget.value;
@@ -27,22 +30,28 @@ const SearchInput = () => {
     const handleSubmit = () => {
         const term = state.music.search.term.trim();
         if (term.length > 0) {
+            setSearching(true);
             API.musicSearch(term, state.music.search.type, state.user)
                 .then((tracks) => {
                     if (tracks.length > 0) {
+                        setNoResults(false);
                         dispatch({
                             type: 'setMusicSearchResults',
                             payload: tracks
                         });
                     } else {
+                        setNoResults(true);
                         dispatch({
                             type: 'setMusicSearchResults',
                             payload: []
                         });
                     }
+                    setSearching(false);
                 })
                 .catch((err) => {
                     console.log(err);
+                    setSearching(false);
+                    setNoResults(false);
                 });
         }
     };
@@ -51,6 +60,8 @@ const SearchInput = () => {
         dispatch({ type: 'setMusicSearchResults', payload: [] });
         dispatch({ type: 'setMusicSearchTerm', payload: '' });
         dispatch({ type: 'setMusicSearchType', payload: 'all' });
+        setSearching(false);
+        setNoResults(false);
     };
 
     const types = [
@@ -66,53 +77,66 @@ const SearchInput = () => {
     }, [])
 
     return (
-        <div
-            id="music-search"
-            className="input-group input-group-sm w-100 mb-2"
-        >
-            <input
-                placeholder="I want to listen to..."
-                type="search"
-                onInput={handleInput}
-                onKeyDown={handleKey}
-                value={state.music.search.term}
-                className="form-control form-control-sm bg-dark"
-            />
-            <select
-                id="type-select"
-                className="form-select bg-dark"
-                onChange={handleTypeChange}
-                value={state.music.search.type}
+        <>
+            <div
+                id="music-search"
+                className="input-group input-group-sm w-100 mb-2"
             >
-                {types.length > 0 &&
-                    types.map((type, i) => {
-                        return (
-                            <option key={i} value={type.value}>
-                                {type.title}
-                            </option>
-                        );
-                    })}
-            </select>
-            <button
-                type="submit"
-                onClick={handleSubmit}
-                className="btn btn-sm btn-dark"
-            >
-                <SearchIcon height="14" />
-            </button>
-            {(state.music.search.results.length > 0 ||
-                state.music.search.term.length > 0) && (
+                <input
+                    placeholder="I want to listen to..."
+                    type="search"
+                    onInput={handleInput}
+                    onKeyDown={handleKey}
+                    value={state.music.search.term}
+                    className="form-control form-control-sm bg-dark"
+                />
+                <select
+                    id="type-select"
+                    className="form-select bg-dark"
+                    onChange={handleTypeChange}
+                    value={state.music.search.type}
+                >
+                    {types.length > 0 &&
+                        types.map((type, i) => {
+                            return (
+                                <option key={i} value={type.value}>
+                                    {type.title}
+                                </option>
+                            );
+                        })}
+                </select>
                 <button
-                    id="search-submit"
                     type="submit"
-                    onClick={handleClear}
-                    style={{ borderLeft: 0 }}
+                    onClick={handleSubmit}
                     className="btn btn-sm btn-dark"
                 >
-                    <TrashIcon height="14" />
+                    <SearchIcon height="14" />
                 </button>
+                {(state.music.search.results.length > 0 ||
+                    state.music.search.term.length > 0) && (
+                    <button
+                        id="search-submit"
+                        type="submit"
+                        onClick={handleClear}
+                        style={{ borderLeft: 0 }}
+                        className="btn btn-sm btn-dark"
+                    >
+                        <TrashIcon height="14" />
+                    </button>
+                )}
+            </div>
+
+            {noResults && (
+                <div className="alert alert-secondary mt-2" role="alert">
+                    <i className="bi bi-search me-2"></i> No results found for
+                    "<strong>{state.podcasts.search.term}</strong>"
+                </div>
             )}
-        </div>
+
+            {searching && (
+                <BarLoader className="my-4" color="#36d7b7" width="100%" />
+            )}
+        </>
     );
 };
 

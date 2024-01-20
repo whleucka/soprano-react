@@ -25,10 +25,7 @@ const Genres = (props) => {
 	}
 
 	useEffect(() => {
-		if (!state.music.genres.page) {
-			console.log("loading genres..");
-			fetchGenres(1);
-		} else {
+		if (state.music.genres.page) {
 			setShowMore(genres.max_pages > genres.page);
 		}
 	}, [state.music.genres]);
