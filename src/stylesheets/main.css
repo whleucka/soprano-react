@@ -465,10 +465,10 @@ label:focus,
     border: 1px solid #bbb;
     color: #bbb;
     background-color: #222 !important;
-    padding: 7px 12px;
+    padding: 4px 10px;
     border-radius: 6px;
     margin: 0 8px;
-    display:inline-block;
+    display: inline-flex;
 }
 .list-inline li.active {
     background: #8e2de2; /* fallback for old browsers */
