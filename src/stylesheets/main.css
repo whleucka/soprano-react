@@ -8,6 +8,9 @@
 /**
  * Layout
  */
+html {
+    zoom: 105%;
+}
 body {
     font-family: 'Inter', sans-serif;
     min-width: 350px;
@@ -542,6 +545,9 @@ label:focus,
 }
 
 @media (min-width: 576px) {
+    html {
+        zoom: 115%;
+    }
     #content {
         height: calc(100% - 108px);
     }
