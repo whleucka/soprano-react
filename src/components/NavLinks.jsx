@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import {
-    Home as HomeIcon,
     Search as SearchIcon,
     Music as MusicIcon,
     Radio as RadioIcon,

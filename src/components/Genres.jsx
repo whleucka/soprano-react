@@ -88,9 +88,9 @@ const Genre = ({ track }) => {
     const image = <Avatar name={genre} size={40} />
 
 	return (
-		<div title={genre} className="track-row pointer d-flex justify-content-center align-items-center w-100">
+		<div title={genre} className="track-genre pointer d-flex justify-content-center align-items-center w-100">
 			<div className="image">
-				<div className="mb-2">{image}</div>
+				<div>{image}</div>
 			</div>
 			<div className="flex-grow-1 truncate px-2" onClick={handleSearchGenre}>
 				<div className="truncate">{genre.replaceAll('|', "/")}</div>

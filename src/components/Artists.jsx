@@ -88,9 +88,9 @@ const Artist = ({ track }) => {
     const image = <Avatar name={artist} size={40} />
 
 	return (
-		<div title={artist} className="track-row pointer d-flex justify-content-center align-items-center w-100">
+		<div title={artist} className="track-artist pointer d-flex justify-content-center align-items-center w-100">
 			<div className="image">
-				<div className="mb-2">{image}</div>
+				<div>{image}</div>
 			</div>
 			<div className="flex-grow-1 truncate px-2" onClick={handleSearchArtist}>
 				<div className="truncate">{artist}</div>
