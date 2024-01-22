@@ -54,9 +54,10 @@ const PodcastSearch = () => {
                     setNextOffset(res.next_offset);
                     setShowMore(true);
                     res.results.forEach((track, i) => {
+                        const d = new Date(track.pub_date_ms);
                         const podcast = {
                             md5: i + '_podcast',
-                            artist: track.podcast.title_original,
+                            artist: track.podcast.title_original + " " + d.toLocaleDateString(),
                             album: 'Soprano Podcast',
                             title: track.title_original,
                             cover: process.env.REACT_APP_SERVER_URL + '/api/v1/image?url=' + track.image,
