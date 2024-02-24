@@ -45,7 +45,7 @@ const PlayerControls = () => {
         state.status === 'paused' || !state.track ? <Play /> : <Pause />;
 
     return (
-        <section id="player-controls" style={{zIndex: 7}}>
+        <section id="player-controls" className="d-flex justify-content-center">
             <button
                 className={shuffleClass + ' btn text-secondary'}
                 onClick={handleShuffle}

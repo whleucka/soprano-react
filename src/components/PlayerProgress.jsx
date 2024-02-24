@@ -1,23 +1,15 @@
 import { useState, useEffect, useContext, useCallback, useRef } from 'react';
 import { SopranoContext } from './Soprano';
 import { FastAverageColor } from 'fast-average-color';
-//import { Util } from './Util';
 
 var playbackTimer = null;
-//var playtimeTimer = null;
 
 const PlayerProgress = ({ audioRef }) => {
     const { state } = useContext(SopranoContext);
-    //const [playtime, setPlaytime] = useState('00:00');
     const [playback, setPlayback] = useState(0);
     const [buffer, setBuffer] = useState(0);
     const playerProgressRef = useRef(null);
     const playerProgressbarRef = useRef(null);
-
-    // const playtimeSeconds =
-    //         'playtime_seconds' in state.track
-    //         ? Util.convertSeconds(state.track.playtime_seconds)
-    //         : '00:00';
 
     const startPlayback = useCallback(
         (seconds) => {
@@ -50,7 +42,6 @@ const PlayerProgress = ({ audioRef }) => {
         (seconds) => {
             if (seconds > 0) {
                 startPlayback(seconds);
-                //startPlaytime(seconds);
             }
         },
         [startPlayback]
@@ -58,11 +49,9 @@ const PlayerProgress = ({ audioRef }) => {
 
     const clearTimer = (reset_progress = true) => {
         clearInterval(playbackTimer);
-        //clearInterval(playtimeTimer);
         if (reset_progress) {
             setPlayback(0);
             setBuffer(0);
-            //setPlaytime('00:00');
         }
     };
 
@@ -76,18 +65,6 @@ const PlayerProgress = ({ audioRef }) => {
         }
     };
 
-    // const startPlaytime = () => {
-    //     const delay = 1000;
-    //     playtimeTimer = setInterval(() => {
-    //         if (!audioRef.current.paused) {
-    //             const elapsed = audioRef.current.currentTime;
-    //             const elapsed_string = Util.convertSeconds(elapsed);
-    //             setPlaytime(elapsed_string);
-    //         }
-    //     }, delay);
-    // };
-    //
-
     const handleClick = (e) => {
         if (
             Object.keys(state.track).length === 0 ||
@@ -95,18 +72,12 @@ const PlayerProgress = ({ audioRef }) => {
             !audioRef.current.src
         )
             return;
-        setBuffer(0);
-        const self = e.currentTarget;
-        const width = playerProgressRef.current.getBoundingClientRect().width;
-        const x = e.pageX - self.offsetLeft;
-        let pct = width > 0 ? x / width : 0;
-        pct = Math.min(100, pct);
-        pct = Math.max(0, pct);
-        const seconds = state.track.playtime_seconds;
-        const new_seconds = pct.toFixed(2) * seconds;
-        audioRef.current.currentTime = new_seconds;
-        setPlayback((pct * 100).toFixed(2));
-        updatePositionState();
+        //setBuffer(0);
+        //const seconds = state.track.playtime_seconds;
+        //const new_seconds = pct.toFixed(2) * seconds;
+        //audioRef.current.currentTime = new_seconds;
+        //setPlayback((pctClicked).toFixed(2));
+        //updatePositionState();
 
     };
 
@@ -145,7 +116,7 @@ const PlayerProgress = ({ audioRef }) => {
                 })
                 .catch((_) => {
                     playerProgressbarRef.current.style.background =
-                        '#696969';
+                        '#333333';
                 });
         }
     }, [state.track?.cover]);
@@ -160,7 +131,7 @@ const PlayerProgress = ({ audioRef }) => {
         audioRef.current && audioRef.current.paused ? 'bg-secondary' : '';
 
     return (
-        <div id="progress-cont">
+        <div id="progress-cont" className="d-flex justify-content-center">
             <div
                 ref={playerProgressRef}
                 id="player-progress"

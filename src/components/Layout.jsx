@@ -7,11 +7,9 @@ import Player from './Player';
 import { BarLoader } from 'react-spinners';
 import { SopranoContext } from './Soprano';
 import AudioController from './AudioController';
-import PlayerProgress from './PlayerProgress';
 import Artists from './Artists';
 import Albums from './Albums';
 import Genres from './Genres';
-const Home = lazy(() => import('./Home'));
 const Search = lazy(() => import('./Search'));
 const Playlist = lazy(() => import('./Playlist'));
 const Radio = lazy(() => import('./Radio'));
@@ -103,7 +101,6 @@ const Layout = () => {
                     </section>
                 </section>
             </section>
-            <PlayerProgress audioRef={audioRef} />
             <Player audioRef={audioRef} />
             <User />
         </Router>

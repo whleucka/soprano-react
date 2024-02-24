@@ -312,13 +312,18 @@ label:focus,
     margin: 13px 0;
 }
 .actions .btn {
+    display: flex;
+    align-items: center;
     opacity: 0.8;
-    border: 1px solid #bbb !important;
-    color: #bbb;
+    font-size: 0.8rem;
+    border: 1px solid #666 !important;
     background-color: #222 !important;
     padding: 4px 10px;
     border-radius: 6px;
     margin-right: 5px;
+}
+.actions .btn svg {
+    width: 12px;
 }
 .actions .btn:hover {
     opacity: 1.0;
@@ -335,14 +340,12 @@ label:focus,
  * Player
  */
 #player {
+    z-index: 999;
     background-color: unset;
-    z-index: 5;
+    height: 100px;
 }
 #player #cover img {
     border-radius: 8%;
-}
-#player {
-    height: 100px;
 }
 #player #cover > img {
     width: 70px;
@@ -359,6 +362,12 @@ label:focus,
 /**
 * Player controls
 */
+#player #controls {
+    z-index: 999;
+}
+#player-controls {
+    margin-top: 20px;
+}
 #player-controls > button.active {
     opacity: 1;
     color: lightgreen !important;
@@ -366,10 +375,12 @@ label:focus,
 
 #player-controls .btn {
     width: 60px;
-    opacity: 0.6;
+    margin: 0;
+    padding: 0;
+    opacity: 0.5;
 }
 #player-controls .btn:hover {
-    opacity: 1.0;
+    opacity: 1;
 }
 
 /**
@@ -478,13 +489,18 @@ label:focus,
 }
 .list-inline li {
     font-size: 0.8rem;
-    border: 1px solid #bbb;
+    border: 1px solid #666;
     color: #bbb;
-    background-color: #222 !important;
+    /*background-color: #222 !important;*/
+    background: transparent;
     padding: 4px 8px;
     border-radius: 6px;
     margin: 0 4px;
     display: inline-flex;
+    align-items: center;
+}
+.list-inline li svg {
+    width: 13px;
 }
 .list-inline li.active {
     background: #8e2de2; /* fallback for old browsers */
@@ -542,7 +558,8 @@ label:focus,
     height: 8px;
     background-color: #222;
     border-radius: 0;
-    width: 100% !important;
+    width: 80%;
+    border-radius: 6px;
 }
 
 #player-progressbar {
@@ -553,6 +570,7 @@ label:focus,
     position: relative;
     bottom: 0;
     width: 100% !important;
+    margin-bottom: 10px;
 }
 
 #player #progress-cont small {
@@ -579,6 +597,9 @@ label:focus,
     #content {
         height: calc(100% - 108px);
     }
+    #player-progress {
+        max-width: 800px;
+    }
     .library-playlist-cont {
         width: 310px;
     }
@@ -604,6 +625,6 @@ label:focus,
 
 @media (min-width: 768px) {
     body {
-        zoom: 110%;
+        /* zoom: 110%; */
     }
 }

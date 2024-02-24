@@ -3,6 +3,7 @@ import { SopranoContext } from './Soprano';
 import AlbumCover from './AlbumCover';
 import VolumeProgress from './VolumeProgress';
 import PlayerControls from './PlayerControls';
+import PlayerProgress from './PlayerProgress';
 
 const Player = (props) => {
     const { audioRef } = props;
@@ -21,9 +22,12 @@ const Player = (props) => {
             </div>
             <div
                 id="controls"
-                className="d-flex justify-content-center align-items-center flex-grow-1"
+                className="d-flex flex-column justify-content-center align-items-center flex-grow-1"
             >
+                <div id="control-cont" class="w-100 d-flex justify-content-center flex-column">
+                <PlayerProgress audioRef={audioRef} />
                 <PlayerControls audioRef={audioRef} />
+                </div>
             </div>
             <div id="volume" className="d-flex align-items-center">
                 <VolumeProgress />
